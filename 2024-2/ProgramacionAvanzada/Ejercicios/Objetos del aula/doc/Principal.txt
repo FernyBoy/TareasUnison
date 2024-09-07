@@ -1,0 +1,30 @@
+Archivo: Principal.java
+
+Descripción:
+--------------
+Este archivo contiene la clase Principal, que es el punto de entrada del programa.
+Se encarga de crear una instancia de la clase Refrigeracion y realizar diferentes
+operaciones como cambiar la temperatura, el modo de funcionamiento y mostrar el estado actual del aire acondicionado.
+
+Clases y métodos:
+-------------------
+1. Clase: Principal
+   - Descripción: La clase Principal contiene el método main, que ejecuta el programa.
+
+2. Método: main(String[] args)
+   - Descripción: Método principal que ejecuta el programa.
+   - Parámetros: 
+     - String[] args: Argumentos de la línea de comandos (no utilizados en este caso).
+   - Funcionalidad:
+     - Cambia la temperatura del aire acondicionado.
+     - Cambia el modo de operación del aire acondicionado.
+     - Imprime la temperatura actual, el modo actual y el estado (encendido o apagado) del aire acondicionado.
+     - Llama al método ImprimirDescripcion para mostrar una descripción detallada del aire acondicionado.
+
+Instancias:
+------------
+- Refrigeracion refrigeracion: Instancia de la clase Refrigeracion que representa el aire acondicionado.
+
+Uso:
+-----
+Para ejecutar este programa, basta con compilar el archivo Principal.java y ejecutarlo. Este programa interactúa con el objeto Refrigeracion y realiza cambios en sus propiedades.

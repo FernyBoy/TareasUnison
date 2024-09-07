@@ -1,0 +1,56 @@
+Archivo: Refrigeracion.java
+
+Descripción:
+--------------
+Este archivo define la clase Refrigeracion, que representa un sistema de aire acondicionado.
+Incluye funcionalidades para cambiar la temperatura, cambiar el modo de operación (Aire, Enfriar, Calentar),
+y verificar el estado del dispositivo (encendido o apagado).
+
+Clases y métodos:
+-------------------
+1. Clase: Refrigeracion
+   - Descripción: Clase que define las propiedades y métodos de un aire acondicionado.
+   - Atributos:
+     - boolean encendido: Indica si el aire acondicionado está encendido o apagado.
+     - float temperatura: Temperatura actual del aire acondicionado en grados Celsius.
+     - String modoActual: Modo de operación actual del aire acondicionado (Aire, Enfriar, Calentar).
+  
+2. Constructor: Refrigeracion()
+   - Descripción: Constructor por defecto que inicializa el aire acondicionado con los valores por defecto.
+   
+3. Constructor: Refrigeracion(boolean encendido)
+   - Descripción: Constructor que inicializa el estado del aire acondicionado (encendido o apagado).
+
+4. Método: CambiarTemperatura(float cambio)
+   - Descripción: Cambia la temperatura actual del aire acondicionado.
+   - Parámetros:
+     - float cambio: Valor que se suma o resta a la temperatura actual.
+   
+5. Método: CambiarModo()
+   - Descripción: Cambia el modo de operación del aire acondicionado solicitando un valor al usuario.
+   - Modo:
+     - 0: Aire
+     - 1: Enfriar
+     - 2: Calentar
+
+6. Método: TemperaturaActual()
+   - Descripción: Devuelve la temperatura actual del aire acondicionado.
+   - Retorno: float: Temperatura en grados Celsius.
+   
+7. Método: ModoActual()
+   - Descripción: Devuelve el modo de operación actual del aire acondicionado.
+   - Retorno: String: Modo actual ("Aire", "Enfriar" o "Calentar").
+
+8. Método: EstadoActual()
+   - Descripción: Devuelve el estado actual del aire acondicionado (encendido o apagado).
+   - Retorno: String: "Encendido" o "Apagado".
+
+9. Método: ImprimirDescripcion()
+   - Descripción: Imprime una descripción detallada sobre el aire acondicionado, incluyendo sus modos de operación
+     y cómo puede ajustarse para proporcionar confort en diversas condiciones climáticas.
+
+Uso:
+-----
+- Esta clase es instanciada y utilizada en la clase Principal para cambiar la temperatura, el modo de operación, 
+  y mostrar el estado actual del aire acondicionado.
+- Se puede crear un objeto Refrigeracion y llamar a sus métodos para ajustar su comportamiento.
