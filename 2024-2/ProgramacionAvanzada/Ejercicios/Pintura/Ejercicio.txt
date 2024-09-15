@@ -1,0 +1,29 @@
+Ejercicio: (tradicional) estructurado. Escribir el proceso para
+pintar la fachada del edificio de LCC.
+
+Proceso:
+1. Sacar brocha
+2. Sacar pintura
+3. Medir dimensiones
+4. Limpiar superficie
+5. Poner papel en el piso
+6. Sacar escalera
+7. Pintar
+8. Dejar secar (esperar)
+9. Pintar
+
+Objetos:
+- Brocha
+- Pintura
+- Flexometro
+- Escalera
+- Papel periodico
+- Escoba
+- Pared
+
+Asignar acciones / caracteristicas:
+La brocha debe pintar
+La brocha "se moja" con la pintura
+La pintura tiene un color
+La escalera tiene una longitud
+La escalera permite subir de nivel
