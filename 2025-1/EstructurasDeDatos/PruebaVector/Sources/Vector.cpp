@@ -5,7 +5,7 @@
 
 Vector::Vector()
 {
-    dimension = 7;
+    EstablecerDim(MAX_DIM);
     for(int i = 0; i < dimension; ++i)
     {
         components[i] = 0;
@@ -14,7 +14,7 @@ Vector::Vector()
 
 Vector::Vector(int dim)
 {
-    dimension = dim;
+    EstablecerDim(dim);
     for(int i = 0; i < dimension; ++i)
     {
         components[i] = 0;
@@ -23,14 +23,19 @@ Vector::Vector(int dim)
 
 Vector::Vector(int dim, double val)
 {
-    dimension = dim;
+    EstablecerDim(dim);
     for(int i = 0; i < dimension; ++i)
     {
         components[i] = val;
     }
 }
 
-void Vector::Imprimir()
+int Vector::ObtenerDimension() const
+{
+    return dimension;
+}
+
+void Vector::Imprimir() const
 {
     std::cout << "(";
     for(int i = 0; i < dimension; ++i)
@@ -49,7 +54,7 @@ void Vector::Capturar()
     }
 }
 
-Vector Vector::Sumar(Vector v)
+Vector Vector::operator+(const Vector v) const
 {
     if(dimension != v.dimension) throw "Vectores incompatibles para la suma";
 
@@ -63,7 +68,7 @@ Vector Vector::Sumar(Vector v)
     return s;
 }
 
-Vector Vector::Restar(Vector v)
+Vector Vector::operator-(const Vector v) const
 {
     if(dimension != v.dimension) throw "Vectores incompatibles para la resta";
 
@@ -77,7 +82,7 @@ Vector Vector::Restar(Vector v)
     return s;
 }
 
-double Vector::ProductoPunto(Vector v)
+double Vector::operator*(const Vector v) const
 {
     if(dimension != v.dimension) throw "Vectores incompatibles para el producto punto";
 
@@ -91,7 +96,7 @@ double Vector::ProductoPunto(Vector v)
     return result;
 }
 
-Vector Vector::ProductoPorEscalar(double escalar)
+Vector Vector::operator*(const double escalar) const
 {
     Vector s(dimension);
 
@@ -103,7 +108,7 @@ Vector Vector::ProductoPorEscalar(double escalar)
     return s;
 }
 
-double Vector::NormaV()
+double Vector::NormaV() const
 {
     double sum = 0;
 
@@ -113,4 +118,29 @@ double Vector::NormaV()
     }
 
     return sqrt(sum);
+}
+
+//*********************************************
+//     Metodos externos
+//*********************************************
+Vector operator*(double escalar, const Vector v)
+{
+    Vector r(v.dimension);
+
+    for(int i = 0; i < v.dimension; ++i)
+    {
+        r.components[i] = v.components[i] * escalar;
+    }
+
+    return r;
+}
+
+//*********************************************
+//     Metodos externos
+//*********************************************
+void Vector::EstablecerDim(int dim)
+{
+    if(dim < 1 || dim > MAX_DIM) throw "Dimension invalida";
+    
+    dimension = dim;
 }
