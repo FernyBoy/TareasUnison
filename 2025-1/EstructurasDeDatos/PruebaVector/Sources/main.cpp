@@ -49,29 +49,17 @@ int main()
         cout << endl << endl;
         z = v + w;
 
-        v.Imprimir();
-        cout << " + ";
-        w.Imprimir();
-        cout << " = ";
-        z.Imprimir();
+        cout << v << " + " << w << " = " << z;
 
 
         cout << endl << endl;
         z = v - w;
 
-        v.Imprimir();
-        cout << " - ";
-        w.Imprimir();
-        cout << " = ";
-        z.Imprimir();
+        cout << v << " - " << w << " = " << z;
 
 
         cout << endl << endl;
-        v.Imprimir();
-        cout << " * ";
-        w.Imprimir();
-        cout << " = ";
-        cout << v * w;
+        cout << v << " * " << w << " = " << v * w;
 
 
         cout << endl << endl;
@@ -79,16 +67,12 @@ int main()
         cout << "Ingresa el escalar: ";
         cin >> escalar;
         z = escalar * v;
-        v.Imprimir();
-        cout << " * " << escalar << " = ";
-        z.Imprimir();
+        cout << v << " * " << escalar << " = " << z;
 
     
         cout << endl << endl;
         cout << "Norma de ";
-        v.Imprimir();
-        cout << " = "; 
-        cout << v.NormaV();
+        cout << v << " = " << v.NormaV();
 
     }catch(const char *message)
     {

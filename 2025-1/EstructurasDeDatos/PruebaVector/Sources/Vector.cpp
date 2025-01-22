@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cmath>
+#include <ostream>
 
 #include "../Headers/Vector.hpp"
 
@@ -143,4 +144,16 @@ void Vector::EstablecerDim(int dim)
     if(dim < 1 || dim > MAX_DIM) throw "Dimension invalida";
     
     dimension = dim;
+}
+
+std::ostream & operator<<(std::ostream &salida, const Vector v)
+{
+    salida << "(";
+    for(int i = 0; i < v.dimension; ++i)
+    {
+        salida << v.components[i] << ", ";
+    }
+    salida << "\b\b)";
+    
+    return salida;
 }

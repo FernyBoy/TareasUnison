@@ -1,11 +1,15 @@
 #ifndef VECTOR_HPP_INCLUDED
 #define VECTOR_HPP_INCLUDED
 
+#include <iostream>
+#include <ostream>
+
 #define MAX_DIM 10
 
 class Vector
 {
     friend Vector operator*(double escalar, const Vector v);
+    friend std::ostream & operator<<(std::ostream &salida, const Vector v);
 
     public:
         Vector();
