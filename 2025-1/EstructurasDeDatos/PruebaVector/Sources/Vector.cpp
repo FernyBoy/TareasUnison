@@ -1,28 +1,8 @@
-#include <iostream>
 #include <cmath>
-#include <ostream>
 
 #include "../Headers/Vector.hpp"
 
-Vector::Vector()
-{
-    EstablecerDim(MAX_DIM);
-    for(int i = 0; i < dimension; ++i)
-    {
-        components[i] = 0;
-    }
-}
-
-Vector::Vector(int dim)
-{
-    EstablecerDim(dim);
-    for(int i = 0; i < dimension; ++i)
-    {
-        components[i] = 0;
-    }
-}
-
-Vector::Vector(int dim, double val)
+Vector::Vector(int dim /* = MAX_DIM */, double val /* = 0 */)
 {
     EstablecerDim(dim);
     for(int i = 0; i < dimension; ++i)
@@ -109,6 +89,13 @@ Vector Vector::operator*(const double escalar) const
     return s;
 }
 
+double Vector::operator[](int i) const
+{
+    if (i < 0 || i >= dimension) throw "\326ndice invalido";
+
+    return components[i]; 
+}
+
 double Vector::NormaV() const
 {
     double sum = 0;
@@ -156,4 +143,15 @@ std::ostream & operator<<(std::ostream &salida, const Vector v)
     salida << "\b\b)";
     
     return salida;
+}
+
+std::istream & operator>>(std::istream &entrada, Vector &v)
+{
+    for(int i = 0; i < v.dimension; ++i)
+    {
+        std::cout << "Componente " << i+1 << ": ";
+        entrada >> v.components[i];
+    }
+
+    return entrada;
 }

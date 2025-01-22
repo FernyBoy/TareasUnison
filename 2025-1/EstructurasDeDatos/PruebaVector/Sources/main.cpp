@@ -41,10 +41,10 @@ int main()
         Vector v(n), w(n), z(n);
 
         cout << "\n\nCapturando el primer vector" << endl;
-        v.Capturar();
+        cin >> v;
 
         cout << "\n\nCapturando el segundo vector" << endl;
-        w.Capturar();
+        cin >> w;
 
         cout << endl << endl;
         z = v + w;
