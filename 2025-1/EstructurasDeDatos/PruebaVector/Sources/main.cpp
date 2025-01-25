@@ -34,9 +34,9 @@ int main()
 
         do
         {
-            cout << "Dimensi\242n [1," << MAX_DIM << "]: ";
+            cout << "Dimensi\242n: ";
             cin >> n;
-        } while(n < 1 || n > MAX_DIM);
+        } while(n < 1);
 
         Vector v(n), w(n), z(n);
 
@@ -47,7 +47,7 @@ int main()
         cin >> w;
 
         cout << endl << endl;
-        z = v + w;
+        z = w + v;
 
         cout << v << " + " << w << " = " << z;
 

@@ -1,13 +1,65 @@
 #include <cmath>
+#include <new>
 
 #include "../Headers/Vector.hpp"
+
+// El metodo destructor no tiene tipo de valor devuelto, se llama igual que la clase pero con una tilde al final de la clase,
+// se invoca automaticamente al temrinar el ambito del objeto
+// no recive parametros, por lo tanto, no pueden ser sobrecargagos
+// y sirve para reestrablecer los recursos que se hayan solicitado con el constructor
+//
+// Todo metodo no estatico de una clase tiene acceso a un puntero de autoreferencia al objeto que la llame
+//
+// Los constructores son los unicos que aceptan inicializadores
+
+Vector::Vector(const Vector &v) : components(NULL)
+{
+    *this = v;
+}
+
+Vector::~Vector()
+{
+    delete [] components; 
+}
+
+Vector & Vector::operator=(const Vector &v)
+{
+    if(this == &v) return *this;
+
+    delete [] components;
+    dimension = v.dimension;
+
+    try 
+    {
+        components = new double[dimension];
+
+        for(int i = 0; i < dimension; ++i)
+        {
+            components[i] = v[i];
+        }
+    }catch(std::bad_alloc &) 
+    {
+        throw "Problemas de asignaci\242n de memoria";
+    }
+
+    return *this;
+}
 
 Vector::Vector(int dim /* = MAX_DIM */, double val /* = 0 */)
 {
     EstablecerDim(dim);
-    for(int i = 0; i < dimension; ++i)
+
+    try 
     {
-        components[i] = val;
+        components = new double[dim];
+
+        for(int i = 0; i < dimension; ++i)
+        {
+            components[i] = val;
+        }
+    }catch(std::bad_alloc &) 
+    {
+        throw "Problemas de asignaci\242n de memoria";
     }
 }
 
@@ -128,7 +180,7 @@ Vector operator*(double escalar, const Vector v)
 //*********************************************
 void Vector::EstablecerDim(int dim)
 {
-    if(dim < 1 || dim > MAX_DIM) throw "Dimension invalida";
+    if(dim < 1) throw "Dimension invalida";
     
     dimension = dim;
 }

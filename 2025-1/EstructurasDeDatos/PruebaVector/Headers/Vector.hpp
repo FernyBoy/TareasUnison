@@ -5,8 +5,6 @@
 #include <istream>
 #include <ostream>
 
-#define MAX_DIM 10
-
 class Vector
 {
     friend Vector operator*(double escalar, const Vector v);
@@ -15,8 +13,11 @@ class Vector
 
     public:
         // Un constructor de un solo parametro es un operador de conversion del tipo de parametro al tipo de la clase
-        explicit Vector(int dim = MAX_DIM, double val = 0);
-        
+        explicit Vector(int dim = 1, double val = 0);
+        Vector(const Vector &v); 
+        ~Vector();
+        Vector & operator=(const Vector &v);
+
         int ObtenerDimension() const;
         void Imprimir() const;
         void Capturar();
@@ -31,7 +32,7 @@ class Vector
 
     private:
         int dimension;
-        double components[10];
+        double *components;
         
         // Metodos de utileria
         void EstablecerDim(int dim);
