@@ -1,0 +1,148 @@
+\documentclass[a4paper, 12pt]{article}
+
+% -- Language --
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+
+% ----- Fonts -----
+% -- Color --
+\usepackage{xcolor}
+\definecolor{azul}{RGB}{51,102,204}
+% -- Family --
+% \usepackage{fontspec}
+% \setmainfont{JetBrainsMono Nerd Font}
+
+% -- Page Margin --
+\usepackage[
+    top = 0.5in,
+    bottom = 1in,
+    left = 1in,
+    right = 1in
+]{geometry}
+
+% -- Enumerates --
+\usepackage{enumitem}
+
+\title{%
+  Teoría de la computación 2025-1 \\
+  Lema de Arden
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{center}
+    \begin{tabular}{r|l}
+        \textbf{Expediente} & \textbf{Nombre} \\ \hline
+        223210350 & Amaya Soria Angel Alberto \\
+        219208106 & Bórquez Guerrero Angel Fernando \\
+        223217959 & Figueroa Torres Oiram Alberto \\
+    \end{tabular}
+\end{center}
+
+\rule{\linewidth}{0.3mm}
+
+Pruebe el lema de Arden. Considere la ecuación entre lenguajes $X = XM \cup N$ con $X$ desconocida. Se tiene lo siguiente:
+\begin{enumerate}
+    \item $X_{0}$ es solución de la ecuación $X = XM \cup N$.
+    \begin{enumerate}[label = -]
+                    \item Reemplazamos en la ecuacuión:
+                    \\ $NM^{*} = NM^{*}M \cup N$
+
+                    \item Sacamos factor común $N$:
+                    \\ $NM^* = N(M^{*}M \cup \{ \varepsilon \})$
+
+                    \item Utilizamos la propiedad $\Sigma^{*}\Sigma = \Sigma^{+}$:
+                    \\ $NM^{*} = N(M^{+} \cup \{ \varepsilon \})$
+
+                    \item Dado que $\Sigma^{+} \cup \{ \varepsilon \} = \Sigma^{*}$ reemplazamos:
+                    \\ $NM^{*} = N(M^{*})$
+
+                    \item Eliminamos paréntesis:
+                    \\ $NM^{*} = NM^{*}$
+                \end{enumerate}
+
+    \vspace{0.5cm}
+    \item Si $L$ es otra solución $X = XM \cup N$ entonces $X_{0} \subset L$. Esto es, $X_{0}$ es la solución más pequeña de $X = XM \cup N$.
+    \begin{enumerate}[label = -]
+        \item Suponemos que $L$ es solución, por lo tanto:
+        \\ $L = LM \cup N$
+
+        \item Decimos que $\varepsilon \in M$ ya que $L$ es solución.
+
+        \item Existe una $w \in X_{0}$, y ya que $X_{0} \subset L$, entonces $w \in L$.
+
+        \item Si $w \in X_0$, entonces $w \in NM^{n}$ para algún $n = 1, 2, 3, ...$.
+
+        \item Definimos la función $P(n)$ como $w \in NM^{n}$.
+
+        \item Evaluamos para 0 como caso base y para $n + 1$:
+        \\ $P(0) = w \in NM^{0} = w \in N\{ \varepsilon \} = w \in N$
+        \\ $P(n + 1) = w \in NM^{n + 1} = w \in NM^{n}M$
+
+        \item Desarrollamos $w$ de tal forma que $w = xy | x \in NM^{n}$ y $y \in M$.
+
+        \item Por suposición, $x \in L$.
+        
+        \item Tenemos que $w \in LM$, entonces $w \in LM \cup N$ y por lo tanto $w \in L$
+    \end{enumerate}
+
+
+    \newpage
+
+
+    \vspace{0.5cm}
+    \item Si $\varepsilon \in M$ entonces para cualuiqer lenguaje $S$, $X_{S}=(N \cup S)M^{*}$ es solución de $X = XM \cup N$. Sugerencia: note que si $\varepsilon \in M$ entonces $M^{*}M = M^{*}$,
+    \begin{enumerate}[label = -]
+        \item Por demostrar que $(N \cup S)M^{*} = (N \cup S)M^{*}M \cup N$
+
+        \item Suponemos $\varepsilon \in M$
+
+        \item Sea $w \in (N \cup S)M^{*}$, como $\varepsilon \in M$ entonces $w \in (N \cup S)M^{*}M = (N \cup S)M^{*}$, luego $w \in (N \cup S)M^{*}M \cup N$.
+
+        \item Con esto $(N \cup S)M^{*} \subset (N \cup S)M^{*}M \cup N$
+
+        \item Sea $w \in (N \cup S)M^{*}M \cup N$
+
+        \item Si $w \in (N \cup S)M^{*}M$ se cumple que $w \in (N \cup S)M^{*}$ ya que $(N \cup S)M^{*}M = (N \cup S)M^{*}$
+
+        \item Si $w \in N$ entonces $w \in N\{ \varepsilon \}$
+
+        \item $w \in NM^{0}$ entonces $w \in NM^{*}$ y $w \in NM^{*} \cup SM^{*}$ pero con $NM^{*} \cup SM^{*} = (N \cup S)M^{*} = X_{S}$,
+
+        \item Luego $w \in X_{S}$, con esto $(N \cup S)M^{*}M \cup N \subset (N \cup S)M^{*}$
+    \end{enumerate}
+
+
+    \vspace{0.5cm}
+\item Si $\varepsilon \notin M$ entonces $X_{0}$ es la única solución de $X = XM \cup N$. Sugerencia: sea $L$ otra solución de $X = XM \cup N$, pruebe que para todo $n > 0$, $L - LM^{n + 1} \cup N \cup^{n}_{i = 0} M^{i}$; pruebe que si $w \in L$ con $|w| = n$ entonces $w$ no puede estar en $LM^{n + 1}$ y por tanto tiene que estar en $N \cup^{n}_{i = 0} M^{i} \subset X_{0}.$
+    \begin{enumerate}[label = -]
+        \item Supongamos $\varepsilon \notin M$ y que $L$ es otra solución, entonces $L$ tiene la forma:
+        \\ $L = LM \cup N$, pero si reemplazamos $L$, $L = (LM \cup N)M \cup N = LM^{2} \cup NM \cup N = LM^{2} \cup N \cup^{n}_{i = 0}M^{i}$
+        
+        \item Proposición: $L$ tiene la forma $L = LM^{n + 1} \cup N \cup^{n}_{i = 0}M^{i}, \forall n > 0$.
+        \\ $P(1): L = LM^{2} \cup N \cup NM = (LM \cup N)M \cup N = LM \cup N$
+
+        \item Supongamos que $L = LM^{N + 1} \cup N \cup^{n}_{i = 0}M^{i}$
+        
+        \item Demostrar $L = LM^{n + 2} \cup N \cup^{n}_{i = 0}M^{i}$
+        \\ $ = LM^{n + 2} \cup N \cup NM \cup ... \cup NM^{n + 1}$
+        \\ $ = LM^{n + 2} \cup NM \cup ... \cup NM^{n + 1}$
+        \\ $ = (LM^{n + 1} \cup N \cup ... \cup NM^{n})M \cup N$
+        \\ $ = (LM^{n + 1} \cup N \cup^{n}_{i = 0}M^{i})M \cup N$
+        \\ Y por suposición $LM \cup N$
+
+        \item $P(n)$: si $w \in L$ y $|w| = n$ entonces $w \notin LM^{n + 1}$ y $w \in N  \cup^{n}_{i = 0}M^{i}$
+
+        \item $P(0)$: $w = \varepsilon \in L \rightarrow |w| = 0$ ahora como $L = LM \cup N$, si $w \in LM$ y $\varepsilon \notin M$ entonces $\exists \alpha \in M \rightarrow |\alpha| \geq 1$, luego $|w| \geq 1$ lo cual contradice a que $|w| = 0$ entonces $w \in N = NM^{0} \subset X_{0}$
+
+        \item $P(n > 0)$ sea $w \in L$ entonces $|w| = n > 0$, luego $w \in LM^{n + 1} \cup N \cup^{n}_{i = 0}M^{i}$, pero si $w \in LM^{n + 1}$ entonces $|w| \geq n + 1$ lo cual contradice $|w| = n$ entonces necesariamente $w \in N \cup^{n}_{i = 0}M^{i} \subset X+{0}$
+
+        \item Demostramos que si $\varepsilon \notin M$ entonces $\forall w \in L \rightarrow w \in X_{0}$, es decir, $L \subset X_{0}$, ademas por la suposición que $L$ es solución distinta y por la demostración (2) tenemos que $X_{0} \subset L$. 
+        \\ Concluyendo que $X_{0} = L$, es decir $X_{0}$ es única.
+    \end{enumerate}
+
+
+\end{enumerate}
+\end{document}
