@@ -9,7 +9,7 @@ Pila::Pila() : size(-1)
 
 void Pila::Push(double val)
 {
-    if(size == MAX) throw "Full stack";
+    if(Full()) throw "Full stack";
 
     ++size;
     element[size] = val;
@@ -37,6 +37,11 @@ bool Pila::Empty() const
 bool Pila::Full() const
 {
     return size == (MAX - 1);
+}
+
+void Pila::Clear()
+{
+    size = -1;
 }
 
 void Pila::Print() const

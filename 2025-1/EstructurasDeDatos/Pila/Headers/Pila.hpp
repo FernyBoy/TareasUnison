@@ -12,6 +12,7 @@ class Pila
         double Top() const;
         bool Empty() const;
         bool Full() const;
+        void Clear();
         void Print() const;
 
     private:
