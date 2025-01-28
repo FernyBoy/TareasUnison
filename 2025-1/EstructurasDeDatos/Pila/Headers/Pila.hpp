@@ -3,13 +3,14 @@
 
 #define MAX 100
 
+template <typename Type>
 class Pila
 {
     public:
         Pila();
-        void Push(double valor);
+        void Push(Type valor);
         void Pop();
-        double Top() const;
+        Type Top() const;
         bool Empty() const;
         bool Full() const;
         void Clear();
@@ -17,7 +18,9 @@ class Pila
 
     private:
         int size;
-        double element[MAX];
+        Type element[MAX];
 };
+
+#include "../Templates/Pila.tpp"
 
 #endif // PILA_HPP_INCLUDED

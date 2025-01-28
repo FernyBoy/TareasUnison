@@ -2,12 +2,11 @@
 
 #include "../Headers/Pila.hpp"
 
-Pila::Pila() : size(-1)
-{
-     
-}
+template <typename Type>
+Pila<Type>::Pila() : size(-1) {}
 
-void Pila::Push(double val)
+template <typename Type>
+void Pila<Type>::Push(Type val)
 {
     if(Full()) throw "Full stack";
 
@@ -15,36 +14,42 @@ void Pila::Push(double val)
     element[size] = val;
 }
 
-void Pila::Pop()
+template <typename Type>
+void Pila<Type>::Pop()
 {
     if(Empty()) throw "Empty stack";
 
     --size;
 }
 
-double Pila::Top() const
+template <typename Type>
+Type Pila<Type>::Top() const
 {
     if (Empty()) throw "Empty stack";
 
     return element[size];
 }
 
-bool Pila::Empty() const
+template <typename Type>
+bool Pila<Type>::Empty() const
 {
     return size == -1;
 }
 
-bool Pila::Full() const
+template <typename Type>
+bool Pila<Type>::Full() const
 {
     return size == (MAX - 1);
 }
 
-void Pila::Clear()
+template <typename Type>
+void Pila<Type>::Clear()
 {
     size = -1;
 }
 
-void Pila::Print() const
+template <typename Type>
+void Pila<Type>::Print() const
 {
     for(int i = 0; i < size; ++i)
     {

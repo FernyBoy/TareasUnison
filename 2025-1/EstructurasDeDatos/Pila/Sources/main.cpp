@@ -12,7 +12,7 @@ int main()
 {
     try
     {
-        Pila miPila;
+        Pila<double> miPila;
 
         miPila.Empty()
             ? cout << "The stack is empty"
