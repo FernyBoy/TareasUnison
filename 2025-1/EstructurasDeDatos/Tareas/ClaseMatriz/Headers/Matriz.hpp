@@ -26,12 +26,13 @@ class Matriz
         void ImprimirMatriz();
 
         // Operadores
-        Matriz operator+(const Matriz m) const;    
-        Matriz operator-(const Matriz m) const;
-        Matriz operator*(const Matriz m) const;
+        Matriz operator+(const Matriz &m) const;    
+        Matriz operator-(const Matriz &m) const;
+        Matriz operator*(const Matriz &m) const;
         Matriz operator*(const double escalar) const;
 
         // Funciones
+        Matriz Traspuesta();
         Matriz Inversa();
         double Determinante();
 

@@ -6,151 +6,69 @@ using std::cout;
 using std::cin;
 using std::endl;
 
-Matriz::Matriz(int fil, int col)
+int main()
 {
-    Redimensionar(filas, columnas);
+    /*
+    Matriz m1(5, 5);
+    m1.ImprimirMatriz();
+    cout << endl;
 
-    try
-    {
-        componentes = new double *[fil];
+    Matriz m2(10, 10);
+    m2.ImprimirMatriz();
+    cout << endl;
 
-        for(int i = 0; i < col; ++i)
-        {
-            componentes[i] = new double[col]; 
-        }
-        
+    Matriz m3(1, 1);
+    m3.ImprimirMatriz();
+    cout << endl;
 
-    }catch(std::bad_alloc &)
-    {
-        throw "Problemas de asginación de memoria";
-    }
-}
+    m2 = m1;
+    m2.ImprimirMatriz();
+    cout << endl;
+    */
 
-/*
-Matriz::Matriz(const Matriz &m)
-{
+    //--------------------
 
-}
-*/
+    /*
+    Matriz m4(4, 6);
+    m4.ImprimirMatriz();
+    cout << endl;
 
-Matriz & Matriz::operator=(const Matriz &m)
-{
-    if(this == &m) return *this;
+    Matriz m5(3, 6);
+    m5.ImprimirMatriz();
+    cout << endl;
+    m5 = m4;
+    m5.ImprimirMatriz();
+    cout << endl;
 
-    for(int i = 0; i < filas; ++i) 
-    {
-        delete[] componentes[i];
-    }
+    Matriz m6(2, 6);
+    m6.ImprimirMatriz();
+    cout << endl;
+    m6 = m4 - m5;
+    m6.ImprimirMatriz();
+    cout << endl;
 
-    delete[] componentes;
+    m6 = m4 + m5;
+    m6.ImprimirMatriz();
+    cout << endl;
 
-    filas = m.filas;
-    columnas = m.columnas;
-   
-    try 
-    {
-        componentes = new double *[filas];
+    m6 = m6 * 5;
+    m6.ImprimirMatriz();
+    cout << endl;
+    */
 
-        for(int i = 0; i < filas; ++i)
-        {
-            componentes[i] = new double[columnas];
-
-            for(int j = 0; j < columnas; ++j)
-            {
-                componentes[i][j] = m.componentes[i][j];
-            }
-        }
-    }catch (std::bad_alloc &) 
-    {
-        throw "Problemas de asignación de memoria";
-    }
-}
-
-Matriz::~Matriz()
-{
-    for(int i = 0; i < filas; ++i) 
-    {
-        delete[] componentes[i];
-    }
-
-    delete[] componentes;
-}
-
-/*
-double Matriz::ObtenerValor(int fil, int col)
-{
     
+    Matriz m1(2, 2);
+    m1.ImprimirMatriz();
+    cout << endl;
+
+    Matriz m2(2, 2);
+    m2.ImprimirMatriz();
+    cout << endl;
+
+    Matriz m3(2, 2);
+    m3 = m1 * m2;
+    m3.ImprimirMatriz();
+    cout << endl;
+
+    return 0;
 }
-*/
-
-void Matriz::ImprimirMatriz()
-{
-    for(int i = 0; i < filas; ++i) 
-    {
-        for(int j = 0; j < columnas; ++j)
-        {
-            cout << componentes[i][j] << ", ";
-        }
-        cout << "\b\b\n";
-    }
-}
-
-/*
-Matriz Matriz::operator+(const Matriz m) const
-{
-
-}
-
-Matriz Matriz::operator-(const Matriz m) const
-{
-
-}
-
-Matriz Matriz::operator*(const Matriz m) const
-{
-
-}
-
-Matriz Matriz::operator*(const double escalar) const
-{
-
-}
-
-Matriz Matriz::Inversa()
-{
-
-}
-
-double Matriz::Determinante()
-{
-
-}
-*/
-
-// ***********************************
-//      Metodos de utileria
-// ***********************************
-void Matriz::Redimensionar(int fil, int col)
-{
-    if(fil < 1 || col < 1) throw "Dimensión inválida";
-
-    filas = fil;
-    columnas = col;
-}
-
-
-// ***********************************
-//      Metodos externos
-// ***********************************
-
-/*
-std::ostream & operator << (std::ostream &salida, const Matriz m)
-{
-
-}
-
-std::istream & operator >> (std::istream &entrada, const Matriz &m)
-{
-
-}
-*/
