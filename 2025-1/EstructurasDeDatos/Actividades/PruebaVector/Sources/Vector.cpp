@@ -163,27 +163,6 @@ double Vector::NormaV() const
 //*********************************************
 //     Metodos externos
 //*********************************************
-Vector operator*(double escalar, const Vector v)
-{
-    Vector r(v.dimension);
-
-    for(int i = 0; i < v.dimension; ++i)
-    {
-        r.components[i] = v.components[i] * escalar;
-    }
-
-    return r;
-}
-
-//*********************************************
-//     Metodos externos
-//*********************************************
-void Vector::EstablecerDim(int dim)
-{
-    if(dim < 1) throw "Dimension invalida";
-    
-    dimension = dim;
-}
 
 std::ostream & operator<<(std::ostream &salida, const Vector v)
 {
@@ -206,4 +185,28 @@ std::istream & operator>>(std::istream &entrada, Vector &v)
     }
 
     return entrada;
+}
+
+Vector operator*(double escalar, const Vector v)
+{
+    Vector r(v.dimension);
+
+    for(int i = 0; i < v.dimension; ++i)
+    {
+        r.components[i] = v.components[i] * escalar;
+    }
+
+    return r;
+}
+
+
+
+//*********************************************
+//     Metodos de utilería
+//*********************************************
+void Vector::EstablecerDim(int dim)
+{
+    if(dim < 1) throw "Dimension invalida";
+    
+    dimension = dim;
 }
