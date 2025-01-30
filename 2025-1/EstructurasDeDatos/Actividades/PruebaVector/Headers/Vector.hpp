@@ -34,7 +34,7 @@ class Vector
         int dimension;
         double *components;
         
-        // Metodos de utileria
+       // Metodos de utileria
         void EstablecerDim(int dim);
 };
 

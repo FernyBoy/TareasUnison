@@ -8,7 +8,7 @@ using std::endl;
 
 Matriz::Matriz(int fil, int col)
 {
-    Redimensionar(fil, col);
+//    Redimensionar(fil, col);
 
     try
     {
@@ -19,9 +19,7 @@ Matriz::Matriz(int fil, int col)
             componentes[i] = new double[columnas]; 
 
             for(int j = 0; j < columnas; ++j)
-            {
                 componentes[i][j] = i+j;
-            }
         }
         
 
@@ -89,7 +87,7 @@ Matriz::~Matriz()
 /*
 double Matriz::ObtenerValor(int fil, int col)
 {
-    
+   return *(*(componentes + i) + j); 
 }
 */
 
@@ -178,12 +176,29 @@ Matriz Matriz::operator*(const Matriz &m) const
     return n;  
 }
 
-/*
+
 Matriz Matriz::Traspuesta()
 {
+    Matriz n(columnas, filas);
 
+    try 
+    {
+        for(int i = 0; i < filas; ++i)
+        {
+            for(int j = 0; j < columnas; ++j)
+            {
+                n.componentes[j][i] = componentes[i][j];
+            }
+        }
+    }catch (std::bad_alloc &) 
+    {
+        throw "Problemas de asignación de memoria";
+    } 
+
+    return n;
 }
 
+/*
 Matriz Matriz::Inversa()
 {
 
@@ -200,24 +215,76 @@ double Matriz::Determinante()
 void Matriz::Redimensionar(int fil, int col)
 {
     if(fil < 1 || col < 1) throw "Dimensión inválida";
-
+    // bool truncate = fil * col < filas * columnas;
+    
     filas = fil;
     columnas = col;
-}
+    /*
+        Matriz aux(fil,col);
 
+    if(truncate){
+        for(int i = 0; i < fil; ++i){
+            for(int j = 0; j < col; ++j){
+                aux[i][j] = (*this).[i][j];
+            }
+        }
+
+        *this = aux;
+    }else{
+
+    }
+    */
+}
 
 // ***********************************
 //      Metodos externos
 // ***********************************
-
-/*
-std::ostream & operator << (std::ostream &salida, const Matriz m)
+std::ostream & operator<<(std::ostream &salida, const Matriz &m)
 {
+    for(int i = 0; i < m.filas; ++i) 
+    {
+         salida << "|";
+        for(int j = -1; j < m.columnas; ++j)
+        {
+            salida << "\t";
+        }
+        salida << "|\n";
 
+        salida << "|\t";
+        for(int j = 0; j < m.columnas; ++j)
+        {
+            salida << m.componentes[i][j] << "\t";
+        }
+        salida << "| \n";
+        
+        salida << "|";
+        for(int j = -1; j < m.columnas; ++j)
+        {
+            salida << "\t";
+        }
+        salida << "|\n";
+    }
+
+    return salida;
 }
-
+/*
 std::istream & operator >> (std::istream &entrada, const Matriz &m)
 {
 
 }
 */
+
+Matriz operator*(double escalar, const Matriz &m)
+{
+    Matriz n(m.filas, m.columnas);
+
+    for(int i = 0; i < m.filas; ++i)
+    {
+        for(int j = 0; j < m.columnas; ++j)
+        {
+            n.componentes[i][j] = m.componentes[i][j] * escalar;
+        }
+    }
+
+    return n;
+}

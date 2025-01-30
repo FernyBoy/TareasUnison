@@ -7,10 +7,10 @@
 
 class Matriz
 {
-    friend std::ostream & operator<<(std::ostream &salida, const Matriz m);
+    friend std::ostream & operator<<(std::ostream &salida, const Matriz &m);
     friend std::istream & operator>>(std::istream &entrada, Matriz &m);
 
-    friend Matriz operator*(double escalar, const Matriz m);
+    friend Matriz operator*(double escalar, const Matriz &m);
 
     public:
         // Constructores
@@ -33,16 +33,18 @@ class Matriz
 
         // Funciones
         Matriz Traspuesta();
-        Matriz Inversa();
         double Determinante();
+        Matriz Inversa();
+
+        // Métodos de utilería
+        void Redimensionar(int fil, int col);
 
     private:
         int columnas;
         int filas;
         double **componentes;
 
-        // Métodos de utilería
-        void Redimensionar(int fil, int col);
+        
 };
 
 #endif
