@@ -12,7 +12,7 @@ all: $(ObjectsDirectory) $(Objects) MainFile
 
 # Rule to compile .cpp files into .o files in the build directory
 $(ObjectsDirectory)/%.o: $(SourcesDirectory)/%.cpp
-	@$(CXX) -c $< -o $@
+	$(CXX) -c $< -o $@
 
 # Rule to create the build directory
 $(ObjectsDirectory):
@@ -20,7 +20,7 @@ $(ObjectsDirectory):
 
 # Rule to compile the project
 MainFile: 
-	@$(CXX) $(Objects) -o main
+	$(CXX) $(Objects) -o main
 
 # Clean up
 clean:

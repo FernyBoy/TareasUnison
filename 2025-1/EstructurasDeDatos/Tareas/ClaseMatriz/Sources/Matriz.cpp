@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstdlib>
 
 #include "../Headers/Matriz.hpp"
 
@@ -8,7 +9,7 @@ using std::endl;
 
 Matriz::Matriz(int fil, int col)
 {
-//    Redimensionar(fil, col);
+    CapturarDimension();
 
     try
     {
@@ -18,10 +19,8 @@ Matriz::Matriz(int fil, int col)
         {
             componentes[i] = new double[columnas]; 
 
-            for(int j = 0; j < columnas; ++j)
-                componentes[i][j] = i+j;
+            for(int j = 0; j < columnas; ++j) componentes[i][j] = 0; // i+j;
         }
-        
 
     }catch(std::bad_alloc &)
     {
@@ -40,15 +39,13 @@ Matriz & Matriz::operator=(const Matriz &m)
 
     if(componentes)
     {
-        for(int i = 0; i < filas; ++i) 
-        {
-            delete[] componentes[i];
-        }
+        for(int i = 0; i < filas; ++i) delete[] componentes[i];
 
         delete[] componentes;
     }
 
-    Redimensionar(m.filas, m.columnas);
+    filas = m.filas;
+    columnas = m.columnas;
    
     try 
     {
@@ -58,10 +55,7 @@ Matriz & Matriz::operator=(const Matriz &m)
         {
             componentes[i] = new double[columnas];
 
-            for(int j = 0; j < columnas; ++j)
-            {
-                componentes[i][j] = m.componentes[i][j];
-            }
+            for(int j = 0; j < columnas; ++j) componentes[i][j] = m.componentes[i][j];
         }
     }catch (std::bad_alloc &) 
     {
@@ -75,10 +69,7 @@ Matriz::~Matriz()
 {
     if(componentes)
     {
-        for(int i = 0; i < filas; ++i) 
-        {
-            delete[] componentes[i];
-        }
+        for(int i = 0; i < filas; ++i) delete[] componentes[i];
 
         delete[] componentes;
     }
@@ -91,16 +82,102 @@ double Matriz::ObtenerValor(int fil, int col)
 }
 */
 
+void Matriz::CapturarDimension()
+{
+    LimpiarPantalla();
+    ImprimirMatriz(1, 1);
+    cout << "--- Matriz: 1x1 ---";
+    
+    cout << "\nIngresa la cantidad de filas\n - ";
+    cin >> filas;
+
+    LimpiarPantalla();
+    ImprimirMatriz(filas, 1);
+    cout << "--- Matriz: " << filas << "x1 ---";
+
+    cout << "\nIngresa la cantidad de columnas\n - ";
+    cin >> columnas;
+
+    LimpiarPantalla();
+    ImprimirMatriz(filas, columnas);
+    cout << "--- Matriz: " << filas << "x" << columnas << " ---";
+
+    cout << "\n\nContinuar...";
+    cin.ignore();  
+    cin.get();
+    LimpiarPantalla();
+}
+
+void Matriz::CapturarMatriz()
+{
+    for(int i = 0; i < filas; ++i)
+    {
+        for(int j = 0; j < columnas; j++)
+        {
+            LimpiarPantalla();
+
+            ImprimirMatriz();
+
+            cout << endl;
+
+            cout << "Ingresa el valor [" << i + 1 << "][" << j + 1 << "]\n - ";
+            cin >> componentes[i][j];
+        }
+    }
+   
+    LimpiarPantalla();
+    ImprimirMatriz();
+    cout << "\nContinuar...";
+    cin.ignore();  
+    cin.get();
+    LimpiarPantalla();
+}
+
 void Matriz::ImprimirMatriz()
 {
+    cout << "|";
+    for(int j = -1; j < columnas; ++j)
+    {
+        cout << "\t";
+    }
+    cout << "|\n";
+    
     for(int i = 0; i < filas; ++i) 
     {
         cout << "|\t";
-        for(int j = 0; j < columnas; ++j)
-        {
-            cout << componentes[i][j] << "\t";
-        }
+        for(int j = 0; j < columnas; ++j) cout << componentes[i][j] << "\t";
         cout << "| \n";
+
+        cout << "|";
+        for(int j = -1; j < columnas; ++j)
+        {
+            cout << "\t";
+        }
+        cout << "|\n";
+    }
+}
+
+void Matriz::ImprimirMatriz(int fil, int col)
+{
+    cout << "|";
+    for(int j = -1; j < col; ++j)
+    {
+        cout << "\t";
+    }
+    cout << "|\n";
+    
+    for(int i = 0; i < fil; ++i) 
+    {
+        cout << "|\t";
+        for(int j = 0; j < col; ++j) cout << 0 << "\t";
+        cout << "| \n";
+
+        cout << "|";
+        for(int j = -1; j < col; ++j)
+        {
+            cout << "\t";
+        }
+        cout << "|\n";
     }
 }
 
@@ -185,10 +262,7 @@ Matriz Matriz::Traspuesta()
     {
         for(int i = 0; i < filas; ++i)
         {
-            for(int j = 0; j < columnas; ++j)
-            {
-                n.componentes[j][i] = componentes[i][j];
-            }
+            for(int j = 0; j < columnas; ++j) n.componentes[j][i] = componentes[i][j];
         }
     }catch (std::bad_alloc &) 
     {
@@ -234,6 +308,14 @@ void Matriz::Redimensionar(int fil, int col)
 
     }
     */
+}
+
+void Matriz::LimpiarPantalla() {
+    #ifdef _WIN32
+        system("cls");  // Comando para Windows
+    #else
+        system("clear");  // Comando para Linux/macOS
+    #endif
 }
 
 // ***********************************

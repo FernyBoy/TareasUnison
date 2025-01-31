@@ -23,7 +23,10 @@ class Matriz
 
         // Setters y getters
         double ObtenerValor(int fil, int col);
+        void CapturarDimension();
+        void CapturarMatriz();
         void ImprimirMatriz();
+        void ImprimirMatriz(int fil, int col);
 
         // Operadores
         Matriz operator+(const Matriz &m) const;    
@@ -38,6 +41,7 @@ class Matriz
 
         // Métodos de utilería
         void Redimensionar(int fil, int col);
+        void LimpiarPantalla();
 
     private:
         int columnas;
