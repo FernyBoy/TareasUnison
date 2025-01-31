@@ -14,7 +14,8 @@ class Matriz
 
     public:
         // Constructores
-        explicit Matriz(int fil = 1, int col = 1);
+        explicit Matriz();
+        explicit Matriz(int fil, int col);
         Matriz(const Matriz &m);
         Matriz & operator=(const Matriz &m);
 
@@ -22,7 +23,7 @@ class Matriz
         ~Matriz();
 
         // Setters y getters
-        double ObtenerValor(int fil, int col);
+        void IniciarMatriz();
         void CapturarDimension();
         void CapturarMatriz();
         void ImprimirMatriz();
@@ -33,20 +34,21 @@ class Matriz
         Matriz operator-(const Matriz &m) const;
         Matriz operator*(const Matriz &m) const;
         Matriz operator*(const double escalar) const;
+        double* operator[](int i);
 
         // Funciones
         Matriz Traspuesta();
-        double Determinante();
         Matriz Inversa();
 
         // Métodos de utilería
         void Redimensionar(int fil, int col);
-        void LimpiarPantalla();
+        static void LimpiarPantalla();
+        double LongitudSegura();
 
     private:
         int columnas;
         int filas;
-        double **componentes;
+        double **componentes = nullptr;
 
         
 };

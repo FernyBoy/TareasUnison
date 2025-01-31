@@ -1,5 +1,7 @@
 #include <iostream>
 #include <cstdlib>
+#include <limits>
+#include <cmath>
 
 #include "../Headers/Matriz.hpp"
 
@@ -7,25 +9,17 @@ using std::cout;
 using std::cin;
 using std::endl;
 
-Matriz::Matriz(int fil, int col)
+Matriz::Matriz() : filas(1), columnas(1)
 {
     CapturarDimension();
+    IniciarMatriz();
+}
 
-    try
-    {
-        componentes = new double *[filas];
+Matriz::Matriz(int fil, int col) : filas(fil), columnas(col)
+{
+    if(fil < 1 || col < 1) throw "Dimensiones inválidas";
 
-        for(int i = 0; i < filas; ++i)
-        {
-            componentes[i] = new double[columnas]; 
-
-            for(int j = 0; j < columnas; ++j) componentes[i][j] = 0; // i+j;
-        }
-
-    }catch(std::bad_alloc &)
-    {
-        throw "Problemas de asginación de memoria";
-    }
+    IniciarMatriz();
 }
 
 Matriz::Matriz(const Matriz &m)
@@ -46,20 +40,27 @@ Matriz & Matriz::operator=(const Matriz &m)
 
     filas = m.filas;
     columnas = m.columnas;
-   
-    try 
-    {
-        componentes = new double *[filas];
 
-        for(int i = 0; i < filas; ++i)
+    if(m.componentes)
+    {
+        try 
         {
-            componentes[i] = new double[columnas];
+            componentes = new double *[filas];
 
-            for(int j = 0; j < columnas; ++j) componentes[i][j] = m.componentes[i][j];
+            for(int i = 0; i < filas; ++i)
+            {
+                componentes[i] = new double[columnas];
+
+                for(int j = 0; j < columnas; ++j) componentes[i][j] = m.componentes[i][j];
+            }
+        }catch (std::bad_alloc &) 
+        {
+            throw "Problemas de asignación de memoria";
         }
-    }catch (std::bad_alloc &) 
+    }
+    else 
     {
-        throw "Problemas de asignación de memoria";
+        componentes = nullptr;
     }
 
     return *this;
@@ -75,12 +76,24 @@ Matriz::~Matriz()
     }
 }
 
-/*
-double Matriz::ObtenerValor(int fil, int col)
+void Matriz::IniciarMatriz()
 {
-   return *(*(componentes + i) + j); 
+    try
+    {
+        componentes = new double *[filas];
+
+        for(int i = 0; i < filas; ++i)
+        {
+            componentes[i] = new double[columnas]; 
+
+            for(int j = 0; j < columnas; ++j) componentes[i][j] = 0; // i+j;
+        }
+
+    }catch(std::bad_alloc &)
+    {
+        throw "Problemas de asginación de memoria";
+    }
 }
-*/
 
 void Matriz::CapturarDimension()
 {
@@ -89,14 +102,14 @@ void Matriz::CapturarDimension()
     cout << "--- Matriz: 1x1 ---";
     
     cout << "\nIngresa la cantidad de filas\n - ";
-    cin >> filas;
+    filas = LongitudSegura();
 
     LimpiarPantalla();
     ImprimirMatriz(filas, 1);
     cout << "--- Matriz: " << filas << "x1 ---";
 
     cout << "\nIngresa la cantidad de columnas\n - ";
-    cin >> columnas;
+    columnas = LongitudSegura();
 
     LimpiarPantalla();
     ImprimirMatriz(filas, columnas);
@@ -253,6 +266,14 @@ Matriz Matriz::operator*(const Matriz &m) const
     return n;  
 }
 
+double* Matriz::operator[](int i)
+{
+    if (i < 0 || i >= filas || !componentes) throw "Índice inválido o matriz no inicializada";
+    
+    return componentes[i];
+}
+
+
 
 Matriz Matriz::Traspuesta()
 {
@@ -272,43 +293,66 @@ Matriz Matriz::Traspuesta()
     return n;
 }
 
-/*
 Matriz Matriz::Inversa()
 {
+    if(filas != columnas) throw "No es matriz cuadrada";
+    double pivote, aux;
 
-}
+    Matriz identidad(filas, columnas);
 
-double Matriz::Determinante()
-{
-
-}
-*/
-// ***********************************
-//      Metodos de utileria
-// ***********************************
-void Matriz::Redimensionar(int fil, int col)
-{
-    if(fil < 1 || col < 1) throw "Dimensión inválida";
-    // bool truncate = fil * col < filas * columnas;
-    
-    filas = fil;
-    columnas = col;
-    /*
-        Matriz aux(fil,col);
-
-    if(truncate){
-        for(int i = 0; i < fil; ++i){
-            for(int j = 0; j < col; ++j){
-                aux[i][j] = (*this).[i][j];
+    //Inicializacion de la matriz identidad
+    for(int i = 0; i < filas; ++i)
+    {
+        for(int j = 0; j < columnas; ++j)
+        {
+            if(i==j)
+            {
+                identidad[i][j] = 1;
+            }
+            else
+            {
+                identidad[i][j] = 0;
             }
         }
 
-        *this = aux;
-    }else{
-
     }
-    */
+
+    //Reduccion por renglones
+    for(int i = 0; i < filas; ++i)
+    {
+        pivote = componentes[i][i];
+
+        for(int k = 0; k < filas; ++k)
+        {
+            componentes[i][k] = componentes[i][k] / pivote;
+
+            identidad[i][k] = identidad[i][k] / pivote;
+        }
+
+        for(int j = 0; j < filas; ++j)
+        {
+            if(i != j)
+            {
+                aux = componentes[j][i];
+
+                for(int k = 0; k < filas; ++k)
+                {
+                    componentes[j][k] = componentes[j][k] - aux * componentes[i][k];
+
+                    identidad[j][k] = identidad[j][k] - aux * identidad[i][k];
+                }
+            }
+        }
+    }
+
+    if(std::isinf(identidad[0][0]) || (-1)*std::isinf(identidad[0][0]) ) throw "No tiene inversa";
+
+    return identidad;
 }
+
+// ***********************************
+//      Metodos de utileria
+// ***********************************
 
 void Matriz::LimpiarPantalla() {
     #ifdef _WIN32
@@ -318,6 +362,22 @@ void Matriz::LimpiarPantalla() {
     #endif
 }
 
+double Matriz::LongitudSegura()
+{
+    double longitud;
+    cin >> longitud;
+
+    while(cin.fail() || longitud < 1)
+    {
+        cin.clear();
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        cout << "\nIngresa un valor v\240lido mayor a 0.\n - ";
+        cin >> longitud;
+    }
+
+    return longitud;
+}
+
 // ***********************************
 //      Metodos externos
 // ***********************************
@@ -325,7 +385,7 @@ std::ostream & operator<<(std::ostream &salida, const Matriz &m)
 {
     for(int i = 0; i < m.filas; ++i) 
     {
-         salida << "|";
+        salida << "|";
         for(int j = -1; j < m.columnas; ++j)
         {
             salida << "\t";
@@ -349,12 +409,33 @@ std::ostream & operator<<(std::ostream &salida, const Matriz &m)
 
     return salida;
 }
-/*
-std::istream & operator >> (std::istream &entrada, const Matriz &m)
-{
 
+std::istream & operator>>(std::istream &entrada, Matriz &m)
+{
+    for(int i = 0; i < m.filas; ++i)
+    {
+        for(int j = 0; j < m.columnas; j++)
+        {
+            m.LimpiarPantalla();
+
+            m.ImprimirMatriz();
+
+            cout << endl;
+
+            cout << "Ingresa el valor [" << i + 1 << "][" << j + 1 << "]\n - ";
+            m.componentes[i][j] = m.LongitudSegura();
+        }
+    }
+   
+    m.LimpiarPantalla();
+    m.ImprimirMatriz();
+    cout << "\nContinuar...";
+    entrada.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    entrada.get();
+    m.LimpiarPantalla();
+
+    return entrada;
 }
-*/
 
 Matriz operator*(double escalar, const Matriz &m)
 {
