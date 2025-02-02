@@ -367,6 +367,22 @@ double Matriz::LongitudSegura()
     double longitud;
     cin >> longitud;
 
+    while(cin.fail())
+    {
+        cin.clear();
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        cout << "\nIngresa un valor v\240lido.\n - ";
+        cin >> longitud;
+    }
+
+    return longitud;
+}
+
+double Matriz::LongitudPositiva()
+{
+    double longitud;
+    cin >> longitud;
+
     while(cin.fail() || longitud < 1)
     {
         cin.clear();

@@ -44,6 +44,7 @@ class Matriz
         void Redimensionar(int fil, int col);
         static void LimpiarPantalla();
         double LongitudSegura();
+        double LongitudPositiva();
 
     private:
         int columnas;
