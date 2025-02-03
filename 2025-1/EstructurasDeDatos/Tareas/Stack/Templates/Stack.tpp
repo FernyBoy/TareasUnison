@@ -1,5 +1,5 @@
-#include <exception>
-#include <new>
+#include "../Headers/Stack.hpp"
+
 using std::cout;
 using std::cin;
 using std::cerr;
@@ -15,6 +15,7 @@ using std::endl;
 template <typename Type, unsigned int Cap>
 Stack<Type, Cap>::Stack()
 {
+    size = Cap;
     CreateStack();
 }
 
@@ -159,9 +160,10 @@ bool Stack<Type, Cap>::IsFull()
 template<typename Type, unsigned int Cap>
 void Stack<Type, Cap>::ResizeStack()
 {
+    /*
     size *= 2;
 
-    Stack<Type, Cap> newStack;
+    Stack<Type, size> newStack;
 
     for(unsigned i = 0; i < UsedCapacity(); ++i)
     {
@@ -169,6 +171,21 @@ void Stack<Type, Cap>::ResizeStack()
     }
 
     *this = newStack;
+    */
+
+    unsigned int newSize = size * 2;
+
+    Type *newElements = new Type[newSize];
+
+    for (unsigned int i = 0; i < UsedCapacity(); ++i)
+    {
+        newElements[i] = elements[i];
+    }
+
+    delete[] elements;
+
+    elements = newElements;
+    size = newSize;
 }
 
 

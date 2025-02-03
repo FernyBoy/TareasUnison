@@ -36,7 +36,7 @@ class Stack
 
     private:
         // --- Atributos
-        unsigned    size = Cap;
+        unsigned    size;
         Type        *elements;
         int         currentIndex = -1;
 
