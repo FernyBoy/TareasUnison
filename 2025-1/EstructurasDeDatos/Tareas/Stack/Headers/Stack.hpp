@@ -4,42 +4,50 @@
 #include <iostream>
 #include <ostream>
 #include <istream>
+#include <type_traits>
 
-// template <typename T>
+// template <typename Type, typename Capacity>
 class Stack
 {
+    // static_assert(std::is_unsigned_v<Capacity>, "Tamaño de pila incorrecto");
+    
+    // --- Métodos externos
     friend std::ostream & operator<<(std::ostream &output, const Stack &s);
     friend std::istream & operator>>(std::istream &input, Stack &s);
 
     public:
-        // Constructores
-        explicit Stack();
-        explicit Stack(int s);
+        // --- Constructores
+        explicit Stack(unsigned s);
+        //explicit Stack();
         Stack(const Stack &s);
         Stack & operator=(const Stack &s);
 
-        // Destructor
+        // --- Destructor
         ~Stack();
 
-        // Metodos
-        void    Push(int val);
-        void    Pop();
-        int     Top();
-        bool    IsEmpty();
-        void    ClearStack();
-        int     UsedCapacity();
-        int     Capacity();
-        void    PrintElements();
+        // --- Métodos públicos
+        void        Push(int val);
+        void        Pop();
+        int         Top();
+        bool        IsEmpty();
+        void        ClearStack();
+        int         UsedCapacity();
+        unsigned    Capacity();
+        void        PrintElements();
 
     private:
-        // Atributos
-        int     size;
-        int     *elements;
-        int     currentIndex = -1;
+        // --- Atributos
+        unsigned    size;
+        int         *elements;
+        int         currentIndex = -1;
 
-        // Metodos privados
+        // --- Métodos privados
         bool    IsFull();
         Stack   ResizeStack();
+
+        // --- Métodos de utilería
+        void    CreateStack();
+        void    ClearMemory();
 };
 
 // #include "../Templates/Stack.tpp"
