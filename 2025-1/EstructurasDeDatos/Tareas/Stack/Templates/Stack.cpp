@@ -1,5 +1,5 @@
-#include "../Headers/Stack.hpp"
-
+#include <exception>
+#include <new>
 using std::cout;
 using std::cin;
 using std::cerr;
@@ -11,19 +11,26 @@ using std::endl;
 // ----- Constructores ------------------------
 //
 // --------------------------------------------
-Stack::Stack(unsigned s) : size(s)
-// template<typename Type, typename Capacity>
-// Stack::Stack<Type, Capacity>() : size(Capacity)
+//Stack::Stack(unsigned s) : size(s)
+template <typename Type, unsigned int Cap>
+Stack<Type, Cap>::Stack()
 {
     CreateStack();
 }
 
-Stack::Stack(const Stack &s)
+template <typename Type, unsigned int Cap>
+Stack<Type, Cap>::Stack(const Stack &s) : size(s.size), currentIndex(s.currentIndex)
 {
-    *this = s;
+    CreateStack();
+
+    for(unsigned i = 0; i < UsedCapacity(); ++i)
+    {
+        elements[i] = s.elements[i];
+    }
 }
 
-Stack & Stack::operator=(const Stack &s)
+template<typename Type, unsigned int Cap>
+Stack<Type, Cap> & Stack<Type, Cap>::operator=(const Stack<Type, Cap> &s)
 {
     ClearMemory();
 
@@ -40,7 +47,9 @@ Stack & Stack::operator=(const Stack &s)
 // ----------------------
 // ----- Destructor -----
 // ----------------------
-Stack::~Stack()
+
+template<typename Type, unsigned int Cap>
+Stack<Type, Cap>::~Stack()
 {
     ClearMemory();
 }
@@ -56,7 +65,9 @@ Stack::~Stack()
 // ----- Métodos públicos ---------------------
 //
 // --------------------------------------------
-void Stack::Push(int val)
+
+template<typename Type, unsigned int Cap>
+void Stack<Type, Cap>::Push(Type val)
 {
     if(IsFull()) ResizeStack();
 
@@ -64,26 +75,30 @@ void Stack::Push(int val)
     elements[currentIndex] = val;
 }
 
-void Stack::Pop()
+template<typename Type, unsigned int Cap>
+void Stack<Type, Cap>::Pop()
 {
     --currentIndex;
 }
 
-int Stack::Top()
+template<typename Type, unsigned int Cap>
+Type Stack<Type, Cap>::Top() const
 {
-    if(!UsedCapacity()) throw "No hay elementos en la pila";
+    if(!UsedCapacity()) throw "La pila está vacía. No se puede acceder al tope.";
 
     return elements[currentIndex];
 }
 
-bool Stack::IsEmpty()
+template<typename Type, unsigned int Cap>
+bool Stack<Type, Cap>::IsEmpty()
 {
     if(!size) throw "La pila es de tamaño 0";
 
     return currentIndex == -1;
 }
 
-void Stack::ClearStack()
+template<typename Type, unsigned int Cap>
+void Stack<Type, Cap>::ClearStack()
 {
     currentIndex = -1;
     
@@ -91,17 +106,20 @@ void Stack::ClearStack()
     CreateStack();
 }
 
-unsigned Stack::UsedCapacity()
+template<typename Type, unsigned int Cap>
+unsigned Stack<Type, Cap>::UsedCapacity() const
 {
     return currentIndex + 1;
 }
 
-unsigned Stack::Capacity()
+template<typename Type, unsigned int Cap>
+unsigned Stack<Type, Cap>::Capacity()
 {
     return size;
 }
 
-void Stack::PrintElements()
+template<typename Type, unsigned int Cap>
+void Stack<Type, Cap>::PrintElements()
 {
     cout << "\n|\t\t|";
 
@@ -111,6 +129,14 @@ void Stack::PrintElements()
 
         cout << "\n|\t\t|";
     }
+}
+
+template<typename Type, unsigned int Cap>
+Type Stack<Type, Cap>::operator[](int i) const
+{
+    if( i < 0 || i > currentIndex) throw "Índice inválido";
+
+    return elements[i];
 }
 
 
@@ -124,16 +150,18 @@ void Stack::PrintElements()
 // ----- Métodos privados ---------------------
 //
 // --------------------------------------------
-bool Stack::IsFull()
+template<typename Type, unsigned int Cap>
+bool Stack<Type, Cap>::IsFull()
 {
     return size == UsedCapacity();
 }
 
-void Stack::ResizeStack()
+template<typename Type, unsigned int Cap>
+void Stack<Type, Cap>::ResizeStack()
 {
     size *= 2;
 
-    Stack newStack(size);
+    Stack<Type, Cap> newStack;
 
     for(unsigned i = 0; i < UsedCapacity(); ++i)
     {
@@ -154,16 +182,18 @@ void Stack::ResizeStack()
 // ----- Métodos de utilería ------------------
 //
 // --------------------------------------------
-void Stack::CreateStack()
+template<typename Type, unsigned int Cap>
+void Stack<Type, Cap>::CreateStack()
 {
     try{
-        elements = new int[size];
+        elements = new Type[size];
     }catch(std::bad_alloc &){
         throw "Problemas de asignación de memoria.";
     }
 }
 
-void Stack::ClearMemory()
+template<typename Type, unsigned int Cap>
+void Stack<Type, Cap>::ClearMemory()
 {
     delete [] elements;
 }
@@ -179,12 +209,12 @@ void Stack::ClearMemory()
 // ----- Métodos externos ---------------------
 //
 //---------------------------------------------
-
-std::ostream & operator<<(std::ostream &output, Stack &s)
+template<typename Type, unsigned int Cap>
+std::ostream & operator<<(std::ostream &output, Stack<Type, Cap> &s)
 {
     for(unsigned i = 0; i < s.UsedCapacity(); ++i)
     {
-        cout << s.elements[i] << endl;
+        cout << s[i] << endl;
     } 
     
     return output;

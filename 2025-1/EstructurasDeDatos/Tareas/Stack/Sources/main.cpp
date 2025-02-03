@@ -10,20 +10,28 @@ using std::endl;
 int main()
 {
     try{
-        int cap = 10;
-
-        Stack stack1((unsigned) cap);
+        Stack<std::string, 5> stack1;
         
         cout << "Está vacío: " << stack1.IsEmpty();
         cout << "\nCapacidad usada: " << stack1.UsedCapacity();
         cout << "\nCapacidad actual: " << stack1.Capacity() << "\n\n";
 
+        /*
         for(int i = 0; i <= cap; ++i)
         {
             stack1.Push((i + 1) * 2);
         }
         cout << stack1;
-         
+        */
+
+        stack1.Push("Fernando");
+        stack1.Push("Javier");
+        stack1.Push("Victor");
+        stack1.Push("Verdelias");
+        stack1.Push("Eivor");
+        stack1.Push("Ivanna");
+        cout << stack1;
+
         cout << "\nEstá vacía: " << stack1.IsEmpty(); 
         cout << "\nCapacidad usada: " << stack1.UsedCapacity();
         cout << "\nCapacidad actual: " << stack1.Capacity();

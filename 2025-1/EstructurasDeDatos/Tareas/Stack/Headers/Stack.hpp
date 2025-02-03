@@ -6,19 +6,17 @@
 #include <istream>
 #include <type_traits>
 
-// template <typename Type, typename Capacity>
+template <typename Type, unsigned int Cap = 0>
 class Stack
 {
-    // static_assert(std::is_unsigned_v<Capacity>, "Tamaño de pila incorrecto");
- 
     // --- Métodos externos
-    friend std::ostream & operator<<(std::ostream &output, Stack &s);
-    friend std::istream & operator>>(std::istream &input, Stack &s);
+    friend std::ostream& operator<<(std::ostream& output, const Stack<Type, Cap>& s);
+    friend std::istream& operator>>(std::istream& input, Stack<Type, Cap>& s);
 
     public:
         // --- Constructores
-        explicit Stack(unsigned s);
-        //explicit Stack();
+        //explicit Stack(unsigned s);
+        explicit Stack();
         Stack(const Stack &s);
         Stack & operator=(const Stack &s);
 
@@ -26,19 +24,20 @@ class Stack
         ~Stack();
 
         // --- Métodos públicos
-        void        Push(int val);
+        void        Push(Type val);
         void        Pop(); 
-        int         Top();
+        Type        Top() const;
         bool        IsEmpty();
         void        ClearStack();
-        unsigned    UsedCapacity();
+        unsigned    UsedCapacity() const;
         unsigned    Capacity();
         void        PrintElements();
+        Type        operator[](int i) const;
 
     private:
         // --- Atributos
-        unsigned    size;
-        int         *elements;
+        unsigned    size = Cap;
+        Type        *elements;
         int         currentIndex = -1;
 
         // --- Métodos privados
@@ -50,6 +49,6 @@ class Stack
         void    ClearMemory();
 };
 
-// #include "../Templates/Stack.tpp"
+#include "../Templates/Stack.tpp"
 
 #endif // !STACK_HPP_INCLUDED
