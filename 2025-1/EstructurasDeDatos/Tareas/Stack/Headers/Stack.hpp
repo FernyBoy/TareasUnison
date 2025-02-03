@@ -10,9 +10,9 @@
 class Stack
 {
     // static_assert(std::is_unsigned_v<Capacity>, "Tamaño de pila incorrecto");
-    
+ 
     // --- Métodos externos
-    friend std::ostream & operator<<(std::ostream &output, const Stack &s);
+    friend std::ostream & operator<<(std::ostream &output, Stack &s);
     friend std::istream & operator>>(std::istream &input, Stack &s);
 
     public:
@@ -27,11 +27,11 @@ class Stack
 
         // --- Métodos públicos
         void        Push(int val);
-        void        Pop();
+        void        Pop(); 
         int         Top();
         bool        IsEmpty();
         void        ClearStack();
-        int         UsedCapacity();
+        unsigned    UsedCapacity();
         unsigned    Capacity();
         void        PrintElements();
 
@@ -43,7 +43,7 @@ class Stack
 
         // --- Métodos privados
         bool    IsFull();
-        Stack   ResizeStack();
+        void    ResizeStack();
 
         // --- Métodos de utilería
         void    CreateStack();

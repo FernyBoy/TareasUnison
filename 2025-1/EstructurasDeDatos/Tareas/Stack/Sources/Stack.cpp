@@ -1,5 +1,4 @@
 #include "../Headers/Stack.hpp"
-#include <new>
 
 using std::cout;
 using std::cin;
@@ -12,7 +11,7 @@ using std::endl;
 // ----- Constructores ------------------------
 //
 // --------------------------------------------
-Stack::Stack(unsigned s)
+Stack::Stack(unsigned s) : size(s)
 // template<typename Type, typename Capacity>
 // Stack::Stack<Type, Capacity>() : size(Capacity)
 {
@@ -31,10 +30,12 @@ Stack & Stack::operator=(const Stack &s)
     size = s.size;
     CreateStack();
 
-    for(int i = 0; i < size; ++i)
+    for(unsigned i = 0; i < size; ++i)
     {
         elements[i] = s.elements[i];
     }
+
+    return *this;
 }
 // ----------------------
 // ----- Destructor -----
@@ -57,7 +58,10 @@ Stack::~Stack()
 // --------------------------------------------
 void Stack::Push(int val)
 {
+    if(IsFull()) ResizeStack();
 
+    ++currentIndex;
+    elements[currentIndex] = val;
 }
 
 void Stack::Pop()
@@ -67,6 +71,8 @@ void Stack::Pop()
 
 int Stack::Top()
 {
+    if(!UsedCapacity()) throw "No hay elementos en la pila";
+
     return elements[currentIndex];
 }
 
@@ -79,11 +85,13 @@ bool Stack::IsEmpty()
 
 void Stack::ClearStack()
 {
+    currentIndex = -1;
+    
     ClearMemory();
     CreateStack();
 }
 
-int Stack::UsedCapacity()
+unsigned Stack::UsedCapacity()
 {
     return currentIndex + 1;
 }
@@ -95,7 +103,14 @@ unsigned Stack::Capacity()
 
 void Stack::PrintElements()
 {
-    for(int i = 0; i < currentIndex; ++i) cout << "\n|\t" << elements[i] << "\t |";
+    cout << "\n|\t\t|";
+
+    for(unsigned i = 0; i < UsedCapacity(); ++i)
+    {
+        cout << "\n|\t" << elements[i] << "\t|";
+
+        cout << "\n|\t\t|";
+    }
 }
 
 
@@ -114,9 +129,18 @@ bool Stack::IsFull()
     return size == UsedCapacity();
 }
 
-Stack Stack::ResizeStack()
+void Stack::ResizeStack()
 {
+    size *= 2;
 
+    Stack newStack(size);
+
+    for(unsigned i = 0; i < UsedCapacity(); ++i)
+    {
+        newStack.elements[i] = elements[i];
+    }
+
+    *this = newStack;
 }
 
 
@@ -134,11 +158,6 @@ void Stack::CreateStack()
 {
     try{
         elements = new int[size];
-
-        for(int i = 0; i < size; ++i)
-        {
-            elements[i] = NULL;
-        }
     }catch(std::bad_alloc &){
         throw "Problemas de asignación de memoria.";
     }
@@ -159,12 +178,21 @@ void Stack::ClearMemory()
 //
 // ----- Métodos externos ---------------------
 //
-std::ostream & operator<<(std::ostream &output, const Stack &s)
-{
+//---------------------------------------------
 
+std::ostream & operator<<(std::ostream &output, Stack &s)
+{
+    for(unsigned i = 0; i < s.UsedCapacity(); ++i)
+    {
+        cout << s.elements[i] << endl;
+    } 
+    
+    return output;
 }
 
+/*
 std::istream & operator>>(std::istream &input, Stack &s)
 {
 
 }
+*/
