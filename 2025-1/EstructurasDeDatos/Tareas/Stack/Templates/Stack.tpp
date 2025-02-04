@@ -1,5 +1,3 @@
-#include "../Headers/Stack.hpp"
-
 using std::cout;
 using std::cin;
 using std::cerr;
