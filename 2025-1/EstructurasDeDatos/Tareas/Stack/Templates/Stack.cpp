@@ -83,7 +83,7 @@ void Stack<Type, Cap>::Pop()
 template<typename Type, unsigned int Cap>
 Type Stack<Type, Cap>::Top() const
 {
-    if(!UsedCapacity()) throw "La pila está vacía. No se puede acceder al tope.";
+    if(!UsedCapacity()) throw "La pila est\240 vac\241a. No se puede acceder al tope.";
 
     return elements[currentIndex];
 }
@@ -133,7 +133,7 @@ void Stack<Type, Cap>::PrintElements()
 template<typename Type, unsigned int Cap>
 Type Stack<Type, Cap>::operator[](int i) const
 {
-    if( i < 0 || i > currentIndex) throw "Índice inválido";
+    if( i < 0 || i > currentIndex) throw "\326ndice inv\240lido";
 
     return elements[i];
 }
@@ -190,7 +190,7 @@ void Stack<Type, Cap>::CreateStack()
     try{
         elements = new Type[size];
     }catch(std::bad_alloc &){
-        throw "Problemas de asignación de memoria.";
+        throw "Problemas de asignaci\242n de memoria.";
     }
 }
 
