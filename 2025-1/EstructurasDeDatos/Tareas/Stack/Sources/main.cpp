@@ -1,3 +1,9 @@
+// Fecha: 03/02/2025
+// Nombre: main.cpp
+// Integrantes:
+//    -   Borquez Guerrero Angel Fernando (219208106)
+//    -   Miranda Sanchez Javier Leonardo (223215039)
+
 #include <iostream>
 #include <cstdlib>
 
