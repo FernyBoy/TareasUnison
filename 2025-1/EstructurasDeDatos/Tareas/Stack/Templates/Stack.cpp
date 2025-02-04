@@ -158,19 +158,6 @@ bool Stack<Type, Cap>::IsFull()
 template<typename Type, unsigned int Cap>
 void Stack<Type, Cap>::ResizeStack()
 {
-    /*
-    size *= 2;
-
-    Stack<Type, size> newStack;
-
-    for(unsigned i = 0; i < UsedCapacity(); ++i)
-    {
-        newStack.elements[i] = elements[i];
-    }
-
-    *this = newStack;
-    */
-
     unsigned int newSize = size * 2;
 
     Type *newElements = new Type[newSize];
