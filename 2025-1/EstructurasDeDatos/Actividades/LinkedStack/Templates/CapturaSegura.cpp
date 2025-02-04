@@ -1,3 +1,10 @@
+/**
+*   \file   CapturaSegura.tpp
+*   \author Angel Fernando Borquez Guerrero
+*   \author Javier Leonardo Miranda Sanchez
+*   \date   03/02/2025
+*/
+
 using std::cout;
 using std::cin;
 using std::endl;

@@ -22,7 +22,7 @@
  * @tparam Type Tipo de los elementos que se almacenarán en la pila.
  * @tparam Cap Capacidad inicial de la pila.
  */
-template <typename Type, unsigned int Cap = 0>
+template <typename Type>
 class Stack
 {
     // --- Métodos externos (operadores de flujo)
@@ -35,7 +35,7 @@ class Stack
      * @param s Pila a imprimir.
      * @return std::ostream& Referencia al flujo de salida.
      */
-    friend std::ostream& operator<<(std::ostream& output, const Stack<Type, Cap>& s);
+    friend std::ostream& operator<<(std::ostream& output, const Stack<Type>& s);
 
     /**
      * @brief Operador de extracción en flujo.
@@ -46,7 +46,7 @@ class Stack
      * @param s Pila en la que se almacenarán los datos.
      * @return std::istream& Referencia al flujo de entrada.
      */
-    friend std::istream& operator>>(std::istream& input, Stack<Type, Cap>& s);
+    friend std::istream& operator>>(std::istream& input, Stack<Type>& s);
 
 public:
     // ----- Constructores ----------------------------------------
@@ -171,27 +171,15 @@ private:
      */
     unsigned size;
 
-    /**
-     * @brief Arreglo dinámico que almacena los elementos de la pila.
-     */
-    Type *elements;
+    struct Element 
+    {
+        Type value;
+        Element *nextElement;
+    };
 
-    /**
-     * @brief Índice del elemento tope de la pila.
-     *
-     * Un valor de -1 indica que la pila está vacía.
-     */
-    int currentIndex = -1;
+    Element *topElement;
 
     // ----- Métodos privados -------------------------------------
-
-    /**
-     * @brief Verifica si la pila está llena.
-     *
-     * @return true Si el número de elementos usados es igual a la capacidad.
-     * @return false En caso contrario.
-     */
-    bool IsFull();
 
     /**
      * @brief Redimensiona la pila.
