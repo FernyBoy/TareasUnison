@@ -159,7 +159,7 @@ public:
      * @return Type Elemento ubicado en la posición \a i.
      * @throws Lanza una excepción si el índice es inválido.
      */
-    Type operator[](int i) const;
+    //Type operator[](int i) const;
 
 private:
     // ----- Atributos --------------------------------------------

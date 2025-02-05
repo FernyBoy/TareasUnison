@@ -5,8 +5,6 @@
 *   \date   03/02/2025
 */
 
-#include "../Headers/Stack.hpp" 
-
 using std::cout;
 using std::cin;
 using std::cerr;
@@ -19,38 +17,47 @@ using std::endl;
 //
 // --------------------------------------------
 //Stack::Stack(unsigned s) : size(s)
-template <typename Type>
-Stack<Type>::Stack() : size(0), topElement(NULL) {  }
-
-template <typename Type>
-Stack<Type>::Stack(const Stack &s) : topElement(NULL)
+template <typename Type, unsigned int Cap>
+Stack<Type, Cap>::Stack()
 {
-    *this = s;
+    size = Cap;
+    CreateStack();
 }
 
-template<typename Type>
-Stack<Type> & Stack<Type>::operator=(const Stack<Type> &s)
+template <typename Type, unsigned int Cap>
+Stack<Type, Cap>::Stack(const Stack &s) : size(s.size), currentIndex(s.currentIndex)
 {
-    if(this == &s) return *this;
+    CreateStack();
 
-    Stack<Type> auxStack;
-    
-    Element *auxElement = new Element;
-    auxElement -> 
-
-    for(int i = 0; i < s.size; ++i)
+    for(unsigned i = 0; i < UsedCapacity(); ++i)
     {
-        auxStack.Push(auxElement);
+        elements[i] = s.elements[i];
     }
+}
+
+template<typename Type, unsigned int Cap>
+Stack<Type, Cap> & Stack<Type, Cap>::operator=(const Stack<Type, Cap> &s)
+{
+    ClearMemory();
+
+    size = s.size;
+    CreateStack();
+
+    for(unsigned i = 0; i < size; ++i)
+    {
+        elements[i] = s.elements[i];
+    }
+
+    return *this;
 }
 // ----------------------
 // ----- Destructor -----
 // ----------------------
 
-template<typename Type>
-Stack<Type>::~Stack()
+template<typename Type, unsigned int Cap>
+Stack<Type, Cap>::~Stack()
 {
-    ClearStack();
+    ClearMemory();
 }
 
 
@@ -65,63 +72,60 @@ Stack<Type>::~Stack()
 //
 // --------------------------------------------
 
-template<typename Type>
-void Stack<Type>::Push(Type val)
+template<typename Type, unsigned int Cap>
+void Stack<Type, Cap>::Push(Type val)
 {
-    Element *newElement = new Element;
-    newElement -> value = val;
-    newElement -> nextElement = topElement;
-    topElement = newElement;
+    if(IsFull()) ResizeStack();
 
-    ++size;
+    ++currentIndex;
+    elements[currentIndex] = val;
 }
 
-template<typename Type>
-void Stack<Type>::Pop()
+template<typename Type, unsigned int Cap>
+void Stack<Type, Cap>::Pop()
 {
-    if(IsEmpty()) throw "Pila vac\241";
-
-    Element *deleteElement = topElement;
-    topElement = topElement -> nextElement;
-    delete *deleteElement;
-
-    --size;
+    --currentIndex;
 }
 
-template<typename Type>
-Type Stack<Type>::Top() const
+template<typename Type, unsigned int Cap>
+Type Stack<Type, Cap>::Top() const
 {
-    if(IsEmpty()) throw "Pila vac\241";
+    if(!UsedCapacity()) throw "La pila est\240 vac\241a. No se puede acceder al tope.";
 
-
+    return elements[currentIndex];
 }
 
-template<typename Type>
-bool Stack<Type>::IsEmpty()
+template<typename Type, unsigned int Cap>
+bool Stack<Type, Cap>::IsEmpty()
 {
-    if(!size) return true;
+    if(!size) throw "La pila es de tamaño 0";
+
+    return currentIndex == -1;
 }
 
-template<typename Type>
-void Stack<Type>::ClearStack()
+template<typename Type, unsigned int Cap>
+void Stack<Type, Cap>::ClearStack()
 {
-    while(!IsEmpty()) Pop();
+    currentIndex = -1;
+    
+    ClearMemory();
+    CreateStack();
 }
 
-template<typename Type>
-unsigned Stack<Type>::UsedCapacity() const
+template<typename Type, unsigned int Cap>
+unsigned Stack<Type, Cap>::UsedCapacity() const
 {
     return currentIndex + 1;
 }
 
-template<typename Type>
-unsigned Stack<Type>::Capacity()
+template<typename Type, unsigned int Cap>
+unsigned Stack<Type, Cap>::Capacity()
 {
     return size;
 }
 
-template<typename Type>
-void Stack<Type>::PrintElements()
+template<typename Type, unsigned int Cap>
+void Stack<Type, Cap>::PrintElements()
 {
     cout << "\n|\t\t|";
 
@@ -133,8 +137,8 @@ void Stack<Type>::PrintElements()
     }
 }
 
-template<typename Type>
-Type Stack<Type>::operator[](int i) const
+template<typename Type, unsigned int Cap>
+Type Stack<Type, Cap>::operator[](int i) const
 {
     if( i < 0 || i > currentIndex) throw "\326ndice inv\240lido";
 
@@ -152,8 +156,14 @@ Type Stack<Type>::operator[](int i) const
 // ----- Métodos privados ---------------------
 //
 // --------------------------------------------
-template<typename Type>
-void Stack<Type>::ResizeStack()
+template<typename Type, unsigned int Cap>
+bool Stack<Type, Cap>::IsFull()
+{
+    return size == UsedCapacity();
+}
+
+template<typename Type, unsigned int Cap>
+void Stack<Type, Cap>::ResizeStack()
 {
     unsigned int newSize = size * 2;
 
@@ -181,8 +191,8 @@ void Stack<Type>::ResizeStack()
 // ----- Métodos de utilería ------------------
 //
 // --------------------------------------------
-template<typename Type>
-void Stack<Type>::CreateStack()
+template<typename Type, unsigned int Cap>
+void Stack<Type, Cap>::CreateStack()
 {
     try{
         elements = new Type[size];
@@ -191,8 +201,8 @@ void Stack<Type>::CreateStack()
     }
 }
 
-template<typename Type>
-void Stack<Type>::ClearMemory()
+template<typename Type, unsigned int Cap>
+void Stack<Type, Cap>::ClearMemory()
 {
     delete [] elements;
 }
@@ -208,8 +218,8 @@ void Stack<Type>::ClearMemory()
 // ----- Métodos externos ---------------------
 //
 //---------------------------------------------
-template<typename Type>
-std::ostream & operator<<(std::ostream &output, Stack<Type> &s)
+template<typename Type, unsigned int Cap>
+std::ostream & operator<<(std::ostream &output, Stack<Type, Cap> &s)
 {
     for(unsigned i = 0; i < s.UsedCapacity(); ++i)
     {

@@ -11,18 +11,53 @@
 #include "../Headers/Stack.hpp"
 #include "../Headers/CapturaSegura.hpp"
 #include "../Headers/Vector.hpp"
-
+/*
 int Menu();
 void LimpiarPantalla();
 
 template <typename Type, unsigned int Cap>
-void Pruebas(Stack<Type, Cap> &stack);
+void Pruebas(Stack<Type> &stack);
+
+*/
+
+
 
 using std::cout;
 using std::cin;
 using std::cerr;
 using std::endl;
 
+
+int main()
+{
+    Stack<int> stack1, stack2;
+    
+    for(int i = 0; i < 10; ++i)
+    {
+        stack1.Push(i);
+    }
+
+    cout << "\n\n\n";
+    stack1.PrintElements();
+    
+    cout << "\n\n\n";
+    stack2.PrintElements();
+
+    stack2 = stack1;
+
+    cout << "\n\n\n";
+    stack1.PrintElements();
+    
+    cout << "\n\n\n";
+    stack2.PrintElements();
+
+
+    return 0;
+}
+
+
+
+/*
 int main()
 {
     int respuesta = 0;
@@ -104,6 +139,9 @@ int main()
 
     return 0;
 }
+*/
+
+
 
 void LimpiarPantalla()
 {
@@ -113,7 +151,7 @@ void LimpiarPantalla()
         system("clear");  // Comando para Linux/macOS
     #endif
 }
-
+/*
 template <typename Type, unsigned int Cap>
 void Pruebas(Stack<Type, Cap> &stack)
 {
@@ -156,3 +194,4 @@ int Menu() {
     
     return respuesta;
 }
+*/
