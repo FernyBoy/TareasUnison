@@ -5,8 +5,8 @@
 *   \date   03/02/2025
 */
 
-#ifndef STACK_HPP_INCLUDED
-#define STACK_HPP_INCLUDED
+#ifndef LINKEDSTACK_HPP_INCLUDED
+#define LINKEDSTACK_HPP_INCLUDED
 
 #include <iostream>
 #include <ostream>
@@ -23,7 +23,7 @@
  * @tparam Cap Capacidad inicial de la pila.
  */
 template <typename Type>
-class Stack
+class LinkedStack
 {
     // --- Métodos externos (operadores de flujo)
     /**
@@ -35,7 +35,8 @@ class Stack
      * @param s Pila a imprimir.
      * @return std::ostream& Referencia al flujo de salida.
      */
-    friend std::ostream& operator<<(std::ostream& output, const Stack<Type>& s);
+    template<typename T>
+    friend std::ostream& operator<<(std::ostream& output, const LinkedStack<T>& s);
 
     /**
      * @brief Operador de extracción en flujo.
@@ -46,7 +47,8 @@ class Stack
      * @param s Pila en la que se almacenarán los datos.
      * @return std::istream& Referencia al flujo de entrada.
      */
-    friend std::istream& operator>>(std::istream& input, Stack<Type>& s);
+    template<typename T>
+    friend std::istream& operator>>(std::istream& input, LinkedStack<T>& s);
 
 public:
     // ----- Constructores ----------------------------------------
@@ -56,7 +58,7 @@ public:
      *
      * Crea una pila vacía con una capacidad inicial definida por \a Cap.
      */
-    explicit Stack();
+    explicit LinkedStack();
 
     /**
      * @brief Constructor de copia.
@@ -65,7 +67,7 @@ public:
      *
      * @param s Pila de la cual se realiza la copia.
      */
-    Stack(const Stack &s);
+    LinkedStack(const LinkedStack &s);
 
     /**
      * @brief Operador de asignación.
@@ -75,7 +77,8 @@ public:
      * @param s Pila de la cual se asignan los valores.
      * @return Stack& Referencia a la pila actual.
      */
-    Stack & operator=(const Stack &s);
+    LinkedStack & operator=(const LinkedStack &s);
+
 
     // ----- Destructor -------------------------------------------
 
@@ -84,7 +87,7 @@ public:
      *
      * Libera la memoria asignada y realiza la limpieza necesaria.
      */
-    ~Stack();
+    ~LinkedStack();
 
     // --- Métodos públicos ----------------------------------------
 
@@ -120,7 +123,7 @@ public:
      * @return false Si la pila tiene elementos.
      * @throws Lanza una excepción si la capacidad de la pila es 0.
      */
-    bool IsEmpty();
+    bool IsEmpty() const;
 
     /**
      * @brief Elimina todos los elementos de la pila.
@@ -134,14 +137,7 @@ public:
      *
      * @return unsigned Número de elementos actualmente en la pila.
      */
-    unsigned UsedCapacity() const;
-
-    /**
-     * @brief Retorna la capacidad actual de la pila.
-     *
-     * @return unsigned Capacidad total de la pila.
-     */
-    unsigned Capacity();
+    unsigned StackSize() const;
 
     /**
      * @brief Imprime los elementos de la pila.
@@ -150,16 +146,7 @@ public:
      */
     void PrintElements();
 
-    /**
-     * @brief Operador de indexación.
-     *
-     * Permite acceder a un elemento de la pila mediante su índice.
-     *
-     * @param i Índice del elemento.
-     * @return Type Elemento ubicado en la posición \a i.
-     * @throws Lanza una excepción si el índice es inválido.
-     */
-    //Type operator[](int i) const;
+
 
 private:
     // ----- Atributos --------------------------------------------
@@ -184,27 +171,12 @@ private:
     /**
      * @brief Redimensiona la pila.
      *
-     * Duplica la capacidad actual de la pila, asigna un nuevo arreglo,
-     * copia los elementos existentes y libera la memoria del arreglo anterior.
+     * Elimina una cantidad especifica de elementos llamando a 
+     * la función Pop() un número de veces
      */
-    void ResizeStack();
-
-    // ----- Métodos de utilería ----------------------------------
-
-    /**
-     * @brief Crea el arreglo que almacenará los elementos de la pila.
-     *
-     * Asigna memoria dinámica para el arreglo de elementos.
-     * @throws Lanza una excepción si falla la asignación de memoria.
-     */
-    void CreateStack();
-
-    /**
-     * @brief Libera la memoria asignada al arreglo de elementos.
-     */
-    void ClearMemory();
+    void ResizeStack(unsigned int i);
 };
 
-#include "../Templates/Stack.tpp"
+#include "../Templates/LinkedStack.tpp"
 
 #endif // STACK_HPP_INCLUDED

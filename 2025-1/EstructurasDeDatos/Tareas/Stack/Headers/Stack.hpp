@@ -35,7 +35,6 @@ class Stack
      * @param s Pila a imprimir.
      * @return std::ostream& Referencia al flujo de salida.
      */
-    
     template<typename T, unsigned int C>
     friend std::ostream& operator<<(std::ostream& output, const Stack<T, C>& s);
 
@@ -48,7 +47,6 @@ class Stack
      * @param s Pila en la que se almacenarán los datos.
      * @return std::istream& Referencia al flujo de entrada.
      */
-
     template<typename T, unsigned int C>
     friend std::istream& operator>>(std::istream& input, Stack<T, C>& s);
 
