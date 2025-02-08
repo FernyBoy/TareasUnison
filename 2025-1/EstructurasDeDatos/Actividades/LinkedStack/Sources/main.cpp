@@ -34,7 +34,7 @@ int main()
         }
         else
         {
-            cout << "\nCadena incorrectamnete cerrda" << endl;
+            cout << "\nCadena incorrectamnete cerrada" << endl;
         }
     }catch(const char *err)
     {
@@ -50,14 +50,10 @@ bool VerificarLlaves(string cadena)
     
     for(int i = 0; i < (int)cadena.size(); ++i)
     {
+        if(cadena[i] == '(' || cadena[i] == '[' || cadena[i] == '{') stack.Push(cadena[i]);
+
         switch (cadena[i]) 
         {
-            case '(':
-            case '[':
-            case '{':
-                stack.Push(cadena[i]);
-                break;
-
             case ')':
                 if(stack.IsEmpty() || stack.Top() != '(') return false;
                 stack.Pop();
