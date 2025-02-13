@@ -172,20 +172,38 @@
     \item En Hermosillo hay 4\% de probabilidades de que el día de independencia se tenga una temperatura baja. ¿Cuál es la probabilidad de que ese día no se tenga una temperatura baja?
     % Respuesta:
     \vspace{\Aspace} \par
-    { \color{azul}  }
+    { \color{azul} $100\% - 4\% = 96\%$ }
 
 
     % - Problema 2
     \vspace{\Pspace}
-    \item En una clase de álgbra y trigonometría hay 18 alumnos de primer año y 15 de segundo. De los 18 de primero, 10 son hombres; de los 15 de segundo, 8 son hombres. Encuentre la probabilidad de que un estudiante elegido al azar sea:
+    \item En una clase de álgebra y trigonometría hay 18 alumnos de primer año y 15 de segundo. De los 18 de primero, 10 son hombres; de los 15 de segundo, 8 son hombres. Encuentre la probabilidad de que un estudiante elegido al azar sea:
+        \begin{table}[h] \hspace{2em}
+        \begin{tabular}{c|c c}  % "c|cc" significa: 1ra columna centrada con línea, 2 y 3 centradas
+        \hline
+        & \textbf{1er año} & \textbf{2do año} \\
+        \hline
+        \textbf{Hombre} & 10 & 8 \\
+        \textbf{Mujer}  & 8 & 7 \\
+        \hline
+        \textbf{Total}  & 18 & 15 \\
+        \hline
+        \end{tabular}
+    \end{table}
+    
+    $A$: Son de primer año. (18)
+    \newline $B$: Son de segundo año. (15)
+    \newline $C$: Es hombre. (18)
+    \newline $D$: Es mujer. (15)
+
     % Respuestas:
     \vspace{\Aspace} \par
     (a) De primero o mujer:
-    \\ { \color{azul}  }
+        \\ { \color{azul} $P(A \cup D) = P(A) + P(D) - P(A \cap D) = \frac{18}{33} + \frac{15}{33} - \frac{8}{33} = \frac{25}{33} = 0{.}76 = 76\%$ }
 
     \vspace{\Aspace}
     (b) De segundo u hombre:
-    \\ { \color{azul}  }
+    \\ { \color{azul} $P(B \cup C) = P(B) + P(C) - P(B \cap C) = \frac{18}{33} + \frac{15}{33} - \frac{8}{33} = \frac{25}{33} = 0{.}76 = 76\%$ }
 
 
     % - Problema 3
@@ -193,7 +211,7 @@
     \item Determinar la siguiente igualdad $P(A \cup B \cup C) =$
     % Respuesta:
     \vspace{\Aspace} \par
-    { \color{azul}  }
+    { \color{azul} $P(A \cup B \cup C) = P(A) + P(B) + P(C) - P(A \cap B) - P(A \cap C) - P(B \cap C) + P(A \cap B \cap C)$ }
 
 
     % - Problema 4
@@ -201,7 +219,12 @@
     \item ¿Cuál es la probabilidad de que en un grupo de 60 personas, por lo menos 2 tengan la misma fecha de cumpleaños?
     % Respuesta:
     \vspace{\Aspace} \par
-    { \color{azul}  } 
+    { \color{azul} 
+        $A$: Dos personas cumplen el mismo día.
+        \newline $A^{c}$: Nadie cumple el mismo día.
+        \newline $P(A^{c}) = \frac{_{365}P_{60}}{365^{60}} = 0{.}0059 = 0{.}59\%$
+        \newline $P(A) = 0{.}9941 = 99{.}41\%$
+    } 
 \end{enumerate}
 
 
@@ -215,27 +238,49 @@
 \begin{enumerate}
     %  - Problema 1
     \item Juan vive en una gran ciudad y viaja al trabajo diariamente en subterráneo o en taxi. Aborda el subterráneo 80\% del tiempo porque cuesta menos y toma un taxi el otro 20\% del tiempo. Cuando se toma el subterráneo, llega al trabajo a tiempo 70\% de las veces, mientras que llega a tiempo 90\% de las veces cuando viaja en taxi.
+    \newline $P(A | B) = \frac{P(A \cap B)}{P(B)} \rightarrow P(B) \times P(A | B) = P(A \cap B)$
+    \newline $T$: Viaja en taxi. (20\%)
+    \newline $S$: Viaja en subterráneo. (80\%)
+    \newline $A$: Llega a tiempo.
+    \newline $A | T$: Llega a tiempo dado que tomó un taxi.
+    \newline $A | S$: Llega a tiempo dado que tomó el subterráneo.
     % Respuestas:
     \vspace{\Aspace} \par
     (a) ¿Cuál es la probabilidad de que Juan tome el subterrábneo y llegue a tiempo al trabajo en cualquier día dado?
-    \\ { \color{azul}  }
+    \\ { \color{azul} 
+        $P(A \cap S) = P(S) \cdot P(A | S) = 0{.}8 \cdot 0{.}7 = 0{.}56 = 56\%$
+    }
 
     \vspace{\Aspace}
     (b) ¿Cuál es la probabilidad de que Juan tome un taxi y llegue a tiempo al trabajo en cualquier día dado?
-    \\ { \color{azul}  }
+    \\ { \color{azul}  
+        $P(A \cap T) = P(T) \cdot P(A | T) = 0{.}2 \cdot 0{.}9 = 0{.}18 = 18\%$    
+    }
 
 
     % - Problema 2
     \vspace{\Pspace}
     \item Se lanza un dado equilibrado dos veces. Determine si los siguientes pares de eventos son independientes.
+    \newline Para que dos eventos sean independientes debe cumplirse que: 
+    \newline $P(A \cap B) = P(A) \cdot P(B)$
     % Respuestas:
     \vspace{\Aspace} \par
     (a) A: La suma de los dos resultados es 6. B: El primer resultado es 4.
-    \\ { \color{azul}  }
+    \\ { \color{azul} 
+        $P(A) = \frac{5}{36}$
+        \newline $P(B) = \frac{1}{6}$
+        \newline $P(A \cap B) = \frac{1}{36}$
+        \newline Dado que $\frac{5}{36} \cdot \frac{1}{6} \neq \frac{1}{36}$ esto nos dice que son eventos dependientes.
+    }
 
     \vspace{\Aspace}
     (b) A: La suma de los dos resultados es 7. B: El segundo resultado es 4.
-    \\ { \color{azul}  }
+    \\ { \color{azul} 
+        $P(A) = \frac{6}{36} = \frac{1}{6}$
+        \newline $P(B) = \frac{1}{6}$
+        \newline $P(A \cap B) = \frac{1}{36}$
+        \newline Dado que $\frac{1}{6} \cdot \frac{1}{6} = \frac{1}{36}$ esto nos dice que son eventos independientes.
+    }
     
 
     % - Problema 3
