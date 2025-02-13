@@ -17,6 +17,9 @@
 \newcommand{\Pspace}{0.5cm}
 \newcommand{\Aspace}{0.2cm}
 
+% -- Imagenes --
+\usepackage{graphicx}
+
 \title
 {
   Probabilidad 2025-1 \\
@@ -150,13 +153,17 @@
     \item Se sacan cinco cartas de un mazo ordinario de 52 cartas de juego. (a) ¿Cuál es la probabilidad de que la mano sacada sean dos pares? (b) ¿Cuál es la probabilidad de que la mano sacada sea un par? (c) ¿Cuál es la probabilidad de que la mano sacada no tenga ningún juego posible (carta alta)?
      % Respuestas:
     \vspace{\Aspace} \par
-    (a) { \color{azul}  }
+    (a) { \color{azul} $\frac{_{13}C_{2} \cdot _{4}C_{2} \cdot _{4}C_{2} \cdot 4(_{11}C_{1})}{_{52}C_{5}} = 0{.}04750 = 47{.}50\%$
+    }
     
     \vspace{\Aspace}
-    (b) { \color{azul}  }
+    (b) { \color{azul} $\frac{_{13}C_{1} \times\ _{4}C_{2} \times\ 4(_{12}C_{3})}{_{52}C_{5}} = 0{.}02641 = 26{.}41\%$
+    }
     
     \vspace{\Aspace}
-    (c) { \color{azul}  }    
+    (c) { \color{azul}  
+        $\frac{_{13}C_{5} \cdot 4^{5}}{_{52}C_{5}} = 0{.}5011 = 50{.}11\%$
+    } 
 \end{enumerate}
 
 
@@ -282,13 +289,25 @@
         \newline Dado que $\frac{1}{6} \cdot \frac{1}{6} = \frac{1}{36}$ esto nos dice que son eventos independientes.
     }
     
-
+    
+    \newpage
     % - Problema 3
     \vspace{\Pspace}
     \item Demostrar la siguiente igualdad $P(A | B) = 1 - P(A^{c} | B)$
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.4\textwidth]{./Images/Complemento.png}
+        \includegraphics[width=0.4\textwidth]{./Images/Interseccion.png}
+    \end{figure}
     % Respuesta:
     \vspace{\Aspace} \par
-    { \color{azul}  }
+    { \color{azul} 
+        $P(A | B) = 1 - P(A^{c} | B)$
+        \newline $\frac{P(A \cap B)}{P(B)} = 1 - \frac{P(A^{c} \cap B)}{P(B)}$
+        \newline $P(A \cap B) = P(B) - P(A^{c} \cap B)$
+        \newline $P(A \cap B) = P(B) - P(B) + P(A \cap B)$
+        \newline $P(A \cap B) = P(A \cap B)$
+    }
 
     
     % - Problema 4
@@ -296,15 +315,30 @@
     \item Si dos eventos son independientes, ¿entonces deben ser disjuntos?
     % Respuesta:
     \vspace{\Aspace} \par
-    { \color{azul}  }
+    { \color{azul} 
+        Disjuntos: $P(A \cap B) = 0$
+        \newline Independientes: $P(A \cap B) = P(A) \cdot P(B)$
+        \newline Dos eventos pueden ser independientes y no disjuntos siempre que la probabilidad de ambas sea diferente de 0.
+    }
 
 
     % - Problema 5
     \vspace{\Pspace}
     \item La paradoja de la caja de Bertrand. Se tienen tres cajas y cada una de ellas tiene dos monedas. La caja A contiene dos monedas de oro. La caja B contiene una moneda de oro y una moneda de plata. La caja C contiene dos monedas de plata. Se selecciona una caja al azar y de allí se escoge una moneda. Si resulta que la moneda escogida es de oro, ¿cuál es la probabilidad de que provenga de la caja con dos monedas de oro?
+    \newline $A$: Se escoge la caja A.
+    \newline $B$: Se escoge la caja B.
+    \newline $C$: Se escoge la caja C.
+    \newline $O$: Sale una moneda de oro.
     % Respuesta:
     \vspace{\Aspace} \par
-    { \color{azul}  }
+    { \color{azul} 
+        $P(A) = P(B) = P(C) = \frac{1}{3}$
+        \newline $P(O | A) = 1$
+        \newline $P(O | B) = \frac{1}{2}$
+        \newline $P(O | C) = 0$
+        \newline $P(O) = P(O | A) \cdot P(A) + P(O | B) \cdot P(B) + P(O | C) \cdot P(C) = \frac{1}{2}$
+        \newline Teorema de Bayes: $P(A | O) = \frac{P(O | A) \cdot P(A)}{P(O)} = \frac{1 \cdot \frac{1}{3}}{\frac{1}{2}} = \frac{2}{3} = 66{.}67\%$
+    }
 \end{enumerate}
 
 \end{document}

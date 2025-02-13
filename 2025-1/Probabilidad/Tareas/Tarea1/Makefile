@@ -11,5 +11,5 @@ Compile:
 
 # Rule to compile the project
 MainFile: 
-	@$(ZAT) *.pdf
+	@$(ZAT) *.pdf &
 
