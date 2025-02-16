@@ -2,7 +2,7 @@
 *   \file   Expression.hpp
 *   \author Angel Fernando Borquez Guerrero
 *   \author Javier Leonardo Miranda Sanchez
-*   \date   03/02/2025
+*   \date   15/02/2025
 */
 #ifndef EXPRESSION_HPP_INCLUDED
 #define EXPRESSION_HPP_INCLUDED
@@ -10,6 +10,16 @@
 #include <iostream>
 #include <ostream>
 #include <string>
+
+
+const char SymbolsList[] = 
+{ 
+    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 
+    '.', '+', '-', '*', '/', '^', 
+    '{', '}', '(', ')', '[', ']'
+};
+
+const unsigned SymbolsSize = 22;
 
 using std::string;
 
@@ -31,7 +41,7 @@ class Expression
 
         // --- Métodos públicos
         void    CaptureExpression();
-        int     EvaluateExpression();
+        double  EvaluateExpression();
         void    PrintExpression();
         void    PrintPostfixExpression();
 
@@ -42,9 +52,8 @@ class Expression
         string  postfixExpression;
 
         // --- Métodos privados
-        bool    IsValidExpression();
 
         // --- Métodos de utilería
-    //
+        bool    IsValidExpression();
 };
 #endif // !EXPRESSION_HPP_INCLUDED
