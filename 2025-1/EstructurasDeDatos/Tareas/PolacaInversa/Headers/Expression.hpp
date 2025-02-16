@@ -9,6 +9,9 @@
 
 #include <iostream>
 #include <ostream>
+#include <string>
+
+using std::string;
 
 class Expression
 {
@@ -19,6 +22,7 @@ class Expression
     public:
         // --- Constructores
         explicit Expression();
+        explicit Expression(const std::string e);
         Expression(const Expression &e);
         Expression & operator=(const Expression &e);
 
@@ -26,14 +30,19 @@ class Expression
         ~Expression();
 
         // --- Métodos públicos
-
+        void    CaptureExpression();
+        int     EvaluateExpression();
+        void    PrintExpression();
+        void    PrintPostfixExpression();
 
     private:
         // --- Atributos
-
+        string  infixExpression;
+        bool    isEvaluable;
+        string  postfixExpression;
 
         // --- Métodos privados
-
+        bool    IsValidExpression();
 
         // --- Métodos de utilería
     //
