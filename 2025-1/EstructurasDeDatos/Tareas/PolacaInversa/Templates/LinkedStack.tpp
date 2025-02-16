@@ -2,7 +2,7 @@
 *   \file   LinkedLinkedStack.tpp
 *   \author Angel Fernando Borquez Guerrero
 *   \author Javier Leonardo Miranda Sanchez
-*   \date   03/02/2025
+*   \date   15/02/2025
 */
 
 #include "../Headers/LinkedStack.hpp" 

@@ -7,10 +7,16 @@
 #ifndef EXPRESSION_HPP_INCLUDED
 #define EXPRESSION_HPP_INCLUDED
 
+#include "CapturaSegura.hpp"
+#include "LinkedStack.hpp"
+
 #include <iostream>
 #include <ostream>
 #include <string>
 
+using std::cout;
+using std::cin;
+using std::endl;
 
 const char SymbolsList[] = 
 { 
@@ -52,8 +58,11 @@ class Expression
         string  postfixExpression;
 
         // --- Métodos privados
+        string  InfixToPostfix();
 
         // --- Métodos de utilería
+        bool    ValidateBrackets(const string &e);
         bool    IsValidExpression();
+    
 };
 #endif // !EXPRESSION_HPP_INCLUDED

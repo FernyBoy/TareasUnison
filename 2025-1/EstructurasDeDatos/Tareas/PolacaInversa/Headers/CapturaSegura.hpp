@@ -1,3 +1,10 @@
+/**
+*   \file   CapturaSegura.hpp
+*   \author Angel Fernando Borquez Guerrero
+*   \author Javier Leonardo Miranda Sanchez
+*   \date   15/02/2025
+*/
+
 #ifndef CAPTURA_SEGURA_HPP
 #define CAPTURA_SEGURA_HPP
 
