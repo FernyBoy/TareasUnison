@@ -11,7 +11,7 @@ CXX = g++
 CXXFLAGS = -std=c++17 -Wall -Wextra
 
 # Default Target
-all: $(ObjectsDirectory) cpp-to-tpp main
+all: clean $(ObjectsDirectory) cpp-to-tpp main
 
 # Rule to create the build directory
 $(ObjectsDirectory):

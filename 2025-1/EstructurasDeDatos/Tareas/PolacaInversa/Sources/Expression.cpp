@@ -13,28 +13,24 @@
 //
 // --------------------------------------------
 Expression::Expression() : infixExpression(""), isEvaluable(false), postfixExpression("") {}
-/*
-Expression::Expression(const std::string e)
-{
-    
-}
 
-Expression::Expression(const Expression &e)
-{
-    
-}
+Expression::Expression(string e)
+{   
+    cout << e;
+    for (char c : e) 
+    {
+        if (!(std::find(SymbolsList, SymbolsList + SymbolsSize, c) != SymbolsList + SymbolsSize)) 
+        {
+            string err = "\nError: El car\240cter '" + string(1, c) + "' no est\240 permitido.";
+            throw err;
+        }
+    }
 
-Expression & Expression::operator=(const Expression &e)
-{
-    
-}
-*/
-// ----------------------
-// ----- Destructor -----
-// ----------------------
-Expression::~Expression()
-{
+    if(!ValidateBrackets(e)) throw "\n S\241mbolos de cierre mal balanceados. Ingresa de nuevo to expresi\242n\n • ";
 
+    infixExpression = e;
+
+    InfixToPostfix();
 }
 
 
@@ -50,8 +46,6 @@ Expression::~Expression()
 // --------------------------------------------
 void Expression::CaptureExpression()
 {
-    cout << "\nIngresa la expresi\242n a evaluar\n • ";
-
     while(true)
     {
         infixExpression = CapturaSegura<>().TextoPermitido(SymbolsList, SymbolsSize);
@@ -66,62 +60,73 @@ void Expression::CaptureExpression()
 
 double Expression::EvaluateExpression()
 {
-    LinkedStack<double> stack;  // Pila para los operandos
-    int index = 0;
-    // Iteramos sobre cada carácter de la expresión posfija
-    while(index < postfixExpression.size())
-    {   
+    LinkedStack<double> stack;
+
+    size_t index = 0;
+
+    while (index < postfixExpression.size()) 
+    {
         char c = postfixExpression[index];
-        if (isdigit(c)) {
-            // Si el carácter es un número, construimos el número completo y lo agregamos a la pila
+
+        if (isdigit(c)) 
+        {
             std::string number = "";
-            while (isdigit(c)) {
-                number += c;  // Agregar el dígito al número
-                c = postfixExpression[++index];  // Avanzar al siguiente carácter
+
+            while (index < postfixExpression.size() && isdigit(postfixExpression[index])) 
+            {
+                number += postfixExpression[index++];
             }
-            stack.Push(std::stod(number));  // Convertir el número de string a double y lo empujamos a la pila
+
+            stack.Push(std::stod(number));
         }
-        else if (c == ' ') {
-            // Ignoramos los espacios
+        else if (c == ' ') 
+        {
+            ++index;
             continue;
         }
-        else {
-            // Si es un operador, sacamos los dos operandos de la pila
+        else 
+        {
             double operand2 = stack.Top(); stack.Pop();
             double operand1 = stack.Top(); stack.Pop();
 
             double result = 0;
 
-            // Realizamos la operación correspondiente
-            switch (c) {
+            switch (c) 
+            {
                 case '+':
                     result = operand1 + operand2;
                     break;
+
                 case '-':
                     result = operand1 - operand2;
                     break;
+
                 case '*':
                     result = operand1 * operand2;
                     break;
+                    
                 case '/':
-                    if (operand2 != 0) {
+                    if (operand2 != 0) 
+                    {
                         result = operand1 / operand2;
-                    } else {
-                        std::cerr << "Error: Division por cero!" << endl;
-                        return -1;  // Error en la división por cero
+                    } 
+                    else 
+                    {
+                        throw "Division por cero!";
                     }
                     break;
+
                 case '^':
                     result = pow(operand1, operand2);
                     break;
             }
 
-            // Colocamos el resultado en la pila
             stack.Push(result);
         }
+
+        ++index;
     }
 
-    // Al final, el resultado estará en la cima de la pila
     return stack.Top();
 }
 
