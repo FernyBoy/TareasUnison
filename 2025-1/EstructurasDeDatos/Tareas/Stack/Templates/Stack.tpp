@@ -10,13 +10,11 @@ using std::cin;
 using std::cerr;
 using std::endl;
 
-// template <typename T>
 // --------------------------------------------
 //
 // ----- Constructores ------------------------
 //
 // --------------------------------------------
-//Stack::Stack(unsigned s) : size(s)
 template <typename Type, unsigned int Cap>
 Stack<Type, Cap>::Stack()
 {

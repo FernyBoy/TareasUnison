@@ -18,7 +18,13 @@ int main()
     try{
         Expression newEx;
         newEx.CaptureExpression();
+        cout << "\nExpresion infija" << endl;
         newEx.PrintExpression();
+        cout << "\nExpresion postfija" << endl;
+        newEx.PrintPostfixExpression();
+
+
+
     }catch(const char *err){
         cerr << "Error:" << endl;
     }

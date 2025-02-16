@@ -12,11 +12,31 @@
 
 #include <iostream>
 #include <ostream>
-#include <string>
+#include <cmath>
+#include <unordered_map>
 
 using std::cout;
 using std::cin;
 using std::endl;
+using std::string;
+using std::unordered_map;
+
+const std::unordered_map<char, int> PrecedenceMap = 
+{
+    {'(', 0}, {'[', 0}, {'{', 0},
+
+    {')', 1}, {']', 1}, {'}', 1},
+
+    {'.', 2},
+    {'0', 2}, {'1', 2}, {'2', 2}, {'3', 2}, {'4', 2}, 
+    {'5', 2}, {'6', 2}, {'7', 2}, {'8', 2}, {'9', 2},
+
+    {'+', 3}, {'-', 3},
+
+    {'*', 4}, {'/', 4},
+
+    {'^', 5}
+};
 
 const char SymbolsList[] = 
 { 
@@ -58,7 +78,7 @@ class Expression
         string  postfixExpression;
 
         // --- Métodos privados
-        string  InfixToPostfix();
+        void    InfixToPostfix();
 
         // --- Métodos de utilería
         bool    ValidateBrackets(const string &e);
