@@ -31,29 +31,29 @@ class LinkedList
         explicit LinkedList();
         LinkedList(const LinkedList &li);
         // - Destructor
-        // ~LinkedList();
+        ~LinkedList();
 
         // --- Operadores
-        LinkedList & operator=(const LinkedList &li);
-        Type        operator[](unsigned int i);
+        LinkedList& operator=(const LinkedList &li);
+        Type        operator[](unsigned int index);
 
         // --- Métodos públicos
         // - Funciones de agregación
         void        AddFirst(Type val);
         void        AddLast(Type val);
-        void        AddAt(Type val, unsigned int i);
+        void        AddAt(Type val, unsigned int index);
         // - Funciones de eliminación
         void        RemoveFirst();
         void        RemoveLast();
-        void        RemoveAt(unsigned int i);
-        void        Remove(Type val);
+        void        RemoveAt(unsigned int index);
+        void        RemoveElement(Type val);
         // - Funciones de obtención
         Type        GetFirst()              const;
         Type        GetLast()               const;
-        Type        GetAt(unsigned int i)   const;
-        unsigned    IndexOf(Type val)     const;
+        Type        GetAt(unsigned index)   const;
+        unsigned    IndexOf(Type val)       const;
         unsigned    ListSize()              const;
-        bool        IsEmpty();
+        bool        IsEmpty()               const;
         // - Otras funciones
         void        ClearList();
         void        PrintList();
@@ -74,7 +74,7 @@ class LinkedList
         Element     *lastElement;
 
         // --- Métodos privados
-
+        bool    IsValidIndex(unsigned index)    const;
 
         // --- Métodos de utilería
 
