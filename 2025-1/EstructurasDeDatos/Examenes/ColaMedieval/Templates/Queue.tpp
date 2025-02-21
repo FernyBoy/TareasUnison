@@ -1,8 +1,7 @@
 /**
 *   \file   LinkedQueue.tpp
 *   \author Angel Fernando Borquez Guerrero
-*   \author Javier Leonardo Miranda Sanchez
-*   \date   03/02/2025
+*   \date   21/02/2025
 */
 
 #include "../Headers/Queue.hpp" 
@@ -153,32 +152,6 @@ void Queue<Type>::PrintElements()
         auxElement = auxElement -> nextElement;
     }
 }
-
-
-
-// --------------------------------------------
-
-
-
-// --------------------------------------------
-//
-// ----- Métodos privados ---------------------
-//
-// --------------------------------------------
-
-
-
-
-// --------------------------------------------
-
-
-
-// --------------------------------------------
-//
-// ----- Métodos de utilería ------------------
-//
-// ------------------------------------------
-
 
 
 

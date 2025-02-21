@@ -1,12 +1,11 @@
 /**
 *   \file   main.cpp
-*   \author 
-*   \date   
+*   \author Angel Fernando Borquez Guerrero 
+*   \date   21/02/2025
 */
 
 #include <iostream>
-#include "../Headers/LinkedList.hpp"
-#include "../Headers/CapturaSegura.hpp"
+#include "../Headers/Client.hpp"
 
 using std::cout;
 using std::cin;
@@ -16,20 +15,7 @@ using std::endl;
 int main()
 {
     try{
-        LinkedList<int> list, list2;
-        
-        for(int i = 0; i < 10; ++i)
-        {
-            list.AddLast(i);
-        }
-        cout << list;
-
-        list2 = list;
-        cout << endl << list2;
-        list2.RemoveElement(5);
-        cout << endl << list2;
-
-
+        Client().RunService();
     }catch(const char *e){
         cerr << "Error:" << e << endl;
     }

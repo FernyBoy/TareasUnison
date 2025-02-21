@@ -33,16 +33,16 @@ MedievalQueue::~MedievalQueue()
 //
 // --------------------------------------------
 // --- Funciones de agregación
-void MedievalQueue::Enqueue(string name, bool noble)
+void MedievalQueue::Enqueue(string name, string status)
 {
-    noble ? AddFirst(name, noble) : AddLast(name, noble);
+    status == "noble" ? AddFirst(name, status) : AddLast(name, status);
 }
 
-void MedievalQueue::AddFirst(string name, bool noble)
+void MedievalQueue::AddFirst(string name, string status)
 {
     Person *aux = new Person;
     aux -> name = name;
-    aux -> noble = noble;
+    aux -> status = status;
 
     if(IsEmpty())
     {
@@ -59,11 +59,11 @@ void MedievalQueue::AddFirst(string name, bool noble)
     ++size;
 }
 
-void MedievalQueue::AddLast(string name, bool noble)
+void MedievalQueue::AddLast(string name, string status)
 {
     Person *aux = new Person;
     aux -> name = name;
-    aux -> noble = noble;
+    aux -> status = status;
 
     if(IsEmpty())
     {
@@ -85,7 +85,7 @@ void MedievalQueue::Dequeue()
 {
     if(IsEmpty()) throw "Lista vac\241a";
     
-    frontPerson -> noble ? --nobleNum : --villagerNum;
+    frontPerson -> status == "noble" ? --nobleNum : --villagerNum;
 
     Person *deletePerson = frontPerson;
     frontPerson = frontPerson -> nextPerson;
@@ -95,9 +95,20 @@ void MedievalQueue::Dequeue()
 }
 
 // --- Funciones de obtención
-string MedievalQueue::GetFront() const
+vector<string> MedievalQueue::GetFront() const
 {
-    return frontPerson -> name;
+    vector<string> person(2);
+
+    if(IsEmpty())
+    {
+        person[0] = "Sin nombre";
+        person[1] = "Desconocido";
+    }
+
+    person[0] = frontPerson -> name;
+    person[1] = frontPerson -> status;
+
+    return person;
 }
 
 unsigned MedievalQueue::QueueSize() const
@@ -129,17 +140,19 @@ void MedievalQueue::ClearList()
 
 void MedievalQueue::PrintList()
 {
-    if(IsEmpty()) throw "Lista vac\241a";
+    if(IsEmpty())
+    {
+        cout << "\n|";
+        return;
+    }
 
     Person *aux = frontPerson;
 
-    cout << "[ ";
     for(unsigned i = 0; i < size; ++i)
     {
-        cout << aux -> name << ", ";
+        cout << "\n|\t"<< aux -> name << " - " << aux -> status;
         aux = aux -> nextPerson;
     }
-    cout << "\b\b ]";
 }
 
 

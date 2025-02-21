@@ -9,13 +9,11 @@
 
 #include <iostream>
 #include <vector>
-#include <stdlib.h>
-#include <string.h>
-#include <fstream>
 #include <ctime>
+#include <thread>
+#include <chrono>
 
 #include "./MedievalQueue.hpp"
-#include "./Queue.hpp"
 
 using std::cout;
 using std::cin;
@@ -33,21 +31,18 @@ class Client
         static vector<string>  firstNamesList;
         static vector<string>  lastNamesList;
         
-        static Queue<vector<string>>   waitingQueue;
-        static Queue<vector<string>>   attendedQueue;
-        static vector<string>          currentPerson;
+        static vector<string>   attendedList;
+        static vector<string>   currentPerson;
 
-        static unsigned        timeOfService;
-        static unsigned        attendingTime;
+        static unsigned     timeOfService;
+        static unsigned     attendingTime;
+        static unsigned     arrivingTime;
 
         // --- Métodos
-        static void            GetNames();
         static vector<string>  CreatePerson();
 
-        static void    SetServiceTime();
-        static void    SetAttendingTime();
-
-        static void    ClearScreen();
-        static void    PrintInfo();
+        static void     ClearScreen();
+        static void     PrintInfo();
+        static void     Wait(unsigned time);
 };
 #endif // !EXPRESSION_HPP_INCLUDED

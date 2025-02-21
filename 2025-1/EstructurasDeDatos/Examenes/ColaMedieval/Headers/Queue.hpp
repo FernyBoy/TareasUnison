@@ -1,8 +1,7 @@
 /**
 *   \file   Stack.hpp
 *   \author Angel Fernando Borquez Guerrero
-*   \author Javier Leonardo Miranda Sanchez
-*   \date   03/02/2025
+*   \date   21/02/2025
 */
 
 #ifndef LINKEDSTACK_HPP_INCLUDED

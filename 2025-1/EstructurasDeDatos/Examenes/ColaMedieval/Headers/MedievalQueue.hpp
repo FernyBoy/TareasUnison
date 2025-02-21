@@ -26,17 +26,17 @@ class MedievalQueue
 
         // --- Métodos públicos
         // - Funciones de agregación
-        void        Enqueue(string name, bool noble);
-        void        AddFirst(string name, bool noble);
-        void        AddLast(string name, bool noble);
+        void        Enqueue(string name, string status);
+        void        AddFirst(string name, string status);
+        void        AddLast(string name, string status);
         // - Funciones de eliminación
         void        Dequeue();
         // - Funciones de obtención
-        string      GetFront()      const;
-        unsigned    QueueSize()     const;
-        unsigned    NobleSize()     const;
-        unsigned    VillagerSize()  const;
-        bool        IsEmpty()       const;
+        vector<string>  GetFront()      const;
+        unsigned        QueueSize()     const;
+        unsigned        NobleSize()     const;
+        unsigned        VillagerSize()  const;
+        bool            IsEmpty()       const;
         // - Otras funciones
         void        ClearList();
         void        PrintList();
@@ -54,7 +54,7 @@ class MedievalQueue
         struct Person
         {
             string  name;
-            bool    noble;
+            string  status;
             Person  *nextPerson;
         };
 
