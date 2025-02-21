@@ -22,4 +22,6 @@ int main()
     }catch(const char *e){
         cerr << "Error:" << e << endl;
     }
+
+    return 0;
 }

@@ -8,7 +8,6 @@
 
 vector<string>  Client::firstNamesList = {"Fernando", "Javier", "Emily", "Elias", "Flor", "Victor", "Dante", "Oiram"};
 vector<string>  Client::lastNamesList = {"Borquez", "Miranda", "Beltran", "Peregrina", "Machado", "Martinez", "Tostado", "Figueroa"}; 
-vector<string>  Client::attendedList;
 vector<string>  Client::currentPerson;
 unsigned        Client::timeOfService = 120;
 unsigned        Client::attendingTime = 0;
@@ -16,10 +15,10 @@ unsigned        Client::arrivingTime = 0;
 
 void Client::RunService()
 {
-    MedievalQueue todayList;
+    MedievalQueue arrivingList, attendedList;
 
     ClearScreen();
-    cout << "+--------------------------------------------------+";
+    cout << "\n+--------------------------------------------------+";
     cout << "\n|                                                  |";
     cout << "\n|              Castillo del Rey Arturo             |";
     cout << "\n|                                                  |";
@@ -35,7 +34,7 @@ void Client::RunService()
         cout << "\n|                                                     |";
         cout << "\n+-----------------------------------------------------+";
         cout << "\n|";
-        cout << "\n|     Tiempo de atenci\242n restante: " << timeOfService << " minutos";
+        cout << "\n|     Tiempo de atenci\242n restante: " << timeOfService << (timeOfService == 1 ? " minuto" : " minutos");
         cout << "\n|______________________________________________________";
             
         cout << "\n\n\n  W";
@@ -70,25 +69,25 @@ void Client::RunService()
         
         if(attendingTime != 0)
         {
-            cout << "Su tiempo de atenci\242n es de " << attendingTime << " minutos";
+            cout << "Su tiempo de atenci\242n es de " << attendingTime << (attendingTime == 1 ? " minuto" : " minutos");
         }
 
         cout << "\n\n\nLista de espera";
         cout << "\n+----------------------------------------------";
-        todayList.PrintList();
+        arrivingList.PrintList();
         cout << endl;
 
-        if(!todayList.IsEmpty())
+        if(!arrivingList.IsEmpty())
         {
             if(attendingTime == 0)
             {
                 if(!currentPerson.empty())
                 {
-                    attendedList.push_back(currentPerson[0] + " - " + currentPerson[1]);
+                    attendedList.EnqueueByArrive(currentPerson[0], currentPerson[1]);
                 }
 
-                currentPerson = todayList.GetFront();
-                todayList.Dequeue();
+                currentPerson = arrivingList.GetFront();
+                arrivingList.Dequeue();
                 attendingTime = 15;
             }
         }
@@ -96,7 +95,7 @@ void Client::RunService()
         if(arrivingTime == 0)
         {
             vector<string> person = CreatePerson();
-            todayList.Enqueue(person[0], person[1]);
+            arrivingList.EnqueueByStatus(person[0], person[1]);
             arrivingTime = 8;
         }
 
@@ -107,7 +106,7 @@ void Client::RunService()
         Wait(1);
     }
 
-    if(!currentPerson.empty()) attendedList.push_back(currentPerson[0] + " - " + currentPerson[1]);
+    if(!currentPerson.empty()) attendedList.EnqueueByArrive(currentPerson[0], currentPerson[1]);
 
     ClearScreen();
     cout << "\n+-----------------------------------------------------+";
@@ -116,17 +115,14 @@ void Client::RunService()
     cout << "\n|                                                     |";
     cout << "\n+-----------------------------------------------------+";
     cout << "\n|";
-    cout << "\n|     Nobles atendidos: " << todayList.NobleSize();
+    cout << "\n|     Nobles atendidos: " << attendedList.NobleSize();
     cout << "\n|";
-    cout << "\n|     Plebeyos atentidos: " << todayList.VillagerSize();
+    cout << "\n|     Plebeyos atentidos: " << attendedList.VillagerSize();
     cout << "\n|______________________________________________________";
 
-    cout << "\n\n\nLista de personas atendidas";
-    cout << "\n+----------------------------------------------";
-    for(string s : attendedList)
-    {
-        cout << "\n|\t" << s;
-    }
+    cout << "\n\n\nLista de personas atendidas por orden de llegada";
+    cout << "\n+----------------------------------------------------";
+    attendedList.PrintList();
     cout << "\n\n";
 }
 
@@ -141,7 +137,7 @@ vector<string> Client::CreatePerson()
 
     person[0] = firstNamesList[fn] + " " + lastNamesList[ln];
 
-    if((std::rand() % 4) + 1 == 1) 
+    if((std::rand() % 6) + 1 == 1) 
     {
         person[1] = "noble";
     }

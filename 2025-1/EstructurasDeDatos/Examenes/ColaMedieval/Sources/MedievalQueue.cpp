@@ -33,9 +33,25 @@ MedievalQueue::~MedievalQueue()
 //
 // --------------------------------------------
 // --- Funciones de agregación
-void MedievalQueue::Enqueue(string name, string status)
+void MedievalQueue::EnqueueByStatus(string name, string status)
 {
-    status == "noble" ? AddFirst(name, status) : AddLast(name, status);
+    if(status == "noble")
+    {
+        AddFirst(name, status);
+        ++nobleNum;
+    }
+    else
+    {
+        AddLast(name, status);
+        ++villagerNum;
+    }
+}
+
+void MedievalQueue::EnqueueByArrive(string name, string status)
+{
+    status == "noble" ? ++nobleNum : ++villagerNum;
+
+    AddLast(name, status);
 }
 
 void MedievalQueue::AddFirst(string name, string status)
@@ -55,7 +71,6 @@ void MedievalQueue::AddFirst(string name, string status)
         frontPerson = aux;
     }
     
-    ++nobleNum;
     ++size;
 }
 
@@ -76,7 +91,6 @@ void MedievalQueue::AddLast(string name, string status)
         rearPerson = aux;
     }
     
-    ++villagerNum;
     ++size;
 }
 
@@ -103,6 +117,7 @@ vector<string> MedievalQueue::GetFront() const
     {
         person[0] = "Sin nombre";
         person[1] = "Desconocido";
+        return person;
     }
 
     person[0] = frontPerson -> name;

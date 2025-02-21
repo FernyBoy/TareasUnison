@@ -1,0 +1,88 @@
+\documentclass[a4paper, 12pt]{article}
+
+% -- Language --
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+
+% ----- Fonts -----
+% -- Color --
+\usepackage{xcolor}
+%\definecolor{azul}{RGB}{00,33,99}
+\definecolor{azul}{RGB}{35,72,180}
+
+% -- Page Margin --
+\usepackage[margin=1in]{geometry}
+
+% -- Espaciados --
+\newcommand{\Pspace}{0.5cm}
+\newcommand{\Aspace}{0.2cm}
+
+% -- Imagenes --
+\usepackage{graphicx}
+
+\title
+{
+  Teoría de la computación \\
+  Problema 37
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{center}
+    \begin{tabular}{r|l}
+        \textbf{Expediente} & \textbf{Nombre} \\ \hline
+        223210350 & Amaya Soria Angel Alberto \\
+        219208106 & Bórquez Guerrero Angel Fernando \\
+        223215039 & Miranda Sanchez Javier Leonardo \\
+    \end{tabular}
+\end{center}
+
+\rule{\linewidth}{0.3mm}
+
+\vspace{0.3cm}
+
+37. Pruebe la propiedad 3. Sugerencia: demuestre por inducción, que $\forall n \geq 0$:
+
+\par $P(n)$: si $|w| = n$ y $r \in \hat{\delta}(q, w)$ entonces $(q, w) \vdash (r, \epsilon)$.
+\par $Q(n)$: si $(q, w) \vdash (r, \varepsilon)$ en $n$ movimientos entonces $r \in \hat{\delta}(q, w)$.
+
+\vspace{0.5cm}
+\par \textbf {Propiedad 3.} Sea $\delta$ la función de transición de un AFND. Para todo estado $q$ y cadena de símbolos de entrada $w$:
+\begin{center}
+    \par \centering { $\hat{\delta}(q, w) = \{r \in Q : (q, w) \vdash (r, \varepsilon)\}$. }
+\end{center}
+
+\par { \large \color{azul} Suponemos}
+\par $|w| = n = 0 = \varepsilon$
+\par Para $P(n)$:
+\par Por definición: $\hat{\delta}(q, \varepsilon) = q$
+\par Como $q$ requiere 0 pasos para llega a $r$, se cumple $(q, w) \vdash (r, \varepsilon)$
+\vspace{0.2cm}
+\par Para $Q(n)$:
+\par Si $(q, w) \vdash (r, \varepsilon)$ en $n$ movimientos, por definición de la relación de transición extendida, $q \in \hat{\delta}(q, \varepsilon)$ se cumple $Q(n)$.
+
+\vspace{0.2cm}
+\par { \large \color{azul} Paso inductivo}
+\par Suponemos que $P(n)$ y $Q(n)$ son ciertos para un cierto $n \geq 0$.
+
+\vspace{0.2cm}
+\par { \large \color{azul} Probamos para $|w|= n + 1$}
+\par Para $P(n + 1)$:
+\par Sea $w$ una palabra de tamaño $n + 1$, $w = xa$, $x$ es una palabra de longitud $n$ y $a$ un símbolo.
+\par Por hipótesis de inducción si $r \in \hat{\delta}(q, x)$, entonces $(q, x)$ en $n$ pasos llega a $(r, \varepsilon)$ procesamos $a$, aplicamos la transición extendida $\hat{\delta}(q, xa) = \cup^{m}_{i = 1} \delta(p_{i}, a)$.
+\newpage
+\par Si $r' \in \hat{\delta}(q, xa)$, entonces existe algún $p \in \hat{\delta}(q, x)$ tal que $r' \in \delta(p, a)$.
+\par Como $(q, x)$ en $n$ pasos llega a $(p, \varepsilon)$ y $p$ al procesar $a$ llega a $r'$ entonces $n + 1$ pasos $(q, xa) \vdash (r', \varepsilon)$
+\vspace{0.2cm}
+\par \hspace{12cm} QED
+
+\vspace{0.4cm} Para $Q(n +1 )$:
+\par Si $(q, xa)$ en $n + 1$ pasos llega a $(r, \varepsilon)$, entonces en los primeros $n$ pasos $(q, x)$ llega a algún estado $p$, y en un paso adicional $(p, a)$ llega a $(r, \varepsilon)$.
+\par Por hipótesis de inducción sabemos que $p \in \hat{\delta}(q, x)$, además, por definición de $\hat{\delta}$ $r$ debe pertenecer a $\delta (p, a)$.
+\par Como $\hat{\delta}(q, xa)$ está definida como la unión de todas las transiciones de $\delta(p, a)$ para $p \in \hat{\delta}(q, x)$, concluimos que $r$ pertenece a $\hat{\delta}(q, xa)$
+\vspace{0.2cm}
+\par \hspace{12cm} QED
+
+\end{document}
