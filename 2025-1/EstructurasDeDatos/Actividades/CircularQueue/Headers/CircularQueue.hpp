@@ -23,7 +23,7 @@
  * @tparam Cap Capacidad inicial de la fila.
  */
 template <typename Type>
-class Queue
+class CircularQueue
 {
     // --- Métodos externos (operadores de flujo)
     /**
@@ -36,7 +36,7 @@ class Queue
      * @return std::ostream& Referencia al flujo de salida.
      */
     template<typename T>
-    friend std::ostream& operator<<(std::ostream& output, const Queue<T>& s);
+    friend std::ostream& operator<<(std::ostream& output, const CircularQueue<T>& s);
 
     /**
      * @brief Operador de extracción en flujo.
@@ -48,7 +48,7 @@ class Queue
      * @return std::istream& Referencia al flujo de entrada.
      */
     template<typename T>
-    friend std::istream& operator>>(std::istream& input, Queue<T>& s);
+    friend std::istream& operator>>(std::istream& input, CircularQueue<T>& s);
 
 public:
     // ----- Constructores ----------------------------------------
@@ -58,7 +58,7 @@ public:
      *
      * Crea una fila vacía con una capacidad inicial definida por \a Cap.
      */
-    explicit Queue();
+    explicit CircularQueue();
 
     /**
      * @brief Constructor de copia.
@@ -67,7 +67,7 @@ public:
      *
      * @param s Pila de la cual se realiza la copia.
      */
-    Queue(const Queue &s);
+    CircularQueue(const CircularQueue &s);
 
     /**
      * @brief Operador de asignación.
@@ -77,7 +77,7 @@ public:
      * @param s Pila de la cual se asignan los valores.
      * @return Stack& Referencia a la fila actual.
      */
-    Queue & operator=(const Queue &s);
+    CircularQueue & operator=(const CircularQueue &s);
 
 
     // ----- Destructor -------------------------------------------
@@ -87,7 +87,7 @@ public:
      *
      * Libera la memoria asignada y realiza la limpieza necesaria.
      */
-    ~Queue();
+    ~CircularQueue();
 
     // --- Métodos públicos ----------------------------------------
 

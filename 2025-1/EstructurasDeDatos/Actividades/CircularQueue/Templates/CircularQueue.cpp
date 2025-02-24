@@ -1,11 +1,11 @@
 /**
-*   \file   LinkedQueue.tpp
+*   \file   CircularCircularQueue.tpp
 *   \author Angel Fernando Borquez Guerrero
 *   \author Javier Leonardo Miranda Sanchez
-*   \date   03/02/2025
+*   \date   23/02/2025
 */
 
-#include "../Headers/Queue.hpp" 
+#include "../Headers/CircularQueue.hpp" 
 #include <iostream>
 
 using std::cout;
@@ -13,23 +13,22 @@ using std::cin;
 using std::cerr;
 using std::endl;
 
-// template <typename T>
 // --------------------------------------------
 //
 // ----- Constructores ------------------------
 //
 // --------------------------------------------
 template <typename Type>
-Queue<Type>::Queue() : size(0), rearElement(NULL) {  }
+CircularQueue<Type>::CircularQueue() : size(0), rearElement(NULL) {  }
 
 template <typename Type>
-Queue<Type>::Queue(const Queue &s) : size(0), rearElement(NULL)
+CircularQueue<Type>::CircularQueue(const CircularQueue &s) : size(0), rearElement(NULL)
 {
     *this = s;
 }
 
 template<typename Type>
-Queue<Type> & Queue<Type>::operator=(const Queue<Type> &s)
+CircularQueue<Type> & CircularQueue<Type>::operator=(const CircularQueue<Type> &s)
 {
     if(this == &s) return *this;
 
@@ -58,7 +57,7 @@ Queue<Type> & Queue<Type>::operator=(const Queue<Type> &s)
 // ----- Destructor -----
 // ----------------------
 template<typename Type>
-Queue<Type>::~Queue()
+CircularQueue<Type>::~CircularQueue()
 {
     ClearQueue();
 }
@@ -75,7 +74,7 @@ Queue<Type>::~Queue()
 //
 // --------------------------------------------
 template<typename Type>
-void Queue<Type>::Enqueue(Type val)
+void CircularQueue<Type>::Enqueue(Type val)
 {
     Element *newElement = new Element;
     newElement -> value = val;
@@ -96,7 +95,7 @@ void Queue<Type>::Enqueue(Type val)
 }
 
 template<typename Type>
-void Queue<Type>::Dequeue()
+void CircularQueue<Type>::Dequeue()
 {
     if(IsEmpty()) throw "Fila vac\241";
 
@@ -116,7 +115,7 @@ void Queue<Type>::Dequeue()
 }
 
 template<typename Type>
-Type Queue<Type>::Front() const
+Type CircularQueue<Type>::Front() const
 {
     if(IsEmpty()) throw "Fila vac\241a";
 
@@ -124,7 +123,7 @@ Type Queue<Type>::Front() const
 }
 
 template<typename Type>
-Type Queue<Type>::Rear() const
+Type CircularQueue<Type>::Rear() const
 {
     if(IsEmpty()) throw "Fila vac\241a";
 
@@ -132,35 +131,33 @@ Type Queue<Type>::Rear() const
 }
 
 template<typename Type>
-bool Queue<Type>::IsEmpty() const
+bool CircularQueue<Type>::IsEmpty() const
 {
     return !size;
 }
 
 template<typename Type>
-void Queue<Type>::ClearQueue()
+void CircularQueue<Type>::ClearQueue()
 {
     while(!IsEmpty()) Dequeue();
 }
 
 template<typename Type>
-unsigned Queue<Type>::QueueSize() const
+unsigned CircularQueue<Type>::QueueSize() const
 {
     return size;
 }
 
 template<typename Type>
-void Queue<Type>::PrintElements()
+void CircularQueue<Type>::PrintElements()
 {
     if(IsEmpty()) throw "Fila vac\241a";
 
     Element *auxElement = rearElement -> nextElement;
 
-    cout << "| ";
-
     for(unsigned i = 0; i < size; ++i)
     {
-        cout << auxElement -> value << " | ";
+        cout << "\n|\t" << auxElement -> value;
 
         auxElement = auxElement -> nextElement;
     }
@@ -174,37 +171,11 @@ void Queue<Type>::PrintElements()
 
 // --------------------------------------------
 //
-// ----- Métodos privados ---------------------
-//
-// --------------------------------------------
-
-
-
-
-// --------------------------------------------
-
-
-
-// --------------------------------------------
-//
-// ----- Métodos de utilería ------------------
-//
-// ------------------------------------------
-
-
-
-
-// --------------------------------------------
-
-
-
-// --------------------------------------------
-//
 // ----- Métodos externos ---------------------
 //
 //---------------------------------------------
 template<typename Type>
-std::ostream & operator<<(std::ostream &output, Queue<Type> &s)
+std::ostream & operator<<(std::ostream &output, CircularQueue<Type> &s)
 {
     for(unsigned i = 0; i < s.UsedCapacity(); ++i)
     {
@@ -215,7 +186,7 @@ std::ostream & operator<<(std::ostream &output, Queue<Type> &s)
 }
 
 /*
-std::istream & operator>>(std::istream &input, Queue &s)
+std::istream & operator>>(std::istream &input, CircularQueue &s)
 {
 
 }
