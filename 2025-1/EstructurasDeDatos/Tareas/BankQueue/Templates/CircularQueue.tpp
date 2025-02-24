@@ -1,11 +1,11 @@
 /**
-*   \file   LinkedQueue.tpp
+*   \file   CircularQueue.tpp
 *   \author Angel Fernando Borquez Guerrero
 *   \author Javier Leonardo Miranda Sanchez
-*   \date   03/02/2025
+*   \date   23/02/2025
 */
 
-#include "../Headers/Queue.hpp" 
+#include "../Headers/CircularQueue.hpp" 
 #include <iostream>
 
 using std::cout;
@@ -19,16 +19,16 @@ using std::endl;
 //
 // --------------------------------------------
 template <typename Type>
-Queue<Type>::Queue() : size(0), frontElement(NULL), rearElement(NULL) {  }
+CircularQueue<Type>::CircularQueue() : size(0), rearElement(NULL) {  }
 
 template <typename Type>
-Queue<Type>::Queue(const Queue &s) : size(0), frontElement(NULL), rearElement(NULL)
+CircularQueue<Type>::CircularQueue(const CircularQueue &s) : size(0), rearElement(NULL)
 {
     *this = s;
 }
 
 template<typename Type>
-Queue<Type> & Queue<Type>::operator=(const Queue<Type> &s)
+CircularQueue<Type> & CircularQueue<Type>::operator=(const CircularQueue<Type> &s)
 {
     if(this == &s) return *this;
 
@@ -36,10 +36,10 @@ Queue<Type> & Queue<Type>::operator=(const Queue<Type> &s)
      
     if(!s.IsEmpty())
     {
-        Push(s.Front());
+        Enqueue(s.Front());
 
-        Element *aux = frontElement;
-        Element *aux2 = s.frontElement -> nextElement;
+        Element *aux = rearElement -> nextElement;
+        Element *aux2 = s.rearElement -> nextElement -> nextElement;
 
         while (aux2 != nullptr) 
         {
@@ -57,7 +57,7 @@ Queue<Type> & Queue<Type>::operator=(const Queue<Type> &s)
 // ----- Destructor -----
 // ----------------------
 template<typename Type>
-Queue<Type>::~Queue()
+CircularQueue<Type>::~CircularQueue()
 {
     ClearQueue();
 }
@@ -74,48 +74,56 @@ Queue<Type>::~Queue()
 //
 // --------------------------------------------
 template<typename Type>
-void Queue<Type>::Enqueue(Type val)
+void CircularQueue<Type>::Enqueue(Type val)
 {
     Element *newElement = new Element;
     newElement -> value = val;
-    newElement -> nextElement = NULL;
     
     if(IsEmpty())
     {
-        frontElement = newElement;
+        rearElement = newElement;
+        rearElement -> nextElement = rearElement;
     }
     else 
     {
+        newElement -> nextElement = rearElement -> nextElement;
         rearElement -> nextElement = newElement;
+        rearElement = newElement;
     }
-
-        rearElement = newElement;   
 
     ++size;
 }
 
 template<typename Type>
-void Queue<Type>::Dequeue()
+void CircularQueue<Type>::Dequeue()
 {
     if(IsEmpty()) throw "Fila vac\241";
 
-    Element *deleteElement = frontElement;
-    frontElement = frontElement -> nextElement;
-    delete deleteElement;
+    Element *deleteElement = rearElement -> nextElement;
 
+    if(rearElement == rearElement -> nextElement)
+    {
+        rearElement = NULL;   
+    }
+    else 
+    {
+        rearElement -> nextElement = deleteElement -> nextElement;
+    }
+   
+    delete deleteElement;
     --size;
 }
 
 template<typename Type>
-Type Queue<Type>::Front() const
+Type CircularQueue<Type>::Front() const
 {
     if(IsEmpty()) throw "Fila vac\241a";
 
-    return frontElement -> value;
+    return rearElement -> nextElement -> value;
 }
 
 template<typename Type>
-Type Queue<Type>::Rear() const
+Type CircularQueue<Type>::Rear() const
 {
     if(IsEmpty()) throw "Fila vac\241a";
 
@@ -123,27 +131,33 @@ Type Queue<Type>::Rear() const
 }
 
 template<typename Type>
-bool Queue<Type>::IsEmpty() const
+bool CircularQueue<Type>::IsEmpty() const
 {
     return !size;
 }
 
 template<typename Type>
-void Queue<Type>::ClearQueue()
+void CircularQueue<Type>::ClearQueue()
 {
     while(!IsEmpty()) Dequeue();
 }
 
 template<typename Type>
-unsigned Queue<Type>::QueueSize() const
+unsigned CircularQueue<Type>::QueueSize() const
 {
     return size;
 }
 
 template<typename Type>
-void Queue<Type>::PrintElements()
+void CircularQueue<Type>::PrintElements()
 {
-    Element *auxElement = frontElement;
+    if(IsEmpty()) 
+    {
+        cout << "\n|";
+        return;
+    }
+
+    Element *auxElement = rearElement -> nextElement;
 
     for(unsigned i = 0; i < size; ++i)
     {
@@ -152,32 +166,3 @@ void Queue<Type>::PrintElements()
         auxElement = auxElement -> nextElement;
     }
 }
-
-
-
-// --------------------------------------------
-
-
-
-// --------------------------------------------
-//
-// ----- Métodos externos ---------------------
-//
-//---------------------------------------------
-template<typename Type>
-std::ostream & operator<<(std::ostream &output, Queue<Type> &s)
-{
-    for(unsigned i = 0; i < s.QueueSize(); ++i)
-    {
-        cout << s[i] << endl;
-    } 
-    
-    return output;
-}
-
-/*
-std::istream & operator>>(std::istream &input, Queue &s)
-{
-
-}
-*/

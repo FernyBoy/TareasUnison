@@ -1,16 +1,14 @@
 /**
 *   \file   main.cpp
 *   \author Angel Fernando Borquez Guerrero 
-*   \date   21/02/2025
+*   \autor  Javier Leonardo Miranda Sanchez
+*   \date   23/02/2025
 */
 
 #include <iostream>
 #include "../Headers/Client.hpp"
 
-using std::cout;
-using std::cin;
 using std::cerr;
-using std::endl;
 
 int main()
 {
@@ -19,4 +17,6 @@ int main()
     }catch(const char *e){
         cerr << "Error:" << e << endl;
     }
+
+    return 0;
 }

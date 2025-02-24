@@ -1,8 +1,8 @@
 /**
-*   \file   Stack.hpp
+*   \file   CircularQueue.hpp
 *   \author Angel Fernando Borquez Guerrero
 *   \author Javier Leonardo Miranda Sanchez
-*   \date   03/02/2025
+*   \date   23/02/2025
 */
 
 #ifndef LINKEDSTACK_HPP_INCLUDED
@@ -23,33 +23,8 @@
  * @tparam Cap Capacidad inicial de la fila.
  */
 template <typename Type>
-class Queue
+class CircularQueue
 {
-    // --- Métodos externos (operadores de flujo)
-    /**
-     * @brief Operador de inserción en flujo.
-     *
-     * Permite imprimir el contenido de la fila a un flujo de salida.
-     *
-     * @param output Flujo de salida.
-     * @param s Pila a imprimir.
-     * @return std::ostream& Referencia al flujo de salida.
-     */
-    template<typename T>
-    friend std::ostream& operator<<(std::ostream& output, const Queue<T>& s);
-
-    /**
-     * @brief Operador de extracción en flujo.
-     *
-     * Permite ingresar datos a la fila desde un flujo de entrada.
-     *
-     * @param input Flujo de entrada.
-     * @param s Pila en la que se almacenarán los datos.
-     * @return std::istream& Referencia al flujo de entrada.
-     */
-    template<typename T>
-    friend std::istream& operator>>(std::istream& input, Queue<T>& s);
-
 public:
     // ----- Constructores ----------------------------------------
 
@@ -58,7 +33,7 @@ public:
      *
      * Crea una fila vacía con una capacidad inicial definida por \a Cap.
      */
-    explicit Queue();
+    explicit CircularQueue();
 
     /**
      * @brief Constructor de copia.
@@ -67,7 +42,7 @@ public:
      *
      * @param s Pila de la cual se realiza la copia.
      */
-    Queue(const Queue &s);
+    CircularQueue(const CircularQueue &s);
 
     /**
      * @brief Operador de asignación.
@@ -77,7 +52,7 @@ public:
      * @param s Pila de la cual se asignan los valores.
      * @return Stack& Referencia a la fila actual.
      */
-    Queue & operator=(const Queue &s);
+    CircularQueue & operator=(const CircularQueue &s);
 
 
     // ----- Destructor -------------------------------------------
@@ -87,7 +62,7 @@ public:
      *
      * Libera la memoria asignada y realiza la limpieza necesaria.
      */
-    ~Queue();
+    ~CircularQueue();
 
     // --- Métodos públicos ----------------------------------------
 
@@ -172,13 +147,12 @@ private:
         Element *nextElement;
     };
 
-    Element *frontElement;
     Element *rearElement;
 
     // ----- Métodos privados -------------------------------------
 
 };
 
-#include "../Templates/Queue.tpp"
+#include "../Templates/CircularQueue.tpp"
 
 #endif // STACK_HPP_INCLUDED
