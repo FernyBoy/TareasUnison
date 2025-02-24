@@ -58,4 +58,4 @@ cpp-to-tpp:
 clean:
 	@echo "Cleaning up build files..."
 	@make tpp-to-cpp
-	@rm -rf $(ObjectsDirectory) main programa.exe
+	@rm -rf $(ObjectsDirectory) main main.exe

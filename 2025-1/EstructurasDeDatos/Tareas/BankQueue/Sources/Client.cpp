@@ -97,7 +97,7 @@ void Client::SetTellersQuantity()
     cout << "\n     En Banxico abrimos un m\241nimo de 3 cajas y un";
     cout << "\n     m\240ximo de 9 cajas al d\241a.\n";
     cout << "\n     \250Cu\240ntas cajas le gustar\241a abrir hoy?";
-    cout << "\n     • ";
+    cout << "\n     ~ ";
 
     int quantity = CapturaSegura<>().LongitudCerrada(3, 9);
 
