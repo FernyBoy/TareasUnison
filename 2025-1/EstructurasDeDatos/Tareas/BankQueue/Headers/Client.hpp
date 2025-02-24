@@ -162,6 +162,11 @@ class Client
          *  \param time Tiempo de espera en segundos.
          */
         static void Wait(unsigned time);
+
+        /**
+         *  \brief Hace una pausa al final de la ejecución para que no se cierre la termina.
+         */
+        static void SystemPause();
 };
 
 #endif // CLIENT_HPP_INCLUDED

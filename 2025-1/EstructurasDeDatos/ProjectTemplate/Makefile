@@ -10,8 +10,12 @@ Objects = $(patsubst $(SourcesDirectory)/%.cpp, $(ObjectsDirectory)/%.o, $(Sourc
 CXX = g++
 CXXFLAGS = -std=c++17 -Wall -Wextra
 
-# Default Target
-all: clean $(ObjectsDirectory) cpp-to-tpp main
+# Cross-Compiler for Windows
+WIN_CXX = x86_64-w64-mingw32-g++
+WIN_CXXFLAGS =-static -std=c++17 -Wall -Wextra
+
+# Default Target (Compila para Linux y Windows)
+all: clean $(ObjectsDirectory) cpp-to-tpp main main.exe
 
 # Rule to create the build directory
 $(ObjectsDirectory):
@@ -22,10 +26,15 @@ $(ObjectsDirectory)/%.o: $(SourcesDirectory)/%.cpp
 	@echo "Compiling $< -> $@"
 	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# Main compilation rule
+# Main compilation rule (para Linux/macOS)
 main: $(Objects)
 	@echo "Linking to create executable: main"
 	@$(CXX) $(CXXFLAGS) $(Objects) -o $@
+
+# Windows compilation rule (genera programa.exe)
+main.exe: $(Sources)
+	@echo "Compiling for Windows: programa.exe"
+	@$(WIN_CXX) $(WIN_CXXFLAGS) $(Sources) -o main.exe
 
 # Rule to switch .tpp to .cpp
 tpp-to-cpp:
@@ -49,5 +58,4 @@ cpp-to-tpp:
 clean:
 	@echo "Cleaning up build files..."
 	@make tpp-to-cpp
-	@rm -rf $(ObjectsDirectory) main
-
+	@rm -rf $(ObjectsDirectory) main main.exe

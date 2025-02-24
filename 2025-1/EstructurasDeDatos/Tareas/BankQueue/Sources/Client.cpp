@@ -62,6 +62,8 @@ void Client::RunService()
     PrintPendingClients();
 
     PrintDayResume();
+
+    SystemPause();
 }
 
 
@@ -311,4 +313,11 @@ void Client::ClearScreen()
 void Client::Wait(unsigned time)
 {
     std::this_thread::sleep_for(std::chrono::seconds(time));
+}
+
+void Client::SystemPause()
+{
+    #ifdef _WIN32
+        system("pause");
+    #endif
 }
