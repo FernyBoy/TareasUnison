@@ -16,19 +16,22 @@ using std::endl;
 int main()
 {
     try{
-        LinkedList<int> list, list2;
-        
-        for(int i = 0; i < 10; ++i)
+        LinkedList<int> list;
+
+        while(true)
         {
-            list.AddLast(i);
+            cout << "\n --- Opciones de agregacion ---"
+            cout << "\n1. Agregar un elemento al inicio";
+            cout << "\n2. Agregar un elemento al final";
+            cout << "\n3. Agregar un elemento en cierta posicion"
+
+            cout << "\n\n --- Opciones de eliminacion ---";
+            cout << "\n4. Eliminar el primer elemento";
+            cout << "\n5. Eliminar el ultimo elemento";
+            cout << "\n6. Eliminar un elemento en cierta posicion"
+
+            cout << "\nElige una de las opciones anteriores:";
         }
-        cout << list;
-
-        list2 = list;
-        cout << endl << list2;
-        list2.RemoveElement(5);
-        cout << endl << list2;
-
 
     }catch(const char *e){
         cerr << "Error:" << e << endl;

@@ -65,11 +65,16 @@ class LinkedList
 
         struct  Element
         {
+            Element(Type val)
+            {
+                value = val;
+                nextElement = nullptr;
+            }
+
             Type value;
             Element *nextElement;
         };
 
-        Element     *nextElement;
         Element     *firstElement;
         Element     *lastElement;
 

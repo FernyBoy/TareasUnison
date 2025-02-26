@@ -12,7 +12,7 @@
 //
 // --------------------------------------------
 template <typename Type>
-LinkedList<Type>::LinkedList() : size(0), nextElement(NULL) {}
+LinkedList<Type>::LinkedList() : size(0) {}
 
 template <typename Type>
 LinkedList<Type>::LinkedList(const LinkedList &li)
@@ -48,12 +48,9 @@ LinkedList<Type> & LinkedList<Type>::operator=(const LinkedList<Type> &li)
 
     ClearList();
 
-    Element *aux = li.firstElement;
-
-    for (unsigned i = 0; i < li.size; ++i)
+    for (Element *aux = li.firstElement; aux!= nullptr; aux = aux -> nextElement) 
     {
-        AddLast(aux->value);
-        aux = aux->nextElement;
+        AddLast(aux -> value);
     }
 
     return *this;
@@ -80,8 +77,7 @@ Type LinkedList<Type>::operator[](unsigned int index)
 template <typename Type>
 void LinkedList<Type>::AddFirst(Type val)
 {
-    Element *aux = new Element;
-    aux -> value = val;
+    Element *aux = new Element(val);
 
     if(IsEmpty())
     {
@@ -100,8 +96,7 @@ void LinkedList<Type>::AddFirst(Type val)
 template <typename Type>
 void LinkedList<Type>::AddLast(Type val)
 {
-    Element *aux = new Element;
-    aux -> value = val;
+    Element *aux = new Element(val);
 
     if(IsEmpty())
     {
@@ -125,26 +120,22 @@ void LinkedList<Type>::AddAt(Type val, unsigned index)
     if(index == 0) 
     {
         AddFirst(val);
-        return;
     }
-    
-    if(index == size - 1)
+    else if(index == size - 1)
     {
         AddLast(val);
-        return;
     }
-
-    Element *currentElement = firstElement;
-    Element *aux = new Element;
-    aux -> value = val;
-
-    for(unsigned i = 1; i < index; ++i)
+    else
     {
-        currentElement = currentElement -> nextElement;
-    }
+        Element *currentElement = firstElement;
+        Element *aux = new Element;
+        aux -> value = val;
 
-    aux -> nextElement = currentElement -> nextElement;
-    currentElement -> nextElement = aux;
+        for(unsigned i = 1; i < index; ++i) currentElement = currentElement -> nextElement;
+
+        aux -> nextElement = currentElement -> nextElement;
+        currentElement -> nextElement = aux;
+    }
 
     ++size;
 }
@@ -169,17 +160,13 @@ void LinkedList<Type>::RemoveLast()
 
     if(size == 1)
     {
-        delete firstElement;
-        firstElement = lastElement = NULL;
+        RemoveFirst();
     }
     else
     {
         Element *aux = firstElement;
 
-        for(unsigned i = 1; i < size - 1; ++i)
-        {
-            aux = aux -> nextElement;
-        }
+        for(unsigned i = 1; i < size - 1; ++i) aux = aux -> nextElement;
 
         delete lastElement;
         lastElement = aux;
@@ -198,24 +185,24 @@ void LinkedList<Type>::RemoveAt(unsigned int index)
     if(index == 0) 
     {
         RemoveFirst();
-        return;
     }
-    if(index == size - 1)
+    else if(index == size - 1)
     {
         RemoveLast();
-        return;
     }
-
-    Element *aux = firstElement;
-
-    for(unsigned i = 2; i < index; ++i)
+    else
     {
-        aux = aux -> nextElement;
-    }
+        Element *aux = firstElement;
 
-    Element *deleteElement = aux -> nextElement;
-    aux -> nextElement = deleteElement -> nextElement;
-    delete deleteElement;
+        for(unsigned i = 2; i < index; ++i)
+        {
+            aux = aux -> nextElement;
+        }
+
+        Element *deleteElement = aux -> nextElement;
+        aux -> nextElement = deleteElement -> nextElement;
+        delete deleteElement;
+    }
 
     --size;
 }
@@ -225,22 +212,27 @@ void LinkedList<Type>::RemoveElement(Type val)
 {
     if(IsEmpty()) throw "Lista vac\241a";
     
-    if(GetFirst() == val) RemoveFirst();
-
-    Element *previous = firstElement;
-    Element *aux = firstElement -> nextElement;
-
-    for(unsigned i = 1; i < size; ++i)
+    if(firstElement -> value == val)
     {
-        if(aux -> value == val)
+        RemoveFirst();
+    }
+    else
+    {
+        Element *previous = firstElement;
+        Element *aux = firstElement -> nextElement;
+
+        for(unsigned i = 1; i < size; ++i)
         {
-            previous -> nextElement = aux -> nextElement;
-            delete aux;
-            --size;
-            return;
-        };
-        previous = aux;
-        aux = aux -> nextElement;
+            if(aux -> value == val)
+            {
+                previous -> nextElement = aux -> nextElement;
+                delete aux;
+                --size;
+                return;
+            };
+            previous = aux;
+            aux = aux -> nextElement;
+        }
     }
 
     throw "Valor no encontrado en la lista";
@@ -269,20 +261,21 @@ Type LinkedList<Type>::GetAt(unsigned index) const
     {
         return GetFirst();
     }
-    
-    if(index == size - 1)
+    else if(index == size - 1)
     {
         return GetLast();
     }
-
-    Element *currentElement = firstElement;
-
-    for(unsigned i = 1; i < index; ++i)
+    else
     {
-        currentElement = currentElement -> nextElement;
-    }
+        Element *currentElement = firstElement;
 
-    return currentElement -> value;
+        for(unsigned i = 1; i < index; ++i)
+        {
+            currentElement = currentElement -> nextElement;
+        }
+
+        return currentElement -> value;
+    }
 }
 
 template <typename Type>
@@ -290,7 +283,7 @@ unsigned LinkedList<Type>::IndexOf(Type val) const
 {
     if(IsEmpty()) throw "Lista vac\241a";
 
-    if(GetFirst() == val) return 0;
+    if(firstElement -> value == val) return 0;
 
     Element *aux = firstElement -> nextElement;
 
@@ -327,13 +320,10 @@ void LinkedList<Type>::PrintList()
 {
     if(IsEmpty()) throw "Lista vac\241a";
 
-    Element *aux = firstElement;
-
     cout << "[ ";
-    for(unsigned i = 0; i < size; ++i)
+    for(Element *aux = firstElement; aux->nextElement != nullptr; aux = aux ->nextElement)
     {
         cout << aux -> value << ", ";
-        aux = aux -> nextElement;
     }
     cout << "\b\b ]";
 }
