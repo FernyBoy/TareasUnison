@@ -4,8 +4,8 @@
 *   \date   18/02/2025
 */
 
-#ifndef LINKEDLIST_HPP_INCLUDED
-#define LINKEDLIST_HPP_INCLUDED
+#ifndef DOUBLELINKEDLIST_HPP_INCLUDED
+#define DOUBLELINKEDLIST_HPP_INCLUDED
 
 #include "CapturaSegura.hpp"
 
@@ -52,11 +52,11 @@ class DoubleLinkedList
         Type        GetLast()               const;
         Type        GetAt(unsigned index)   const;
         unsigned    IndexOf(Type val)       const;
-        unsigned    ListSize()              const;
+        unsigned    Size()                  const;
         bool        IsEmpty()               const;
         // - Otras funciones
-        void        ClearList();
-        void        PrintList();
+        void        Clear();
+        void        Print();
 
 
     private:

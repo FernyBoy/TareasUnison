@@ -31,7 +31,7 @@ LinkedList<Type>::~LinkedList()
 }
 
 
-
+ 
 // ----------------------------------------------------------------------------------------
 
 
@@ -187,16 +187,17 @@ void LinkedList<Type>::RemoveAt(unsigned int index)
     }
     else
     {
-        Element *aux = firstElement;
+        Element *aux = firstElement -> nextElement;
 
         for(unsigned i = 2; i < index; ++i) aux = aux -> nextElement;
 
         Element *deleteElement = aux -> nextElement;
-        aux -> nextElement = deleteElement -> nextElement;
+        aux -> nextElement = aux -> nextElement -> nextElement;
         delete deleteElement;
+
+        --size;
     }
 
-    --size;
 }
 
 template <typename Type>
@@ -234,12 +235,16 @@ void LinkedList<Type>::RemoveElement(Type val)
 template <typename Type>
 Type LinkedList<Type>::GetFirst() const
 {
+    if(IsEmpty()) throw "Lista vaci\241a";
+
     return firstElement -> value;
 }
 
 template <typename Type>
 Type LinkedList<Type>::GetLast() const
 {
+    if(IsEmpty()) throw "Lista vaci\241a";
+
     return lastElement -> value;
 }
 
@@ -259,7 +264,7 @@ Type LinkedList<Type>::GetAt(unsigned index) const
     }
     else
     {
-        Element *currentElement = firstElement;
+        Element *currentElement = firstElement -> nextElement;
 
         for(unsigned i = 1; i < index; ++i) currentElement = currentElement -> nextElement;
 
@@ -309,13 +314,10 @@ void LinkedList<Type>::PrintList()
 {
     if(IsEmpty()) throw "Lista vac\241a";
 
-    Element *aux = firstElement;
-
     cout << "[ ";
-    for(unsigned i = 0; i < size; ++i)
+    for(Element *aux = firstElement; aux != nullptr; aux = aux -> nextElement) 
     {
         cout << aux -> value << ", ";
-        aux = aux -> nextElement;
     }
     cout << "\b\b ]";
 }

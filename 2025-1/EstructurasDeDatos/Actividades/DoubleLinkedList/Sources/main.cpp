@@ -17,13 +17,14 @@ void ClearScreen();
 
 int main()
 {
-    ClearScreen();
-    try{
-        DoubleLinkedList<int> list;
-        int option, val, index;
+    DoubleLinkedList<int> list;
+    int option, val, index;
+    bool cont = true;
 
-        while(true)
-        {
+    while(cont)
+    {
+        try{
+            ClearScreen();
             cout << "\n --- Opciones de agregacion ---";
             cout << "\n1. Agregar un elemento al inicio";
             cout << "\n2. Agregar un elemento al final";
@@ -34,18 +35,21 @@ int main()
             cout << "\n5. Eliminar el ultimo elemento";
             cout << "\n6. Eliminar un elemento en cierta posicion";
             cout << "\n7. Eliminar un valor";
+            cout << "\n8. Eliminar todos los valores";
 
             cout << "\n\n --- Funciones de obtencion ---";
-            cout << "\n8. Obtener el primer elemento";
-            cout << "\n9. Obtener el ultimo element;";
-            cout << "\n10. Obtener un elemento en cierta posicion";
-            cout << "\n11. Obtener el indice de un elemento";
-            cout << "\n12. Obtener el tamaño de la lista";
-            cout << "\n13. Saber si la lista esta vacia";
-            cout << "\n14. Imprimir la lista";
+            cout << "\n9. Obtener el primer elemento";
+            cout << "\n10. Obtener el ultimo elemento";
+            cout << "\n11. Obtener un elemento en cierta posicion";
+            cout << "\n12. Obtener el indice de un elemento";
+            cout << "\n13. Obtener el tamaño de la lista";
+            cout << "\n14. Saber si la lista esta vacia";
+            cout << "\n15. Imprimir la lista";
+
+            cout << "\n\n16. Salir";
 
             cout << "\n\nElige una de las opciones anteriores:\n - ";
-            option = CapturaSegura<>().LongitudCerrada(1, 14);
+            option = CapturaSegura<>().LongitudCerrada(1, 15);
 
             ClearScreen();
 
@@ -64,16 +68,12 @@ int main()
                     break;
                 
                 case 3:
-                    try{
-                        cout << "\nIngresa la pocision donde deseas guardar el valor\n - ";
-                        index = CapturaSegura<>().LongitudSegura();
+                    cout << "\nIngresa la pocision donde deseas guardar el valor\n - ";
+                    index = CapturaSegura<>().LongitudSegura();
                     
-                        cout << "\n\nIngresa el valor a agregar\n - ";
-                        val = CapturaSegura<>().LongitudSegura();
-                        list.AddAt(val, index);
-                    }catch(const char *e){
-                        cerr << "Error:" << e << endl;
-                    }
+                    cout << "\n\nIngresa el valor a agregar\n - ";
+                    val = CapturaSegura<>().LongitudSegura();
+                    list.AddAt(val, index);
                     break;
 
                 case 4:
@@ -86,73 +86,64 @@ int main()
 
                 case 6:
                     cout << "\nIngresa la pocision del valor que deseas eliminar\n - ";
-                    index = CapturaSegura<>().LongitudCerrada(0, list.ListSize() - 1);
+                    index = CapturaSegura<>().LongitudSegura();
                     
                     list.RemoveAt(index);
                     break;
 
                 case 7:
-                    try{
-                        cout << "\n\nIngresa el valor a eliminar\n - ";
-                        val = CapturaSegura<>().LongitudSegura();
-                        list.RemoveElement(val);
-                    }catch(const char *e){
-                        cerr << "Error:" << e << endl;
-                    }
+                    cout << "\n\nIngresa el valor a eliminar\n - ";
+                    val = CapturaSegura<>().LongitudSegura();
+                    list.RemoveElement(val);
                     break;
 
                 case 8:
-                    cout << list.GetFirst();
+                    list.Clear();
                     break;
 
                 case 9:
-                    cout << list.GetLast();
+                    cout << list.GetFirst();
                     break;
 
                 case 10:
-                    try{
-                        cout << "\n\nIngresa la posicion del valor que deseas\n - ";
-                        index = CapturaSegura<>().LongitudSegura();
-                        list.GetAt(index);
-                    }catch(const char *e){
-                        cerr << "Error:" << e << endl;
-                    }
+                    cout << list.GetLast();
                     break;
 
                 case 11:
-                    try{
-                        cout << "\n\nIngresa el valor a buscar\n - ";
-                        val = CapturaSegura<>().LongitudSegura();
-                        list.IndexOf(val);
-                    }catch(const char *e){
-                        cerr << "Error:" << e << endl;
-                    }
+                    cout << "\n\nIngresa la posicion del valor que deseas\n - ";
+                    index = CapturaSegura<>().LongitudSegura();
+                    cout << list.GetAt(index);
                     break;
 
                 case 12:
-                    cout << list.ListSize();
+                    cout << "\n\nIngresa el valor a buscar\n - ";
+                    val = CapturaSegura<>().LongitudSegura();
+                    cout << list.IndexOf(val);
                     break;
 
                 case 13:
-                    cout << (list.IsEmpty() ? "La lista esta vacia" : "La lista no esta vacia");
+                    cout << list.Size();
                     break;
 
                 case 14:
-                    try{
-                        list.PrintList();
-                    }catch(const char *e){
-                        cerr << "Error:" << e << endl;
-                    }
+                    cout << (list.IsEmpty() ? "La lista esta vacia" : "La lista no esta vacia");
                     break;
 
+                case 15:
+                    cout << endl << list << endl;
+                    break;
 
-                std::cout << "\n\nPresiona Enter para continuar...";
-                std::cin.get(); // Espera a que el usuario presione Enter
+                case 16:
+                    cont = false;
+                    break;
             }
+        }catch(const char *err){
+            cerr << "Error: " << err << endl;
         }
 
-    }catch(const char *e){
-        cerr << "Error:" << e << endl;
+        cout << "\n\nPresiona Enter para continuar...";
+        cin.ignore();
+        cin.get();
     }
 }
 
