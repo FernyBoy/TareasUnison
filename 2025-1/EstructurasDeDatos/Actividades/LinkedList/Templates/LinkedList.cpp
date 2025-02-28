@@ -81,8 +81,7 @@ void LinkedList<Type>::AddFirst(Type val)
 
     if(IsEmpty())
     {
-        firstElement = aux;
-        lastElement = aux;
+        firstElement = lastElement = aux;
     }
     else
     {
@@ -100,8 +99,7 @@ void LinkedList<Type>::AddLast(Type val)
 
     if(IsEmpty())
     {
-        firstElement = aux;
-        lastElement = aux;
+        firstElement = lastElement = aux;
     }
     else
     {
@@ -166,9 +164,10 @@ void LinkedList<Type>::RemoveLast()
         delete lastElement;
         lastElement = aux;
         lastElement -> nextElement = NULL;
+
+        --size;
     }
 
-    --size;
 }
 
 template <typename Type>
@@ -336,7 +335,7 @@ void LinkedList<Type>::PrintList()
 template <typename Type>
 bool LinkedList<Type>::IsValidIndex(unsigned index) const
 {
-    return index <= size - 1;
+    return index < size;
 }
 
 

@@ -18,13 +18,24 @@ void ClearScreen();
 int main()
 {
     DoubleLinkedList<int> list;
-    int option, val, index;
-    bool cont = true;
+    int option = 0, val, index;
 
-    while(cont)
+    for(int i = 1; i < 6; ++i) list.AddLast(i * 5);
+
+    while(option != 15)
     {
         try{
             ClearScreen();
+
+            if(list.IsEmpty())
+            {
+                cout << "\n[ ]" << endl;
+            }
+            else if(!list.IsEmpty())
+            {
+                cout << endl << list << endl;
+            }
+
             cout << "\n --- Opciones de agregacion ---";
             cout << "\n1. Agregar un elemento al inicio";
             cout << "\n2. Agregar un elemento al final";
@@ -38,20 +49,27 @@ int main()
             cout << "\n8. Eliminar todos los valores";
 
             cout << "\n\n --- Funciones de obtencion ---";
-            cout << "\n9. Obtener el primer elemento";
+            cout << "\n9.  Obtener el primer elemento";
             cout << "\n10. Obtener el ultimo elemento";
             cout << "\n11. Obtener un elemento en cierta posicion";
             cout << "\n12. Obtener el indice de un elemento";
             cout << "\n13. Obtener el tamaño de la lista";
             cout << "\n14. Saber si la lista esta vacia";
-            cout << "\n15. Imprimir la lista";
 
-            cout << "\n\n16. Salir";
+            cout << "\n\n15. Salir";
 
             cout << "\n\nElige una de las opciones anteriores:\n - ";
             option = CapturaSegura<>().LongitudCerrada(1, 15);
 
             ClearScreen();
+            if(list.IsEmpty())
+            {
+                cout << "\n[ ]" << endl;
+            }
+            else if(!list.IsEmpty())
+            {
+                cout << endl << list << endl;
+            }
 
             switch (option) 
             {
@@ -102,49 +120,49 @@ int main()
                     break;
 
                 case 9:
-                    cout << list.GetFirst();
+                    cout << "\nPrimer elemento: " << list.GetFirst() << endl;
                     break;
 
                 case 10:
-                    cout << list.GetLast();
+                    cout << "\nUltimo elemento: " << list.GetLast() << endl;
                     break;
 
                 case 11:
                     cout << "\n\nIngresa la posicion del valor que deseas\n - ";
                     index = CapturaSegura<>().LongitudSegura();
-                    cout << list.GetAt(index);
+                    cout << "\nElemento en posicion " << index << ": " << list.GetAt(index) << endl;
                     break;
 
                 case 12:
                     cout << "\n\nIngresa el valor a buscar\n - ";
                     val = CapturaSegura<>().LongitudSegura();
-                    cout << list.IndexOf(val);
+                    cout << "\nIndice de " << val << ": " << list.IndexOf(val) << endl;
                     break;
 
                 case 13:
-                    cout << list.Size();
+                    cout << "\nTamaño de la lista: " << list.Size() << endl;
                     break;
 
                 case 14:
-                    cout << (list.IsEmpty() ? "La lista esta vacia" : "La lista no esta vacia");
-                    break;
-
-                case 15:
-                    cout << endl << list << endl;
-                    break;
-
-                case 16:
-                    cont = false;
+                    cout << (list.IsEmpty() ? "\n\nLa lista esta vacía" : "\n\nLa lista no esta vacía");
                     break;
             }
         }catch(const char *err){
-            cerr << "Error: " << err << endl;
+            cerr << "\nError: " << err << endl;
+            cout << "\n\nPresiona enter para continuar";
+            cin.ignore();
+            cin.get();
         }
 
-        cout << "\n\nPresiona Enter para continuar...";
-        cin.ignore();
-        cin.get();
+        if(option >= 9 && option != 15)
+        {
+            cout << "\n\nPresiona enter para continuar";
+            cin.ignore();
+            cin.get();
+        }
     }
+
+    ClearScreen();
 }
 
 void ClearScreen() 

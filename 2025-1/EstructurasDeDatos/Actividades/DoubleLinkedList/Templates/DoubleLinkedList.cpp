@@ -81,8 +81,7 @@ void DoubleLinkedList<Type>::AddFirst(Type val)
 
     if(IsEmpty())
     {
-        firstElement = aux;
-        lastElement = aux;
+        firstElement = lastElement = aux;
     }
     else
     {
@@ -101,8 +100,7 @@ void DoubleLinkedList<Type>::AddLast(Type val)
 
     if(IsEmpty())
     {
-        firstElement = aux;
-        lastElement = aux;
+        firstElement = lastElement = aux;
     }
     else
     {
@@ -145,10 +143,18 @@ void DoubleLinkedList<Type>::RemoveFirst()
     if(IsEmpty()) throw "Lista vac\241a";
     
     Element *deleteElement = firstElement;
-    firstElement = firstElement -> nextElement;
-    firstElement -> prevElement = nullptr;
-    delete deleteElement;
 
+    if (size == 1) 
+    {
+        firstElement = lastElement = nullptr;
+    }
+    else 
+    {
+        firstElement = firstElement -> nextElement;
+        firstElement -> prevElement = nullptr;
+    }
+
+    delete deleteElement;
     --size;
 }
 
@@ -167,9 +173,9 @@ void DoubleLinkedList<Type>::RemoveLast()
         lastElement = lastElement -> prevElement;
         lastElement -> nextElement = nullptr;
         delete deleteElement;
-    }
 
-    --size;
+        --size;
+    }
 }
 
 template <typename Type>
@@ -212,20 +218,24 @@ void DoubleLinkedList<Type>::RemoveElement(Type val)
     }
     else
     {
-        Element *previous = firstElement;
-        Element *aux = firstElement -> nextElement;
-
-        for(unsigned i = 1; i < size; ++i)
+        for(Element *aux = firstElement -> nextElement; aux != nullptr; aux = aux -> nextElement)
         {
             if(aux -> value == val)
             {
-                previous -> nextElement = aux -> nextElement;
+                if(aux -> nextElement == nullptr)
+                {
+                    aux -> prevElement -> nextElement = nullptr;
+                }
+                else
+                {
+                    aux -> prevElement -> nextElement = aux -> nextElement;
+                    aux -> nextElement -> prevElement = aux -> prevElement;
+                }
+
                 delete aux;
                 --size;
                 return;
             };
-            previous = aux;
-            aux = aux -> nextElement;
         }
     }
 
@@ -337,7 +347,7 @@ void DoubleLinkedList<Type>::Print()
 template <typename Type>
 bool DoubleLinkedList<Type>::IsValidIndex(unsigned index) const
 {
-    return index <= size - 1;
+    return index < size;
 }
 
 

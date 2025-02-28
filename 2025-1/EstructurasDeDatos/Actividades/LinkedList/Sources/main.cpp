@@ -147,11 +147,13 @@ int main()
                     break;
             }
         }catch(const char *err){
-            ClearScreen();
-            cerr << "Error: " << err << endl;
+            cerr << "\nError: " << err << endl;
+            cout << "\n\nPresiona enter para continuar";
+            cin.ignore();
+            cin.get();
         }
 
-        if(option >= 9)
+        if(option >= 9 && option != 15)
         {
             cout << "\n\nPresiona enter para continuar";
             cin.ignore();
