@@ -57,7 +57,7 @@ DoubleLinkedList<Type> & DoubleLinkedList<Type>::operator=(const DoubleLinkedLis
 }
 
 template <typename Type>
-Type DoubleLinkedList<Type>::operator[](unsigned int index)
+Type DoubleLinkedList<Type>::operator[](unsigned int index) const
 {
     return GetAt(index);
 }
@@ -313,13 +313,7 @@ bool DoubleLinkedList<Type>::IsEmpty() const
     return !size;
 }
 
-// --- Otras funciones
-template <typename Type>
-void DoubleLinkedList<Type>::Clear()
-{
-    while(!IsEmpty()) RemoveFirst();
-}
-
+// --- Funciones de impresión
 template <typename Type>
 void DoubleLinkedList<Type>::Print()
 {
@@ -332,6 +326,15 @@ void DoubleLinkedList<Type>::Print()
     }
     cout << "\b\b ]";
 }
+
+// --- Otras funciones
+template <typename Type>
+void DoubleLinkedList<Type>::Clear()
+{
+    while(!IsEmpty()) RemoveFirst();
+}
+
+
 
 
 
