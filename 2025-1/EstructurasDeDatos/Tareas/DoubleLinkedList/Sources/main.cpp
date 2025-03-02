@@ -22,7 +22,7 @@ int main()
 
     for(int i = 1; i < 6; ++i) list.AddLast(i * 5);
 
-    while(option != 15)
+    while(option != 38)
     {
         try{
             ClearScreen();
@@ -37,29 +37,67 @@ int main()
             }
 
             cout << "\n --- Opciones de agregacion ---";
-            cout << "\n1. Agregar un elemento al inicio";
-            cout << "\n2. Agregar un elemento al final";
-            cout << "\n3. Agregar un elemento en cierta posicion";
+            cout << "\n1.  Agregar un elemento al inicio";
+            cout << "\n2.  Agregar un elemento al final";
+            cout << "\n3.  Agregar un elemento en cierta posicion";
+            cout << "\n4.  Concatenar con otra lista";
 
             cout << "\n\n --- Opciones de eliminacion ---";
-            cout << "\n4. Eliminar el primer elemento";
-            cout << "\n5. Eliminar el ultimo elemento";
-            cout << "\n6. Eliminar un elemento en cierta posicion";
-            cout << "\n7. Eliminar un valor";
-            cout << "\n8. Eliminar todos los valores";
+            cout << "\n4.  Eliminar el primer elemento";
+            cout << "\n5.  Eliminar el ultimo elemento";
+            cout << "\n6.  Eliminar un elemento en cierta posicion";
+            cout << "\n7.  Eliminar a partir de cierta posicion";
+            cout << "\n8.  Eliminar a partir de un rango de posiciones";
+            cout << "\n9.  Eliminar un valor";
+            cout << "\n10. Eliminar los valores duplicados";
+            cout << "\n11. Eliminar todos los valores iguales";
+            cout << "\n12. Eliminar los valores que tambien esten en otra lista";
+            cout << "\n13. Remover bajo cierta condicion";
+            cout << "\n14. Limpiar la lista";
+
+            cout << "\n\n --- Funciones de modificacion ---";
+            cout << "\n15. Modificar un elemento en la lista";
+            cout << "\n16. Clonar una lista";
+
+            cout << "\n\n --- Funciones de transferencia ---";
+            cout << "\n17. Intercambiar listas";
+            cout << "\n18. Transferir todos los valores";
+            cout << "\n19. Transferir todos los valores a partir de un indice";
+            cout << "\n20. Transferir todos los valores entre dos indices";
+
+            cout << "\n\n --- Funciones de conjuntos ---";
+            cout << "\n21. Union de listas";
+            cout << "\n22. Interseccion de listas";
+            cout << "\n23. Diferencia de listas";
+            cout << "\n24. Diferencia simetrica de listas";
+
+            cout << "\n\n --- Funciones de ordenamiento ---";
+            cout << "\n25. Invertir lista";
+            cout << "\n26. Ordenar de forma ascendente";
+            cout << "\n27. Ordenar de forma descendente";
 
             cout << "\n\n --- Funciones de obtencion ---";
-            cout << "\n9.  Obtener el primer elemento";
-            cout << "\n10. Obtener el ultimo elemento";
-            cout << "\n11. Obtener un elemento en cierta posicion";
-            cout << "\n12. Obtener el indice de un elemento";
-            cout << "\n13. Obtener el tamaño de la lista";
-            cout << "\n14. Saber si la lista esta vacia";
+            cout << "\n28. Obtener el primer elemento";
+            cout << "\n29. Obtener el ultimo elemento";
+            cout << "\n30. Obtener un elemento en cierta posicion";
+            cout << "\n31. Buscar si un elemento se encuentra en la lista";
+            cout << "\n32. Obtener el indice de un elemento";
+            cout << "\n33. Obtener el tamaño de la lista";
+            cout << "\n34. Saber si la lista esta vacia";
 
-            cout << "\n\n15. Salir";
+            cout << "\n\n --- Funciones de comparacion ---";
+            cout << "\n35. Comparar si la lista es subconjunto de otra";
+            cout << "\n36. Comparar si la lista es superconjunto de otra";
+            cout << "\n37. Comparar si dos listas son iguales";
+
+            cout << "\n\n --- Funcinoes de impresion ---";
+            cout << "\n38. Imprimir lista";
+            cout << "\n39. Imprimir lista al reves";
+
+            cout << "\n\n40. Salir";
 
             cout << "\n\nElige una de las opciones anteriores:\n - ";
-            option = CapturaSegura<>().LongitudCerrada(1, 15);
+            option = CapturaSegura<>().LongitudCerrada(1, 38);
 
             ClearScreen();
             if(list.IsEmpty())
@@ -86,7 +124,7 @@ int main()
                     break;
                 
                 case 3:
-                    cout << "\nIngresa la pocision donde deseas guardar el valor\n - ";
+                    cout << "\nIngresa la posicion donde deseas guardar el valor\n - ";
                     index = CapturaSegura<>().LongitudSegura();
                     
                     cout << "\n\nIngresa el valor a agregar\n - ";
@@ -103,7 +141,7 @@ int main()
                     break;
 
                 case 6:
-                    cout << "\nIngresa la pocision del valor que deseas eliminar\n - ";
+                    cout << "\nIngresa la posicion del valor que deseas eliminar\n - ";
                     index = CapturaSegura<>().LongitudSegura();
                     
                     list.RemoveAt(index);

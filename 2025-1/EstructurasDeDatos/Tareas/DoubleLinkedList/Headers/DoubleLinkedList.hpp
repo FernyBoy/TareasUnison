@@ -34,7 +34,7 @@ class DoubleLinkedList
         ~DoubleLinkedList();
 
         // --- Operadores ---
-        DoubleLinkedList& operator=(const DoubleLinkedList &li);
+        DoubleLinkedList & operator=(const DoubleLinkedList &li);
         Type        operator[](unsigned int index) const;
 
         // --- Métodos públicos ---
@@ -48,7 +48,10 @@ class DoubleLinkedList
         void        RemoveFirst();
         void        RemoveLast();
         void        RemoveAt(unsigned int index);
+        void        RemoveFrom(unsigned index);
+        void        RemoveRange(unsigned startIndex, unsigned endIndex);
         void        RemoveElement(Type val);
+        void        RemoveDuplicates(Type val);
         void        RemoveAllElements(Type val);
         void        RemoveMatching(const DoubleLinkedList<Type> &li);
         void        RemoveIf(bool (*condition)(Type));
@@ -57,18 +60,18 @@ class DoubleLinkedList
         // - Funciones de modificación
         void        SetAt(unsigned index, Type val);
         void        Clone(const DoubleLinkedList<Type> &li);
-
+        
+        // - Funciones de transferencia
+        void        Swap(DoubleLinkedList<Type> &li);
+        void        TransferAll(DoubleLinkedList<Type> &li);
+        void        TransferFrom(unsigned index, DoubleLinkedList<Type> &li);
+        void        TransferRange(unsigned startIndex, unsigned endIndex, DoubleLinkedList<Type> &li);
+        
         // - Funciones de conjuntos
         DoubleLinkedList<Type>      Union(const DoubleLinkedList<Type> &li);
         DoubleLinkedList<Type>      Intersection(const DoubleLinkedList<Type> &li);
         DoubleLinkedList<Type>      Difference(const DoubleLinkedList<Type> &li);
         DoubleLinkedList<Type>      SymmetricDifference(const DoubleLinkedList<Type> &li);
-
-        // - Funciones de transferencia
-        void        Swap(DoubleLinkedList<Type> &li);
-        void        TransferAll(DoubleLinkedList<Type> &li);
-        void        TransferFrom(unsigned index, DoubleLinkedList<Type> &li);
-        void        TransferRanger(unsigned startIndex, unsigned endIndex, DoubleLinkedList<Type> &li);
 
         // - Funciones de ordenamiento
         void        Reverse();
@@ -76,13 +79,15 @@ class DoubleLinkedList
         void        SortDescending();
     
         // - Funciones de obtención
-        Type        GetFirst()              const;
-        Type        GetLast()               const;
-        Type        GetAt(unsigned index)   const;
-        bool        Contains(Type val)      const;
-        unsigned    IndexOf(Type val)       const;
-        unsigned    Size()                  const;
-        bool        IsEmpty()               const;
+        Type                        GetFirst()                                          const;
+        Type                        GetLast()                                           const;
+        Type                        GetAt(unsigned index)                               const;
+        DoubleLinkedList<Type>      GetFrom(unsigned index)                             const;
+        DoubleLinkedList<Type>      GetRange(unsigned startIndex, unsigned endIndex)    const;
+        bool                        Contains(Type val)                                  const;
+        unsigned                    IndexOf(Type val)                                   const;
+        unsigned                    Size()                                              const;
+        bool                        IsEmpty()                                           const;
         
         // - Funciones de comparación
         bool        IsSubsetOf(const DoubleLinkedList<Type> &li)    const;
