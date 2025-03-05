@@ -27,15 +27,15 @@ class Client
 
     private:
         // --- Atributos ---
+        static unsigned listNumber;
         static vector<DoubleLinkedList<int>> lists;
-        static DoubleLinkedList<int> *selectedList;
+        static DoubleLinkedList<int>* selectedList;
         
 
         // --- Métodos privados ---
+        // - Templates
         static void MainMenuTemplate();
-        
         static void EditMenuTemplate();
-
         static void AddMenuTemplate();
         static void RemoveMenuTemplate();
         static void ModificationMenuTemplate();
@@ -45,11 +45,32 @@ class Client
         static void GetMenuTemplate();
         static void CompareMenuTemplate();
         static void PrintMenuTemplate();
+
+        // - Seleccion de opciones
+        static void MainMenu();
+        static void EditMenu();
+        static void AddMenu();
+        static void RemoveMenu();
+        static void ModificationMenu();
+        static void TransferMenu();
+        static void SetsMenu();
+        static void SortMenu();
+        static void GetMenu();
+        static void CompareMenu();
+        static void PrintMenu();
     
     
+        static unsigned GetOption(unsigned start, unsigned end);
+        static unsigned SelectOtherList();
+        
         static void PrintSelectedList();
+        static void PrintAllLists();
         static void PrintDivision();
 
+        static bool CheckSelectedList();
+        static bool IsValidIndex(unsigned index);
+        static void InvalidAnswer();
+        static void PressEnter();
         /**
          *  \brief Limpia la pantalla de la consola.
          */

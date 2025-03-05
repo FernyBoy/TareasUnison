@@ -1,16 +1,17 @@
 /**
 *   \file   DoubleLinkedList.hpp
 *   \author Angel Fernando Borquez Guerrero
-*   \date   18/02/2025
+*   \author Javier Leonardo Miranda Sanchez
+*   \date   04/03/2025
 */
 
 #ifndef DOUBLELINKEDLIST_HPP_INCLUDED
 #define DOUBLELINKEDLIST_HPP_INCLUDED
 
-#include "CapturaSegura.hpp"
-
 #include <iostream>
 #include <ostream>
+#include <cctype>
+#include <algorithm>
 
 using std::cout;
 using std::cin;
@@ -27,6 +28,8 @@ class DoubleLinkedList
     friend std::istream& operator>>(std::istream& input, DoubleLinkedList<T> &li);
 
     public:
+        typedef bool (*fun)(Type);
+
         // --- Constructores ---
         explicit DoubleLinkedList();
         DoubleLinkedList(const DoubleLinkedList &li);
@@ -35,7 +38,9 @@ class DoubleLinkedList
 
         // --- Operadores ---
         DoubleLinkedList & operator=(const DoubleLinkedList &li);
+        Type        operator=(Type val);
         Type        operator[](unsigned int index) const;
+        Type*       operator[](unsigned int index);
 
         // --- Métodos públicos ---
         // - Funciones de agregación
@@ -51,10 +56,10 @@ class DoubleLinkedList
         void        RemoveFrom(unsigned index);
         void        RemoveRange(unsigned startIndex, unsigned endIndex);
         void        RemoveElement(Type val);
-        void        RemoveDuplicates(Type val);
+        void        RemoveDuplicates();
         void        RemoveAllElements(Type val);
         void        RemoveMatching(const DoubleLinkedList<Type> &li);
-        void        RemoveIf(bool (*condition)(Type));
+        void        RemoveIf(fun condition);
         void        Clear();
 
         // - Funciones de modificación
@@ -122,9 +127,7 @@ class DoubleLinkedList
 
         // --- Métodos privados ---
         bool    IsValidIndex(unsigned index)    const;
-
-        // --- Métodos de utilería ---
-
+        Type*   GetPointer(unsigned index);
 };
 
 #include "../Templates/DoubleLinkedList.tpp"

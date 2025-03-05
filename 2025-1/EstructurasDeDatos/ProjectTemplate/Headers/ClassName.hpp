@@ -7,8 +7,6 @@
 #ifndef _HPP_INCLUDED
 #define _HPP_INCLUDED
 
-#include "CapturaSegura.hpp"
-
 #include <iostream>
 #include <ostream>
 

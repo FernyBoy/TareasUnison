@@ -467,7 +467,7 @@ N CapturaSegura<N, T>::LongitudMaxima(N max)
 template <typename N, typename T>
 N CapturaSegura<N, T>::LongitudCerrada(N min, N max)
 {
-    int num;
+    N num;
     cin >> num;
 
     // Reintentar si la longitud no está dentro del rango permitido
