@@ -37,39 +37,17 @@ class SDLL
 
         // --- Operadores ---
         SDLL&       operator=(const SDLL &li);
-        Type        operator=(Type val);
         Type        operator[](unsigned int index) const;
-        Type*       operator[](unsigned int index);
 
         // --- Métodos públicos ---
         // - Funciones de agregación
         void        Add(Type val);
+        void        Clone(const SDLL<Type> &li);
 
         // - Funciones de eliminación
-        void        RemoveFrom(unsigned index);
-        void        RemoveRange(unsigned startIndex, unsigned endIndex);
-        void        RemoveElement(Type val);
-        void        RemoveDuplicates();
-        void        RemoveAllElements(Type val);
-        void        RemoveMatching(const SDLL<Type> &li);
-        void        RemoveIf(fun condition);
+        void        Remove(Type val);
         void        Clear();
 
-        // - Funciones de modificación
-        void        SetAt(unsigned index, Type val);
-        void        Clone(const SDLL<Type> &li);
-        
-        // - Funciones de transferencia
-        void        Swap(SDLL<Type> &li);
-        void        TransferAll(SDLL<Type> &li);
-        void        TransferFrom(unsigned index, SDLL<Type> &li);
-        void        TransferRange(unsigned startIndex, unsigned endIndex, SDLL<Type> &li);
-        
-        // - Funciones de ordenamiento
-        void        Reverse();
-        void        SortAscending();
-        void        SortDescending();
-    
         // - Funciones de obtención
         Type                        GetFirst()                                          const;
         Type                        GetLast()                                           const;
@@ -109,7 +87,6 @@ class SDLL
 
         // --- Métodos privados ---
         bool    IsValidIndex(unsigned index)    const;
-        Type*   GetPointer(unsigned index);
 };
 
 #include "../Templates/SDLL.tpp"
