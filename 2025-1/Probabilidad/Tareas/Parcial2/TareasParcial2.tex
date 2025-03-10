@@ -137,23 +137,27 @@
     \newpage
     % - Problema 2
     \vspace{\Pspace}
-    \item Se sabe que un jugador tiene una probabilidad del 95\% de ganar un juego importante. La variable aleatoria $X$ indica si gana o pierde.
+    \item Se sabe que un jugador tiene una probabilidad del 95\% de ganar un juego importante. Sea $X$ la variable aleatoria que indica si gana o pierde el juego.
     % Respuestas:
     \vspace{\Aspace} \par
     a) ¿Sigue una distribución de Bernoulli?
-    \\ { \color{azul}  }
+    \\ { \color{azul} Dado que solo existen dos posibles resultados (éxito o fracaso), esta sigue una distribución de Bernoulli $X \sim Be(0{.}95)$ }
 
     \vspace{\Aspace} \par
     b) Si puediera jugar muchas veces el juego importante, ¿qué porcentaje de victorias esperaría observar?
-    \\ { \color{azul}  }
+    \\ { \color{azul} Si cada juego es independiente, $E[X] = 0{.}95 = 95\%$ }
 
     \vspace{\Aspace} \par
     c) ¿Cuál es la varianza de esta variable aleatoria?
-    \\ { \color{azul}  }
+    \\ { \color{azul} $Var(X) = \sigma^2 = 0{.}95 (1 - 0{.}95) = 0{.}0475$ }
 
     \vspace{\Aspace} \par
     d) Determine el intervalo de valores que están dentro de una desviación estándar de la media.
-    \\ { \color{azul}  }
+    \\ { \color{azul}
+        $\sigma = \sqrt{0.0475} = \frac{\sqrt{19}}{20} = 0{.}218$ \vspace{0.1cm}
+        \newline $[E[X]] - \sigma, E[X] + \sigma] = [0{.}95 - 0{.}218, 0{.}95 + 0{.}218] = [0{.}732, 1{.}168]$ \vspace{0.1cm}
+        \newline Dado que no pueden haber valores mayores que 1, el intervalo termina siendo $[0{.}732, 1]$
+    }
 \end{enumerate}
 
 
@@ -166,31 +170,31 @@
 
 \begin{enumerate}
     %  - Problema 1
-    \item Antes de la venta de pianos, deben probarse para saber si se encuentran en buen estado o defectuoso. El porcentaje de defectuosos es de 5\%. Sea $X$ el número de pianos en buen estado enn una muestra aleatoria de tamaño $n - 25$,
+    \item Antes de la venta de pianos, deben probarse para saber si se encuentran en buen estado o defectuoso. El porcentaje de defectuosos es de 5\%. Sea $X$ el número de pianos en buen estado en una muestra aleatoria de tamaño $n = 25$,
     % Respuestas:
     \vspace{\Aspace} \par
     • ¿Qué tipo de distribución tiene $X$?
-    \\ { \color{azul}  }
+    \\ { \color{azul} Dado que solo existen dos posibles resultados (buen estado o defectuoso) y contamos con una muestra, esta sigue una distribución binomial $X \sim Bin(25, 0{.}95)$ }
 
     \vspace{\Aspace} \par
     • Determinar la probabilidad de observar exactamente 7 pianos en buen estado.
-    \\ { \color{azul}  }
+    \\ { \color{azul} $P[X = 7] = \binom{25}{7} (0{.}95)^{7} (0{.}05)^{18} = 1{.}28$x$10^{-18}$ }
 
     \vspace{\Aspace} \par
     • Determinar la probabilidad de observar 22 o más pianos en buen estado.
-    \\ { \color{azul}  }
+    \\ { \color{azul} $P[X \geq 22] = \sum\limits_{x = 22}^{25} \binom{25}{x} (0{.}95)^{x} (0{.}05)^{25 - x} = 0{.}966$ }
 
     \vspace{\Aspace} \par
-    • Determinar la probabilidad de observar menos de 22 pianos en buen estado.
-    \\ { \color{azul}  }
+    • Determinar la probabilidad de observar menos de 22 pianos en buen estado
+    \\ { \color{azul} $P[X < 22] = 1 - P[X \geq 22] = 1 - 0{.}966 = 0{.}034$ }
 
     \vspace{\Aspace} \par
     • Determinar el número de pianos que espera encontrar en buen estado.
-    \\ { \color{azul}  }
+    \\ { \color{azul} $E[X] = (25)(0{.}95) = 23{.}75$ }
 
     \vspace{\Aspace} \par
     • Determinar la varianza de $X$.
-    \\ { \color{azul}  }
+    \\ { \color{azul} $Var(X) = \sigma^{2} = (25)(0{.}95)(0{.}05) = 1{.}1875$ }
 
 
     % - Problema 2
