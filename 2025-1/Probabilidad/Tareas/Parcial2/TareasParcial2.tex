@@ -104,29 +104,29 @@
     \item Un dado equilibrado se lanza dos veces consecutivas. Sea $X$ la diferencia entre el resultado del primer y el segundo lanzamiento.
     % Respuestas:
     \vspace{\Aspace} \par
-    • Encuentre la función de probabilidad de $X$.
+    a) Encuentre la función de probabilidad de $X$.
     \\ { \color{azul} $f(x) = P[X = x] = \frac{6 - |x|}{36}$ }
 
     \vspace{\Aspace} \par
-    • Encuentre la función de distribución de $X$.
+    b) Encuentre la función de distribución de $X$.
     \\ { \color{azul} $F(x) = \sum\limits_{x = -5}^{5} \frac{6 - |x|}{36}$ }
 
     \vspace{\Aspace} \par
-    • Determinar el valor esperado de $X$.
+    c) Determinar el valor esperado de $X$.
     \\ { \color{azul} $E[X] = \mu = \sum\limits_{x = -5}^{5} x\frac{6 - |x|}{36} = 0$ }
 
     \vspace{\Aspace} \par
-    • Determinar la varianza de $X$.
+    d) Determinar la varianza de $X$.
     \\ { \color{azul} $Var(X) = \sigma^{2} = \sum\limits_{x = -5}^{5} (x - \mu)^{2} (\frac{6 - |x|}{36}) = \frac{35}{6}$ }
 
     \vspace{\Aspace} \par
-    • Determinar el histograma.
+    e) Determinar el histograma.
     \begin{figure}[h]
         \centering
         \includegraphics[width=0.6\textwidth]{./Assets/HistogramaT6P1.png}
     \end{figure}
 
-    • Dibujar el valor esperado y el intervalo que resulta de estar dentro de una desviación estándar de la media.
+    f) Dibujar el valor esperado y el intervalo que resulta de estar dentro de una desviación estándar de la media.
     \vspace{\Aspace}
     \\ { \color{azul} $\sigma = \sqrt{\frac{35}{6}}$ }
     \begin{figure}[h]
@@ -173,27 +173,27 @@
     \item Antes de la venta de pianos, deben probarse para saber si se encuentran en buen estado o defectuoso. El porcentaje de defectuosos es de 5\%. Sea $X$ el número de pianos en buen estado en una muestra aleatoria de tamaño $n = 25$,
     % Respuestas:
     \vspace{\Aspace} \par
-    • ¿Qué tipo de distribución tiene $X$?
+    a) ¿Qué tipo de distribución tiene $X$?
     \\ { \color{azul} Dado que solo existen dos posibles resultados (buen estado o defectuoso) y contamos con una muestra, esta sigue una distribución binomial $X \sim Bin(25, 0{.}95)$ }
 
     \vspace{\Aspace} \par
-    • Determinar la probabilidad de observar exactamente 7 pianos en buen estado.
+    b) Determinar la probabilidad de observar exactamente 7 pianos en buen estado.
     \\ { \color{azul} $P[X = 7] = \binom{25}{7} (0{.}95)^{7} (0{.}05)^{18} = 1{.}28$x$10^{-18}$ }
 
     \vspace{\Aspace} \par
-    • Determinar la probabilidad de observar 22 o más pianos en buen estado.
+    c) Determinar la probabilidad de observar 22 o más pianos en buen estado.
     \\ { \color{azul} $P[X \geq 22] = \sum\limits_{x = 22}^{25} \binom{25}{x} (0{.}95)^{x} (0{.}05)^{25 - x} = 0{.}966$ }
 
     \vspace{\Aspace} \par
-    • Determinar la probabilidad de observar menos de 22 pianos en buen estado
+    d) Determinar la probabilidad de observar menos de 22 pianos en buen estado
     \\ { \color{azul} $P[X < 22] = 1 - P[X \geq 22] = 1 - 0{.}966 = 0{.}034$ }
 
     \vspace{\Aspace} \par
-    • Determinar el número de pianos que espera encontrar en buen estado.
+    e) Determinar el número de pianos que espera encontrar en buen estado.
     \\ { \color{azul} $E[X] = (25)(0{.}95) = 23{.}75$ }
 
     \vspace{\Aspace} \par
-    • Determinar la varianza de $X$.
+    f) Determinar la varianza de $X$.
     \\ { \color{azul} $Var(X) = \sigma^{2} = (25)(0{.}95)(0{.}05) = 1{.}1875$ }
 
 
@@ -202,37 +202,48 @@
     \item Una pareja desea tener una niña en su familia. La pareja decide tener hijos hasta que se tenga la primer niña. Suponga que la probabilidad de tener una hija es de 0.25. 
     % Respuestas:
     \vspace{\Aspace} \par
-    • ¿Cuál es la probabilidad de que la familia tenga $x$ niñas?
-    \\ { \color{azul}  }
+    a) ¿Cuál es la probabilidad de que la familia tenga $x$ niñas?
+    \\ { \color{azul} $P[X = x] = (1 - 0{.}25)^{x}(0{.}25)$ }
 
     \vspace{\Aspace} \par
-    • ¿Cuál es la probabilidad de que la familia tenga cuatro hijos?
-    \\ { \color{azul}  }
+    b) ¿Cuál es la probabilidad de que la familia tenga cuatro hijos?
+    \\ { \color{azul} $(0{.}75)^{3}(0{.}25) = 0{.}1055$ }
 
     \vspace{\Aspace} \par
-    • ¿Cuál es la probabilidad de que la familia tenga cuando mucho cuatro hijos?
-    \\ { \color{azul}  }
+    c) ¿Cuál es la probabilidad de que la familia tenga cuando mucho cuatro hijos?
+    \\ { \color{azul} $\sum\limits_{x = 0}^{4} (0{.}75)^{x}(0{.}25)$ }
 
     \vspace{\Aspace} \par
-    • ¿Cuántos hijos esperaría que tenga esta familia?
-    \\ { \color{azul}  }
+    d) ¿Cuántos hijos esperaría que tenga esta familia?
+    \\ { \color{azul} $E[X] = \frac{1}{p} = \frac{1}{0{.}25} = 4$ }
 
     \vspace{\Aspace} \par
-    • ¿Cuál es la desviación estándar?
-    \\ { \color{azul}  }
+    e) ¿Cuál es la desviación estándar?
+    \\ { \color{azul} $Var(X) = \sigma^{2} = \frac{1 - p}{p^{2}} = \frac{0{.}75}{(0{.}25)^{2}} = 12$ }
 
-
+    
+    \newpage
     % - Problema 3
     \vspace{\Pspace}
     \item Sea $X$ una variable aleatoria tal que $ X \sim U\{1, 2, \dots, n\} $. Demuestre que:
     % Respuestas:
     \vspace{\Aspace} \par
-    • $E(X^{2}) = \frac{(n + 1)(2n + 1)}{6}$
-    \\ { \color{azul}  }
+    a) $E(X^{2}) = \frac{(n + 1)(2n + 1)}{6}$
+    \\ { \color{azul} 
+        Dado que $X$ se distribuye de manera uniforme, esto significa que todos los valores tienen la misma probabilidad de ocurrencia.
+        \\ • El valor esperado de $X$ se calcula de la siguiente manera:
+        \\ \quad $E[X] = \frac{1}{n} \sum\limits_{i = 1}^{n} x_{i}$
+        \\ • La suma de los primeros $n$ números naturales puede ser calculada de la siguiente forma:
+        \\ $1 + 2 + \ldots + n = \frac{n(n + 1)}{2}$
+        \\ • Reescribiendo la fórmula obtenemos lo siguiente:
+        \\ $E[X] = \frac{n + 1}{2} \ \forall X \sim U\{1, 2, \ldots, n\}$
+    }
 
     \vspace{\Aspace} \par
-    • $Var(X) = \frac{n^{2} - 1}{12}$ 
-    \\ { \color{azul}  }
+    b) $Var(X) = \frac{n^{2} - 1}{12}$ 
+    \\ { \color{azul} 
+        •
+    }
 \end{enumerate}
 
 
@@ -249,27 +260,27 @@
     \\ Conteste lo siguiente:
     % Respuestas:
     \vspace{\Aspace} \par
-    • ¿Qué tipo de distribución tiene $X$?
+    a) ¿Qué tipo de distribución tiene $X$?
     \\ { \color{azul}  }
 
     \vspace{\Aspace} \par
-    • Determine la probabilidad de observar exactamente 15 personas en una hora.
+    b) Determine la probabilidad de observar exactamente 15 personas en una hora.
     \\ { \color{azul}  }
 
     \vspace{\Aspace} \par
-    • Determine la probabilidad de observar 5 o más personas en una hora.
+    c) Determine la probabilidad de observar 5 o más personas en una hora.
     \\ { \color{azul}  }
 
     \vspace{\Aspace} \par
-    • Determine la probabilidad de observar menos de 5 personas en una hora.
+    d) Determine la probabilidad de observar menos de 5 personas en una hora.
     \\ { \color{azul}  }
 
     \vspace{\Aspace} \par
-    • Determine en número de personas que se espera que lleguen en una hora.
+    e) Determine en número de personas que se espera que lleguen en una hora.
     \\ { \color{azul}  }
 
     \vspace{\Aspace} \par
-    • Determinar la varianza de $X$.
+    f) Determinar la varianza de $X$.
     \\ { \color{azul}  }
 
 
