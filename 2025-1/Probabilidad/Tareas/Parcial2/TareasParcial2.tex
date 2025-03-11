@@ -21,7 +21,8 @@
 \usepackage{graphicx}
 
 % -- Matemáticas --
-\usepackage{amsmath}
+\usepackage{amsmath, amssymb}
+
 
 \title
 {
@@ -231,18 +232,42 @@
     a) $E(X^{2}) = \frac{(n + 1)(2n + 1)}{6}$
     \\ { \color{azul} 
         Dado que $X$ se distribuye de manera uniforme, esto significa que todos los valores tienen la misma probabilidad de ocurrencia.
-        \\ • El valor esperado de $X$ se calcula de la siguiente manera:
-        \\ \quad $E[X] = \frac{1}{n} \sum\limits_{i = 1}^{n} x_{i}$
-        \\ • La suma de los primeros $n$ números naturales puede ser calculada de la siguiente forma:
-        \\ $1 + 2 + \ldots + n = \frac{n(n + 1)}{2}$
-        \\ • Reescribiendo la fórmula obtenemos lo siguiente:
-        \\ $E[X] = \frac{n + 1}{2} \ \forall X \sim U\{1, 2, \ldots, n\}$
-    }
+        \par • El valor esperado de $X$ se calcula de la siguiente manera:
+        \[ E[X] = \frac{1}{n} \sum\limits_{i = 1}^{n} x_{i} \]
+        
+        \par • La suma de los primeros $n$ números naturales puede ser calculada de la siguiente forma:
+        \[ 1 + 2 + \ldots + n = \frac{n(n + 1)}{2} \]
+        
+        \par • Reescribiendo la función obtenemos lo siguiente:
+        \[ E[X] = \frac{n + 1}{2} \ \forall X \sim U\{1, 2, \ldots, n\} \]
+        
+        \par • Ya que $X^{2}$ se distribuye de la misma forma uniforme, su valor esperado se calcula de la siguiente forma:
+        \[ E[X^{2}] = \frac{1}{n} \sum\limits_{i = 1}^{n} x_{i}^2 \]
 
+        \par • También podemos calcular la suma de los primeros $n^{2}$ naturales con la siguiente función:
+        \[ f(n) = \frac{n(n + 1)(2n + 1)}{6} \ \forall n \in \mathbb{N} \]
+
+        \par • Reescribiendo en la función del valor esperado hemos obtenido lo que deseábamos demostrar.
+        \[ E[X^{2}] = \frac{1}{n} \frac{n(n + 1)(2n + 1)}{6} = \frac{(n + 1)(2n + 1)}{6} \]
+    }
+    
+    \newpage
     \vspace{\Aspace} \par
     b) $Var(X) = \frac{n^{2} - 1}{12}$ 
     \\ { \color{azul} 
-        •
+        La varianza de una distribución uniforme se calcula de la siguiente forma:
+        \[ Var(X) = E[X^{2}] - (E[X])^{2} \]
+
+        \par • Utilizando los valores del inciso anterior podemos reescribir la función cómo:
+        \[ Var(X) = \frac{(n + 1)(2n + 1)}{6} - (\frac{n + 1}{2})^{2} \]
+
+        \par • Desarrollando obtenemos la función que bucábamos.
+        \begin{center}
+            \centering
+            \par $Var(X) = \frac{2n^{2} + 3n + 1}{6} - \frac{n^{2} + 2n + 1}{4}$
+            \par $Var(X) = \frac{4n^{2} + 6n + 2}{12} - \frac{3n^{2} + 6n +3}{12}$
+            \par $Var(X) = \frac{n^{2} - 1}{12}$
+        \end{center}
     }
 \end{enumerate}
 
