@@ -20,6 +20,8 @@
 % -- Imagenes --
 \usepackage{graphicx}
 
+\usepackage{turnstile}
+
 \title
 {
   Teoría de la computación \\
@@ -46,7 +48,7 @@
 37. Pruebe la propiedad 3. Sugerencia: demuestre por inducción, que $\forall n \geq 0$:
 
 \par $P(n)$: si $|w| = n$ y $r \in \hat{\delta}(q, w)$ entonces $(q, w) \vdash (r, \epsilon)$.
-\par $Q(n)$: si $(q, w) \vdash (r, \varepsilon)$ en $n$ movimientos entonces $r \in \hat{\delta}(q, w)$.
+\par $Q(n)$: si $(q, w) \sststile{}{*} (r, \varepsilon)$ en $n$ movimientos entonces $r \in \hat{\delta}(q, w)$.
 
 \vspace{0.5cm}
 \par \textbf {Propiedad 3.} Sea $\delta$ la función de transición de un AFND. Para todo estado $q$ y cadena de símbolos de entrada $w$:
