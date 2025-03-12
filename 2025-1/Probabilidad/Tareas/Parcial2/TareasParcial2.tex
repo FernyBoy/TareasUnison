@@ -259,7 +259,7 @@
         \[ Var(X) = E[X^{2}] - (E[X])^{2} \]
 
         \par • Utilizando los valores del inciso anterior podemos reescribir la función cómo:
-        \[ Var(X) = \frac{(n + 1)(2n + 1)}{6} - (\frac{n + 1}{2})^{2} \]
+        \[ Var(X) = \frac{(n + 1)(2n + 1)}{6} - \left(\frac{n + 1}{2}\right)^{2} \]
 
         \par • Desarrollando obtenemos la función que bucábamos.
         \begin{center}
@@ -286,28 +286,27 @@
     % Respuestas:
     \vspace{\Aspace} \par
     a) ¿Qué tipo de distribución tiene $X$?
-    \\ { \color{azul}  }
+    \\ { \color{azul} Poisson }
 
     \vspace{\Aspace} \par
     b) Determine la probabilidad de observar exactamente 15 personas en una hora.
-    \\ { \color{azul}  }
+    \\ { \color{azul} $P[X = 15] = e^{-15} \frac{15^{15}}{15!} = 1{.}09468$x$10^{12}$ }
 
     \vspace{\Aspace} \par
     c) Determine la probabilidad de observar 5 o más personas en una hora.
-    \\ { \color{azul}  }
+    \\ { \color{azul} $P[X \geq 5] = 1 - P[X \leq 4] = \sum\limits_{x = 0}^{4} e^{-15} \frac{15^{x}}{x!} = 0{.}9991433588$ }
 
     \vspace{\Aspace} \par
     d) Determine la probabilidad de observar menos de 5 personas en una hora.
-    \\ { \color{azul}  }
+    \\ { \color{azul} $P[X < 5] = P[X \leq 4] = 0{.}000856$ }
 
     \vspace{\Aspace} \par
     e) Determine en número de personas que se espera que lleguen en una hora.
-    \\ { \color{azul}  }
+    \\ { \color{azul} $E[X] = 15$ }
 
     \vspace{\Aspace} \par
     f) Determinar la varianza de $X$.
-    \\ { \color{azul}  }
-
+    \\ { \color{azul} $Var(X) = 15$ }
 
 
     % - Problema 2
@@ -328,10 +327,10 @@
 
     % - Problema 3
     \vspace{\Pspace}
-    \item Genere números aleatorios de una variable aleatoria geométrica con parámetro 0.7 en cualquier lenguaje de programación. Para ello, siga estos pasos:
+    \item Genere números aleatorios de una variable aleatoria de Bernoulli con parámetro 0.7 en cualquier lenguaje de programación. Para ello, siga estos pasos:
     \vspace{0.2cm}
     \\ • Genere un número aleatorio a partir de una distribución uniforme en $(0, 1)$.
-    \\ • Utilice el criterio visto en clase basado en la inversa de la función de distribución acumulada de la variable geométrica para determinar el valor generado.
+    \\ • Utilice el criterio visto en clase basado en la inversa de la función de distribución acumulada de la variable de Bernoulli para determinar el valor generado.
     % Respuesta:
     \vspace{\Aspace} \par
     { \color{azul}  }
