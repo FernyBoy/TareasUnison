@@ -136,8 +136,6 @@ private:
      * \brief Lista doblemente enlazada utilizada como base para almacenar los elementos en orden.
      */
     DoubleLinkedList<Type> list;
-
-    // --- Métodos privados
 };
 
 #include "../Templates/OrderedList.tpp"

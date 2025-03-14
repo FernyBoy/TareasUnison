@@ -19,7 +19,7 @@ using std::endl;
 int main()
 {
     try{
-        OrderedList<int> newList;
+        OrderedList<int> newList, secondList;
         DoubleLinkedList<int> list1, list2;
 
         for(int i = 0; i < 10; ++i)
@@ -28,19 +28,41 @@ int main()
             list1.AddLast(pow(-1, i) * (i + 1) * 10);
             list2.AddLast(pow(-1, i) * (i + 1) * 100);
         }
+        
+        cout << "\nLista actual: " << newList;
+        cout << "\nLista en orden inverso: ";
+        newList.PrintReverse();
+        cout << "\nLista sin elementos: " << (newList.Empty() ? "Verdadero" : "Falso");
+        cout << "\nCantidad de elementos: " << newList.Size();
+ 
 
-        newList.Print();
-        cout << endl;
-        newList.MixLists(list1, list2);
-        cout << endl;
-        list1.Print();
-        cout << endl;
-        list2.Print();
-        cout << endl;
-        newList.Print();
+        cout << "\n\nIngresa un valor para agregarlo en la lista\n - ";
+        newList.Add(CapturaSegura<>().LongitudSegura());
+        cout << "Lista actualizada: " << newList;
+        
 
+        cout << "\n\nIngresa un valor para eliminarlo de la lista\n - ";
+        try{ newList.Remove(CapturaSegura<>().LongitudSegura()); } 
+        catch(const char *e){ cerr << "Error: " << e << endl; }
+        cout << "Lista actualizada: " << newList;
+
+
+        cout << "\n\nIngresa un elemento para verificar si se encuentra en la lista\n - ";
+        cout << (newList.Contains(CapturaSegura<>().LongitudSegura()) ? "El valor se encuentra en la lista" : "El valor no se encuentra en la lista");
+
+
+        cout << "\n\nSe ha limpiado la lista: ";
+        newList.Clear();
+        if(newList.Empty()) cout << "[ ]";
+
+        cout << "\n\n\n--- Listas desordenadas auxiliares ---";
+        cout << "\nLista desordenada 1: "<< list1;
+        cout << "\nLista desordenada 2: "<< list2;
+        secondList.MixLists(list1, list2);
+        cout << "\nMezcla de ambas listas: " << secondList << endl;
+        
     }catch(const char *e){
-        cerr << "Error:" << e << endl;
+        cerr << "Error: " << e << endl;
     }
 
     return 0;

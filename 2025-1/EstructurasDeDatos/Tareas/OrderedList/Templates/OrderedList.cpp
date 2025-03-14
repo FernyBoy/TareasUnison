@@ -144,7 +144,10 @@ std::ostream & operator<<(std::ostream &output, OrderedList<Type> &li)
 template <typename Type>
 std::istream & operator>>(std::istream &input, OrderedList<Type> &li)
 {
-    li.Add(input);
+    Type val;
+    input >> val;
+
+    li.Add(val);
 
     return input;
 }
