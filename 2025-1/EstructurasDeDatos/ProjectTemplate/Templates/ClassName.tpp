@@ -25,7 +25,7 @@ ClassName<Type>::ClassName(const ClassName &ClassId)
 }
 
 template <typename Type>
-ClassName & ClassName::operator=(const ClassName<Type> &ClassId)
+ClassName<Type> & ClassName<Type>::operator=(const ClassName<Type> &ClassId)
 {
 
 }
