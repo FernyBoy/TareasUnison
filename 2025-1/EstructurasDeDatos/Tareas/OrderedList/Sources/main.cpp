@@ -65,5 +65,9 @@ int main()
         cerr << "Error: " << e << endl;
     }
 
+    #ifdef _WIN32
+        system("pause");
+    #endif
+
     return 0;
 }
