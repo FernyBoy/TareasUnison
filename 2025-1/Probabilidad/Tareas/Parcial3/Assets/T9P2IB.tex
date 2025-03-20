@@ -1,0 +1,33 @@
+\documentclass{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+
+\begin{tikzpicture}
+    \begin{axis}
+    [
+        axis lines = middle,
+        xlabel = $x$,
+        ylabel = {$F(x)$},
+        samples=100,
+        xmin=-0.5, xmax=1.5,
+        ymin=-0.5, ymax=1.5
+    ]
+                
+    % Primera parte: f(x) = 2x para 0 <= x <= 1
+    \addplot[color=blue, thick, domain=0:1]{x^2};
+
+    % Segunda parte: f(x) = 0 en otros casos
+    \addplot[color=red, thick, domain=-0.5:0]{0};
+    \addplot[color=red, thick, domain=1:1.5]{1};
+
+    % Punto cerrado en (0,0)
+    \addplot[only marks, mark=*, mark size=2pt, color=blue] coordinates {(0,0)};
+
+    % Punto cerrado en (1,1)
+    \addplot[only marks, mark=*, mark size=2pt, color=blue] coordinates {(1,1)};
+    \end{axis}
+\end{tikzpicture}
+
+\end{document}
