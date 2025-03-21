@@ -16,18 +16,17 @@ using std::endl;
 int main()
 {
     try{
-        CircularList<int> newList, list2;
-
+        
+        CircularList<int> newList;
+        newList.Add(10);
+        /*
         for(int i = 1; i <= 10; ++i)
         {
             newList.Add(i);
         }
-
-        newList.Print();
-
-
-    }catch(const char *e){
-        cerr << "Error:" << e << endl;
+*/
+    }catch (const char* e) {
+        cerr << "Caught exception: " << e << endl;
     }
 
     return 0;

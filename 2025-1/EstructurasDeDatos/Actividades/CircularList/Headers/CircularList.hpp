@@ -53,12 +53,7 @@ class CircularList
 
         struct Element
         {
-            Element(Type val)
-            {
-                value = val;
-                prevElement = nullptr;
-                nextElement = nullptr;
-            }
+            Element(Type val) : value(val), prevElement(nullptr), nextElement(nullptr) {}
 
             Type value;
             Element* prevElement;

@@ -50,26 +50,24 @@ CircularList<Type>::~CircularList()
 template <typename Type>
 void CircularList<Type>::Add(Type val)
 {
-    Element* aux = new Element(val);
-
-    if(size == 0)
+    Element *aux = new Element(val);
+    
+    if(Empty())
     {
-        head = aux;
-    }
-    else if(size == 1)
-    {
-        head -> nextElement = aux;
-        head -> prevElement = aux;
 
-        aux -> prevElement = head;
-        aux -> nextElement = head;
-
+        aux -> prevElement = aux;
+        aux -> nextElement = aux;
         head = aux;
     }
     else
     {
-        aux -> prevElement = head -> prevElement;
         aux -> nextElement = head;
+        aux -> prevElement = head -> prevElement;
+        
+        head -> prevElement -> nextElement = aux;
+        head -> prevElement = aux;
+
+        head = aux;
     }
 
     ++size;
@@ -83,6 +81,7 @@ void CircularList<Type>::RemoveHead()
     if(size == 1)
     {
         delete head;
+        head = nullptr;
         size = 0;
     }
     else
@@ -141,8 +140,6 @@ bool CircularList<Type>::Empty()
 template <typename Type>
 void CircularList<Type>::Clear()
 {
-    if(Empty()) throw "Lista vac\241a";
-
     while(!Empty()) RemoveHead();
 }
 
@@ -156,7 +153,7 @@ void CircularList<Type>::Print()
     cout << "[ ";
     for(unsigned i  = 0; i < size; ++i)
     {
-        cout << head -> value << ", ";
+        cout << aux -> value << ", ";
         aux = aux -> nextElement;
     }
     cout << "\b\b ]";
