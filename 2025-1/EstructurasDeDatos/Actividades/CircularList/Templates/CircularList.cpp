@@ -1,37 +1,50 @@
 /**
 *   \file   CircularList.tpp
 *   \author Angel Fernando Borquez Guerrero
-*   \date   11/03/2025
+*   \date   21/03/2025
 */
-
-#include "../Headers/CircularList.hpp"
 
 // --------------------------------------------
 //
 // ----- Constructores ------------------------
 //
 // --------------------------------------------
-template <typename Type>
-CircularList<Type>::CircularList() : size(0), head(nullptr) {}
+template <typename T>
+CircularList<T>::CircularList(): size(0), head(nullptr){}
 
-/*
-template <typename Type>
-CircularList<Type>::CircularList(const CircularList &li)
-{   
-
-}
-
-template <typename Type>
-CircularList<Type> & CircularList<Type>::operator=(const CircularList<Type> &li)
+template <typename T>
+CircularList<T>::CircularList(const CircularList &li)
 {
-
+    *this = li;
 }
-*/
+
+template <typename T>
+CircularList<T>& CircularList<T>::operator=(const CircularList<T> &li)
+{
+    if (this == &li) return *this;
+    
+    Clear();
+    
+    Element *aux = li.head;
+    
+    Add(aux -> value);
+
+    aux = aux -> nextElement;
+    
+    while(aux -> nextElement != head)
+    {
+        Add(aux -> value);
+        aux = aux -> nextElement;
+    }
+
+    return *this;
+}
+
 // ----------------------
 // ----- Destructor -----
 // ----------------------
-template <typename Type>
-CircularList<Type>::~CircularList()
+template <typename T>
+CircularList<T>::~CircularList()
 {
     Clear();
 }
@@ -47,180 +60,138 @@ CircularList<Type>::~CircularList()
 // ----- Métodos públicos ---------------------
 //
 // --------------------------------------------
-template <typename Type>
-void CircularList<Type>::Add(Type val)
+template <typename T>
+void CircularList<T>::Add(T value)
 {
-    Element *aux = new Element(val);
-    
-    if(Empty())
+    if(size == 0)
     {
-
-        aux -> prevElement = aux;
-        aux -> nextElement = aux;
+        Element * aux = new Element (value);
         head = aux;
+        head -> nextElement = aux;
+        head -> prevElement = aux;
     }
     else
     {
-        aux -> nextElement = head;
-        aux -> prevElement = head -> prevElement;
-        
+        Element * aux = new Element (value, head -> prevElement, head);
         head -> prevElement -> nextElement = aux;
         head -> prevElement = aux;
-
         head = aux;
     }
 
     ++size;
 }
 
-template <typename Type>
-void CircularList<Type>::RemoveHead()
+template <typename T>
+void CircularList<T>::RemoveHead()
 {
-    if(Empty()) throw "Lista vac\241a";
+    if (Empty()) throw "La lista está vacía";
 
-    if(size == 1)
+    Element* deleteElement = head;
+
+    if (size == 1)
     {
-        delete head;
         head = nullptr;
-        size = 0;
     }
     else
     {
-        Element* deleteElement = head;
         head -> prevElement -> nextElement = head -> nextElement;
         head -> nextElement -> prevElement = head -> prevElement;
-        delete deleteElement;
+        head = head -> nextElement;
     }
 
+    delete deleteElement;
     --size;
 }
-/*
-template <typename Type>
-bool CircularList<Type>::Contains(Type val)
-{
-    
-}
-*/
-template <typename Type>
-void CircularList<Type>::MoveForward()
-{
-    if(Empty()) throw "Lista vac\241a";
-    
-    if(size == 1) return;
-    else head = head -> nextElement;
-}
 
-template <typename Type>
-void CircularList<Type>::MoveBackward()
-{
-    if(Empty()) throw "Lista vac\241a";
-    
-    if(size == 1) return;
-    else head = head -> prevElement;
-}
-
-template <typename Type>
-Type CircularList<Type>::GetHead()
+template <typename T>
+T CircularList<T>::GetHead() const
 {
     return head -> value;
 }
 
-template <typename Type>
-unsigned CircularList<Type>::Size()
+template <typename T>
+bool CircularList<T>::Contains(T value) const
+{
+    Element * aux = head;
+
+    if(value == aux -> value ) 
+    {
+        return true;
+    }
+    
+    do
+    {
+        aux = aux -> nextElement;
+    }while(aux -> nextElement != head && aux->value != value);
+
+    if(aux -> nextElement != head )
+    {
+        return true;
+    }
+    else 
+    {
+        return false;
+    }
+}
+
+template <typename T>
+void CircularList<T>::MoveForward()
+{
+    head = head -> nextElement;
+}
+
+template <typename T>
+void CircularList<T>::MoveBackward()
+{
+    head = head -> prevElement;
+}
+
+template <typename T>
+unsigned CircularList<T>::Size()
 {
     return size;
 }
 
-template <typename Type>
-bool CircularList<Type>::Empty()
+template <typename T>
+bool CircularList<T>::Empty() const 
 {
     return size == 0;
 }
 
-template <typename Type>
-void CircularList<Type>::Clear()
+template <typename T>
+void CircularList<T>::Clear()
 {
     while(!Empty()) RemoveHead();
 }
 
-template <typename Type>
-void CircularList<Type>::Print()
+template <typename T>
+void CircularList<T>::Print() const
 {
     if(Empty()) throw "Lista vac\241a";
 
-    Element* aux = head;
+    Element *aux = head;
 
     cout << "[ ";
-    for(unsigned i  = 0; i < size; ++i)
+    for(unsigned i = 0; i < size; ++i)
     {
-        cout << aux -> value << ", ";
+        std::cout << aux -> value << ", ";
         aux = aux -> nextElement;
     }
     cout << "\b\b ]";
 }
-/*
-template <typename Type>
-void CircularList<Type>::PrintReverse()
+
+template <typename T>
+void CircularList<T>::PrintReverse() const
 {
+    if(Empty()) throw "Lista vac\241a";
 
+    Element *aux = head -> prevElement;
+
+    cout << "[ ";
+    for(unsigned i = 0; i < size; ++i)
+    {
+        std::cout << aux -> value << ", ";
+        aux = aux -> prevElement;
+    }
+    cout << "\b\b ]";
 }
-*/
-
-
-// ----------------------------------------------------------------------------------------
-
-
-
-// --------------------------------------------
-//
-// ----- Métodos privados ---------------------
-//
-// --------------------------------------------
-template <typename Type>
-bool CircularList<Type>::IsValidIndex(unsigned index) const
-{
-    return index < size;
-}
-
-
-
-// ----------------------------------------------------------------------------------------
-
-
-
-// --------------------------------------------
-//
-// ----- Métodos de utilería ------------------
-//
-// --------------------------------------------
-
-
-
-
-// ----------------------------------------------------------------------------------------
-
-
-
-// --------------------------------------------
-//
-// ----- Métodos externos ---------------------
-//
-//---------------------------------------------
-/* 
-template <typename Type>
-std::ostream & operator<<(std::ostream &output, CircularList<Type> &li)
-{
-    
-
-    return output;
-}
-
-
-template <typename Type>
-std::istream & operator>>(std::istream &input, CircularList<Type> &li)
-{
-    
-
-    return input;
-}
-*/
