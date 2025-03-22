@@ -167,4 +167,74 @@
                 \end{figure}
             }
     \end{enumerate}
+
+
+
+    \newpage
+    % ---------- Tarea 10 ----------
+    \vspace{0.3cm}
+
+    \begin{center}
+        { \LARGE Tarea 10}
+    \end{center}
+
+    \begin{enumerate}
+        % - Problema 1
+        \item Encontrar el valor esperado y la desviación estándar de la función de densidad \par
+        \[
+            f(x) =
+            \begin{cases}
+                e^{-x} & x > 0 \\
+                0 & \text{Otro caso}
+            \end{cases}
+        \]
+            % Respuestas:
+            \vspace{\Aspace}
+            { \color{azul} 
+                \begin{flushleft}
+                    Valor esperado:
+                \end{flushleft}
+                \[
+                    E[X] 
+                    = \int_{0}^{\infty} xe^{-x}dx
+                    = -xe^{-x} + \int_{0}^{\infty} e^{-x}dx
+                    = -xe^{-x}-e^{-x} \Big|_{0}^{\infty}
+                    = -\frac{x + 1}{e^{x}} \Big|_{0}^{\infty}
+                    = 1
+                \]
+
+                \begin{flushleft}
+                    Varianza:
+                \end{flushleft}
+                \[
+                    \text{Var}[X]
+                    = \int_{0}^{\infty} x^{2}e^{-x}dx - \int_{0}^{\infty}(x - 1)^{2}e^{-x}dx
+                    = 2 - 1
+                    = 1
+                \]
+            }
+
+        % - Problema 2
+        \vspace{\Pspace}
+        \item Encontrar la función de densidad y distribución con $U \sim U(0, 4)$. Graficas ambas funciones y encontrar el valor esperado y la desviación estándar.
+            % Respuestas:
+            \vspace{\Aspace} \par
+            { \color{azul} }
+
+        % - Problema 3
+        \item Sea $X$ una variable aleatoria con distribución uniforme entre $-1$ y $1$. Demuestre lo siguiente
+        \[
+            E[X^{n}] =
+            \begin{cases}
+                0 & \text{si $n$ es impar}  \\
+                \frac{1}{n + 1} & \text{si $n$ es par} \\
+            \end{cases}
+        \]
+            % Respuesta:
+            \vspace{\Aspace} \par
+            { \color{azul} }
+
+        % - Problema 4
+        \item Usted no conoce el tiempo de respuesta a una solicitud, pero sabe que el mínimo posible es de 5 minutos y el máximo es de 25 minutos. ¿Qué distribución recomendaría utilizar? ¿Cuál es la probabilidad de recibir una respuesta entre 5 y 7 minutos? ¿Cuánto tiempo debe esperar en promedio?
+    \end{enumerate}
 \end{document}
