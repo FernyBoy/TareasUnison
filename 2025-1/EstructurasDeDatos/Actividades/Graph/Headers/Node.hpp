@@ -1,3 +1,9 @@
+/**
+*   \file   Node.hpp
+*   \author Angel Fernando Bórquez Guerrero
+*   \date   18/03/2025
+*/
+
 #ifndef NODE_HPP_INCLUDED
 #define NODE_HPP_INCLUDED
 
@@ -9,10 +15,10 @@ using std::cout;
 
 struct Node
 {
-    char    name;
-    int     degree;
-    Edge    *first, *last;
-    Node    *next;
+    char        name;
+    unsigned    degree;
+    Edge        *first, *last;
+    Node        *next;
 
     Node(char name, Node *next = nullptr);
 

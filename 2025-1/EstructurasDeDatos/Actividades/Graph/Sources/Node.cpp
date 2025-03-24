@@ -1,3 +1,9 @@
+/**
+*   \file   Node.cpp
+*   \author Angel Fernando Bórquez Guerrero
+*   \date   18/03/2025
+*/
+
 #include "../Headers/Node.hpp"
 
 Node::Node(char name, Node *next /* = nullptr */): name(name), degree(0), first(nullptr), last(nullptr), next(next) {}
@@ -6,7 +12,15 @@ void Node::Add(Node *adj)
 {
     Edge *newEdge = new Edge(adj);
 
-    degree == 0 ? first = newEdge : last -> next = newEdge;
+    if (degree == 0) 
+    {
+        first = newEdge;
+    } 
+    else if (last != nullptr) 
+    {
+        last -> next = newEdge;
+    }
+
     last = newEdge;
 
     ++degree;
@@ -29,7 +43,7 @@ void Node::Remove(Node *adj)
 
 unsigned Node::Clear()
 {
-    int edgeNumber = 0;
+    unsigned edgeNumber = 0;
 
     while(first != nullptr)
     {
@@ -69,7 +83,7 @@ void Node::Print() const
 Edge * Node::PointerOf(Node *adj, Edge **prev /* = nullptr */) const
 {
     Edge *aux = first;
-    if(prev != nullptr) prev = nullptr;
+    if(prev != nullptr) *prev = nullptr;
 
     while(aux != nullptr && aux -> adjacent != adj)
     {
@@ -79,5 +93,3 @@ Edge * Node::PointerOf(Node *adj, Edge **prev /* = nullptr */) const
 
     return aux;
 }
-
-

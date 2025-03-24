@@ -40,20 +40,21 @@ class Graph
         // --- Funciones de eliminación
         void        RemoveNode(char name);
         void        RemoveEdge(char firstName, char lastName);
-        void        ClearNode(char name)                        const;
+        void        ClearNode(char name);
         void        Clear();
 
         // --- Funciones de obtención
-        unsigned    GetNodes()  const;
-        unsigned    GetEdges()  const;
-        unsigned    GetDegree() const;
+        unsigned    GetNodes()              const;
+        unsigned    GetEdges()              const;
+        unsigned    GetDegree(char name)    const;
 
         // --- Funciones de búsqueda
         bool        SearchNode(char name)                       const;
         bool        SearchEdge(char firstName, char lastName)   const;
 
         // --- Funciones de impresión
-        void        Print();
+        void        Print()         const;
+        void        DebugPrint()    const;
 
 
 
@@ -68,7 +69,5 @@ class Graph
         // --- Métodos de utilería
 
 };
-
-#include "../Templates/Graph.cpp"
 
 #endif // !EXPRESSION_HPP_INCLUDED
