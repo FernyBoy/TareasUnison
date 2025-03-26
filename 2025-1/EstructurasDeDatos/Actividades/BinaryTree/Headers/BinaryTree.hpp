@@ -5,10 +5,9 @@
 */
 
 #ifndef BINARYTREE_HPP_INCLUDED
-#define BINRAYTREE_HPP_INCLUDED
+#define BINARYTREE_HPP_INCLUDED
 
 #include <iostream>
-#include <ostream>
 
 using std::cout;
 using std::cin;
@@ -26,7 +25,7 @@ class BinaryTree
 
     public:
         // --- Constructores
-        explicit BinaryTree();
+        BinaryTree();
         BinaryTree(const BinaryTree &t);
         BinaryTree & operator=(const BinaryTree &t);
 
@@ -35,7 +34,8 @@ class BinaryTree
 
         // --- Métodos públicos
         void    Add(Type val);
-
+        
+        void    PrintTree()         const;
         void    PrintAscendent()    const;
         void    PrintDescendent()   const;
 
@@ -56,9 +56,10 @@ class BinaryTree
 
         // --- Métodos privados
         void    Add(Type val, Node *&parentNode);
-
-        void    PrintAscendent(Node *parentNode)    const;
-        void    PrintDescendent(Node *parentNode)   const;
+        
+        void    PrintTree(Node *parentNode, int level)  const;
+        void    PrintAscendent(Node *parentNode)        const;
+        void    PrintDescendent(Node *parentNode)       const;
 
         // --- Métodos de utilería
 
@@ -66,4 +67,4 @@ class BinaryTree
 
 #include "../Templates/BinaryTree.tpp"
 
-#endif // !EXPRESSION_HPP_INCLUDED
+#endif // BINARYTREE_HPP_INCLUDED
