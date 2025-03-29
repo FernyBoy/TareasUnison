@@ -192,7 +192,7 @@
             \vspace{\Aspace}
             { \color{azul} 
                 \begin{flushleft}
-                    Valor esperado:
+                    a) Valor esperado:
                 \end{flushleft}
                 \[
                     E[X] 
@@ -204,7 +204,7 @@
                 \]
 
                 \begin{flushleft}
-                    Varianza:
+                    b) Varianza:
                 \end{flushleft}
                 \[
                     \text{Var}[X]
@@ -220,7 +220,7 @@
             % Respuestas:
             \vspace{\Aspace} \par
             { \color{azul} 
-                Función de densidad:
+                a) Función de densidad:
                 \[
                     f(x) = 
                     \begin{cases}
@@ -232,8 +232,46 @@
                     \centering
                     \includegraphics[width=0.5\textwidth]{Assets/Pdf/T10P2IA.pdf}
                 \end{figure}
+
+                \newpage
+                b) Función de distribución:
+                \[
+                    F(x)
+                    = \int_{0}^{x} \frac{1}{4}du
+                    = \frac{1}{4} \int_{0}^{x}du
+                    = \frac{u}{4} \Big|_{0}^{x}
+                    = \frac{u}{4} =
+                    \begin{cases}
+                        0           &   x \leq 0 \\
+                        \frac{x}{4} &   0 < x < 4 \\
+                        1           &   x \geq 4
+                    \end{cases}
+                \]
+                \begin{figure}[H]
+                    \centering
+                    \includegraphics[width=0.5\textwidth]{Assets/Pdf/T10P2IB.pdf}
+                \end{figure}
+
+                c) Valor esperado:
+                \[
+                    E[X] = \frac{1}{4} \int_{0}^{4}xdx = \frac{x^{2}}{8}\Big|_{0}^{4} = 2
+                \]
+
+                d) Varianza:
+                \[
+                    Var[X] = E[X^{2}] - (E[X])^{2} 
+                    = \frac{1}{4} \int_{0}^{4} x^{2}dx - 2^{2} 
+                    = \frac{16}{3} - 4 
+                    = \frac{4}{3}
+                \]
+
+                e) Deviación estándar:
+                \[
+                    \sigma = \sqrt{\frac{4}{3}}
+                \]
             }
 
+        \newpage
         % - Problema 3
         \item Sea $X$ una variable aleatoria con distribución uniforme entre $-1$ y $1$. Demuestre lo siguiente
         \[
@@ -245,8 +283,68 @@
         \]
             % Respuesta:
             \vspace{\Aspace} \par
-            { \color{azul} }
+            { \color{azul} 
+                Función de densidad:
+                \[
+                    f(x) =
+                    \begin{cases}
+                        \frac{1}{2} &   -1 < x < 1 \\
+                        0           &   \text{Otro caso}
+                    \end{cases}
+                \]
 
+                Valor esperado de $X^{n}$
+                \[
+                    \frac{1}{2} \int_{-1}^{1} x^{n}dx
+                    = \frac{x^{n + 1}}{2(n + 1)} \Big|_{-1}^{1}
+                    = \frac{1^{n + 1}}{2(n + 1)} - \frac{(-1)^{n + 1}}{2(n + 1)}
+                    = \frac{1 - (-1)^{n}(-1)}{2(n + 1)}
+                    = \frac{1 + (-1)^{n}}{2(n + 1)}
+                \]
+
+                Queremos comprobar que cuando $n$ es impar la función vale 0 y cuando es par vale $\frac{1}{n + 1}$, para esto vamos a reescribir a $n$ como $2k$ para valores pares, como $2k + 1$ para valores impares y evaluamos por partes. \par
+                - Cuando $n$ es par: \par
+                • Reemplazamos $n$ por $2k$ en la función obtenida para el valor esperado de $X^{n}$.
+                \[ \frac{1 + (-1)^{2k}}{2(2k + 1)} \]
+
+                • Desarrollamos la funcíon.
+                \[
+                    \frac{1 + ((-1)^{2})^{k}}{2(2k + 1)}
+                    = \frac{1 + (1)^{k}}{2(2k + 1)}
+                    = \frac{1 + 1}{2(2k + 1)}
+                    = \frac{2}{2(2k + 1)}
+                    = \frac{1}{2k + 1}
+                \]
+
+                • Reemplazamos $2k$ por $n$.
+                \[
+                    \frac{1}{n + 1}
+                \]
+                
+                \vspace{1cm}
+                Hemos demostrado que para valores pares de $n$ la función tiene un valor de $\frac{1}{n + 1}$.
+
+
+                - Cuando $n$ es impar: \par
+                • Reemplazamos $n$ por $2k + 1$.
+                \[ 
+                    \frac{1 + (-1)^{2k + 1}}{2(2k + 1 + 1)} 
+                    = \frac{1 + (-1)^{2k + 1}}{2(2k + 2)} 
+                \]
+
+                • Desarrollamos la funcíon.
+                \[ 
+                    \frac{1 + ((-1)^{2})^{k}(-1)}{2(2k + 2)}
+                    = \frac{1 + (1)(-1)}{2(2k + 2)}
+                    = \frac{1 - 1}{2(2k + 2)}
+                    = \frac{0}{2(2k + 2)}
+                    = 0
+                \]
+
+                Hemos demostrado que para valores impares de $n$ la función tiene un valor de 0.
+            }
+
+        \newpage
         % - Problema 4
         \item Usted no conoce el tiempo de respuesta a una solicitud, pero sabe que el mínimo posible es de 5 minutos y el máximo es de 25 minutos. ¿Qué distribución recomendaría utilizar? ¿Cuál es la probabilidad de recibir una respuesta entre 5 y 7 minutos? ¿Cuánto tiempo debe esperar en promedio?
     \end{enumerate}
