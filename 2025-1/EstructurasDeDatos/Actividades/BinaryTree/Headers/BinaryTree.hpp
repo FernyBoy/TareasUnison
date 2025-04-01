@@ -33,13 +33,21 @@ class BinaryTree
         ~BinaryTree();
 
         // --- Métodos públicos
-        void    Add(Type val);
-        void    RemoveBranch(Type val);
-        bool    Contains(Type val);
+        void        Add(Type val);
+        void        RemoveNode(Type val);
+        void        RemoveBranch(Type val);
+        void        Clear();
+
+        // - Métodos de obtención
+        bool        Contains(Type val)      const;
+        Type        FindMin()               const;
+        Type        FindMax()               const;
+        unsigned    Size()                  const;
         
-        void    PrintTree()         const;
-        void    PrintAscendent()    const;
-        void    PrintDescendent()   const;
+        // - Métodos de impresión
+        void        PrintAscendent()        const;
+        void        PrintDescendent()       const;
+        void        PrintTree()             const;
 
 
     private:
@@ -59,8 +67,13 @@ class BinaryTree
         // --- Métodos privados
         void    Add(Type val, Node *&parentNode);
         void    RemoveBranch(Node *&parentNode);
+
+        // - Métodos de obtención
         Node*&  SearchNode(Type val, Node*& parentNode);
+        Node*&  FindMin(Node *&parentNode);
+        Node*&  FindMax(Node *&parentNode);
         
+        // - Métodos de impresión
         void    PrintTree(Node *parentNode, const string& prefix)   const;
         void    PrintAscendent(Node *parentNode)                    const;
         void    PrintDescendent(Node *parentNode)                   const;
