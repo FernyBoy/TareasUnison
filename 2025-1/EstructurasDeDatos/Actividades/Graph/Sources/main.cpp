@@ -24,23 +24,18 @@ int main()
         g.AddNode('e');
         g.AddNode('f');
 
-        g.AddEdge('a', 'b');
         g.AddEdge('a', 'c');
         g.AddEdge('a', 'd');
-        g.AddEdge('a', 'e');
         g.AddEdge('a', 'f');
 
         g.AddEdge('b', 'c');
-        g.AddEdge('b', 'd');
         g.AddEdge('b', 'e');
         g.AddEdge('b', 'f');
 
         g.AddEdge('c', 'd');
-        g.AddEdge('c', 'e');
         g.AddEdge('c', 'f');
 
         g.AddEdge('d', 'e');
-        g.AddEdge('d', 'f');
 
         g.AddEdge('e', 'f');
 
