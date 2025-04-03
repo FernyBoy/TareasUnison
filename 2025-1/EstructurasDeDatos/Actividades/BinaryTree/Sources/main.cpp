@@ -35,8 +35,6 @@ int main()
         cout << endl << endl;
         tree.PrintTree();
 
-        cout << "\n\nValor mínimo: " << tree.FindMin();
-        cout << "\n\nValor máximo: " << tree.FindMax();
 
     }catch(const char *e){
         cerr << "Error:" << e << endl;

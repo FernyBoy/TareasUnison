@@ -67,6 +67,7 @@ class BinaryTree
 
         // --- Métodos privados
         void    Add(Type val, Node *&parentNode);
+        void    RemoveNode(Type val, Node *&parentNode);
         void    RemoveBranch(Node *&parentNode);
 
         // - Métodos de obtención

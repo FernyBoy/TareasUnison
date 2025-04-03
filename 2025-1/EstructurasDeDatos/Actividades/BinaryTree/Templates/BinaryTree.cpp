@@ -54,7 +54,7 @@ void BinaryTree<Type>::Add(Type val)
 template <typename Type>
 void BinaryTree<Type>::RemoveNode(Type val)
 {
-
+    RemoveNode(val, _root);   
 }
 
 template <typename Type>
@@ -147,6 +147,31 @@ void BinaryTree<Type>::Add(Type val, Node *&parentNode)
     else if(val > parentNode -> value) Add(val, parentNode -> right);
     else Add(val, parentNode -> left);
 }
+
+template <typename Type>
+void BinaryTree<Type>::RemoveNode(Type val, Node *&parentNode)
+{
+    if(parentNode == nullptr) return;
+
+    if(val == parentNode -> value)
+    {
+        if(parentNode -> left != nullptr && parentNode -> right != nullptr)
+        {
+            Node *&leftMax = FindMax(parentNode);
+            parentNode -> value = leftMax -> value;
+            RemoveNode(leftMax -> value, leftMax);
+        }
+        else
+        {
+            Node *deleteNode = parentNode;
+            if(parentNode -> left == nullptr && parentNode -> right == nullptr) parentNode = nullptr;
+            else if(parentNode -> left != nullptr) parentNode = parentNode -> left;
+            else parentNode = parentNode -> right;
+            delete deleteNode;
+            --_nodes;
+        }
+    }
+}   
 
 template <typename Type>
 void BinaryTree<Type>::RemoveBranch(Node *&parentNode)
