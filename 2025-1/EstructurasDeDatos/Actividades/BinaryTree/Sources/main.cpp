@@ -32,32 +32,12 @@ int main()
         tree.Add(115);
         tree.Add(95);
         
-        cout << endl;
-        tree.PrintAscendent();
-        cout << endl;
-        tree.PrintDescendent();
         cout << endl << endl;
         tree.PrintTree();
 
-        int val;
-        /*
-        for(int i = 0; i < 3; ++i)
-        {
-            cout << "\n\nIngresa el valor a buscar\n - ";
-            cin >> val;
-                
-            cout << endl << "Contiene el " << val << ": " << (tree.Contains(val) ? "Si" : "No");
-        }
-*/
-        for(int i = 0; i < 10; ++i)
-        {
-            system("clear");
-            tree.PrintTree();
-            cout << "\n\nIngresa el valor a eliminar\n - ";
-            cin >> val;
-            tree.RemoveBranch(val);
-        }
-        
+        cout << "\n\nValor mínimo: " << tree.FindMin();
+        cout << "\n\nValor máximo: " << tree.FindMax();
+
     }catch(const char *e){
         cerr << "Error:" << e << endl;
     }

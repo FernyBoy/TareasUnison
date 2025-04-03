@@ -47,6 +47,7 @@ class BinaryTree
         // - Métodos de impresión
         void        PrintAscendent()        const;
         void        PrintDescendent()       const;
+        void        PrintByLevels()         const;
         void        PrintTree()             const;
 
 
@@ -70,13 +71,14 @@ class BinaryTree
 
         // - Métodos de obtención
         Node*&  SearchNode(Type val, Node*& parentNode);
-        Node*&  FindMin(Node *&parentNode);
-        Node*&  FindMax(Node *&parentNode);
+        Node*   FindMin(Node *parentNode)                   const;
+        Node*   FindMax(Node *parentNode)                   const;
         
         // - Métodos de impresión
-        void    PrintTree(Node *parentNode, const string& prefix)   const;
         void    PrintAscendent(Node *parentNode)                    const;
         void    PrintDescendent(Node *parentNode)                   const;
+        void    PrintByLevels(Node *parentNode)                     const;
+        void    PrintTree(Node *parentNode, const string& prefix)   const;
 
         // --- Métodos de utilería
 

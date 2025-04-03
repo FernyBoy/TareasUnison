@@ -82,13 +82,13 @@ bool BinaryTree<Type>::Contains(Type val) const
 }
 
 template <typename Type>
-Type BinaryTree<Type>::FindMin()
+Type BinaryTree<Type>::FindMin() const
 {
     return FindMin(_root) -> value;
 }
 
 template <typename Type>
-Type BinaryTree<Type>::FindMax()
+Type BinaryTree<Type>::FindMax() const
 {
     return FindMax(_root) -> value;
 }
@@ -172,7 +172,22 @@ typename BinaryTree<Type>::Node *& BinaryTree<Type>::SearchNode(Type val, Node*&
 }
 
 template <typename Type>
-typename BinaryTree<Type>::Node *& BinaryTree<Type>::FindMin(Node *&parent)
+typename BinaryTree<Type>::Node * BinaryTree<Type>::FindMin(Node *parent) const
+{
+    if(_nodes == 0) throw "Árbol vacío";
+
+    if(parent -> left != nullptr) return FindMin(parent -> left);
+    else return parent;
+}
+
+template <typename Type>
+typename BinaryTree<Type>::Node * BinaryTree<Type>::FindMax(Node *parent) const
+{
+    if(_nodes == 0) throw "Árbol vacío";
+
+    if(parent -> right != nullptr) return FindMax(parent -> right);
+    else return parent;
+}
 
 template <typename Type>
 void BinaryTree<Type>::PrintAscendent(Node *parentNode) const
