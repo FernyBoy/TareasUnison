@@ -192,7 +192,6 @@
             \vspace{\Aspace}
             { \color{azul} 
                 \begin{flushleft}
-pwd | xclip -selection clipboard
                     a) Valor esperado:
                 \end{flushleft}
                 \[
@@ -393,31 +392,54 @@ pwd | xclip -selection clipboard
             % Respuestas:
             \vspace{\Aspace} \par
             a) ¿Cuál es la función de distribución?
-            \\ { \color{azul}  }
+            \\ { \color{azul} 
+                \[
+                    F(x) = 
+                    \begin{cases}
+                        0               &   x \leq 0 \\
+                        1 - e^{-x/2}    &   x > 0
+                    \end{cases}
+                \]
+            }
 
             \vspace{\Aspace} \par
             b) ¿Cuál es la probabilidad de que un tiempo de reparación tome más de 2 horas?
-            \\ { \color{azul}  }
+            \\ { \color{azul} $P[X > 2] = 1 - P[X \leq 2] = 1 - (1 - e^{-1}) = \frac{1}{e} = 0{.}3679$ }
 
             \vspace{\Aspace} \par
             c) ¿Cuál es la probabilidad de que un tiempo de reparación tome a lo más 4 horas dado que no se ha logrado la reparación en las primeras 2 horas?
-            \\ { \color{azul}  }
+            \\ { \color{azul} $P[X \leq 4 | X > 2] = P[X \leq 2] = 1 - e^{-1} = 0{.}6321$ }
 
             \vspace{\Aspace} \par
             d) ¿Cuál es la probabilidad de que un tiempo de reparación tome más de 4 horas dado que no se ha logrado la reparación en las primeras 2 horas?
-            \\ { \color{azul}  }
+            \\ { \color{azul} $P[X > 4 | X > 2] = P[X > 2] = 1 - P[X \leq 2] = 1 - (1 - e^{-1}) = \frac{1}{e} = 0{.}3679$ }
 
             \vspace{\Aspace} \par
             e) ¿Cuál es la varianza?
-            \\ { \color{azul}  }
+            \\ { \color{azul} $Var[X] = \frac{1}{\lambda^{2}} = 1 / (\frac{1}{2})^{2} = 1 / \frac{1}{4} = 4$ }
 
         % - Problema 2
         \vspace{\Pspace}
     \item Sea $X$ una variable aleatoria con distribución $exp(\lambda)$. Demostrar que $E[X^{3}] = 6  / \lambda^{3}$.
             % Respuesta:
             \vspace{\Aspace} \par
-            { \color{azul}  }
+            { \color{azul} 
+                \[
+                    E[X] 
+                    = \int_{-\infty}^{\infty} x^{3}f(x)dx
+                    = \lambda \int_{0}^{\infty} x^{3}e^{-\lambda x}dx
+                \]
+                \begin{center}
+                    \begin{tabular}{ll}
+                        \textbf{D}  &   \textbf{I} \\
+                        $x^{3}$     &   $e^{-\lambda x}$ \\
+                        $3x^{2}$    &   $-\frac{e^{-\lambda x}}{\lambda}$
+                        $$
+                    \end{tabular}
+                \end{center}
+            }
 
+        \newpage
         % - Problema 3
         \item Genere números aleatorios de una variable aleatoria exponencial con parámetro $\lambda$ en cualquier lenguaje de programación. Para ello, siga estos pasos: \par
         • Genere un número aleatorio a partir de una distribución uniforme en (0, 1). \par
@@ -470,22 +492,22 @@ pwd | xclip -selection clipboard
                 \( P[4 \leq X \leq 6] = P[X \leq 6] - P[X \leq 4] \) \par
                 \( Z = \frac{6 - 7}{2} = -\frac{1}{2}\) \par
                 \( Z = \frac{4 - 7}{2} = -\frac{3}{2}\) \par
-                \( P[Z \leq -\frac{1}{2}] \)
+                \( P[Z \leq -\frac{1}{2}] - P[Z \leq -\frac{3}{2}] = 0{.}3085 - 0{.}0668 = 0{.}2417\)
             }
 
             \vspace{\Aspace} \par
             d) $P[-1 \leq Z \leq 1]$
             \vspace{\Aspace}
-            \\ { \color{azul}  }
+            \\ { \color{azul} $P[Z \leq 1] - P[Z \leq -1] = 0{.}8413 - 0{.}1587 = 0{.}6826$ }
 
             \vspace{\Aspace} \par
             e) $P[-2 \leq Z \leq 2]$
             \vspace{\Aspace}
-            \\ { \color{azul}  }
+            \\ { \color{azul} $P[Z \leq 2] - P[Z \leq -2] = 0{.}9772 - 0{.}0228 = 0{.}9544$}
 
             \vspace{\Aspace} \par
             f) $P[-3 \leq Z \leq 3]$
             \vspace{\Aspace}
-            \\ { \color{azul}  }
+            \\ { \color{azul} $P[Z \leq 3] - P[Z \leq -3] = 0{.}99865 - 0{.}00135 = 0{.}9973$ }
     \end{enumerate}
 \end{document}
