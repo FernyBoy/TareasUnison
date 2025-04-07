@@ -443,26 +443,49 @@ pwd | xclip -selection clipboard
             % Respuestas:
             \vspace{\Aspace} \par
             a) $P[X \leq 5]$
-            \\ { \color{azul}  }
+            \vspace{\Aspace}
+            \\ { \color{azul} 
+                \(
+                    Z = \frac{X - \mu}{\sigma}
+                    = \frac{5 - 7}{2}
+                    = -\frac{2}{2}
+                    = -1
+                \) \par
+                \( P[Z \leq -1] = 0{.}1587 \)
+            }
 
             \vspace{\Aspace} \par
             b) $P[X \geq 8]$
-            \\ { \color{azul}  }
+            \vspace{\Aspace}
+            \\ { \color{azul} 
+                \( P[X \geq 8] = 1 - P[X < 8] \) \par
+                \( Z = \frac{8 - 7}{2} = \frac{1}{2} \) \par
+                \( P[X > 8] = 1 - P\left[Z \leq \frac{1}{2}\right] = 1 - 0{.}6915 = 0{.}3085 \)
+            }
 
             \vspace{\Aspace} \par
             c) $P[4 \leq X \leq 6]$
-            \\ { \color{azul}  }
+            \vspace{\Aspace}
+            \\ { \color{azul} 
+                \( P[4 \leq X \leq 6] = P[X \leq 6] - P[X \leq 4] \) \par
+                \( Z = \frac{6 - 7}{2} = -\frac{1}{2}\) \par
+                \( Z = \frac{4 - 7}{2} = -\frac{3}{2}\) \par
+                \( P[Z \leq -\frac{1}{2}] \)
+            }
 
             \vspace{\Aspace} \par
             d) $P[-1 \leq Z \leq 1]$
+            \vspace{\Aspace}
             \\ { \color{azul}  }
 
             \vspace{\Aspace} \par
             e) $P[-2 \leq Z \leq 2]$
+            \vspace{\Aspace}
             \\ { \color{azul}  }
 
             \vspace{\Aspace} \par
             f) $P[-3 \leq Z \leq 3]$
+            \vspace{\Aspace}
             \\ { \color{azul}  }
     \end{enumerate}
 \end{document}
