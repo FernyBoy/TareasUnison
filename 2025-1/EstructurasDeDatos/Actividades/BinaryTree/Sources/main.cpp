@@ -34,6 +34,14 @@ int main()
         
         cout << endl << endl;
         tree.PrintTree();
+        
+        cout << "\n\nIngresa el valor a eliminar:\n - ";
+        int deleteNode;
+        cin >> deleteNode;
+
+        tree.RemoveNode(deleteNode);
+        cout << endl << endl;
+        tree.PrintTree();
 
 
     }catch(const char *e){

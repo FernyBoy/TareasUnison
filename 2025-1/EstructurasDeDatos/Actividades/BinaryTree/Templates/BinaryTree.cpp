@@ -100,6 +100,12 @@ unsigned BinaryTree<Type>::Size() const
 }
 
 template <typename Type>
+unsigned BinaryTree<Type>::Height() const
+{
+    return Height(_root);
+}
+
+template <typename Type>
 void BinaryTree<Type>::PrintAscendent() const
 {
     cout << "[ ";
@@ -171,6 +177,8 @@ void BinaryTree<Type>::RemoveNode(Type val, Node *&parentNode)
             --_nodes;
         }
     }
+    else if(val < parentNode -> value) RemoveNode(val, parentNode -> left);
+    else RemoveNode(val, parentNode -> right);
 }   
 
 template <typename Type>
@@ -197,21 +205,29 @@ typename BinaryTree<Type>::Node *& BinaryTree<Type>::SearchNode(Type val, Node*&
 }
 
 template <typename Type>
-typename BinaryTree<Type>::Node * BinaryTree<Type>::FindMin(Node *parent) const
+typename BinaryTree<Type>::Node *& BinaryTree<Type>::FindMin(Node *&parentNode)
 {
     if(_nodes == 0) throw "Árbol vacío";
 
-    if(parent -> left != nullptr) return FindMin(parent -> left);
-    else return parent;
+    if(parentNode -> left != nullptr) return FindMin(parentNode -> left);
+    else return parentNode;
 }
 
 template <typename Type>
-typename BinaryTree<Type>::Node * BinaryTree<Type>::FindMax(Node *parent) const
+typename BinaryTree<Type>::Node *& BinaryTree<Type>::FindMax(Node *&parentNode)
 {
     if(_nodes == 0) throw "Árbol vacío";
 
-    if(parent -> right != nullptr) return FindMax(parent -> right);
-    else return parent;
+    if(parentNode -> right != nullptr) return FindMax(parentNode -> right);
+    else return parentNode;
+}
+
+template <typename Type>
+unsigned BinaryTree<Type>::Height(Node *parentNode) const
+{
+    unsigned height = 0;
+
+    if(parentNode == nullptr) return 0;
 }
 
 template <typename Type>

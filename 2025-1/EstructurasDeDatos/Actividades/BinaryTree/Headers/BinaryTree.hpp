@@ -43,6 +43,7 @@ class BinaryTree
         Type        FindMin()               const;
         Type        FindMax()               const;
         unsigned    Size()                  const;
+        unsigned    Height()                const;
         
         // - Métodos de impresión
         void        PrintAscendent()        const;
@@ -71,9 +72,10 @@ class BinaryTree
         void    RemoveBranch(Node *&parentNode);
 
         // - Métodos de obtención
-        Node*&  SearchNode(Type val, Node*& parentNode);
-        Node*   FindMin(Node *parentNode)                   const;
-        Node*   FindMax(Node *parentNode)                   const;
+        Node*&      SearchNode(Type val, Node*& parentNode);
+        Node*&      FindMin(Node *&parentNode);
+        Node*&      FindMax(Node *&parentNode);
+        unsigned    Height(Node *parentNode)                        const;
         
         // - Métodos de impresión
         void    PrintAscendent(Node *parentNode)                    const;
