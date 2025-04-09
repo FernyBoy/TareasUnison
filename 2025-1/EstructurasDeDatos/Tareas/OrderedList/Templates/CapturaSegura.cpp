@@ -380,7 +380,7 @@ N CapturaSegura<N, T>::LongitudSegura()
     while(cin.fail())
     {
         cin.clear();
-        cin.ignore(std::numeric_limits<int>::max(), '\n');
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         cout << "Ingresa una respuesta válida.\n • ";
         cin >> num;
     }

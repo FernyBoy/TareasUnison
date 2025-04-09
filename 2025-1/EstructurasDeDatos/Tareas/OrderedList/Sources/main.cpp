@@ -37,7 +37,7 @@ int main()
  
 
         cout << "\n\nIngresa un valor para agregarlo en la lista\n - ";
-        newList.Add(CapturaSegura<>().LongitudSegura());
+        newList.Add(CapturaSegura<>().LongitudPositiva());
         cout << "Lista actualizada: " << newList;
         
 
