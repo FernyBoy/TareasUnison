@@ -5,6 +5,7 @@
 */
 
 #include <cmath>
+#include <cstdlib>
 #include <iostream>
 #include <system_error>
 #include "../Headers/BinaryTree.hpp"
@@ -32,16 +33,17 @@ int main()
         tree.Add(115);
         tree.Add(95);
         
-        cout << endl << endl;
-        tree.PrintTree();
-        
-        cout << "\n\nIngresa el valor a eliminar:\n - ";
-        int deleteNode;
-        cin >> deleteNode;
+        while(true)
+        {
+            system("clear");
+            tree.PrintTree();
+            cout << "\n\nIngresa el valor a eliminar:\n - ";
+            int deleteNode;
+            cin >> deleteNode;
 
-        tree.RemoveNode(deleteNode);
-        cout << endl << endl;
-        tree.PrintTree();
+            tree.Clear();
+            cout << endl << endl;
+        }
 
 
     }catch(const char *e){

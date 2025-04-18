@@ -124,6 +124,8 @@ void BinaryTree<Type>::PrintDescendent() const
 template <typename Type>
 void BinaryTree<Type>::PrintTree() const
 {
+    if(_nodes == 0) return;
+
     cout << _root -> value << endl;
     PrintTree(_root, "");
     cout << endl;
