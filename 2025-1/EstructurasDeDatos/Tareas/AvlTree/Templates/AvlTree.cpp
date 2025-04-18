@@ -18,12 +18,29 @@ AvlTree<Type>::AvlTree() : _nodes(0), _root(nullptr) {}
 template <typename Type>
 AvlTree<Type>::AvlTree(const AvlTree &t)
 {   
-
+    *this = t;
 }
 
 template <typename Type>
 AvlTree<Type> & AvlTree<Type>::operator=(const AvlTree<Type> &t)
 {
+    if (this == &t) return *this;
+    Clear();
+
+    Queue<Node*> queue;
+    queue.Enqueue(t._root);
+
+    while(!queue.IsEmpty()) 
+    {
+        Node* currentNode = queue.Front();
+        queue.Dequeue();
+
+        Add(currentNode -> value);
+
+        if (currentNode -> left != nullptr) queue.Enqueue(currentNode -> left);
+        if (currentNode -> right != nullptr) queue.Enqueue(currentNode -> right);
+    }
+
     return *this;
 }
 // ----------------------
@@ -32,7 +49,7 @@ AvlTree<Type> & AvlTree<Type>::operator=(const AvlTree<Type> &t)
 template <typename Type>
 AvlTree<Type>::~AvlTree()
 {
-
+    Clear();
 }
 
 
@@ -85,6 +102,8 @@ unsigned AvlTree<Type>::Height() const
 template <typename Type>
 void AvlTree<Type>::PrintAscendent() const
 {
+    if(_nodes == 0) return;
+
     cout << "[ ";
     PrintAscendent(_root);
     cout << "\b\b ]";
@@ -93,6 +112,8 @@ void AvlTree<Type>::PrintAscendent() const
 template <typename Type>
 void AvlTree<Type>::PrintDescendent() const
 {
+    if(_nodes == 0) return;
+
     cout << "[ ";
     PrintDescendent(_root);
     cout << "\b\b ]";
@@ -101,12 +122,28 @@ void AvlTree<Type>::PrintDescendent() const
 template <typename Type>
 void AvlTree<Type>::PrintByLevels() const
 {
-    PrintByLevels(_root);
+    if (_root == nullptr) return;
+
+    Queue<Node*> queue;
+    queue.Enqueue(_root);
+
+    while(!queue.IsEmpty()) 
+    {
+        Node* currentNode = queue.Front();
+        queue.Dequeue();
+
+        cout << currentNode -> value << " ";
+
+        if(currentNode -> left != nullptr) queue.Enqueue(currentNode -> left);
+        if (currentNode -> right != nullptr) queue.Enqueue(currentNode -> right);
+    }
 }
 
 template <typename Type>
 void AvlTree<Type>::PrintTree() const
 {
+    if(_nodes == 0) return;
+    
     cout << _root -> value << endl;
     PrintTree(_root, "");
     cout << endl;
@@ -135,6 +172,8 @@ void AvlTree<Type>::Add(Type val, Node *&parentNode)
     else if(val == parentNode -> value) return;
     else if(val > parentNode -> value) Add(val, parentNode -> right);
     else Add(val, parentNode -> left);
+
+    if(parentNode != nullptr) parentNode = UpdateBalance(parentNode);
 }
 
 template <typename Type>
@@ -162,6 +201,8 @@ void AvlTree<Type>::Remove(Type val, Node *&parentNode)
     }
     else if(val < parentNode -> value) Remove(val, parentNode -> left);
     else Remove(val, parentNode -> right);
+
+    if(parentNode != nullptr) parentNode = UpdateBalance(parentNode);
 }   
 
 template <typename Type>
@@ -221,17 +262,17 @@ typename AvlTree<Type>::Node *& AvlTree<Type>::FindMax(Node *&parentNode)
 template <typename Type>
 unsigned AvlTree<Type>::Height(Node *parentNode) const
 {
-    unsigned height = 0;
+    if(parentNode == nullptr) return 0;
 
-    if(parentNode == nullptr) return height;
-    return height;
+    int leftHeight = Height(parentNode -> left);
+    int rightHeight = Height(parentNode -> right);
+
+    return 1 + std::max(leftHeight, rightHeight);
 }
 
 template <typename Type>
 void AvlTree<Type>::PrintAscendent(Node *parentNode) const
 {
-    if(_nodes == 0) return;
-    
     if(parentNode != nullptr)
     {
         PrintAscendent(parentNode -> left);
@@ -243,8 +284,6 @@ void AvlTree<Type>::PrintAscendent(Node *parentNode) const
 template <typename Type>
 void AvlTree<Type>::PrintDescendent(Node *parentNode) const
 {
-    if(_nodes == 0) return;
-
     if(parentNode != nullptr)
     {
         PrintDescendent(parentNode -> right);
@@ -254,18 +293,8 @@ void AvlTree<Type>::PrintDescendent(Node *parentNode) const
 }
 
 template <typename Type>
-void AvlTree<Type>::PrintByLevels(Node *parentNode) const
-{
-    if(_nodes == 0) return;
-
-    if(parentNode == nullptr) cout << " ";
-}
-
-template <typename Type>
 void AvlTree<Type>::PrintTree(Node *parentNode, const string& prefix) const
 {
-    if (parentNode == nullptr) return;
-
     bool hasLeft = (parentNode -> left != nullptr);
     bool hasRight = (parentNode -> right != nullptr);
 
@@ -302,27 +331,61 @@ void AvlTree<Type>::PrintTree(Node *parentNode, const string& prefix) const
 //
 // --------------------------------------------
 template <typename Type>
-void    AvlTree<Type>::RotateRight(Node *&parentNode)
+typename AvlTree<Type>::Node *& AvlTree<Type>::RotateRight(Node *&x)
 {
+   Node *y = x -> left;
+   Node *b = y -> right;
+   y -> right = x;
+   x -> left = b;
+   x = y;
 
+   return x;
 }
 
 template <typename Type>
-void    AvlTree<Type>::RotateLeft(Node *&parentNode)
+typename AvlTree<Type>::Node *& AvlTree<Type>::RotateLeft(Node *&x)
 {
-
+    Node *y = x -> right;
+    Node *b = y -> left;
+    y -> left = x;
+    x -> right = b;
+    x = y;
+    return x;
 }
 
 template <typename Type>
-void    AvlTree<Type>::DoubleRotateRight(Node *&parentNode)
+typename AvlTree<Type>::Node *& AvlTree<Type>::DoubleRotateRight(Node *&x)
 {
-
+    RotateLeft(x -> left);
+    return RotateRight(x);
 }
 
 template <typename Type>
-void    AvlTree<Type>::DoubleRotateLeft(Node *&parentNode)
+typename AvlTree<Type>::Node *& AvlTree<Type>::DoubleRotateLeft(Node *&x)
 {
+    RotateRight(x -> right);
+    return RotateLeft(x);
+}
 
+template <typename Type>
+int AvlTree<Type>::BalanceFactor(Node *parentNode) const
+{
+    if(parentNode == nullptr) return 0;
+
+    return Height(parentNode -> right) - Height(parentNode -> left);
+}
+
+template <typename Type>
+typename AvlTree<Type>::Node *& AvlTree<Type>::UpdateBalance(Node *&parentNode)
+{
+    if(BalanceFactor(parentNode) == 2 && BalanceFactor(parentNode -> right) == 1) return RotateLeft(parentNode);
+    if(BalanceFactor(parentNode) == 2 && BalanceFactor(parentNode -> right) == 0) return RotateLeft(parentNode);
+    if(BalanceFactor(parentNode) == -2 && BalanceFactor(parentNode -> left) == -1) return RotateRight(parentNode);
+    if(BalanceFactor(parentNode) == -2 && BalanceFactor(parentNode -> left) == 0) return RotateRight(parentNode);
+    if(BalanceFactor(parentNode) == 2 && BalanceFactor(parentNode -> right) == -1) return DoubleRotateLeft(parentNode);
+    if(BalanceFactor(parentNode) == -2 && BalanceFactor(parentNode -> right) == 1) return DoubleRotateRight(parentNode);
+
+    return parentNode;
 }
 
 

@@ -34,7 +34,7 @@ int main()
         while(option != 0)
         {
             ClearScreen();
-            tree.PrintTree();
+            cout << tree;
             cout << "\n\n\n0. Salir";
             cout << "\n1. Agregar";
             cout << "\n2. Eliminar";

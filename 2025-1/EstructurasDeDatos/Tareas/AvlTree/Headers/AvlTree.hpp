@@ -11,6 +11,8 @@
 #include <iostream>
 #include <ostream>
 
+#include "./Queue.hpp"
+
 using std::cout;
 using std::cin;
 using std::endl;
@@ -80,14 +82,16 @@ class AvlTree
         // - Métodos de impresión
         void    PrintAscendent(Node *parentNode)                    const;
         void    PrintDescendent(Node *parentNode)                   const;
-        void    PrintByLevels(Node *parentNode)                     const;
         void    PrintTree(Node *parentNode, const string& prefix)   const;
 
         // --- Métodos de utilería
-        void    RotateRight(Node *&parentNode);
-        void    RotateLeft(Node *&parentNode);
-        void    DoubleRotateRight(Node *&parentNode);
-        void    DoubleRotateLeft(Node *&parentNode);
+        Node*&  RotateRight(Node *&x);
+        Node*&  RotateLeft(Node *&x);
+        Node*&  DoubleRotateRight(Node *&x);
+        Node*&  DoubleRotateLeft(Node *&x);
+        int     BalanceFactor(Node *parentNode)                     const;
+        Node*&  UpdateBalance(Node *&parentNode);
+        
 };
 
 #include "../Templates/AvlTree.tpp"
