@@ -24,8 +24,6 @@ class AvlTree
     // --- Métodos externos
     template <typename T>
     friend std::ostream& operator<<(std::ostream& output, const AvlTree<T> &t);
-    template <typename T>
-    friend std::istream& operator>>(std::istream& input, AvlTree<T> &t);
 
     public:
         // --- Constructores
@@ -73,24 +71,24 @@ class AvlTree
         void    Clear(Node *&parentNode);
 
         // - Métodos de obtención
-        bool        Contains(Type val, Node* parentNode)            const;
+        bool        Contains(Type val, Node* parentNode)                const;
         Node*&      SearchNode(Type val, Node*& parentNode);
         Node*&      FindMin(Node *&parentNode);
         Node*&      FindMax(Node *&parentNode);
-        unsigned    Height(Node *parentNode)                        const;
+        unsigned    Height(Node *parentNode)                            const;
         
         // - Métodos de impresión
-        void    PrintAscendent(Node *parentNode)                    const;
-        void    PrintDescendent(Node *parentNode)                   const;
-        void    PrintTree(Node *parentNode, const string& prefix)   const;
+        void        PrintAscendent(Node *parentNode)                    const;
+        void        PrintDescendent(Node *parentNode)                   const;
+        void        PrintTree(Node *parentNode, const string& prefix)   const;
 
         // --- Métodos de utilería
-        Node*&  RotateRight(Node *&x);
-        Node*&  RotateLeft(Node *&x);
-        Node*&  DoubleRotateRight(Node *&x);
-        Node*&  DoubleRotateLeft(Node *&x);
-        int     BalanceFactor(Node *parentNode)                     const;
-        Node*&  UpdateBalance(Node *&parentNode);
+        Node*&      RotateRight(Node *&x);
+        Node*&      RotateLeft(Node *&x);
+        Node*&      DoubleRotateRight(Node *&x);
+        Node*&      DoubleRotateLeft(Node *&x);
+        int         BalanceFactor(Node *parentNode)                     const;
+        Node*&      UpdateBalance(Node *&parentNode);
         
 };
 

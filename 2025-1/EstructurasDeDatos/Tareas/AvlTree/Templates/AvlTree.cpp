@@ -406,13 +406,3 @@ std::ostream & operator<<(std::ostream &output, AvlTree<Type> &t)
 
     return output;
 }
-
-/*
-template <typename Type>
-std::istream & operator>>(std::istream &input, AvlTree<Type> &t)
-{
-    
-
-    return input;
-}
-*/
