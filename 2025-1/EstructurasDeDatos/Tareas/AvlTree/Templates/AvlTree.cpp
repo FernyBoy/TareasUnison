@@ -148,7 +148,7 @@ void AvlTree<Type>::PrintTree() const
     #ifdef _WIN32
         PrintTreeWindows(_root, ""); // Comando para Windows
     #else
-        PrintTree(_root, "");  // Comando para Linux/macOS
+        PrintTreeLinux(_root, "");  // Comando para Linux/macOS
     #endif
     cout << endl;
 }
@@ -297,7 +297,7 @@ void AvlTree<Type>::PrintDescendent(Node *parentNode) const
 }
 
 template <typename Type>
-void AvlTree<Type>::PrintTree(Node *parentNode, const string& prefix) const
+void AvlTree<Type>::PrintTreeLinux(Node *parentNode, const string& prefix) const
 {
     bool hasLeft = (parentNode -> left != nullptr);
     bool hasRight = (parentNode -> right != nullptr);
@@ -313,13 +313,13 @@ void AvlTree<Type>::PrintTree(Node *parentNode, const string& prefix) const
         bool printStrand = (hasLeft && hasRight && (parentNode -> right -> right != nullptr || parentNode -> right -> left != nullptr));
         string newPrefix = prefix + (printStrand ? "│   " : "    ");
         cout << parentNode -> right -> value << endl;
-        PrintTree(parentNode -> right, newPrefix);
+        PrintTreeLinux(parentNode -> right, newPrefix);
     }
 
     if(hasLeft)
     {
         cout << (hasRight ? prefix : "") << "└── " << parentNode -> left -> value << endl;
-        PrintTree(parentNode -> left, prefix + "    ");
+        PrintTreeLinux(parentNode -> left, prefix + "    ");
     }
 }
 
@@ -340,13 +340,13 @@ void AvlTree<Type>::PrintTreeWindows(Node *parentNode, const string& prefix) con
         bool printStrand = (hasLeft && hasRight && (parentNode -> right -> right != nullptr || parentNode -> right -> left != nullptr));
         string newPrefix = prefix + (printStrand ? string(1, (char)179) + "   " : "    ");
         cout << parentNode -> right -> value << endl;
-        PrintTree(parentNode -> right, newPrefix);
+        PrintTreeWindows(parentNode -> right, newPrefix);
     }
 
     if(hasLeft)
     {
-        cout << (hasRight ? prefix : "") << "└── " << parentNode -> left -> value << endl;
-        PrintTree(parentNode -> left, prefix + "    ");
+        cout << (hasRight ? prefix : "") << string(1, (char)192) + string(2, (char)196) + " " << parentNode -> left -> value << endl;
+        PrintTreeWindows(parentNode -> left, prefix + "    ");
     }
 }
 

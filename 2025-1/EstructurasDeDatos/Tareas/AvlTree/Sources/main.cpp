@@ -5,6 +5,7 @@
 *   \date   17/04/2025
 */
 
+#include <cstdlib>
 #include <iostream>
 #include <cmath>
 
@@ -35,17 +36,17 @@ int main()
         {
             ClearScreen();
             cout << tree;
-            cout << "\n\n\n0. Salir";
+            cout << "\n\n0. Salir";
             cout << "\n1. Agregar";
             cout << "\n2. Eliminar";
-            cout << "\n3. Vaciar el árbol";
-            cout << "\n4. Buscar un número";
-            cout << "\n5. Número de nodos";
-            cout << "\n6. Altura del árbol";
+            cout << "\n3. Vaciar el \240rbol";
+            cout << "\n4. Buscar un n\243mero";
+            cout << "\n5. N\243mero de nodos";
+            cout << "\n6. Altura del \240rbol";
             cout << "\n7. Imprimir de forma ascendente";
             cout << "\n8. Imprimir de forma descendente";
             cout << "\n9. Imprimir por niveles";
-            cout << "\n10. Imprimir forma de árbol";
+            cout << "\n10. Imprimir forma de \240rbol";
             cout << "\n\n - ";
             
             option = CapturaSegura<>().LongitudCerrada(0, 10);
@@ -69,18 +70,18 @@ int main()
                 case 4:
                     cout << "\nIngresa el valor que deseas buscar\n - ";
                     tree.Contains(CapturaSegura<>().LongitudSegura())
-                        ? cout << "El valor SI se encuentra en el árbol"
-                        : cout << "El valor NO se encuentra en el árbol";
+                        ? cout << "El valor SI se encuentra en el \240rbol"
+                        : cout << "El valor NO se encuentra en el \240rbol";
                     PressEnter();
                     break;
 
                 case 5:
-                    cout << "\nNúmero de nodos: " << tree.Size();
+                    cout << "\nN\243mero de nodos: " << tree.Size();
                     PressEnter();
                     break;
 
                 case 6:
-                    cout << "\nAltura del árbol: " << tree.Height();
+                    cout << "\nAltura del \240rbol: " << tree.Height();
                     PressEnter();
                     break;
 
@@ -100,7 +101,7 @@ int main()
                     break;                   
                 
                 case 10:
-                    tree.PrintTree();
+                    cout << tree;
                     PressEnter();
                     break;
             }

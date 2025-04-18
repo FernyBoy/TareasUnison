@@ -226,7 +226,7 @@ private:
     * @param parentNode Nodo raíz del subárbol
     * @param prefix Prefijo para la visualización jerárquica
     */
-    void PrintTree(Node *parentNode, const string& prefix) const;
+    void PrintTreeLinux(Node *parentNode, const string& prefix) const;
 
     /**
     * @brief Imprime un subárbol en formato de árbol visual para el sistema Windows
