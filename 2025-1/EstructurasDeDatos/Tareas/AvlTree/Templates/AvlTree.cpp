@@ -145,7 +145,11 @@ void AvlTree<Type>::PrintTree() const
     if(_nodes == 0) return;
     
     cout << _root -> value << endl;
-    PrintTree(_root, "");
+    #ifdef _WIN32
+        PrintTreeWindows(_root, ""); // Comando para Windows
+    #else
+        PrintTree(_root, "");  // Comando para Linux/macOS
+    #endif
     cout << endl;
 }
 
@@ -308,6 +312,33 @@ void AvlTree<Type>::PrintTree(Node *parentNode, const string& prefix) const
     {
         bool printStrand = (hasLeft && hasRight && (parentNode -> right -> right != nullptr || parentNode -> right -> left != nullptr));
         string newPrefix = prefix + (printStrand ? "│   " : "    ");
+        cout << parentNode -> right -> value << endl;
+        PrintTree(parentNode -> right, newPrefix);
+    }
+
+    if(hasLeft)
+    {
+        cout << (hasRight ? prefix : "") << "└── " << parentNode -> left -> value << endl;
+        PrintTree(parentNode -> left, prefix + "    ");
+    }
+}
+
+template <typename Type>
+void AvlTree<Type>::PrintTreeWindows(Node *parentNode, const string& prefix) const
+{
+    bool hasLeft = (parentNode -> left != nullptr);
+    bool hasRight = (parentNode -> right != nullptr);
+
+    if (!hasLeft && !hasRight) return;
+
+    cout << prefix;
+    cout << ((hasLeft  && hasRight) ? string(1, (char)195) + string(2, (char)196) + " " : "");
+    cout << ((!hasLeft && hasRight) ? string(1, (char)192) + string(2, (char)196) + " " : "");
+
+    if(hasRight)
+    {
+        bool printStrand = (hasLeft && hasRight && (parentNode -> right -> right != nullptr || parentNode -> right -> left != nullptr));
+        string newPrefix = prefix + (printStrand ? string(1, (char)179) + "   " : "    ");
         cout << parentNode -> right -> value << endl;
         PrintTree(parentNode -> right, newPrefix);
     }
