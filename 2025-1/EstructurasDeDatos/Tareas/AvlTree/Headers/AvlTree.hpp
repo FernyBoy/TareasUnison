@@ -220,6 +220,12 @@ private:
     * @param parentNode Nodo raíz del subárbol
     */
     void PrintDescendent(Node *parentNode) const;
+
+    /**
+    * @brief Imprime un subárbol por niveles
+    * @param parentNode Nodo raíz del subárbol
+    */
+    void PrintByLevels(Node *parentNode) const;
     
     /**
     * @brief Imprime un subárbol en formato de árbol visual

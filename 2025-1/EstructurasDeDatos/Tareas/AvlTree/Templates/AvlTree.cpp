@@ -122,7 +122,14 @@ void AvlTree<Type>::PrintDescendent() const
 template <typename Type>
 void AvlTree<Type>::PrintByLevels() const
 {
-    if (_root == nullptr) return;
+    PrintByLevels(_root);
+
+
+
+
+
+
+    /*if (_root == nullptr) return;
 
     Queue<Node*> queue;
     queue.Enqueue(_root);
@@ -136,7 +143,7 @@ void AvlTree<Type>::PrintByLevels() const
 
         if(currentNode -> left != nullptr) queue.Enqueue(currentNode -> left);
         if (currentNode -> right != nullptr) queue.Enqueue(currentNode -> right);
-    }
+    }*/
 }
 
 template <typename Type>
@@ -293,6 +300,36 @@ void AvlTree<Type>::PrintDescendent(Node *parentNode) const
         PrintDescendent(parentNode -> right);
         cout << parentNode -> value << ", ";
         PrintDescendent(parentNode -> left);
+    }
+}
+
+template <typename Type>
+void AvlTree<Type>::PrintByLevels(Node *parentNode) const
+{
+    if(parentNode == nullptr) return;
+
+    Queue<Node*> q;
+    q.Enqueue(parentNode);
+
+    unsigned level = 1;
+    while(!q.IsEmpty())
+    {
+        unsigned levelNodes = q.QueueSize();
+        cout << "\nNivel " << level << ": ";
+
+        for(unsigned i = 0; i < levelNodes; ++i)
+        {
+            Node* currentNode = q.Front();
+            q.Dequeue();
+
+            cout << currentNode -> value;
+            if(i < levelNodes - 1) cout << ", ";
+
+            if(currentNode -> left) q.Enqueue(currentNode -> left);
+            if(currentNode -> right) q.Enqueue(currentNode -> right);
+        }
+
+        ++level;
     }
 }
 
