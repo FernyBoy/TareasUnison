@@ -15,6 +15,7 @@ using std::cout;
 using std::cin;
 using std::endl;
 using std::string;
+using std::swap;
 
 template <typename Type>
 class Heap
@@ -53,14 +54,16 @@ class Heap
 
     private:
         // --- Atributos
-        unsigned    _capacity;
-        int         _size;
+        unsigned    _capacity = 0;
+        int         _size = -1;
         Type*       _elements;
 
         // --- Métodos privados
+        void    PrintTreeLinux(unsigned parentIndex, const string& prefix)  const;
+        void    PrintTreeWindows(unsigned parentIndex, const string& prefix) const;
         void    Resize();
-        void    MoveUp();
-        void    MoveDown();
+        void    MoveUp(unsigned currentIndex);
+        void    MoveDown(unsigned currentIndex);
 };
 
 #include "../Templates/Heap.tpp"

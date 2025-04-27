@@ -15,7 +15,7 @@ WIN_CXX = x86_64-w64-mingw32-g++
 WIN_CXXFLAGS =-static -std=c++17 -Wall -Wextra
 
 # Default Target (Compila para Linux y Windows)
-all: clean $(ObjectsDirectory) cpp-to-tpp main main.exe
+all: clean $(ObjectsDirectory) cpp-to-tpp main
 
 # Rule to create the build directory
 $(ObjectsDirectory):
