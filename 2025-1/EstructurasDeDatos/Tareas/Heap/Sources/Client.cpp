@@ -72,7 +72,7 @@ void Client::MainMenuTemplate()
     cout << "\n6.   Conocer el n\243mero de elementos";
     cout << "\n7.   Conocer la capacidad actual";
 
-    cout << "\n\n8. Salir\n";
+    cout << "\n\n8.     Salir\n";
 }
 
 // --------------------------

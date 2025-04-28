@@ -34,27 +34,21 @@ class Client
 
         // --- Métodos privados ---
         // - Templates
-        static void MainMenuTemplate();
+        static void     MainMenuTemplate();
 
         // - Seleccion de opciones
-        static void MainMenu();
+        static void     MainMenu();
     
         static unsigned GetOption(unsigned start, unsigned end);
         
-        static void PrintSelectedHeap();
-        static void PrintDivision();
+        static void     PrintSelectedHeap();
+        static void     PrintDivision();
 
-        static void InvalidAnswer();
-        static void PressEnter();
-        /**
-         *  \brief Limpia la pantalla de la consola.
-         */
-        static void ClearScreen();
+        static void     PressEnter();
 
-        /**
-         *  \brief Hace una pausa al final de la ejecución para que no se cierre la termina.
-         */
-        static void SystemPause();
+        static void     ClearScreen();
+
+        static void     SystemPause();
 };
 
 #endif // CLIENT_HPP_INCLUDED

@@ -167,10 +167,10 @@ void Heap<Type, Order>::Print() const
 {
     if(_size == -1) return;
     
-    cout << _elements[0] << endl;
     #ifdef _WIN32
-        PrintTreeWindows(0, ""); // Comando para Windows
+        cout << ""; // Comando para Windows
     #else
+        cout << _elements[0] << endl;
         PrintTreeLinux(0, "");  // Comando para Linux/macOS
     #endif
     cout << endl;
@@ -235,7 +235,6 @@ void Heap<Type, Order>::PrintTreeWindows(unsigned parentIndex, const string& pre
 
     if(hasRight)
     {
-        // bool printStrand = (hasLeft && hasRight && (parentNode -> right -> right != nullptr || parentNode -> right -> left != nullptr));
         bool printStrand = (hasLeft && hasRight && ((int)((parentIndex * 2 + 2) * 2 + 2) <= _size || (int)((parentIndex * 2 + 2) * 2 + 1) <= _size));
         string newPrefix = prefix + (printStrand ? string(1, (char)179) + "   " : "    ");
         cout << _elements[parentIndex * 2 + 2] << endl;
