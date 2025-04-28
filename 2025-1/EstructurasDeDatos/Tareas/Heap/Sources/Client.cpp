@@ -9,6 +9,9 @@
 #include <cctype>
 #include <cstdlib>
 
+Heap<int, min> Client::minHeap;
+Heap<int, max> Client::maxHeap;
+
 bool Client::selectedHeap = false;
 
 
@@ -69,7 +72,7 @@ void Client::MainMenuTemplate()
     cout << "\n6.   Conocer el n\243mero de elementos";
     cout << "\n7.   Conocer la capacidad actual";
 
-    cout << "\n\n 8. Salir";
+    cout << "\n\n8. Salir\n";
 }
 
 // --------------------------
@@ -78,22 +81,27 @@ void Client::MainMenuTemplate()
 void Client::MainMenu()
 {
     unsigned opt = 0;
-    int value = 0;
+
+    cout << "\n0. Utilizar Heap m\241nimo";
+    cout << "\n1. Utilizar Heap m\240ximo";
+
+    selectedHeap = GetOption(0, 1);
 
     while(opt != 8)
     {
         ClearScreen();
         MainMenuTemplate();
-        opt = GetOption(1, 7);
+        opt = GetOption(1, 8);
         int value;
         
         try{
             switch(opt)
             {
                 case 1: // Agregar elemento
-                    cout << "Ingresa el valor que deseas agregar\n - ";
+                    PrintDivision();
+                    cout << "\n\nIngresa el valor que deseas agregar\n - ";
                     value = CapturaSegura<>().LongitudSegura();
-                    selectedHeap ? maxHeap.Add(value) : minHeap.Add(value);
+                    selectedHeap ? maxHeap.Insert(value) : minHeap.Insert(value);
                     break;
 
                 case 2: // Eliminar elemento
@@ -108,19 +116,24 @@ void Client::MainMenu()
 
                 case 4: // Saber si está vacío
                     ClearScreen();
-                    if()
+                    cout << "Heap " << (selectedHeap ? (maxHeap.Empty() ? "vac\241o" : "no vac\241o") : (minHeap.Empty() ? "vac\241o" : "no vac\241o"));
+                    PressEnter();
                     break;
 
                 case 5: // Vaciar
-                
+                    selectedHeap ? maxHeap.Clear() : minHeap.Clear();
                     break;
 
                 case 6: // Número de elementos
-                    
+                    ClearScreen();
+                    cout << "N\243mero de elementos: " << (selectedHeap ? maxHeap.Size() : minHeap.Size());
+                    PressEnter();
                     break;
 
                 case 7: // Capacidad actual
-
+                    ClearScreen();
+                    cout << "Capacidad actual: " << (selectedHeap ? maxHeap.Capacity() : minHeap.Capacity());
+                    PressEnter();
                     break;
             }
         }catch(const char *err){
@@ -166,7 +179,7 @@ void Client::PrintDivision()
 
 void Client::PrintSelectedHeap()
 {
-    cout << (selectedHeap ? maxHeap : minHeap);
+    selectedHeap ? maxHeap.Print() : minHeap.Print();
 
     PrintDivision();
 }

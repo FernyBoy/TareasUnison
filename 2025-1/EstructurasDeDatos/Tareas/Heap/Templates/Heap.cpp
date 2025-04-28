@@ -38,13 +38,7 @@ Heap<Type, Order>::Heap() : _capacity(0) , _size(-1) {}
 template <typename Type, bool(*Order)(const Type &, const Type &)>
 Heap<Type, Order>::Heap(const Heap &h)
 {
-    _capacity = h._capacity;
-    _size = h._size;
-
-    for(int i = 0; i < _size; ++i)
-    {
-        _elements[i] = h._elements[i];
-    }
+    *this = h;
 }
 
 template <typename Type, bool(*Order)(const Type &, const Type &)>
@@ -121,6 +115,8 @@ void Heap<Type, Order>::Remove()
 template <typename Type, bool(*Order)(const Type &, const Type &)>
 void Heap<Type, Order>::Clear()
 {
+    if(_size == -1) return;
+
     delete[] _elements;
     _capacity = 0;
     _size = -1;
@@ -157,7 +153,7 @@ unsigned Heap<Type, Order>::Size() const
 }
 
 template <typename Type, bool(*Order)(const Type &, const Type &)>
-unsigned Heap<Type, Order>::MaxCapacity() const
+unsigned Heap<Type, Order>::Capacity() const
 {
     return _capacity;
 }

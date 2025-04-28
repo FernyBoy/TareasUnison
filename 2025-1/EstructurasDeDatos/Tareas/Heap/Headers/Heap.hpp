@@ -49,7 +49,7 @@ class Heap
         Type        Top();
         bool        Empty();
         unsigned    Size()          const;
-        unsigned    MaxCapacity()   const;
+        unsigned    Capacity()   const;
 
         // - Funciones de impresión
         void        Print()         const;

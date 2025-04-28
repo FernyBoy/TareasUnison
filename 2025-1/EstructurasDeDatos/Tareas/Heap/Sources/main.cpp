@@ -7,7 +7,7 @@
 
 #include <iostream>
 #include <cmath>
-#include "../Headers/Heap.hpp"
+#include "../Headers/Client.hpp"
 #include "../Headers/CapturaSegura.hpp"
 
 using std::cout;
@@ -18,22 +18,7 @@ using std::endl;
 int main()
 {
     try{
-        Heap<int> heap;
-
-        for(int i = 0; i < 20; ++i)
-        {
-            heap.Insert(pow(-1, i) * (i + 1));
-        }
-
-        int answer = 1;
-        while(answer != 0)
-        {
-            system("clear");
-            cout << heap;
-            cout << "\n - ";
-            cin >> answer;
-            heap.Remove();
-        }
+        Client().RunService();
 
     }catch(const char *e){
         cerr << "Error:" << e << endl;

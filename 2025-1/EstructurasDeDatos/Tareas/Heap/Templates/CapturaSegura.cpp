@@ -24,7 +24,7 @@ T CapturaSegura<N, T>::TextoSeguro()
     {
         cin.clear();
         cin.ignore(std::numeric_limits<int>::max(), '\n');
-        cout << "Ingresa una respuesta válida.\n • ";
+        cout << "Ingresa una respuesta válida.\n - ";
         cin >> text;
     }
 
@@ -43,7 +43,7 @@ T CapturaSegura<N, T>::TextoMinimo(unsigned min)
     {
         cin.clear();
         cin.ignore(std::numeric_limits<int>::max(), '\n');
-        cout << "El texto ingresado debe tener mínimo " << min << " caracteres.\n • ";
+        cout << "El texto ingresado debe tener mínimo " << min << " caracteres.\n - ";
         cin >> text;
     }
 
@@ -62,7 +62,7 @@ T CapturaSegura<N, T>::TextoMaximo(unsigned max)
     {
         cin.clear();
         cin.ignore(std::numeric_limits<int>::max(), '\n');
-        cout << "El texto ingresado debe tener máximo " << max << " caracteres.\n • ";
+        cout << "El texto ingresado debe tener máximo " << max << " caracteres.\n - ";
         cin >> text;
     }
 
@@ -84,11 +84,11 @@ T CapturaSegura<N, T>::TextoCerrado(unsigned min, unsigned max)
         
         if(text.size() < min)
         {
-            cout << "El texto ingresado debe tener mínimo " << min << " caracteres.\n • ";
+            cout << "El texto ingresado debe tener mínimo " << min << " caracteres.\n - ";
         }
         else if(text.size() > max)
         {
-            cout << "El texto ingresado debe tener máximo " << max << " caracteres.\n • ";
+            cout << "El texto ingresado debe tener máximo " << max << " caracteres.\n - ";
         }
         
         cin >> text;
@@ -120,7 +120,7 @@ T CapturaSegura<N, T>::CaracteresPermitidos(const char caracteres[], unsigned in
 
         if(!valid)
         {
-            cout << "\nIngresa de nuevo tu respuesta\n • ";
+            cout << "\nIngresa de nuevo tu respuesta\n - ";
             cin >> text;
         }
         else
@@ -155,7 +155,7 @@ T CapturaSegura<N, T>::CaracteresPermitidos(const std::vector<char> caracteres)
 
         if (!valid)
         {
-            cout << "\nIngresa de nuevo tu respuesta\n • ";
+            cout << "\nIngresa de nuevo tu respuesta\n - ";
             cin >> text;
         }
         else
@@ -190,7 +190,7 @@ T CapturaSegura<N, T>::CaracteresExcluidos(const char caracteres[], unsigned int
 
         if(!valid)
         {
-            cout << "\nIngresa de nuevo tu respuesta\n • ";
+            cout << "\nIngresa de nuevo tu respuesta\n - ";
             cin >> text;
         }
         else
@@ -225,7 +225,7 @@ T CapturaSegura<N, T>::CaracteresExcluidos(const std::vector<char> caracteres)
 
         if (!valid)
         {
-            cout << "\nIngresa de nuevo tu respuesta\n • ";
+            cout << "\nIngresa de nuevo tu respuesta\n - ";
             cin >> text;
         }
         else
@@ -257,7 +257,7 @@ T CapturaSegura<N, T>::TextoPermitido(const std::string palabras[], unsigned int
 
         if(!valid)
         {
-            cout << "\nIngresa de nuevo tu respuesta\n • ";
+            cout << "\nIngresa de nuevo tu respuesta\n - ";
             cin >> text;
         }
         else
@@ -289,7 +289,7 @@ T CapturaSegura<N, T>::TextoPermitido(const std::vector<std::string> palabras)
 
         if (!valid)
         {
-            cout << "\nIngresa de nuevo tu respuesta\n • ";
+            cout << "\nIngresa de nuevo tu respuesta\n - ";
             cin >> text;
         }
         else
@@ -321,7 +321,7 @@ T CapturaSegura<N, T>::TextoExcluido(const std::string palabras[], unsigned int 
 
         if(!valid)
         {
-            cout << "\nIngresa de nuevo tu respuesta\n • ";
+            cout << "\nIngresa de nuevo tu respuesta\n - ";
             cin >> text;
         }
         else
@@ -353,7 +353,7 @@ T CapturaSegura<N, T>::TextoExcluido(const std::vector<std::string> palabras)
 
         if (!valid)
         {
-            cout << "\nIngresa de nuevo tu respuesta\n • ";
+            cout << "\nIngresa de nuevo tu respuesta\n - ";
             cin >> text;
         }
         else
@@ -381,7 +381,7 @@ N CapturaSegura<N, T>::LongitudSegura()
     {
         cin.clear();
         cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        cout << "Ingresa una respuesta válida.\n • ";
+        cout << "Ingresa una respuesta válida.\n - ";
         cin >> num;
     }
 
@@ -404,7 +404,7 @@ N CapturaSegura<N, T>::LongitudPositiva()
         if(num < 1)
         {
             cout << "\nLa respuesta debe ser mayor a 0.";
-            cout << "\nIngresa de nuevo tu respuesta.\n • ";
+            cout << "\nIngresa de nuevo tu respuesta.\n - ";
         }
         
         cin >> num;
@@ -429,7 +429,7 @@ N CapturaSegura<N, T>::LongitudMinima(N min)
         if(num < min)
         {
             cout << "\nLa respuesta no puede ser menor a " << min << ".";
-            cout << "\nIngresa de nuevo tu respuesta.\n • ";
+            cout << "\nIngresa de nuevo tu respuesta.\n - ";
         }
         
         cin >> num;
@@ -454,7 +454,7 @@ N CapturaSegura<N, T>::LongitudMaxima(N max)
         if(num > max)
         {
             cout << "\nLa respuesta no puede ser mayor a " << max << ".";
-            cout << "\nIngresa de nuevo tu respuesta.\n • ";
+            cout << "\nIngresa de nuevo tu respuesta.\n - ";
         }
         
         cin >> num;
@@ -467,7 +467,7 @@ N CapturaSegura<N, T>::LongitudMaxima(N max)
 template <typename N, typename T>
 N CapturaSegura<N, T>::LongitudCerrada(N min, N max)
 {
-    int num;
+    N num;
     cin >> num;
 
     // Reintentar si la longitud no está dentro del rango permitido
@@ -485,7 +485,7 @@ N CapturaSegura<N, T>::LongitudCerrada(N min, N max)
             cout << "\nLa respuesta debe ser menor o igual a " << max << ".";
         }
 
-        cout << "\nIngresa de nuevo tu respuesta.\n • ";
+        cout << "\nIngresa de nuevo tu respuesta.\n - ";
         cin >> num;
     }
 
