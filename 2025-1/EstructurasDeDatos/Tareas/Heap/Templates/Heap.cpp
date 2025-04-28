@@ -15,16 +15,28 @@
 
 
 
+template <typename T>
+bool min(const T &a, const T &b) { return a <= b; }
+
+template <typename T>
+bool max(const T &a, const T &b) { return a >= b; }
+
+
+
+// ----------------------------------------------------------------------------------------
+
+
+
 // --------------------------------------------
 //
 // ----- Constructores ------------------------
 //
 // --------------------------------------------
-template <typename Type>
-Heap<Type>::Heap() {}
+template <typename Type, bool(*Order)(const Type &, const Type &)>
+Heap<Type, Order>::Heap() : _capacity(0) , _size(-1) {}
 
-template <typename Type>
-Heap<Type>::Heap(const Heap &h)
+template <typename Type, bool(*Order)(const Type &, const Type &)>
+Heap<Type, Order>::Heap(const Heap &h)
 {
     _capacity = h._capacity;
     _size = h._size;
@@ -35,8 +47,8 @@ Heap<Type>::Heap(const Heap &h)
     }
 }
 
-template <typename Type>
-Heap<Type> & Heap<Type>::operator=(const Heap<Type> &h)
+template <typename Type, bool(*Order)(const Type &, const Type &)>
+Heap<Type, Order> & Heap<Type, Order>::operator=(const Heap<Type, Order> &h)
 {
     if(this == &h) return *this;
 
@@ -57,8 +69,8 @@ Heap<Type> & Heap<Type>::operator=(const Heap<Type> &h)
 // ----------------------
 // ----- Destructor -----
 // ----------------------
-template <typename Type>
-Heap<Type>::~Heap()
+template <typename Type, bool(*Order)(const Type &, const Type &)>
+Heap<Type, Order>::~Heap()
 {
     delete [] _elements;
 }
@@ -77,8 +89,8 @@ Heap<Type>::~Heap()
 // -------------------------------------
 // ----- Funciones de modificación -----
 // -------------------------------------
-template <typename Type>
-void Heap<Type>::Insert(Type value)
+template <typename Type, bool(*Order)(const Type &, const Type &)>
+void Heap<Type, Order>::Insert(Type value)
 {
     if(_size + 1 == (int)_capacity) Resize();
 
@@ -89,8 +101,8 @@ void Heap<Type>::Insert(Type value)
     ++_size;
 }
 
-template <typename Type>
-void Heap<Type>::Remove()
+template <typename Type, bool(*Order)(const Type &, const Type &)>
+void Heap<Type, Order>::Remove()
 {
     if(_size == -1) return;
     else if(_size == 0) 
@@ -106,8 +118,8 @@ void Heap<Type>::Remove()
     }
 }
 
-template <typename Type>
-void Heap<Type>::Clear()
+template <typename Type, bool(*Order)(const Type &, const Type &)>
+void Heap<Type, Order>::Clear()
 {
     delete[] _elements;
     _capacity = 0;
@@ -117,8 +129,8 @@ void Heap<Type>::Clear()
 // ---------------------------------
 // ----- Funcines de obtención -----
 // ---------------------------------
-template <typename Type>
-Type Heap<Type>::Top()
+template <typename Type, bool(*Order)(const Type &, const Type &)>
+Type Heap<Type, Order>::Top()
 {
     if(_size == -1)
     {
@@ -132,20 +144,20 @@ Type Heap<Type>::Top()
     return _elements[0];
 }
 
-template <typename Type>
-bool Heap<Type>::Empty()
+template <typename Type, bool(*Order)(const Type &, const Type &)>
+bool Heap<Type, Order>::Empty()
 {
     return _size == -1;
 }
 
-template <typename Type>
-unsigned Heap<Type>::Size() const
+template <typename Type, bool(*Order)(const Type &, const Type &)>
+unsigned Heap<Type, Order>::Size() const
 {
     return (unsigned)(_size + 1);
 }
 
-template <typename Type>
-unsigned Heap<Type>::MaxCapacity() const
+template <typename Type, bool(*Order)(const Type &, const Type &)>
+unsigned Heap<Type, Order>::MaxCapacity() const
 {
     return _capacity;
 }
@@ -154,8 +166,8 @@ unsigned Heap<Type>::MaxCapacity() const
 // ---------------------------------
 // ----- Funcines de impresión -----
 // ---------------------------------
-template <typename Type>
-void Heap<Type>::Print() const
+template <typename Type, bool(*Order)(const Type &, const Type &)>
+void Heap<Type, Order>::Print() const
 {
     if(_size == -1) return;
     
@@ -186,8 +198,8 @@ void Heap<Type>::Print() const
 // ----- Métodos privados ---------------------
 //
 // --------------------------------------------
-template <typename Type>
-void Heap<Type>::PrintTreeLinux(unsigned parentIndex, const string& prefix) const
+template <typename Type, bool(*Order)(const Type &, const Type &)>
+void Heap<Type, Order>::PrintTreeLinux(unsigned parentIndex, const string& prefix) const
 {
     bool hasLeft = ((int)(parentIndex * 2 + 1) <= _size);
     bool hasRight = ((int)(parentIndex * 2 + 2) <= _size);
@@ -213,8 +225,8 @@ void Heap<Type>::PrintTreeLinux(unsigned parentIndex, const string& prefix) cons
     }
 }
 
-template <typename Type>
-void Heap<Type>::PrintTreeWindows(unsigned parentIndex, const string& prefix) const
+template <typename Type, bool(*Order)(const Type &, const Type &)>
+void Heap<Type, Order>::PrintTreeWindows(unsigned parentIndex, const string& prefix) const
 {
     bool hasLeft = ((int)(parentIndex * 2 + 1) <= _size);
     bool hasRight = ((int)(parentIndex * 2 + 2) <= _size);
@@ -241,8 +253,8 @@ void Heap<Type>::PrintTreeWindows(unsigned parentIndex, const string& prefix) co
     }
 }
 
-template <typename Type>
-void Heap<Type>::Resize()
+template <typename Type, bool(*Order)(const Type &, const Type &)>
+void Heap<Type, Order>::Resize()
 {
     if (_capacity == 0) 
     {
@@ -265,14 +277,14 @@ void Heap<Type>::Resize()
     _capacity = newSize;
 }
 
-template <typename Type>
-void Heap<Type>::MoveUp(unsigned currentIndex)
+template <typename Type, bool(*Order)(const Type &, const Type &)>
+void Heap<Type, Order>::MoveUp(unsigned currentIndex)
 {
     while (currentIndex > 0)
     {
         unsigned parentIndex = (currentIndex - 1) / 2;
 
-        if (_elements[currentIndex] > _elements[parentIndex])
+        if (Order(_elements[currentIndex], _elements[parentIndex]))
         {
             swap(_elements[currentIndex], _elements[parentIndex]);
             currentIndex = parentIndex;
@@ -281,29 +293,29 @@ void Heap<Type>::MoveUp(unsigned currentIndex)
     }
 }
 
-template <typename Type>
-void Heap<Type>::MoveDown(unsigned currentIndex)
+template <typename Type, bool(*Order)(const Type &, const Type &)>
+void Heap<Type, Order>::MoveDown(unsigned currentIndex)
 {
     while((int)currentIndex < _size)
     {
         unsigned leftIndex = currentIndex * 2 + 1;
         unsigned rightIndex = currentIndex * 2 + 2;
-        unsigned smallest = currentIndex;
+        unsigned selected = currentIndex;
 
-        if ((int)leftIndex < _size && _elements[leftIndex] > _elements[smallest])
+        if ((int)leftIndex < _size && Order(_elements[leftIndex], _elements[selected]))
         {
-            smallest = leftIndex;
+            selected = leftIndex;
         }
 
-        if ((int)rightIndex < _size && _elements[rightIndex] > _elements[smallest])
+        if ((int)rightIndex < _size && Order(_elements[rightIndex], _elements[selected]))
         {
-            smallest = rightIndex;
+            selected = rightIndex;
         }
 
-        if (smallest == currentIndex) break;
+        if (selected == currentIndex) break;
 
-        swap(_elements[currentIndex], _elements[smallest]);
-        currentIndex = smallest;
+        swap(_elements[currentIndex], _elements[selected]);
+        currentIndex = selected;
     }
 }
 
@@ -318,21 +330,10 @@ void Heap<Type>::MoveDown(unsigned currentIndex)
 // ----- Métodos externos ---------------------
 //
 //---------------------------------------------
-/* 
-template <typename Type>
-std::ostream & operator<<(std::ostream &output, Heap<Type> &h)
+template <typename Type, bool(*Order)(const Type &, const Type &)>
+std::ostream & operator<<(std::ostream &output, Heap<Type, Order> &h)
 {
-    
+    h.Print();   
 
     return output;
 }
-
-
-template <typename Type>
-std::istream & operator>>(std::istream &input, Heap<Type> &h)
-{
-    
-
-    return input;
-}
-*/

@@ -29,7 +29,7 @@ int main()
         while(answer != 0)
         {
             system("clear");
-            heap.Print();
+            cout << heap;
             cout << "\n - ";
             cin >> answer;
             heap.Remove();

@@ -17,14 +17,18 @@ using std::endl;
 using std::string;
 using std::swap;
 
-template <typename Type>
+template <typename T>
+bool min(const T &a, const T &b);
+
+template <typename T>
+bool max(const T &a, const T &b);
+
+template <typename Type, bool(*Order)(const Type &, const Type &) = min>
 class Heap
 {
     // --- Métodos externos
     template <typename T>
     friend std::ostream& operator<<(std::ostream& output, const Heap<T> &h);
-    template <typename T>
-    friend std::istream& operator>>(std::istream& input, Heap<T> &h);
 
     public:
         // --- Constructores
@@ -54,8 +58,8 @@ class Heap
 
     private:
         // --- Atributos
-        unsigned    _capacity = 0;
-        int         _size = -1;
+        unsigned    _capacity;
+        int         _size;
         Type*       _elements;
 
         // --- Métodos privados
