@@ -16,35 +16,73 @@ using std::cin;
 using std::endl;
 using std::string;
 
-template <typename Type>
+template <typename Type, unsigned Degree = 5>
 class BTree
 {
-    // --- Métodos externos
-    template <typename T>
-    friend std::ostream& operator<<(std::ostream& output, const BTree<T> &bt);
-    template <typename T>
-    friend std::istream& operator>>(std::istream& input, BTree<T> &bt);
-
     public:
         // --- Constructores
-        explicit BTree();
+        BTree();
         BTree(const BTree &bt);
         BTree & operator=(const BTree &bt);
 
         // --- Destructor
         ~BTree();
 
-        // --- Métodos públicos
+        // ----- Métodos públicos -----
+        // - Métodos de inserción
+        void    Insert(Type value);
+        void    Remove(Type value);
+        void    Clear();
 
+        // - Métodos de obtención
+        bool        IsEmpty()               const;
+        unsigned    Size()                  const;
+        bool        Contains(Type value)    const;
+
+        // - Métodos de impresión
+        void    PrintAscendant()    const;
+        void    PrintDescenant()    const;
+        void    PrintLevels()       const;
+        void    PrintTree()         const;
 
     private:
         // --- Atributos
+        struct Node 
+        {
+            Node(*parentNode) {};
 
+            ~Node() {};
+        };
 
-        // --- Métodos privados
+        Node        *_root;
+        unsigned    _nodes;
 
+        // ----- Métodos privados -----
+        // - Métodos de inserción
+        void    Insert(Type value, Node *subRoot);
+        void    Remove(Type value, Node *subRoot);
+        void    Clear(Node *subRoot);
+
+        // - Métodos de modificación
+        void    LendToLeft(Node *subRoot);
+        void    LendToRight(Node *subRoot);
+        void    SplitRoot();
+        void    Split(Node *left, Node *right);
+        void    Merge(Node *& node);
+        void    Redistribute(Node *&subRoot);
+
+        // - Métodos de obtención
+        bool    Contains(Type value, const Node *subRoot)   const;
+        Node*   GetNodeAddress();
+
+        // - Métodos de impresión
+        void    PrintAscendant(Node *parentNode)    const;
+        void    PrintDescendant(Node *parentNode)   const;
+        void    PrintLevels(Node *parentNode)       const;
+        void    PrintTree(Node *parentNode)         const;
 
         // --- Métodos de utilería
+        void    CopyNode(Node *&copy, const Node *source);
 
 };
 
