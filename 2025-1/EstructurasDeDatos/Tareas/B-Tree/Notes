@@ -1,0 +1,86 @@
+-------------------
+----- Arbol B -----
+-------------------
+Interfaz:
+    - Constructor [ BTree ]
+    - Constructor de copias
+    - Operador =
+    - Destructor [ ~BTree ]
+
+Métodos:
+( Funciones de inserción )
+    - Insertar [ Insert ]
+    - Eliminar [ Remove ]
+    - Limpiar [ Clear ]
+
+( Funciones de modificación )
+    - Mover clave a la izquierda [ LendToLeft ]
+    - Mover clzve a la derecha [ LendToRight ]
+    - Dividir el nodo raíz [ SplitRoot ]
+    - Dividir un nodo [ Split ]
+    - Fusionar un nodo [ Merge ]
+    - Encargarse de la correcta distribución de los datos [ Redistribute ]
+    - Copiar un nodo [ CopyNode ]
+
+( Funciones de obtención )
+    - Si está vacío [ IsEmpty ]
+    - Obtener numero de nodos [ Size ]
+    - Buscar [ Contains ]
+    - Obtener la dirección de un nodo [ GetNodeAddress ]
+
+( Funciones de impresión )
+    - Imprimir ascendente [ PrintAscendent ]
+    - Imprimir descendente [ PrintDescendant ]
+    - Imprimir por niveles [ PrintLevels ]
+    - Imprimir árbol
+
+Atributos:
+    - Clase nodo [ Node() ]
+    - Puntero a raiz [ *_root ]
+    - Cantidad de nodos [ _nodes ]
+
+
+
+----------------
+----- Nodo -----
+----------------
+Interfaz:
+    - Constructor [ Node(*parentNode) ]
+    - Destructor [ ~Node ]
+
+Métodos:
+( Funciones de inserción )
+    - Agregar clave [ AddKey ]
+    - Agregar hijo [ AddChild ]
+    - Eliminar clave [ DeleteKey ]
+    - Eliminar hijo [ DeleteChild ]
+    - Vaciar el nodo [ Clear ]
+
+( Funciones de obtención )
+    - Saber si es hoja [ IsLeaf ]
+    - Saber si es el nodo raíz [ IsRoot ]
+    - Obtener el index de una clave [ GetKeyIndex ]
+    - Obtener el index de un hijo [ GetChildIndex ]
+    - Saber si el nodo está lleno [ IsFull ]
+    - Saber si el nodo está sobrecargado [ IsOverloaded ]
+    - Obtener la dirección del hermano izquierdo [ GetLeftSibling ]
+    - Obtener la dirección del hermano derecho [ GetRightSibling ]
+    - Obtener el nodo mas grande [ GetBiggiestChild ]
+
+( Funciones de impresión )
+    - Imprimir el nodo [ PrintNode ]
+
+Atributos:
+    - Número de llaves [ _keys ]
+    - Número de hijos [ _children ]
+    - Capacidad máxima [ _maxCapacity = Degree - 1 ]
+    - Capacidad mínima [ _minCapacity = (Degree - 1) / 2 ]
+    - Puntero al padre [ T *_parent ]
+    - Arreglo de llaves [ T _keys[Degree - 1] ]
+    - Arreglo de hijos [ Node *_children[Degree] ]
+
+Notas: 
+ - Mínimo de hijos [ Ceil(Grado / 2) ]
+ - Mínimo de claves [ (Grado - 1) / 2 ]
+ - Máximo de claves [ Grado ] (Debe guardar un valor antes de hacer el split)
+ - Máximo de hijos [ Grado ]
