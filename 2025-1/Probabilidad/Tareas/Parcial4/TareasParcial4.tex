@@ -1,0 +1,334 @@
+\documentclass[a4paper, 12pt]{article}
+
+% -- Language --
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+
+% ----- Fonts -----
+% -- Fuente --
+\usepackage{fontspec}
+\setmonofont{JetBrainsMono Nerd Font}  
+
+% -- Color --
+\usepackage{xcolor}
+%\definecolor{azul}{RGB}{00,33,99}
+\definecolor{azul}{RGB}{35,72,180}
+
+% -- Page Margin --
+\usepackage[margin=1in]{geometry}
+
+% -- Espaciados --
+\newcommand{\Pspace}{0.5cm}
+\newcommand{\Aspace}{0.2cm}
+
+% -- Imagenes --
+\usepackage{graphicx}
+\usepackage{float}
+
+% -- Matemáticas --
+\usepackage{amsmath, amssymb}
+
+% -- Gráficas --
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% -- Código --
+\usepackage{listings}
+\lstset{
+    language=C++,                   % Lenguaje del código
+    basicstyle=\ttfamily\small,     % Fuente del código
+    keywordstyle=\color{blue},      % Color de palabras clave
+    commentstyle=\color{gray},      % Color de comentarios
+    stringstyle=\color{red},        % Color de cadenas
+    numbers=left,                   % Números de línea a la izquierda
+    numberstyle=\tiny\color{gray},
+    breaklines=true,                % Permitir saltos de línea
+    frame=single                    % Marco alrededor del código
+}
+
+
+\title
+{
+    Probabilidad 2025-1 \\
+    Tareas Parcial 4
+}
+
+    \begin{document}
+
+    \maketitle
+
+    \begin{center}
+        \begin{tabular}{r|l}
+            \textbf{Expediente} & \textbf{Nombre} \\ \hline
+            219208106 & Bórquez Guerrero Angel Fernando \\
+            223203899 & Tostado Cortes Dante Alejanro
+        \end{tabular}
+    \end{center}
+
+    \rule{\linewidth}{0.3mm}
+
+
+
+    % ---------- Tarea 13 ----------
+    \vspace{0.3cm}
+
+    \begin{center}
+        { \LARGE Tarea 13}
+    \end{center}
+
+    \begin{enumerate}
+        % - Problema 1
+        \item Suponga que el tiempo promedio que le toma a una persona cualquiera terminar un videojuego es de 30 horas, con una desviación estándar de 5 horas. Suponiendo una distribución aproximada normal con estos parámetros, determine: \par
+            % Respuestas:
+            \vspace{\Aspace} \par
+            a) La probabilidad de terminar el videojuego en menos de 20 horas.
+            \\ { \color{azul} 
+                $ P[X < 20] $ \par
+                $ Z = \frac{X - \mu}{\sigma} = \frac{20 - 30}{5} = -\frac{10}{5} = -2 $ \par
+                $ P[Z < -2] = 0{.}02275 = 2{.}275\% $
+            }
+
+            \vspace{\Aspace} \par
+            b) La probabilidad de terminar el videojuego en menos de 40 horas.
+            \\ { \color{azul} 
+                $ P[X < 40] $ \par
+                $ Z = \frac{X - \mu}{\sigma} = \frac{40 - 30}{5} = \frac{10}{5} = 2 $ \par
+                $ P[Z < 2] = 0{.}97725 = 97{.}725\% $               
+            }
+
+            \vspace{\Aspace} \par
+            c) La probabilidad de terminar el videojuego entre 20 y 40 horas.
+            \\ { \color{azul} 
+                $ P[20 < \leq X \leq 40] = P[X \leq 40] - P[X \leq 20] $ \par
+                $ P[-2 \leq X \leq 2] = P[Z \leq 2] - P[Z \leq -2] $ \par
+                $ 0{.}97725 - 0{.}02275 = 0{.}9545 = 95{.}45\% $
+            }
+
+            \vspace{\Aspace} \par
+            d) El tiempo que tarda el 0.01\% de las personas que tardan menos en terminar el videojuego.
+            \\ { \color{azul} 
+                $ P[Z \leq z] = 0.00001 $ \par
+                $ Z \approx -3{.}71902 $ \par
+                $ X = Z\sigma + \mu = (-3{.}71902)(5) + 30 = -18{.}595 + 30 = 11{.}405 $
+            }
+    \end{enumerate}
+
+
+
+
+    \newpage
+    % ---------- Tarea 14 ----------
+    \vspace{0.3cm}
+
+    \begin{center}
+        { \LARGE Tarea 14}
+    \end{center}
+
+    \begin{enumerate}
+        % - Problema 1
+        \item Describa con sus propias palabras. \par          
+            % Respuestas:
+            \vspace{\Aspace} \par
+            a) La ley de los grandes números. 
+            \par { \color{azul} Esta ley dice que al tomar una muestra aleatoria de un universo esta tendrá a aestar cerca de la media de ese universo. Esto nos dice que relativamente podemos calcular la media de un universo con pocos datos. }
+
+            \vspace{\Aspace} \par
+            b) El teorema del límite central.
+            \par { \color{azul} Este teorema nos dice que para una muestra cualquiera de una población con $n$ elementos en ella tiene una distribución normal estándar a medida que $n$ tiende al infinito }
+        
+
+        % - Problema 2
+        \item Demuestre que las siguientes funciones son de densidad.
+            % Respuestas:
+            \par a)
+            \[
+                f(x, y) =
+                \begin{cases}
+                    e^{-(x + y)}    &   x , y > 0           \\
+                    0               &   \text{Otro caso}
+                \end{cases}
+            \]
+            \vspace{\Aspace}
+            { \color{azul} 
+                \\ • \( 
+                    \int_{0}^{\infty} \int_{0}^{\infty} e^{-(x + y)}dydx
+                    = \int_{0}^{\infty} \int_{0}^{\infty} e^{-x-y}dydx
+                    = \int_{0}^{\infty} e^{-x} \int_{0}^{\infty} e^{-y}dydx
+                \)
+
+                • \(
+                    \int_{0}^{\infty} e^{-y}dy
+                    = -e^{-y} \Big|_{0}^{\infty}
+                    = \lim_{y \rightarrow \infty} -\frac{1}{e^{y}} - (e^{0})
+                    = 0 - (-1)
+                    = 1
+                \)
+
+                • \(
+                    \int_{0}^{\infty} e^{-x} \int_{0}^{\infty} e^{-y}dydx
+                    = \int_{0}^{\infty} e^{-x}(1)dx
+                    = \int_{0}^{\infty} e^{-x}dx
+                \)
+
+                • \(
+                    \int_{0}^{\infty} e^{-x}dx
+                    = -e^{-x} \Big|_{0}^{\infty}
+                    = \lim_{x \rightarrow \infty} -\frac{1}{e^{x}} - (e^{0})
+                    = 0 - (-1)
+                    = 1
+                \)
+
+                Dado que el resultado de la integral de la función $f(x, y)$ es igual a 1 hemos demostrado que es una función de densidad.
+            }
+
+            \par b)
+            \[
+                f(x, y) =
+                \begin{cases}
+                    3xy(1 - x)      &   0 < x < 1, 0 < y < 2    \\
+                    0               &   \text{Otro caso}
+                \end{cases}
+            \]
+            \vspace{\Aspace}
+            { \color{azul} 
+                \\ • \(
+                    \int_{0}^{1} \int_{0}^{2} 3xy(1 - x)dydx
+                    = \int_{0}^{1} 3x(1 - x) \int_{0}^{2} ydydx
+                \)
+
+                • \(
+                    \int_{0}^{2} ydydx
+                    = \frac{y^{2}}{2} \Big|_{0}^{2} 
+                    = \frac{2^{2}}{2}
+                    = \frac{4}{2}
+                    = 2
+                \)
+
+                • \(
+                    \int_{0}^{1} 3x(1 - x) \int_{0}^{2}ydydx
+                    = \int_{0}^{1} 3x(1 - x)(2)dx
+                    = \int_{0}^{1} 6x-6x^{2}
+                    = 6 \left[ \int_{0}^{1}xdx - \int_{0}^{1}x^{2}dx \right]
+                \)
+
+                • \(
+                    \int_{0}^{1}xdx
+                    = \frac{x^{2}}{2} \Big|_{0}^{1}
+                    = \frac{1^{2}}{2} - \frac{0^{2}}{2} 
+                    = \frac{1}{2}
+                \)
+
+                • \(
+                    \int_{0}^{1}xdx
+                    = \frac{x^{3}}{3} \Big|_{0}^{1}
+                    = \frac{1^{3}}{3} - \frac{0^{3}}{3} 
+                    = \frac{1}{3}
+                \)
+
+                • \(
+                    6 \left[ \frac{1}{2} - \frac{1}{3} \right]
+                    = 6 \left[ \frac{1}{6} \right]
+                    = 1
+                \)
+
+                Dado que el resultado de la integral de la función $f(x, y)$ es igual a 1 hemos demostrado que es una función de densidad.
+
+            }
+    \end{enumerate}
+
+
+
+    \newpage
+    % ---------- Tarea 15 ----------
+    \vspace{0.3cm}
+
+    \begin{center}
+        { \LARGE Tarea 15}
+    \end{center}
+
+    \begin{enumerate}
+        % - Problema 1
+        \item Calcular las funciones de densidades marginales $f_{X}(x)$ y $f_{Y}(y)$
+        \[
+            f(x, y) =
+            \begin{cases}
+                4xy     &   0 < x, y < 1    \\
+                0       &   \text{Otro caso}
+            \end{cases}
+        \]
+            % Respuesta:
+            \vspace{\Aspace}
+            { \color{azul}  }
+        
+
+        % - Problema 2
+        \item Encuentre las funciones de distribución marginales $F_{X}(x)$ y $F_{Y}(y)$
+        \[
+            F(x, y) =
+            \begin{cases}
+                (1 - e^{-x})(1 - e^{-y})    &   x, y > 0    \\
+                0                           &   \text{Otro caso}
+            \end{cases}
+        \]
+            % Respuesta:
+            \vspace{\Aspace}
+            { \color{azul}  }
+    \end{enumerate}
+
+
+
+    \newpage
+    % ---------- Tarea 16 ----------
+    \vspace{0.3cm}
+
+    \begin{center}
+        { \LARGE Tarea 16}
+    \end{center}
+
+    \begin{enumerate}
+        % - Problema 1
+        \item Un equipo de fútbol puede tener uno de los siguientes estados tras cada partido. 
+        \\G: gana el partido, 
+        \\P: pierde el partido. 
+        \\La probabilidad de ganar o perder depende del resultado del partido anterior, de la siguiente manera: \par
+        • Si gana un partido, tiene una probabilidad de 0.7 de ganar el siguiente y 0.3 de perder. \par
+        • Si pierde un partido, tiene una probabilidad de 0.4 de ganar el siguiente y 0.6 de perder.
+            % Respuestas:
+            \vspace{\Aspace} \par
+            a) Escribe la matriz de transición de esta cadena de Markov.
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            b) Si el equipo ganó el primer partido, ¿cuál es la probabilidad de que gane el tercer partido?
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            c) ¿Cuál es la distribución estacionaria?
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            d) ¿Cuál es la distribución de probabilidad después de muchos partidos?
+            \\ { \color{azul}  }
+
+        
+        \newpage
+        % - Problema 2
+    \item Un jugador participa en un juego en el que, en cada turno, gana o pierde 25 pesos con probabilidad $p = 0{.}5$. El capital del jugador puede tomar los valores $\{0, 25, 50, 75\}$, donde si alcanza los 75 pesos, el jugador gana definitivamente y deja de jugar. Si su capital llega a 0, se arruina y también deja de jugar. Mientras tenga 25 o 50 pesos, el juego continúa.
+            % Respuestas:
+            \vspace{\Aspace} \par
+            a) Modele esta situación como una cadena de Markov y escriba su matriz de transición, considerando los estados en el orden 0, 25, 50, 75.
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            b) ¿Cuál es la probabilidad de que el jugador se haya arruinado después de tres juegos si comienza con 25 pesos?
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            c) ¿Existe una distribución estacionaria?
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            d) ¿Existe una distribución límite para esta cadena de Markov?
+            \\ { \color{azul}  }
+    \end{enumerate}
+\end{document}
