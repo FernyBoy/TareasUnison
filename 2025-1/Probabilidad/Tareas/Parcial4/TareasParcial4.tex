@@ -482,11 +482,89 @@
             % Respuestas:
             \vspace{\Aspace} \par
             a) Modele esta situación como una cadena de Markov y escriba su matriz de transición, considerando los estados en el orden 0, 25, 50, 75.
-            \\ { \color{azul}  }
+            \\ { \color{azul} 
+                \[
+                    \begin{array}{ccc}
+                        P
+
+                        =
+
+                        \begin{bmatrix}
+                            1       &   0       &   0       &   0       \\
+                            0{.}5   &   0       &   0{.}5   &   0       \\
+                            0       &   0{.}5   &   0       &   0{.}5   \\
+                            0       &   0       &   0       &   1
+                        \end{bmatrix}
+                    \end{array}
+                \]
+            }
 
             \vspace{\Aspace} \par
             b) ¿Cuál es la probabilidad de que el jugador se haya arruinado después de tres juegos si comienza con 25 pesos?
-            \\ { \color{azul}  }
+            \\ { \color{azul} 
+                • Vector inicial \\
+                \(
+                    \begin{array}{ccc}
+                        v_{1}   
+                        =
+                        \begin{bmatrix}
+                            0   &   1   &   0   &   0
+                        \end{bmatrix}
+                    \end{array}
+                \)
+
+                • Probabilidad del segundo juego \\
+                \(
+                    \begin{array}{cccccc}
+                        v_{2}
+                        
+                        =
+                        
+                        \begin{bmatrix}
+                            0   &   1   &   0   &   0
+                        \end{bmatrix}
+                        
+                        \begin{bmatrix}
+                            1       &   0       &   0       &   0       \\
+                            0{.}5   &   0       &   0{.}5   &   0       \\
+                            0       &   0{.}5   &   0       &   0{.}5   \\
+                            0       &   0       &   0       &   1
+                        \end{bmatrix}
+                        
+                        =
+
+                        \begin{bmatrix}
+                            0{.}5   &   0   & 0{.}5 &   0
+                        \end{bmatrix}
+                    \end{array}
+                \)
+
+                • Probabilidad del tercer juego \\
+                \(
+                    \begin{array}{cccccc}
+                        v_{3}
+
+                        =
+
+                        \begin{bmatrix}
+                            0{.}5   &   0   & 0{.}5 &   0
+                        \end{bmatrix}
+
+                        \begin{bmatrix}
+                            1       &   0       &   0       &   0       \\
+                            0{.}5   &   0       &   0{.}5   &   0       \\
+                            0       &   0{.}5   &   0       &   0{.}5   \\
+                            0       &   0       &   0       &   1
+                        \end{bmatrix}
+
+                        =
+
+                        \begin{bmatrix}
+                            0{.}625  &   0  &   0{.}125 &   0{.}25
+                        \end{bmatrix}
+                    \end{array}
+                \)
+            }
 
             \vspace{\Aspace} \par
             c) ¿Existe una distribución estacionaria?
