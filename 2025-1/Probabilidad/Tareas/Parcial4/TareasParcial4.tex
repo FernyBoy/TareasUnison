@@ -450,8 +450,9 @@
             \vspace{\Aspace} \par
             c) ¿Cuál es la distribución estacionaria?
             \\ { \color{azul} 
+                • Datos iniciales \\
+                $ \pi P = \pi $ \\
                 \(
-                    \\ $ \pi P = \pi $ \\
                     \begin{array}{cccc}
                         \begin{bmatrix}
                             \pi G   &   \pi P
@@ -459,7 +460,7 @@
                     
                         \begin{bmatrix}
                             0{.}7   &   0{.}3   \\
-                            0{.}4   &   0{.}6                       
+                            0{.}4   &   0{.}6
                         \end{bmatrix}
 
                         =
@@ -469,8 +470,47 @@
                         \end{bmatrix}                   
                     \end{array}
                 \)
+                
+
+                • Sistema de ecuaciones \\
+                \(
+                    \begin{cases}
+                        \pi G + \pi P = 1                   \\
+                        0{.}7 \pi G + 0{.}4 \pi P = \pi G   \\
+                        0{.}3 \pi G + 0{.}6 \pi P = \pi P
+                    \end{cases}
+                \)
+
+                \begin{flushleft}
+                    \begin{tabular}{p{5cm} p{5cm} p{5cm}}
+                        \textbf{• Desarrollo} &
+                        \textbf{• Solución para $\pi P$} &
+                        \textbf{• Solución para $\pi G$} \\
+        
+                        $0{.}3 \pi G + 0{.}6 \pi P = \pi P$ &
+                        $\dfrac{4}{3} \pi P + \pi P = 1$ &
+                        $\pi G + \dfrac{3}{7} = 1$ \\
+
+                        $0{.}3 \pi G = \pi P - 0{.}6 \pi P$ &
+                        $\pi P (1 + \dfrac{4}{3}) = 1$ &
+                        $\pi G = 1 - \dfrac{3}{7}$ \\
+
+                        $0{.}3 \pi G = \pi P (1 - 0{.}6)$ &
+                        $\pi P \cdot \dfrac{7}{3} = 1$ &
+                        $\pi G = \dfrac{4}{7}$ \\
+
+                        $0{.}3 \pi G = 0{.}4 \pi P$ &
+                        $\pi P = \dfrac{3}{7}$ &
+                        \\
+
+                        $\pi G = \dfrac{4}{3} \pi P$ &
+                        &
+                        \\
+                    \end{tabular}
+                \end{flushleft}
             }
 
+            \newpage
             \vspace{\Aspace} \par
             d) ¿Cuál es la distribución de probabilidad después de muchos partidos?
             \\ { \color{azul}  }
@@ -568,7 +608,9 @@
 
             \vspace{\Aspace} \par
             c) ¿Existe una distribución estacionaria?
-            \\ { \color{azul}  }
+            \\ { \color{azul} 
+                
+            }
 
             \vspace{\Aspace} \par
             d) ¿Existe una distribución límite para esta cadena de Markov?
