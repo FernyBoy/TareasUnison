@@ -258,7 +258,43 @@
         \]
             % Respuesta:
             \vspace{\Aspace}
-            { \color{azul}  }
+            { \color{azul}  
+                \par • Densidad marginal de $f_{X}(x)$ \\
+                \(
+                    f_{X}(x)
+                    = \int_{0}^{1} 4xydy
+                    = 4x \int_{0}^{1} ydy
+                    = 4x \left[ \frac{y^{2}}{2} \Big|_{0}^{1} \right]
+                    = 4x \left[ \frac{1^{2}}{2} - \frac{0^{2}}{2} \right]
+                    = 4x \left[ \frac{1}{2} \right]
+                    = 2x
+                \)
+                \[
+                    f_{X}(x) =
+                    \begin{cases}
+                        2x  &   0 < x < 1 \\
+                        0   &   \text{Otro caso}
+                    \end{cases}
+                \]
+
+                \par • Densidad marginal de $f_{Y}(y)$ \\
+                \(
+                    f_{Y}(y)
+                    = \int_{0}^{1} 4xydy
+                    = 4y \int_{0}^{1} xdx
+                    = 4y \left[ \frac{x^{2}}{2} \Big|_{0}^{1} \right]
+                    = 4y \left[ \frac{1^{2}}{2} - \frac{0^{2}}{2} \right]
+                    = 4y \left[ \frac{1}{2} \right]
+                    = 2y
+                \)
+                \[
+                    f_{Y}(y) =
+                    \begin{cases}
+                        2y  &   0 < y < 1 \\
+                        0   &   \text{Otro caso}
+                    \end{cases}
+                \]
+            }
         
 
         % - Problema 2
@@ -272,7 +308,41 @@
         \]
             % Respuesta:
             \vspace{\Aspace}
-            { \color{azul}  }
+            { \color{azul} 
+                \par • Distribución marginal de $f_{X}(x)$ \\
+                \(
+                    f_{X}(x)
+                    = \lim_{y \rightarrow \infty} (1 - e^{-x})(1 - \frac{1}{e^{y}})
+                    = (1 - e^{-x})(1 - \frac{1}{e^{\infty}})
+                    = (1 - e^{-x})(1 - 0)
+                    = (1 - e^{-x})(1)
+                    = 1 - e^{-x}
+                \)
+                \[
+                    f_{X}(x) =
+                    \begin{cases}
+                        1 - e^{-x}  &   x > 0       \\
+                        0           &   x \leq 0
+                    \end{cases}
+                \]
+
+                \par • Distribución marginal de $f_{Y}(y)$ \\
+                \(
+                    f_{Y}(y)
+                    = \lim_{x \rightarrow \infty} (1 - \frac{1}{e^{x}})(1 - e^{-y})
+                    = (1 - \frac{1}{e^{\infty}})(1 - e^{-y})
+                    = (1 - 0)(1 - e^{-y})
+                    = (1)(1 - e^{-y})
+                    = 1 - e^{-y}                   
+                \)
+                \[
+                    f_{Y}(y) =
+                    \begin{cases}
+                        1 - e^{-y}  &   y > 0       \\
+                        0           &   y \leq 0
+                    \end{cases}
+                \]
+            }
     \end{enumerate}
 
 
@@ -296,15 +366,108 @@
             % Respuestas:
             \vspace{\Aspace} \par
             a) Escribe la matriz de transición de esta cadena de Markov.
-            \\ { \color{azul}  }
+            \\ { \color{azul} 
+                \[
+                    \begin{array}{ccc}
+                        \begin{bmatrix}
+                            P(G \rightarrow G)  &   P(G \rightarrow P)  \\
+                            P(P \rightarrow G)  &   P(P \rightarrow P)  
+                        \end{bmatrix}
+                    
+                        =
+                    
+                        \begin{bmatrix}
+                            0{.}7   &   0{.}3   \\
+                            0{.}4   &   0{.}6
+                        \end{bmatrix}
+                    \end{array}
+                \]
+            }
 
             \vspace{\Aspace} \par
             b) Si el equipo ganó el primer partido, ¿cuál es la probabilidad de que gane el tercer partido?
-            \\ { \color{azul}  }
+            \\ { \color{azul} 
+                • Vector inicial \\
+                \(
+                    \begin{array}{ccc}
+                        v_{1}   
+                        =
+                        \begin{bmatrix}
+                            1   &   0
+                        \end{bmatrix}
+                    \end{array}
+                \)
+
+                • Probabilidad del segundo partido \\
+                \(
+                    \begin{array}{cccccc}
+                        v_{2}
+                        
+                        =
+                        
+                        \begin{bmatrix}
+                            1   &   0
+                        \end{bmatrix}
+                        
+                        \begin{bmatrix}
+                            0{.}7   &   0{.}3   \\
+                            0{.}4   &   0{.}6
+                        \end{bmatrix}
+                        
+                        =
+
+                        \begin{bmatrix}
+                            0{.}7   &   0{.}3
+                        \end{bmatrix}
+                    \end{array}
+                \)
+
+                • Probabilidad del tercer partido \\
+                \(
+                    \begin{array}{cccccc}
+                        v_{3}
+
+                        =
+
+                        \begin{bmatrix}
+                            0{.}7   &   0{.}3
+                        \end{bmatrix}
+
+                        \begin{bmatrix}
+                            0{.}7   &   0{.}3   \\
+                            0{.}4   &   0{.}6
+                        \end{bmatrix}
+
+                        =
+
+                        \begin{bmatrix}
+                            0{.}61  &   0{.}39
+                        \end{bmatrix}
+                    \end{array}
+                \)
+            }
 
             \vspace{\Aspace} \par
             c) ¿Cuál es la distribución estacionaria?
-            \\ { \color{azul}  }
+            \\ { \color{azul} 
+                $ \pi P = \pi $ \par
+                \begin{array}{cccc}
+                    \begin{bmatrix}
+                        \pi G   &   \pi P
+                    \end{bmatrix}
+                    
+                    \begin{bmatrix}
+                        0{.}7   &   0{.}3   \\
+                        0{.}4   &   0{.}6                       
+                    \end{bmatrix}
+
+                    =
+
+                    \begin{bmatrix}
+                        \pi G   &   \pi P
+                    \end{bmatrix}                   
+                \end{array}
+            }
 
             \vspace{\Aspace} \par
             d) ¿Cuál es la distribución de probabilidad después de muchos partidos?
