@@ -123,27 +123,6 @@ template <typename Type>
 void AvlTree<Type>::PrintByLevels() const
 {
     PrintByLevels(_root);
-
-
-
-
-
-
-    /*if (_root == nullptr) return;
-
-    Queue<Node*> queue;
-    queue.Enqueue(_root);
-
-    while(!queue.IsEmpty()) 
-    {
-        Node* currentNode = queue.Front();
-        queue.Dequeue();
-
-        cout << currentNode -> value << " ";
-
-        if(currentNode -> left != nullptr) queue.Enqueue(currentNode -> left);
-        if (currentNode -> right != nullptr) queue.Enqueue(currentNode -> right);
-    }*/
 }
 
 template <typename Type>
