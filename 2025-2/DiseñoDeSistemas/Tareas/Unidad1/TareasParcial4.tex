@@ -1,0 +1,393 @@
+\documentclass[a4paper, 12pt]{article}
+
+% -- Language --
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+
+% ----- Fonts -----
+% -- Fuente --
+\usepackage{fontspec}
+\setmonofont{JetBrainsMono Nerd Font}  
+
+% -- Color --
+\usepackage{xcolor}
+%\definecolor{azul}{RGB}{00,33,99}
+\definecolor{azul}{RGB}{35,72,180}
+
+% -- Page Margin --
+\usepackage[margin=1in]{geometry}
+
+% -- Espaciados --
+\newcommand{\Pspace}{0.5cm}
+\newcommand{\Aspace}{0.2cm}
+
+% -- Imagenes --
+\usepackage{graphicx}
+\usepackage{float}
+
+% -- Matemáticas --
+\usepackage{amsmath, amssymb}
+
+% -- Gráficas --
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% -- Código --
+\usepackage{listings}
+\lstset{
+    language=C++,                   % Lenguaje del código
+    basicstyle=\ttfamily\small,     % Fuente del código
+    keywordstyle=\color{blue},      % Color de palabras clave
+    commentstyle=\color{gray},      % Color de comentarios
+    stringstyle=\color{red},        % Color de cadenas
+    numbers=left,                   % Números de línea a la izquierda
+    numberstyle=\tiny\color{gray},
+    breaklines=true,                % Permitir saltos de línea
+    frame=single                    % Marco alrededor del código
+}
+
+
+\title
+{
+    Diseño de Sistemas Digitales 2025-2 \\
+    Problemas Unidad 1
+}
+
+    \begin{document}
+
+    \maketitle
+
+    \begin{center}
+        \begin{tabular}{r|l}
+            \textbf{Expediente} & \textbf{Nombre} \\ \hline
+            219208106 & Bórquez Guerrero Angel Fernando \\
+        \end{tabular}
+    \end{center}
+
+    \rule{\linewidth}{0.3mm}
+
+
+
+    \vspace{0.3cm}
+    \begin{enumerate}
+        % - Problema 1
+        \item ¿Cuáles de la siguientes son cantidades analógicas y cuáles digitales? \par
+            % Respuestas:
+            \vspace{\Aspace} \par
+            a) El número de átomos en una muestra de material.
+            \\ { \color{azul} Digital }
+
+            \vspace{\Aspace} \par
+            b) La altitud de una aeronave.
+            \\ { \color{azul} Analógica }
+
+            \vspace{\Aspace} \par
+            c) La presión en la llanta de una bicicleta
+            \\ { \color{azul} Analógica }
+
+            \vspace{\Aspace} \par
+            d) La corriente que pasa a través de una bocina.
+            \\ { \color{azul} Analógica }
+
+            \vspace{\Aspace} \par
+            e) La configuración del temporizador en un horno de microondas.
+            \\ { \color{azul} Digital }
+
+
+        % - Problema 2
+        \item ¿Cuáles de las siguientes cantidades son analógicas y cuáles digitales? \par          
+            % Respuestas:
+            \vspace{\Aspace} \par
+            a) La anchura de una pieza de madera
+            \\ { \color{azul} Analógica }
+
+            \vspace{\Aspace} \par
+            b) La cantidad de tiempo transcurrido antes de que se apague el timbre.
+            \\ { \color{azul} Analógica }
+
+            \vspace{\Aspace} \par
+            c) La hora del día que se muestra en un reloj de cuarzo.
+            \\ { \color{azul} Analógica }
+
+            \vspace{\Aspace} \par
+            d) La altitud por encima del nivel del mar, si se mide desde una escalera.
+            \\ { \color{azul} Analógica }
+
+            \vspace{\Aspace} \par
+            e) La altura por encima del nivel del mar, si se mide desde una rampa.
+            \\ { \color{azul} Analógica }
+       
+
+        % - Problema 3
+        \item ¿Cuál es el máximo número que podemos contar si utilizamos 14 bits?
+            \vspace{\Aspace} \par
+            { \color{azul} $2^{14} - 1 = 16384 - 1 = 16383$ }
+ 
+
+        % - Problema 4
+        \item ¿Cuántos bits se necesitan para contar hasta 511
+            \vspace{\Aspace} \par
+            { \color{azul} $2^{9} -1 = 512 - 1 = 511$, por lo tanto, se necesitan 9 bits. }
+        
+
+        % - Problema 5
+        \item Convierta los siguientes números binarios en decimales.
+            % Respuestas:
+            \vspace{\Aspace} \par
+            a) 10110
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            b) 10010101
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            c) 100100001001
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            d) 01101011
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            e) 11111111
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            f) 01101111
+            \\ { \color{azul}  }
+
+
+        % - Problema 6
+        \item Convierta los siguientes valores decimales en binarios.
+            % Respuestas:
+            \vspace{\Aspace} \par
+            a) 37
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            b) 13
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            c) 189
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            d) 1000
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            e) 77
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            f) 390
+            \\ { \color{azul}  }
+
+
+        \newpage
+        % - Problema 7
+        \item Convierta cada número hexadecimal en su equivalente decimal.
+            % Respuestas:
+            \vspace{\Aspace} \par
+            a) 743
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            b) 36
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            c) 37FD
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            d) 2000
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            e) 165
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            f) ABCD
+            \\ { \color{azul}  }
+
+
+        % - Problema 8
+        \item Convierta cada uno de los siguientes números decimales en hexadecimales.
+            % Respuestas:
+            \vspace{\Aspace} \par
+            a) 59
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            b) 372
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            c) 919
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            d) 1024
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            e) 771
+            \\ { \color{azul}  }
+
+
+        % - Problema 9
+        \item Convierta cada uno de los valores hexadecimales del problema 7 en números binarios.
+            % Respuestas:
+            \vspace{\Aspace} \par
+            a) 743
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            b) 36
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            c) 37FD
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            d) 2000
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            e) 165
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            f) ABCD
+            \\ { \color{azul}  }
+
+
+        % - Problema 10
+        \item Convierta los números binarios del problema 5 en hexadecimales.
+            % Respuestas:
+            \vspace{\Aspace} \par
+            a) 10110
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            b) 10010101
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            c) 100100001001
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            d) 01101011
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            e) 11111111
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            f) 01101111
+            \\ { \color{azul}  }
+
+
+        % - Problema 11
+        \item Codifique los siguientes números decimales en BCD.
+            % Respuestas:
+            \vspace{\Aspace} \par
+            a) 47
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            b) 962
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            c) 187
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            d) 6727
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            e) 13
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            f) 529
+            \\ { \color{azul}  }
+
+
+        % - Problema 12
+        \item ¿Cuántos bits se requieren para representar los números decimales en el intervalo de 0 a 999 si se utiliza:
+            % Respuestas:
+            \vspace{\Aspace} \par
+            a) Codigo binario directo
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            b) Código BCD
+            \\ { \color{azul}  }
+
+ 
+        % - Problema 13
+        \item Los siguientes números están en BCD. Conviéralos en decimales.
+            % Respuestas:
+            \vspace{\Aspace} \par
+            a) 1001 0111 0101 0010
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            b) 0001 1000 0100
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            c) 0110 1001 0101
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            d) 0111 0111 0111 0101
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            e) 0100 1001 0010
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            f) 0101 0101 0101
+            \\ { \color{azul}  }
+
+
+        % - Problema 14
+        \item Responda las preguntas:
+            % Respuestas:
+            \vspace{\Aspace} \par
+            a) ¿Cuántos bits hay en ocho bytes?
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            b) ¿Cuál es el número hexadecimal más grande que puede representarse en cuatro bytes?
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            c) ¿Cuál es el valor decimal codificado en BCD más grande que puede representarse en tres bytes?
+            \\ { \color{azul}  }
+
+
+        % - Problema 15
+        \item Responda las preguntas:
+            % Respuestas:
+            \vspace{\Aspace} \par
+            a) ¿Cuántos nibbles pueden almacenarse en una palabra de 16 bits?
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            b) ¿Cuántos bytes se requieren para formar una palabra de 24 bits?
+            \\ { \color{azul}  }
+    \end{enumerate}
+\end{document}
