@@ -1,0 +1,266 @@
+\documentclass[a4paper, 12pt]{article}
+
+% -- Language --
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+
+% ----- Fonts -----
+% -- Fuente --
+\usepackage{fontspec}
+\setmonofont{JetBrainsMono Nerd Font}  
+
+% -- Color --
+\usepackage{xcolor}
+%\definecolor{azul}{RGB}{00,33,99}
+\definecolor{azul}{RGB}{35,72,180}
+
+% -- Page Margin --
+\usepackage[margin=1in]{geometry}
+
+% -- Espaciados --
+\newcommand{\Pspace}{0.5cm}
+\newcommand{\Aspace}{0.2cm}
+
+% -- Imagenes --
+\usepackage{graphicx}
+\usepackage{float}
+
+% -- Matemáticas --
+\usepackage{amsmath, amssymb}
+
+% -- Gráficas --
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% -- Código --
+\usepackage{listings}
+\lstset{
+    language=C++,                   % Lenguaje del código
+    basicstyle=\ttfamily\small,     % Fuente del código
+    keywordstyle=\color{blue},      % Color de palabras clave
+    commentstyle=\color{gray},      % Color de comentarios
+    stringstyle=\color{red},        % Color de cadenas
+    numbers=left,                   % Números de línea a la izquierda
+    numberstyle=\tiny\color{gray},
+    breaklines=true,                % Permitir saltos de línea
+    frame=single                    % Marco alrededor del código
+}
+
+
+\title
+{
+    Diseño de Sistemas Digitales 2025-2 \\
+    Problemas Unidad 1
+}
+
+    \begin{document}
+
+    \maketitle
+
+    \begin{center}
+        \begin{tabular}{r|l}
+            \textbf{Expediente} & \textbf{Nombre} \\ \hline
+            219208106 & Bórquez Guerrero Angel Fernando \\
+        \end{tabular}
+    \end{center}
+
+    \rule{\linewidth}{0.3mm}
+
+
+
+    \vspace{0.3cm}
+    \begin{enumerate}
+        % - Problema 1
+        \item Escriba la expresión booleana para la salida $X$ en la figura. Determine el valor de $X$ para todas las posibles condiciones de entrada y liste los valores en una tabla de verdad. \par
+        \begin{figure}[!ht]
+            \centering
+            \includegraphics[width=0.5\textwidth]{Circuitos/Figura_1.pdf}
+        \end{figure}
+            % Respuestas:
+            \vspace{\Aspace} \par
+            { \color{azul}  }
+
+
+
+        % - Problema 2
+        \item Repita el proceso del problema anterior para el circuito de la siguiente figura. \par
+        \begin{figure}[!ht]
+            \centering
+            \includegraphics[width=0.5\textwidth]{Circuitos/Figura_2.pdf}
+        \end{figure}
+            % Respuesta:
+            \vspace{\Aspace} \par
+            { \color{azul}  }
+
+
+
+        % - Problema 3
+        \item Para cada una de las siguientes expresiones, construya el circuito lógico correpondiente utilizando compuertas AND y OR e INVERSIONES.
+             % Respuestas:
+            \vspace{\Aspace} \par
+            a) $y = (\bar{M} + \bar{N} + \overline{PQ})$
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            b) $x = \overline{W + P\bar{Q}}$
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            c) $z = MN(P + \bar{N})$
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            d) $x = (A + B)(\bar{A} + \bar{B})$
+            \\ { \color{azul}  }
+
+
+
+        % - Problema 4
+        \item Escriba la expresión para la salida del circuito de la figura y utilícela para detemrina la tabla de verdad completa.
+        \begin{figure}[!ht]
+            \centering
+            \includegraphics[width=0.5\textwidth]{Circuitos/Figura_4.pdf}
+        \end{figure}
+            % Respuesta:
+            \vspace{\Aspace} \par
+            { \color{azul}  }
+        
+
+
+        % - Problema 5
+        \item Completa cada una de las expresiones.
+            % Respuestas:
+            \vspace{\Aspace} \par
+            a) $A + 1 = $
+            { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            b) $A \cdot A = $
+            { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            c) $B \cdot \bar{B} = $
+            { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            d) $C + \bar{C} = $
+            { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            e) $x \cdot 0 = $
+            { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            f) $D \cdot 1 = $
+            { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            g) $D + 0 = $
+            { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            h) $C + C = $
+            { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            i) $G + GF = $
+            { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            j) $y + wy = $
+            { \color{azul}  }
+
+
+
+        % - Problema 6
+        \item Simplifique la siguiente expresión usando los teoremas (13b), (3) y (4):
+        \[ x = (M + N)(M + P)(N + P)\]
+            % Respuesta:
+            \vspace{\Aspace} \par
+            { \color{azul}  }
+
+
+        
+        % - Problema 7
+        \item Simplifique la siguiente expresión utilizando los teoremas (13a), (8) y (6):
+        \[ z = \bar{A}B\bar{C} + AB\bar{C} + B\bar{C}D \]
+            % Respuesta:
+            \vspace{\Aspace} \par
+            { \color{azul}  }
+
+
+
+        % - Problema 8
+        \item Simplifique cada una de las siguientes expresiones usando lso teoremas de DeMorgan.
+            % Respuestas:
+            \vspace{\Aspace} \par
+            a) $\overline{\bar{A} + \bar{B}C}$
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            b) $\overline{A + \bar{B}}$
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            c) $\overline{\bar{A} + \bar{C} + \bar{D}}$
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            d) $\overline{(M + \bar{N})(\bar{M} + N)}$
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            e) $\overline{\overline{AB}CD}$
+            \\ { \color{azul}  }
+
+
+
+        % - Problema 9
+        \item Un jet emplea un sistema para monitorear los valores de revoluciones por minuto (rpm), presión y temperatura de sus motores mediante el uso de motores que operan de la siguiente manera:
+        \begin{itemize}
+            \item Salida del sensor de $RPM = 0$1 solo cuando la velocidad < 4800 rpm.
+            \item Salida del sensor $P = 0$ solo cuando la presión < 220 psi.
+            \item Salida del sensor $T = 0$ solo cuando la temperatura 200$\textdegree F$.
+        \end{itemize}
+        La figura muestra el circuito lógico que controla una luz de advertencia en cabina para ciertas combinaciones de condiciones del motor. Suponga que el nivel ALTO en la salida $W$ activa la luz de advertencia.
+        \begin{figure}[!ht]
+            \centering
+            \includegraphics[width=0.7\textwidth]{Circuitos/Figura_9.pdf}
+        \end{figure}
+            % Respuestas:
+            \vspace{\Aspace} \par
+            a) Determine qué condiciones del motor darán una advertencia al piloto.
+            \\ { \color{azul}  }
+
+            \vspace{\Aspace} \par
+            b) Cambie este circuito por uno que utilice sólo compuertas NAND.
+            \\ { \color{azul}  }
+
+
+
+        % - Problema 10
+        \item Determina las condiciones de entrada necesarias para hacer que la salida en la figura cambie a su estado activo.
+        \begin{figure}[!ht]
+            \centering
+            \includegraphics[width=0.7\textwidth]{Circuitos/Figura_10.pdf}
+        \end{figure}
+            % Respuesta:
+            \vspace{\Aspace} \par
+            { \color{azul}  }
+
+
+
+        % - Problema 11
+        \item La figura muestra una aplicación de compuertas lógicas que simula un interruptor de dos vías, como los que utilizamos en nuestros hogares para encender o apagar una luz desde dos interruptores distintos. Aquí la luz es un LED que estará ENCENDIDO (en conducción) cuando la salida de la compuerta NOR esté en BAJO. Observe que esta salida está etiquetada como LUZ para indicar que es activa en BAJO. Determine las condiciones de entrada necesarias para encender el LED. Después verifique que el circuito opere como un interruptor de dos vías, utilizando los interruptores A y B.
+        \begin{figure}[!ht]
+            \centering
+            \includegraphics[width=0.7\textwidth]{Circuitos/Figura_11.pdf}
+        \end{figure}
+            % Respuestas:
+            \vspace{\Aspace} \par
+            { \color{azul}  }
+
+
+
+    \end{enumerate}
+\end{document}

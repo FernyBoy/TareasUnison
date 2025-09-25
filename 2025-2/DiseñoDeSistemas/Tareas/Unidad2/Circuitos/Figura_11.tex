@@ -1,0 +1,93 @@
+\documentclass{standalone}   % genera solo el dibujo, sin márgenes
+\usepackage{tikz}
+\usepackage{circuitikz}
+
+\begin{document}
+
+\begin{circuitikz}
+\tikzstyle{every node}=[font=\LARGE]
+
+% Bloques de alimentación
+\draw [fill={rgb,255:red,248; green,255; blue,214}] (-12.5,20.75) rectangle (-12,20);
+\draw [fill={rgb,255:red,248; green,255; blue,214}] (-12.5,17.25) rectangle (-12,16.5);
+
+% Puertas NOT de entradas
+\draw (-9,18.5) node[ieeestd not port, anchor=in](port){} (port.out) -- (-7.25,18.5);
+\draw (port.in) -- (-9.25,18.5);
+
+\draw (-9,17) node[ieeestd not port, anchor=in](port){} (port.out) -- (-7.25,17);
+\draw (port.in) -- (-9.25,17);
+
+% Conexiones a puerta AND principal
+\draw (-7.25,17) -- (-6.75,17);
+\draw (-6.75,17) -- (-6.75,17.5);
+\draw (-6.75,17.5) -- (-6.25,17.5);
+\draw (-7.25,18.5) -- (-6.75,18.5);
+\draw (-6.75,18.5) -- (-6.75,18);
+\draw (-6.75,18) -- (-6.25,18);
+
+\draw (-6.25,20.5) -- (-6,20.5);
+\draw (-6.25,20) -- (-6,20);
+\draw (-6,20.5) node[ieeestd and port, anchor=in 1, scale=0.89](port){} (port.out) -- (-4.25,20.25);
+
+% Conexiones a entradas A y B
+\draw (-9.25,17) -- (-11.75,17);
+\node at (-10.5,17) [circ] {};
+\draw (-6.25,20) -- (-10.5,20);
+\draw (-10.5,20) -- (-10.5,17);
+\draw (-6.25,20.5) -- (-11,20.5);
+\draw (-11,20.5) -- (-11,18.5);
+\draw (-11,18.5) -- (-9.25,18.5);
+\node at (-11,20.5) [circ] {};
+\draw (-11,20.5) -- (-11.75,20.5);
+\node at (-11.5,20.5) [circ] {};
+
+% Puerta NOR intermedia
+\draw (-3.25,19.25) -- (-3,19.25);
+\draw (-3.25,18.75) -- (-3,18.75);
+\draw (-3,19.25) node[ieeestd nor port, anchor=in 1, scale=0.89](port){} (port.out) -- (-1.25,19);
+\draw (-3.25,18.75) -- (-3.75,18.75);
+\draw (-3.75,18.75) -- (-3.75,17.75);
+\draw (-3.75,17.75) -- (-4.25,17.75);
+\draw (-3.25,19.25) -- (-3.75,19.25);
+\draw (-3.75,19.25) -- (-3.75,20.25);
+\draw (-3.75,20.25) -- (-4.25,20.25);
+
+% Resistencias y diodo
+\draw [fill={rgb,255:red,248; green,255; blue,214}] (-0.75,20.25) to[D] (-0.75,19);
+\draw (-0.75,20.25) to[R] (-0.75,21.5);
+\node at (-0.75,21.5) [circ] {};
+
+% Conexiones a tierra y alimentación
+\draw (-12.25,20.25) -- (-12.25,20) node[ground]{};
+\draw (-1.25,19) -- (-0.75,19);
+\draw [->, >=Stealth] (-11.75,20.5) -- (-12.25,20.25);
+\node at (-12.25,20.25) [circ] {};
+\draw (-12.25,21) -- (-12.25,20.5);
+\node at (-12.25,20.5) [circ] {};
+\node at (-12.25,21) [circ] {};
+\node at (-11.5,17) [circ] {};
+\draw (-12.25,16.75) -- (-12.25,16.5) node[ground]{};
+\draw [->, >=Stealth] (-11.75,17) -- (-12.25,16.75);
+\node at (-12.25,16.75) [circ] {};
+\draw (-12.25,17.5) -- (-12.25,17);
+\node at (-12.25,17) [circ] {};
+\node at (-12.25,17.5) [circ] {};
+
+% Etiquetas de entradas y salidas
+\node [font=\large] at (-0.75,21.75) {+5V};
+\node [font=\large] at (-12.25,21.25) {+5V};
+\node [font=\large] at (-12.25,17.75) {+5V};
+\node [font=\large] at (-11.5,20.75) {A};
+\node [font=\large] at (-11.5,17.25) {B};
+\node [font=\normalsize] at (-1,18.5) {LUZ};
+
+% Última puerta AND
+\draw (-6.25,18) -- (-6,18);
+\draw (-6.25,17.5) -- (-6,17.5);
+\draw (-6,18) node[ieeestd and port, anchor=in 1, scale=0.89](port){} (port.out) -- (-4.25,17.75);
+
+\end{circuitikz}
+
+\end{document}
+

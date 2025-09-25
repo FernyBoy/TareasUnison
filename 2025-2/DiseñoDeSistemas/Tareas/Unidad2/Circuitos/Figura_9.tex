@@ -1,0 +1,86 @@
+\documentclass{standalone}   % genera solo la figura sin márgenes
+\usepackage{tikz}
+\usepackage{circuitikz}
+
+\begin{document}
+\resizebox{1\textwidth}{!}{%
+\begin{circuitikz}
+    \tikzstyle{every node}=[font=\large]
+
+    % Bloques de sensores
+    \draw [ fill={rgb,255:red,255; green,247; blue,219} ] (2.5,21.5) rectangle (6,20);
+    \node [font=\LARGE] at (4,21) {Sensor de};
+    \node [font=\LARGE] at (4.25,20.5) {temperatura};
+
+    \draw [ fill={rgb,255:red,255; green,247; blue,219} ] (2.5,19) rectangle (6,17.5);
+    \node [font=\LARGE] at (4,18.5) {Sensor de};
+    \node [font=\LARGE] at (3.75,18) {presión};
+
+    \draw [ fill={rgb,255:red,255; green,247; blue,219} ] (2.5,16.5) rectangle (6,15);
+    \node [font=\LARGE] at (4,16) {Sensor de};
+    \node [font=\LARGE] at (3.5,15.5) {RPM};
+
+    % Lógica combinacional
+    \draw (10,16.25) to[short] (10.25,16.25);
+    \draw (10,15.75) to[short] (10.25,15.75);
+    \draw (10.25,16.25) node[ieeestd or port, anchor=in 1, scale=0.89](port){} 
+        (port.out) to[short] (12,16);
+
+    \draw (7.75,15.75) node[ieeestd not port, anchor=in](port){} 
+        (port.out) to[short] (9.5,15.75);
+    \draw (port.in) to[short] (7.5,15.75);
+    \draw (9.5,15.75) to[short] (10,15.75);
+    \draw (10,16.25) to[short] (10,16.75);
+
+    % Conexiones
+    \draw (7.5,15.75) to[short] (7,15.75);
+    \node at (7,15.75) [circ] {};
+    \draw (7,15.75) to[short] (6,15.75);
+
+    \draw (6,18.25) to[short] (6.5,18.25);
+    \draw (6.5,18.25) to[short] (6.5,16.75);
+    \draw (6.5,16.75) to[short] (7,16.75);
+    \node at (7,16.75) [circ] {};
+    \draw (7,16.75) to[short] (10,16.75);
+
+    \draw (6,20.75) to[short] (13,20.75);
+    \draw (13,20.75) to[short] (13.25,20.75);
+    \draw (13,20.25) to[short] (13.25,20.25);
+    \draw (13.25,20.75) node[ieeestd and port, anchor=in 1, scale=0.89](port){} 
+        (port.out) to[short] (15,20.5);
+
+    \draw (12,16) to[short] (12.5,16);
+    \draw (12.5,16) to[short] (12.5,20.25);
+    \draw (12.5,20.25) to[short] (13,20.25);
+
+    % Salida
+    \node at (15,20.5) [circ] {};
+    \draw (15,20.5) to[short] (15.5,20.5);
+
+    % Etiquetas
+    \node at (7,20.75) [circ] {};
+    \node [font=\large] at (7,21) {T};
+    \node [font=\large] at (7,17) {P};
+    \node [font=\large] at (7,16) {R};
+    \node [font=\large] at (15,20.75) {W};
+
+    % Luz de advertencia
+    \draw  (16.5,20.5) circle (0.25cm);
+    \draw (16.5,21.25) to[short] (16.5,20.75);
+    \draw (16.5,20.25) to[short] (16.5,19.75);
+    \draw (16.25,20.5) to[short] (15.75,20.5);
+    \draw (16.25,20.75) to[short] (15.75,21.25);
+    \draw (16.75,20.75) to[short] (17.25,21.25);
+    \draw (16.25,20.25) to[short] (15.75,19.75);
+    \draw (16.75,20.25) to[short] (17.25,19.75);
+    \draw (16.75,20.5) to[short] (17.25,20.5);
+
+    % Caja de la luz
+    \draw  (15.5,21.5) rectangle (17.5,19.5);
+    \node [font=\large] at (16.5,19) {Luz de};
+    \node [font=\large] at (16.5,18.5) {Advertencia};
+
+\end{circuitikz}
+}
+\end{document}
+

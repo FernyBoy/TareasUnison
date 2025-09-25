@@ -1,0 +1,45 @@
+\documentclass{standalone}   % genera solo el dibujo, sin márgenes
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usepackage{graphicx}        % para resizebox
+
+\begin{document}
+\resizebox{1\textwidth}{!}{%
+\begin{circuitikz}
+    \tikzstyle{every node}=[font=\Huge]
+    \draw (4.75,19.5) to[short] (5,19.5);
+    \draw (4.75,19) to[short] (5,19);
+    \draw (5,19.5) node[ieeestd or port, anchor=in 1, scale=0.89](port){} (port.out) to[short] (6.75,19.25);
+    \draw (2.125,20) node[ieeestd not port, anchor=in](port){} (port.out) to[short] (4,20);
+    \draw (port.in) to[short] (1.75,20);
+    \draw (2.125,18.5) node[ieeestd not port, anchor=in](port){} (port.out) to[short] (4,18.5);
+    \draw (port.in) to[short] (1.75,18.5);
+    \draw [short] (4,20) -- (4.75,19.5);
+    \draw [short] (4,18.5) -- (4.75,19);
+    \draw (7,19.25) node[ieeestd not port, anchor=in](port){} (port.out) to[short] (8.75,19.25);
+    \draw (port.in) to[short] (6.75,19.25);
+    \node [font=\Huge] at (0.75,20) {A};
+    \node [font=\Huge] at (0.75,18.5) {B};
+    \draw (1.75,20) to[short] (1,20);
+    \draw (1.75,18.5) to[short] (1,18.5);
+    \node at (1.75,18.5) [circ] {};
+    \node at (1.75,18.5) [circ] {};
+    \draw (1.75,18.5) to[short] (1.75,17.5);
+    \draw (1.75,17.5) to[short] (7.75,17.5);
+    \node [font=\Huge] at (0.75,16.75) {C};
+    \draw (10,17.25) to[short] (10.25,17.25);
+    \draw (10,16.75) to[short] (10.25,16.75);
+    \draw (10.25,17.25) node[ieeestd and port, anchor=in 1, scale=0.89](port){} (port.out) to[short] (12,17);
+    \draw (port.left) to[short] (10,17);
+    \draw (1,16.75) to[short] (10,16.75);
+    \draw (10,17) to[short] (8.75,17);
+    \draw (8.75,17) to[short] (8.75,17.5);
+    \draw (8.75,17.5) to[short] (7.75,17.5);
+    \draw (10,17.25) to[short] (10,19.25);
+    \draw (10,19.25) to[short] (8.75,19.25);
+    \node at (12.25,17) [circ] {};
+    \node [font=\Huge] at (12.50,17) {X};
+\end{circuitikz}
+}
+\end{document}
+

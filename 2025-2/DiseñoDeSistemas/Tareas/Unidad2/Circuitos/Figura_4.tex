@@ -1,0 +1,56 @@
+\documentclass{standalone}   % genera solo la figura, sin márgenes
+\usepackage{tikz}
+\usepackage{circuitikz}
+
+\begin{document}
+\resizebox{1\textwidth}{!}{%
+\begin{circuitikz}
+    \tikzstyle{every node}=[font=\LARGE]
+
+    \draw (2.25,17.25) to[short] (2.5,17.25);
+    \draw (2.25,16.75) to[short] (2.5,16.75);
+    \draw (2.5,17.25) node[ieeestd nor port, anchor=in 1, scale=0.89](port){} 
+        (port.out) to[short] (4.25,17);
+
+    \draw (2.25,15.25) to[short] (2.5,15.25);
+    \draw (2.25,14.75) to[short] (2.5,14.75);
+    \draw (2.5,15.25) node[ieeestd nor port, anchor=in 1, scale=0.89](port){} 
+        (port.out) to[short] (4.25,15);
+
+    \draw (5.25,17) to[short] (5.5,17);
+    \draw (5.25,16.5) to[short] (5.5,16.5);
+    \draw (5.5,17) node[ieeestd nand port, anchor=in 1, scale=0.89](port){} 
+        (port.out) to[short] (7.25,16.75);
+
+    \draw (4.25,15) to[short] (4.75,15);
+    \draw (4.75,15) to[short] (4.75,16.5);
+    \draw (4.75,16.5) to[short] (5.25,16.5);
+    \draw (4.25,17) to[short] (5.25,17);
+
+    \draw (2.25,16.75) to[short] (1.75,16.75);
+    \draw (1.75,16.75) to[short] (0.25,16.75);
+    \draw (2.25,17.25) to[short] (0.25,17.25);
+    \node at (1.75,16.75) [circ] {};
+
+    \draw (2.25,15.25) to[short] (1.75,15.25);
+    \draw (1.75,16.75) to[short] (1.75,15.25);
+
+    \draw (0.5,14.75) node[ieeestd not port, anchor=in](port){} 
+        (port.out) to[short] (2.25,14.75);
+    \draw (port.in) to[short] (0.25,14.75);
+
+    % Etiquetas de entrada
+    \node [font=\LARGE] at (0,17.25) {A};
+    \node [font=\LARGE] at (0,16.75) {B};
+    \node [font=\LARGE] at (0,14.75) {C};
+
+    % Salida
+    \draw (7.25,16.75) to[short] (7.75,16.75);
+    \node at (7.75,16.75) [circ] {};
+    \node [font=\LARGE] at (8,16.75) {X};
+
+\end{circuitikz}
+}
+\end{document}
+
+

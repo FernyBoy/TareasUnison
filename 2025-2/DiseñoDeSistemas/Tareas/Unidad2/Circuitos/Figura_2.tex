@@ -1,0 +1,103 @@
+\documentclass{standalone}   % genera solo el dibujo, sin márgenes
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usepackage{graphicx}        % para resizebox
+
+\begin{document}
+\resizebox{1\textwidth}{!}{%
+\begin{circuitikz}
+    \tikzstyle{every node}=[font=\LARGE]
+
+    % --- tu circuito ---
+    % Ojo: la línea con (NaN,NaN) es inválida, la quité porque rompe la compilación
+    %\draw (NaN,NaN) node[ieeestd not port, anchor=in](port){} (port.out) to[short] (3,15.5);
+
+    \draw (2.25,18.25) node[ieeestd not port, anchor=in](port){} (port.out) to[short] (4,18.25);
+    \draw (port.in) to[short] (2,18.25);
+    \draw (2.25,17) node[ieeestd not port, anchor=in](port){} (port.out) to[short] (4,17);
+    \draw (port.in) to[short] (2,17);
+    \draw (2.25,15.75) node[ieeestd not port, anchor=in](port){} (port.out) to[short] (4,15.75);
+    \draw (port.in) to[short] (2,15.75);
+
+    \draw (1.5,18.25) to[short] (2,18.25);
+    \draw (1.5,17) to[short] (2,17);
+    \draw (1.5,15.75) to[short] (2,15.75);
+
+    \draw (4,18.25) to[short] (4.5,18.25);
+    \draw (4.5,17) to[short] (4,17);
+    \draw (4.5,15.75) to[short] (4,15.75);
+
+    \node at (4.5,18.25) [circ] {};
+    \node at (4.5,17) [circ] {};
+    \draw (5.25,15.75) to[short] (4.5,15.75);
+    \node at (5.25,15.75) [circ] {};
+
+    \node at (1.5,18.25) [circ] {};
+    \draw (1.5,18.25) to[short] (1,18.25);
+    \draw (1.5,17) to[short] (1,17);
+    \draw (1.5,15.75) to[short] (1,15.75);
+
+    \draw (5.25,15.75) to[short] (5.75,15.75);
+    \draw (5.75,17.25) to[short] (6,17.25);
+    \draw (5.75,16.75) to[short] (6,16.75);
+    \draw (6,17.25) node[ieeestd and port, anchor=in 1, scale=0.89](port){} (port.out) to[short] (7.75,17);
+    \draw (port.left) to[short] (5.75,17);
+    \draw (5.75,15.75) to[short] (5.75,16.75);
+    \draw (5.75,17) to[short] (4.5,17);
+    \draw (5.75,17.25) to[short] (5.75,18.25);
+    \draw (5.75,18.25) to[short] (4.5,18.25);
+
+    \draw (5.75,14.75) to[short] (6,14.75);
+    \draw (5.75,14.25) to[short] (6,14.25);
+    \draw (6,14.75) node[ieeestd and port, anchor=in 1, scale=0.89](port){} (port.out) to[short] (7.75,14.5);
+    \draw (port.left) to[short] (5.75,14.5);
+    \draw (5.25,15.75) to[short] (5.25,14.25);
+    \draw (5.75,14.25) to[short] (5.25,14.25);
+    \draw (5.75,14.5) to[short] (4.5,14.5);
+    \draw (5.75,14.75) to[short] (1.5,14.75);
+    \draw (1.5,18.25) to[short] (1.5,14.75);
+
+    \draw (5.75,12.75) to[short] (6,12.75);
+    \draw (5.75,12.25) to[short] (6,12.25);
+    \draw (6,12.75) node[ieeestd and port, anchor=in 1, scale=0.89](port){} (port.out) to[short] (7.75,12.5);
+    \draw (port.left) to[short] (5.75,12.5);
+
+    \draw (8.75,14.75) to[short] (9,14.75);
+    \draw (8.75,14.25) to[short] (9,14.25);
+    \draw (9,14.75) node[ieeestd or port, anchor=in 1, scale=0.89](port){} (port.out) to[short] (10.75,14.5);
+    \draw (port.left) to[short] (8.75,14.5);
+
+    \draw (7.75,17) to[short] (8.25,17);
+    \draw (8.25,17) to[short] (8.25,14.75);
+    \draw (8.25,14.75) to[short] (8.75,14.75);
+    \draw (7.75,14.5) to[short] (8.75,14.5);
+    \draw (7.75,12.5) to[short] (8.25,12.5);
+    \draw (8.25,12.5) to[short] (8.25,14.25);
+    \draw (8.75,14.25) to[short] (8.25,14.25);
+
+    \draw (4.5,17) to[short] (4.5,12.5);
+    \node at (4.5,14.5) [circ] {};
+    \draw (5.75,12.5) to[short] (4.5,12.5);
+
+    \draw (5.75,12.25) to[short] (1,12.25);
+
+    % Labels de entradas
+    \node [font=\LARGE] at (0.75,18.25) {A};
+    \node [font=\LARGE] at (0.75,17) {B};
+    \node [font=\LARGE] at (0.75,15.75) {C};
+    \node [font=\LARGE] at (0.75,12.25) {D};
+
+    % Conexiones adicionales
+    \draw (5.75,12.75) to[short] (0,12.75);
+    \draw (0,12.75) to[short] (0,19);
+    \draw (0,19) to[short] (4.5,19);
+    \draw (4.5,19) to[short] (4.5,18.25);
+
+    % Salida
+    \node at (11,14.5) [circ] {};
+    \node [font=\LARGE] at (11.25,14.5) {X};
+
+\end{circuitikz}
+}
+\end{document}
+
