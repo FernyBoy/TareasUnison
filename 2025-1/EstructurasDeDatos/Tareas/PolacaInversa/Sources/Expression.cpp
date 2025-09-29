@@ -52,7 +52,7 @@ void Expression::CaptureExpression()
         
         if(ValidateBrackets(infixExpression)) break;
 
-        cout << "\n S\241mbolos de cierre mal balanceados. Ingresa de nuevo to expresi\242n\n • ";
+        cout << "\n S\241mbolos de cierre mal balanceados. Ingresa de nuevo tu expresi\242n\n • ";
     }
 
     InfixToPostfix();
