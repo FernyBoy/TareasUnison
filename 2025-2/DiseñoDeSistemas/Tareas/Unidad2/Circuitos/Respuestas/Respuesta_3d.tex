@@ -1,0 +1,45 @@
+\documentclass{standalone}
+
+% Paquetes
+\usepackage{circuitikz}
+\usetikzlibrary{circuits.logic.IEC} % Para puertas lógicas IEEE
+
+\begin{document}
+\begin{circuitikz}
+\tikzstyle{every node}=[font=\LARGE]
+\node [font=\LARGE] at (9,21.5) {A};
+\node [font=\LARGE] at (9,20) {B};
+\draw (9.25,21.5) to[short] (10.75,21.5);
+\draw (9.25,20) to[short] (10.75,20);
+\node at (9.75,21.5) [circ] {};
+\node at (10.25,20) [circ] {};
+\draw (10.75,20) to[short] (10.75,20.5);
+\draw (10.75,21.5) to[short] (10.75,21);
+\draw (10.75,21) to[short] (11,21);
+\draw (10.75,20.5) to[short] (11,20.5);
+\draw (11,21) node[ieeestd or port, anchor=in 1, scale=0.89](port){} (port.out) to[short] (12.75,20.75);
+\draw (10.25,20) to[short] (10.25,19.25);
+\draw (10.25,19.25) to[short] (10.75,19.25);
+\draw (11,19.25) node[ieeestd not port, anchor=in](port){} (port.out) to[short] (12.75,19.25);
+\draw (port.in) to[short] (10.75,19.25);
+\draw (11,17.75) node[ieeestd not port, anchor=in](port){} (port.out) to[short] (12.75,17.75);
+\draw (port.in) to[short] (10.75,17.75);
+\draw (9.75,21.5) to[short] (9.75,17.75);
+\draw (9.75,17.75) to[short] (10.75,17.75);
+\draw (12.75,19.25) to[short] (12.75,18.75);
+\draw (12.75,17.75) to[short] (12.75,18.25);
+\draw (12.75,18.75) to[short] (13,18.75);
+\draw (12.75,18.25) to[short] (13,18.25);
+\draw (12.75,18.75) node[ieeestd or port, anchor=in 1, scale=0.89](port){} (port.out) to[short] (14.75,18.5);
+\draw (15.25,19.75) to[short] (15.5,19.75);
+\draw (15.25,19.25) to[short] (15.5,19.25);
+\draw (15.25,19.75) node[ieeestd and port, anchor=in 1, scale=0.89](port){} (port.out) to[short] (17.25,19.5);
+\draw (14.75,18.5) to[short] (14.75,19.25);
+\draw (14.75,19.25) to[short] (15.25,19.25);
+\draw (15.25,19.75) to[short] (14.75,19.75);
+\draw (14.75,19.75) to[short] (14.75,20.75);
+\draw (14.75,20.75) to[short] (12.75,20.75);
+\node at (17.25,19.5) [circ] {};
+\node [font=\LARGE] at (17.5,19.5) {x};
+\end{circuitikz}
+\end{document}
