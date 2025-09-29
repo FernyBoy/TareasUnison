@@ -21,6 +21,9 @@
 \newcommand{\Pspace}{0.5cm}
 \newcommand{\Aspace}{0.2cm}
 
+% -- Columnas --
+\usepackage{multicol}
+
 % -- Imagenes --
 \usepackage{graphicx}
 \usepackage{float}
@@ -353,17 +356,29 @@
         \item La figura muestra una aplicación de compuertas lógicas que simula un interruptor de dos vías, como los que utilizamos en nuestros hogares para encender o apagar una luz desde dos interruptores distintos. Aquí la luz es un LED que estará ENCENDIDO (en conducción) cuando la salida de la compuerta NOR esté en BAJO. Observe que esta salida está etiquetada como LUZ para indicar que es activa en BAJO. Determine las condiciones de entrada necesarias para encender el LED. Después verifique que el circuito opere como un interruptor de dos vías, utilizando los interruptores A y B.
         \begin{figure}[!ht]
             \centering
-            \includegraphics[width=0.7\textwidth]{Circuitos/Figuras/Figura_11.pdf}
+            \includegraphics[width=0.5\textwidth]{Circuitos/Figuras/Figura_11.pdf}
         \end{figure}
             % Respuestas:
-            { \color{azul} 
-                \par Expresión: $\overline{AB + \bar{A}\bar{B}}$
-                \par Condiciones necesarias:
-                \par 1. $A = 1$ y $B = 0$
-                \par 2. $A = 0$ y $B = 1$
+            { \color{azul}
+                \begin{multicols}{2}
+                    \noindent\textbf{Expresión:} $\overline{AB + \overline{A}\,\overline{B}}$ \par
+
+                    \noindent\textbf{Condiciones necesarias:}
+                    \par 1. \(A = 1,\; B = 0\)
+                    \par 2. \(A = 0,\; B = 1\)
+
+                    \columnbreak
+
+                    \noindent\textbf{Tabla de verdad:}
+
+                    \begin{tabular}{c|c|c}
+                        \textbf{A} & \textbf{B} & \(\overline{AB + \overline{A}\,\overline{B}}\) \\ \hline
+                        1 & 1 & 0 \\
+                        1 & 0 & 1 \\
+                        0 & 1 & 1 \\
+                        0 & 0 & 0 \\
+                    \end{tabular}
+                \end{multicols}
             }
-
-
-
     \end{enumerate}
 \end{document}
