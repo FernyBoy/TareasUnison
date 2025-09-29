@@ -131,22 +131,43 @@
              % Respuestas:
             \vspace{\Aspace} \par
             a) $y = (\bar{M} + \bar{N} + \overline{PQ})$
-            \\ { \color{azul}  }
+            \\ { \color{azul} 
+                \begin{figure}[!ht]
+                    \centering
+                    \includegraphics[width=0.6\textwidth]{Circuitos/Respuestas/Respuesta_3a.pdf}
+                \end{figure}
+            }
 
             \vspace{\Aspace} \par
             b) $x = \overline{W + P\bar{Q}}$
-            \\ { \color{azul}  }
+            \\ { \color{azul} 
+                \begin{figure}[!ht]
+                    \centering
+                    \includegraphics[width=0.6\textwidth]{Circuitos/Respuestas/Respuesta_3b.pdf}
+                \end{figure}
+            }
 
             \vspace{\Aspace} \par
             c) $z = MN(P + \bar{N})$
-            \\ { \color{azul}  }
+            \\ { \color{azul} 
+                \begin{figure}[!ht]
+                    \centering
+                    \includegraphics[width=0.6\textwidth]{Circuitos/Respuestas/Respuesta_3c.pdf}
+                \end{figure}
+            }
 
             \vspace{\Aspace} \par
             d) $x = (A + B)(\bar{A} + \bar{B})$
-            \\ { \color{azul}  }
+            \\ { \color{azul} 
+                \begin{figure}[!ht]
+                    \centering
+                    \includegraphics[width=0.6\textwidth]{Circuitos/Respuestas/Respuesta_3d.pdf}
+                \end{figure}
+            }
 
 
 
+        \newpage
         % - Problema 4
         \item Escriba la expresión para la salida del circuito de la figura y utilícela para determinar la tabla de verdad completa.
         \begin{figure}[!ht]
@@ -155,17 +176,17 @@
         \end{figure}
             % Respuesta:
             \vspace{\Aspace} \par
-            {   \color{azul} Expresión: $(A + B)(B + \bar{C})$ \par \vspace{0.5cm}
+            {   \color{azul} Expresión: $\overline{\overline{(A + B)} \cdot \overline{(B + \bar{C})}}$ \par \vspace{0.5cm}
                 \begin{tabular}{c|c|c|c}
-                    \textbf{A}  &   \textbf{B}  &   \textbf{C}  &   $(A + B)(B + \bar{C})$      \\ \hline
-                    1           &   1           &   1           &   1                           \\
-                    1           &   1           &   0           &   1                           \\
-                    1           &   0           &   1           &   0                           \\
-                    1           &   0           &   0           &   1                           \\
-                    0           &   1           &   1           &   1                           \\
-                    0           &   1           &   0           &   1                           \\
-                    0           &   0           &   1           &   0                           \\
-                    0           &   0           &   0           &   0                           \\
+                    \textbf{A}  &   \textbf{B}  &   \textbf{C}  &   $\overline{\overline{(A + B)} \cdot \overline{(B + \bar{C})}}$     \\ \hline
+                    1           &   1           &   1           &   1                                                           \\
+                    1           &   1           &   0           &   1                                                           \\
+                    1           &   0           &   1           &   1                                                           \\
+                    1           &   0           &   0           &   1                                                           \\
+                    0           &   1           &   1           &   1                                                           \\
+                    0           &   1           &   0           &   1                                                           \\
+                    0           &   0           &   1           &   0                                                           \\
+                    0           &   0           &   0           &   1                                                           \\
                 \end{tabular}
             }
         
@@ -215,7 +236,7 @@
             { \color{azul} $y$ }
 
 
-
+        \newpage
         % - Problema 6
         \item Simplifique la siguiente expresión usando los teoremas (3), (4) y (13b).
         \\ (3) $x \cdot x = x$
@@ -271,7 +292,8 @@
             \\ { \color{azul} $AB + \bar{C} + \bar{D}$ }
 
 
-
+        
+        \newpage
         % - Problema 9
         \item Un jet emplea un sistema para monitorear los valores de revoluciones por minuto (rpm), presión y temperatura de sus motores mediante el uso de motores que operan de la siguiente manera:
         \begin{itemize}
@@ -287,14 +309,27 @@
             % Respuestas:
             \vspace{\Aspace} \par
             a) Determine qué condiciones del motor darán una advertencia al piloto.
-            \\ { \color{azul}  }
+            \\ { \color{azul} 
+                Expresión de salida: $T(P + \bar{R})$
+                \par Condiciones necesarias:
+                \par 1. $T \geq 200\textdegree F$, $P \geq 220$psi y $R < 4800$rpm.
+                \par 2. $T \geq 200\textdegree F$, $P \geq 220$psi y $R \geq 4800$rpm.
+                \par 3. $T \geq 200\textdegree F$, $P < 220$psi y $R < 4800$rpm.
+            }
 
             \vspace{\Aspace} \par
             b) Cambie este circuito por uno que utilice sólo compuertas NAND.
-            \\ { \color{azul}  }
+            \\ { \color{azul}
+                \begin{figure}[!ht]
+                    \centering
+                    \includegraphics[width=0.7\textwidth]{Circuitos/Respuestas/Respuesta_9b.pdf}
+                \end{figure}
+                \par Expresión: $\overline{\left[ \overline{\left(T  \overline{\left(\overline{(P P)} R\right)}\right)} \cdot \overline{\left(T  \overline{\left(\overline{(P P)} R\right)}\right)} \right]} \equiv T(P + \bar{R})$
+            }
 
 
 
+        \newpage
         % - Problema 10
         \item Determina las condiciones de entrada necesarias para hacer que la salida en la figura cambie a su estado activo.
         \begin{figure}[!ht]
@@ -303,7 +338,14 @@
         \end{figure}
             % Respuesta:
             \vspace{\Aspace} \par
-            { \color{azul}  }
+            { \color{azul} 
+                Expresión: $\overline{\overline{(\overline{A}B)}} + \overline{\overline{(\bar{B}\bar{C})}} + \overline{D} + \overline{\overline{E}} \equiv (\overline{A}B) + (\bar{B}\bar{C}) + \overline{D} + E$
+                \par Condiciones necesarias:
+                \par 1. $A = 0$ y $B = 1$
+                \par 2. $B = 0$ y $C = 0$
+                \par 3. $D = 0$
+                \par 4. $E = 1$
+            }
 
 
 
@@ -314,8 +356,12 @@
             \includegraphics[width=0.7\textwidth]{Circuitos/Figuras/Figura_11.pdf}
         \end{figure}
             % Respuestas:
-            \vspace{\Aspace} \par
-            { \color{azul}  }
+            { \color{azul} 
+                \par Expresión: $\overline{AB + \bar{A}\bar{B}}$
+                \par Condiciones necesarias:
+                \par 1. $A = 1$ y $B = 0$
+                \par 2. $A = 0$ y $B = 1$
+            }
 
 
 
