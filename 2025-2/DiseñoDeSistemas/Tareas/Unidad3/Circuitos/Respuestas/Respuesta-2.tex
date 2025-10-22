@@ -1,0 +1,31 @@
+\documentclass{standalone}
+
+% Paquetes necesarios
+\usepackage{circuitikz}
+\usetikzlibrary{circuits.logic.IEC}
+
+\begin{document}
+\begin{circuitikz}
+\tikzstyle{every node}=[font=\LARGE]
+\node [font=\LARGE] at (4,15.5) {M};
+\node [font=\LARGE] at (4,14.25) {N};
+\node [font=\LARGE] at (4,14) {};
+\node [font=\LARGE] at (4,13) {Q};
+\node at (9.75,14.25) [circ] {};
+\node [font=\LARGE] at (10,14.25) {x};
+\draw (5,15.5) to[short] (5.25,15.5);
+\draw (5,15) to[short] (5.25,15);
+\draw (5,15.5) node[ieeestd or port, anchor=in 1, scale=0.89](port){} (port.out) to[short] (7,15.25);
+\draw (4.5,15.5) to[short] (5,15.5);
+\draw (4.5,14.25) to[short] (5,14.25);
+\draw (5,14.25) to[short] (5,15);
+\draw (7.5,14.5) to[short] (7.75,14.5);
+\draw (7.5,14) to[short] (7.75,14);
+\draw (7.75,14.5) node[ieeestd and port, anchor=in 1, scale=0.89](port){} (port.out) to[short] (9.5,14.25);
+\draw (7,15.25) to[short] (7,14.5);
+\draw (7,14.5) to[short] (7.5,14.5);
+\draw (8,14) to[short] (7,14);
+\draw (7,14) to[short] (7,13);
+\draw (7,13) to[short] (4.5,13);
+\end{circuitikz}
+\end{document}

@@ -7,29 +7,33 @@ using namespace std;
 
 float function(float x);
 float media(float a, float b);
+float error(float a, float b, int k);
 void limit(float interval[2]);
 void spaces(int s = 5);
-void resultsLine(int index, float a, float b, float x, float fx);
+void resultsLine(int index, float a, float b, float x, float error, float fx);
 
 int main()
 {
-    float intervalo1[2] = {-29.0, -28.0};
-    float intervalo2[2] = {-28.0, -27.0};
+    float intervalo[2] = {0.39, 2.0};
 
-    limit(intervalo1);
-    limit(intervalo2);
+    limit(intervalo);
     
     return 0;
 }
 
 float function(float x)
 {
-    return cos(x) - 10 * pow(x, 2) - 560 * x - 7834;
+    return pow(x, 10) - 1;
 }
 
 float media(float a, float b)
 {
     return (a + b) / 2;
+}
+
+float error(float a, float b, int k)
+{
+    return (b - a) / pow(2, k + 1);
 }
 
 void limit(float interval[2])
@@ -38,10 +42,9 @@ void limit(float interval[2])
     float fa = function(interval[0]);
     float fb = function(interval[1]);
     float fx = function(x);
+    float err = error(interval[0], interval[1], 0);
 
-    int cicles = 0;
-
-    cout << "\nf(x) = Cos(x)-10x^2-560x-7834";
+    cout << "\nf(x) = x^10 - 1";
 
     cout << "\nIntervalo: [" << fixed << setprecision(2) << interval[0] << ", " << fixed << setprecision(2) << interval[1] << "]\n";
 
@@ -59,12 +62,14 @@ void limit(float interval[2])
         spaces(7);
         cout << "x_n";
         spaces(7);
+        cout << "err";
+        spaces(9);
         cout << " f(x)" << endl;
-        for(int i = 0; i < 58; ++i) cout << "-";
+        for(int i = 0; i < 73; ++i) cout << "-";
 
-        for(int i = 0; i < 11; ++i)
+        for(int i = 0; i < 9; ++i)
         {
-            resultsLine(cicles, interval[0], interval[1], x, fx);
+            resultsLine(i, interval[0], interval[1], x, err, fx);
 
             if(fa * fx < 0)
             {
@@ -79,8 +84,7 @@ void limit(float interval[2])
 
             fa = function(interval[0]);
             fx = function(x);
-
-            ++cicles;
+            err = error(interval[0], interval[1], i);
         }
     }
     cout << endl;
@@ -93,17 +97,19 @@ void spaces(int s)
     cout << " | ";
 }
 
-void resultsLine(int index, float a, float b, float x, float fx)
+void resultsLine(int index, float a, float b, float x, float error, float fx)
 {
     cout << endl;
     cout << index;
     spaces(3 - to_string(index).length());
-    cout << fixed << setprecision(6) << a;
+    cout << fixed << setprecision(8) << a;
     spaces(6 - to_string(a).length());
-    cout << fixed << setprecision(6) << b;
+    cout << fixed << setprecision(8) << b;
     spaces(6 - to_string(b).length());
-    cout << fixed << setprecision(6) << x;
+    cout << fixed << setprecision(8) << x;
     spaces(6 - to_string(x).length());
+    cout << fixed << setprecision(10) << error;
+    spaces(8 - to_string(error).length());
     cout << " ";
     if(fx < 0) cout << "\b";
     cout << fixed << setprecision(10) << fx;
