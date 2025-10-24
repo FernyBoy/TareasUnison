@@ -1,0 +1,23 @@
+@import 'colors';
+
+*
+{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    
+    list-style: none;
+}
+
+html
+{
+    font-size: 62.5%;
+    font-family: Monocraft, "Open Sans", sans-serif;
+    color: #fff;
+    background-color: $blue;
+}
+
+html, body 
+{
+    height: 100%;
+}
