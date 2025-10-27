@@ -1,17 +1,26 @@
-<script setup lang="ts">
-import Form from './Components/form.vue';
-import List from './Components/list.vue';
-
-</script>
 
 <template>
     <div class="app_container">
         <div class="app">
-            <Form class="section"></Form>
-            <List class="section"></List>
+            <Form @product-saved="Refresh" class="section"></Form>
+            <List ref="ListRef" class="section"></List>
         </div>
     </div>
 </template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+
+import Form from './Components/form.vue';
+import List from './Components/list.vue';
+
+const ListRef = ref<InstanceType<typeof List> | null>(null)
+
+const Refresh = () => {
+    ListRef.value?.FetchData();
+}
+
+</script>
 
 <style scoped lang="scss">
 .app_container

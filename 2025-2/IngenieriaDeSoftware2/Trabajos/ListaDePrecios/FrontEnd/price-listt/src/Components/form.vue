@@ -3,25 +3,53 @@
         <div class="form">
             <div class="form-object">
                 <p>Producto</p>
-                <input class="form-input" type="text">
+                <input class="form-input" type="text" v-model="product.name">
             </div>
             <div class="form-object">
                 <p>Identificador</p>
-                <input class="form-input" type="text">
+                <input class="form-input" type="text" v-model="product.id">
             </div>
             <div class="form-object">
                 <p>Precio</p>
-                <input class="form-input" type="number">
+                <input class="form-input" type="number" v-model="product.price">
             </div>
         </div>
-        <div class="save-button">
+        <div class="save-button" @click="SaveProduct">
             <p>Guardar</p>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
+import api from '../../src/axios';
+import { ref } from 'vue'
+import type { ProductInterface } from '../interfaces/product.interface';
 
+const emit = defineEmits(['product-saved'])
+
+const product = ref<ProductInterface>({
+    name: '',
+    id: '',
+    price: NaN,
+})
+
+const SaveProduct = async () => {
+    try {
+        const response = await api.post('add/', product.value)
+        console.log('Producto guardado:', response.data)
+        // alert('✅ Producto agregado correctamente')
+
+        emit('product-saved', response.data)
+
+        // Limpiamos los campos
+        product.value = { id: '', name: '', price: NaN }
+
+    } 
+    catch (error: any) {
+        console.error('❌ Error al guardar el producto:', error.response?.data || error)
+        alert('Error al guardar el producto. Revisa la consola.')
+    }
+}
 </script>
 
 <style scoped lang="scss">
@@ -34,7 +62,7 @@
 
         display: flex;
         flex-direction: column;
-        justify-content: space-evenlycd ;
+        justify-content: space-evenly;
         align-items: center;
 
         .form

@@ -119,10 +119,10 @@ class DjangoSession(models.Model):
 
 
 class Products(models.Model):
-    id = models.TextField(blank=True, null=True)
-    name = models.TextField(blank=True, null=True)
-    price = models.FloatField(blank=True, null=True)
+    id = models.TextField(primary_key=True)
+    name = models.TextField(unique=True)
+    price = models.FloatField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'products'

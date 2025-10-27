@@ -16,10 +16,23 @@ def GetProducts(request):
 # ➕ Agregar un nuevo producto
 @api_view(['POST'])
 def AddProduct(request):
+    # Creamos el serializer con los datos recibidos
     serializer = ProductSerializer(data=request.data)
+
+    # Validamos los datos
     if serializer.is_valid():
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+        # Guardamos el objeto
+        try:
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        except Exception as e:
+            # Retornamos error si no se puede guardar (por ejemplo, tabla no manejada o restricciones)
+            return Response(
+                {'error': 'No se pudo guardar el producto', 'details': str(e)},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+    # Si los datos no son válidos, devolvemos los errores
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
