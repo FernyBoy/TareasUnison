@@ -1,0 +1,165 @@
+
+% Reporte de Evaluación y Propuestas de Mejora
+% Proyecto: Página web para aprender el concepto de la derivada
+% NOTA: Este archivo no incluye portada (el usuario ya tiene una).
+
+\documentclass[11pt,a4paper]{article}
+
+% Paquetes
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{geometry}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{lmodern}
+
+% Márgenes
+\geometry{
+    left=25mm,
+    right=25mm,
+    top=25mm,
+    bottom=25mm
+}
+
+% Espaciado
+\onehalfspacing
+
+% Formato de títulos
+\titleformat{\section}{\normalfont\Large\bfseries}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\normalfont\large\bfseries}{\thesubsection.}{0.5em}{}
+
+\begin{document}
+\begin{center}
+    \begin{tabular}{r|l}
+        \textbf{Expediente} & \textbf{Nombre} \\ \hline
+        220210296 & Altamirano Ocejo Michell Berenice \\
+        219208106 & Bórquez Guerrero Angel Fernando \\
+        222217995 & Busani Yanes Manuel \\
+        223216515 & Giron Leon Gibran \\
+        223204115 & Ruiz Beltran Oliver
+    \end{tabular}
+\end{center}
+% Si el usuario ya tiene portada, omitimos \maketitle
+% \begin{titlepage} ... \end{titlepage} % (portada omitida)
+
+\section*{Reporte de Evaluación y Propuestas de Mejora}
+\noindent
+
+\vspace{1em}
+
+\section{Introducci\'on}
+El presente reporte tiene como objetivo analizar y proponer mejoras a una p\'agina web existente cuyo prop\'osito es ense\~nar el concepto de la derivada. Este sitio fue desarrollado previamente por una docente de la Universidad de Sonora y actualmente se encuentra publicado en una de las plataformas institucionales de la universidad.
+
+Durante la revisi\'on del sitio, se identificaron diversas \aa reas de oportunidad tanto en el dise\~no visual como en la organizaci\'on de la informaci\'on, la experiencia del usuario y la estructura general del contenido. A continuaci\'on se describen los principales problemas detectados y las propuestas de mejora correspondientes.
+
+\section{Problemas detectados}
+
+\subsection{Dise\~no visual y apariencia}
+\begin{itemize}[left=0pt,labelsep=5pt]
+    \item El sitio cuenta con un dise\~no anticuado y poco atractivo visualmente.
+    \item Aunque la paleta de colores es coherente, no resulta atractiva y la tipograf\'ia utilizada no es adecuada para una lectura prolongada.
+    \item No hay una correcta jerarqu\'ia visual entre t\'itulos, subt\'itulos y contenido.
+    \item El dise\~no no est\'a adaptado para dispositivos m\'oviles (falta de dise\~no responsivo).
+\end{itemize}
+
+\subsection{Estructura y navegaci\'on}
+\begin{itemize}[left=0pt,labelsep=5pt]
+    \item La estructura general puede resultar confusa en ciertos puntos.
+    \item Existe un men\'u lateral que permite navegar entre las secciones, los foros y los ex\'amenes; sin embargo, aunque es algo intuitivo, puede mejorarse para hacer m\'as clara la relaci\'on entre teor\'ia y pr\'actica.
+    \item Las secciones del foro y los ex\'amenes est\'an separadas de una manera que puede dificultar la relaci\'on directa entre los temas te\'oricos y los ejercicios.
+    \item No se cuenta con indicadores visuales que ayuden al usuario a ubicarse dentro del sitio (por ejemplo, breadcrumbs o una barra de progreso).
+\end{itemize}
+
+\subsection{Organizaci\'on del contenido}
+\begin{itemize}[left=0pt,labelsep=5pt]
+    \item Las secciones del foro contienen una gran cantidad de texto sin una estructura visual clara (bloques extensos que pueden saturar al usuario).
+    \item Aunque existen algunos recursos visuales, estos no siguen una l\'inea de dise\~no coherente y muchas im\'agenes difieren en estilo, lo que afecta la presentaci\'on general del sitio.
+    \item El lenguaje utilizado no es excesivamente técnico, pero la cantidad de informaci\'on disponible puede resultar abrumadora. De acuerdo con los lineamientos del proyecto, la informaci\'on existente no debe modificarse de forma sustancial, pero se considera viable mejorar su presentaci\'on mediante el uso de m\'as recursos visuales, videos y una mejor divisi\'on o resumen del contenido.
+\end{itemize}
+
+\subsection{Interactividad y recursos did\'acticos}
+\begin{itemize}[left=0pt,labelsep=5pt]
+    \item Los ex\'amenes del sitio s\'i cuentan con retroalimentaci\'on inmediata, lo cual es un aspecto positivo.
+    \item Existen algunos recursos visuales complementarios, aunque presentan problemas de consistencia en su dise\~no y calidad.
+    \item La interactividad general del sitio es limitada y podr\'ia enriquecerse con recursos din\'amicos o elementos visuales m\'as atractivos.
+    \item Ser\'ia recomendable incorporar actividades adicionales como ejercicios visuales o representaciones gr\'aficas interactivas, siempre que el alcance del proyecto lo permita.
+\end{itemize}
+
+\subsection{Aspectos t\'ecnicos y de accesibilidad}
+\begin{itemize}[left=0pt,labelsep=5pt]
+    \item No hay evidencia de una estructura moderna de desarrollo web (HTML5, CSS3 o frameworks actuales).
+    \item No se cuenta con informaci\'on sobre los tiempos de carga o el uso de recursos del sitio.
+    \item Tampoco se tiene evidencia sobre est\'andares de accesibilidad web; sin embargo, el aspecto visual poco atractivo y la falta de dise\~no responsivo afectan la facilidad de uso y la experiencia del usuario.
+\end{itemize}
+
+\section{Propuestas de mejora}
+
+\subsection{Redise\~no visual y experiencia de usuario (UX/UI)}
+\begin{itemize}[left=0pt,labelsep=5pt]
+    \item Implementar un redise\~no completo de la interfaz con un enfoque moderno y educativo.
+    \item Elegir una tipograf\'ia legible y adecuada para lectura prolongada.
+    \item Aplicar dise\~no responsivo para asegurar compatibilidad con distintos dispositivos.
+    \item Mejorar la jerarqu\'ia visual de los elementos para facilitar la lectura y navegaci\'on.
+\end{itemize}
+
+\subsection{Reestructuraci\'on del contenido}
+\begin{itemize}[left=0pt,labelsep=5pt]
+    \item Mantener la informaci\'on actual, pero reorganizarla visualmente en bloques m\'as cortos y f\'aciles de leer.
+    \item Incluir res\'umenes o puntos clave al inicio o final de cada secci\'on.
+    \item Agregar m\'as recursos visuales (im\'agenes, videos o esquemas) que ayuden a comprender los temas sin modificar su contenido original.
+    \item Mejorar la presentaci\'on visual de las im\'agenes existentes, unificando estilos y cuidando la est\'etica general del sitio.
+    \item Incorporar un índice general o buscador interno que permita localizar los temas con mayor facilidad.
+\end{itemize}
+
+\subsection{Integraci\'on de recursos interactivos}
+\begin{itemize}[left=0pt,labelsep=5pt]
+    \item A\~nadir elementos interactivos sencillos que refuercen la comprensi\'on de los temas, como gr\'aficas din\'amicas que muestren el comportamiento de una funci\'on y su derivada.
+    \item Incluir evaluaciones visuales o animadas con retroalimentaci\'on inmediata.
+    \item Implementar elementos visuales que motiven al alumno a explorar y practicar de forma autonoma.
+\end{itemize}
+
+\subsection{Mejora de la estructura t\'ecnica}
+\begin{itemize}[left=0pt,labelsep=5pt]
+    \item Migrar el sitio hacia tecnolog\'ias web actuales (HTML5, CSS3, JavaScript o frameworks modernos como Vue.js o React).
+    \item Reorganizar la estructura del c\'odigo para mejorar la mantenibilidad y adaptabilidad del sitio.
+    \item Incorporar buenas pr\'acticas de dise\~no y desarrollo responsivo.
+    \item Optimizar el men\'u lateral para hacerlo m\'as intuitivo y facilitar la navegaci\'on entre secciones, foros y ex\'amenes.
+\end{itemize}
+
+\subsection{Dise\~no pedag\'ogico}
+\begin{itemize}[left=0pt,labelsep=5pt]
+    \item Mantener el plan de estudio y los ejemplos ya disponibles, reforzando la presentaci\'on mediante recursos visuales m\'as consistentes.
+    \item Presentar los temas de forma gradual, de lo b\'asico a lo avanzado.
+    \item A\~nadir actividades de autoevaluaci\'on y retroalimentaci\'on inmediata.
+    \item Aumentar la integraci\'on entre teor\'ia y pr\'actica dentro de cada secci\'on.
+\end{itemize}
+
+\section{Conclusi\'on}
+El sitio actual cumple con su funci\'on educativa b\'asica, pero presenta limitaciones en dise\~no, usabilidad y coherencia visual. Las propuestas de mejora aqu\'i presentadas buscan modernizar la p\'agina y hacerla m\'as atractiva, organizada y accesible, sin alterar su estructura acad\'emica ni los contenidos existentes.
+
+Con una mejor presentaci\'on visual, una navegaci\'on m\'as intuitiva y recursos did\'acticos m\'as consistentes, la p\'agina puede transformarse en una herramienta educativa m\'as efectiva y motivadora para los estudiantes que buscan comprender el concepto de la derivada.
+
+\vspace{1em}
+\noindent
+\textbf{Pr\'oximos pasos sugeridos:}
+\begin{enumerate}[left=0pt]
+    \item Priorizar las mejoras (dise\~no visual, navegaci\'on, recursos visuales y tecnologi\'a) en sprints manejables.
+    \item Definir un prototipo de baja fidelidad (wireframes) y un prototipo de alta fidelidad antes de implementaci\'on.
+    \item Planificar pruebas de usabilidad con algunos alumnos para validar las mejoras propuestas.
+\end{enumerate}
+
+\vspace{2em}
+
+\noindent
+% Firma (opcional)
+% \begin{tabular}{@{}p{0.45\textwidth}p{0.45\textwidth}@{}}
+%  \textbf{Elaborado por:} & \textbf{Revisado por:} \\
+%  [Nombre del equipo o integrantes] & [Nombre del profesor o revisor] \\
+% \end{tabular}
+
+\end{document}
