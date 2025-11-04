@@ -1,0 +1,21 @@
+\documentclass{standalone}
+
+% Paquetes necesarios
+\usepackage{circuitikz}
+\usetikzlibrary{circuits.logic.IEC}
+
+\begin{document}
+\begin{circuitikz}
+\tikzstyle{every node}=[font=\LARGE]
+\node [font=\LARGE] at (1.5,15.25) {A};
+\node [font=\LARGE] at (1.5,13.5) {B};
+\draw  (3.75,15.75) rectangle (6.25,13.25);
+\draw [->, >=Stealth] (2,13.5) -- (3.5,13.5);
+\draw [->, >=Stealth] (2,15.25) -- (3.5,15.25);
+\node [font=\LARGE] at (5,14.5) {HA};
+\draw [->, >=Stealth] (6.5,15.25) -- (8,15.25);
+\draw [->, >=Stealth] (6.5,13.5) -- (8,13.5);
+\node [font=\LARGE] at (9,15.25) {Suma};
+\node [font=\LARGE] at (9.25,13.5) {Acarreo};
+\end{circuitikz}
+\end{document}
