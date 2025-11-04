@@ -1,4 +1,4 @@
-\documentclass[a4paper, 12pt]{article}
+\documentclass[a4paper, 11pt]{article}
 
 % -- Language --
 \usepackage[spanish]{babel}
@@ -54,7 +54,7 @@
 \title
 {
     Diseño de Sistemas Digitales 2025-2 \\
-    Problemas Unidad 3
+    Problemas Unidad 4
 }
 
     \begin{document}
@@ -75,238 +75,170 @@
     \vspace{0.3cm}
     \begin{enumerate}
         % - Problema 1
-        \item Simplifique las siguientes expresiones mediante el uso del álgebra booleana. \par
+        \item Sume lo siguiente en binario. \par
              % Respuestas:
             \vspace{\Aspace} \par
-            a) $x = ABC + \bar{A}C$
-            \\ { \color{azul} 
-                $C(AB + \bar{A})$
-                \par $C(B + \bar{A})$
-            }
+            a) $0{.}1011 + 0{.}1111$
+            \\ { \color{azul} }
 
             \vspace{\Aspace} \par
-            b) $y = (Q + R)(\bar{Q} + \bar{R})$
-            \\ { \color{azul} 
-                $Q\bar{Q} + Q\bar{R} + \bar{Q}R + R\bar{R}$
-                \par $Q\bar{R} + \bar{Q}R$
-            }
+            b) $10011011 + 10011101$
+            \\ { \color{azul} }
 
             \vspace{\Aspace} \par
-            c) $w = ABC + A\bar{B}C + \bar{A}$
-            \\ { \color{azul} 
-                $AC(B + \bar{B}) + \bar{A}$
-                \par $AC + \bar{A}$
-                \par $C + \bar{A}$
-            }
-
-            \vspace{\Aspace} \par
-            d) $q = \overline{RST}\overline{(R + S + T)}$
-            \\ { \color{azul} 
-                $(\bar{R} + \bar{S} + \bar{T})(\bar{R}\bar{S}\bar{T})$
-                \par $\bar{R}(\bar{R}\bar{S}\bar{T}) + \bar{S}(\bar{R}\bar{S}\bar{T}) + \bar{T}(\bar{R}\bar{S}\bar{T})$
-                \par $\bar{R}\bar{S}\bar{T} + \bar{R}\bar{S}\bar{T} + \bar{R}\bar{S}\bar{T}$
-                \par $\bar{R}\bar{S}\bar{T}$
-            }
-
-            \vspace{\Aspace} \par
-            e) $x = \bar{A}\bar{B}\bar{C} + \bar{A}BC + ABC + A\bar{B}\bar{C} + A\bar{B}C$
-            \\ { \color{azul} 
-                $\bar{B}\bar{C}(\bar{A} + A) + BC(\bar{A} + A) + A\bar{B}C$
-                \par $\bar{B}\bar{C} + BC + A\bar{B}C$
-                \par $\bar{B}\bar{C} + C(B + A \bar{B})$
-                \par $\bar{B}\bar{C} + C(B + A)$
-            }
-
-            \newpage
-            \vspace{\Aspace} \par
-            f) $z = (B + \bar{C})(\bar{B} + C) + \overline{\bar{A} + B + \bar{C}}$
-            \\ { \color{azul} 
-                $(B + \bar{C})(\bar{B} + C) + A\bar{B}C$
-                \par $B\bar{B} + \bar{B}\bar{C} + BC + C\bar{C} + A\bar{B}C$
-                \par $\bar{B}\bar{C} + BC + A\bar{B}C$
-                \par $\bar{B}(\bar{C} + AC) + BC$
-                \par $\bar{B}(\bar{C} + A) + BC$
-            }
+            c) $1010.01 + 10.111$
+            \\ { \color{azul} }
 
 
 
         % - Problema 2
         \vspace{\Pspace}
-        \item Simplifique el circuito de la figura mediante el uso del álgebra booleana. \par
-        \begin{figure}[!ht]
-            \centering
-            \includegraphics[width=0.7\textwidth]{Circuitos/Figuras/Figura-2.pdf}
-        \end{figure}
-            % Respuesta:
+        \item Represente cada uno de los siguientes números decimales con signo en el sistema de complemento a 2. Use un total de ocho bits, incluyendo el bit de signo. \par
+            % Respuestas:
             \vspace{\Aspace} \par
-            { \color{azul} Expresión: $\overline{(\overline{(MNQ)} \text{ } \overline{(M\bar{N}Q)} \text{ } \overline{(\bar{M}NQ)})}$
-                \par $MNQ + M\bar{N}Q + \bar{M}NQ$
-                \par $MQ(N + \bar{N}) + \bar{M}NQ$
-                \par $MQ + \bar{M}NQ$
-                \par $Q(M + \bar{M}N)$
-                \par $Q(M + N)$
-                \begin{figure}[!ht]
-                    \centering
-                    \includegraphics[width=0.5\textwidth]{Circuitos/Respuestas/Respuesta-2.pdf}
-                \end{figure}
-            }
+            a) $+1$
+            \\ { \color{azul} }
+
+            \vspace{\Aspace} \par
+            b) $-128$
+            \\ { \color{azul} }
+
+            \vspace{\Aspace} \par
+            c) $+169$
+            \\ { \color{azul} }
+
+            \vspace{\Aspace} \par
+            d) $0$
+            \\ { \color{azul} }
+
+            \vspace{\Aspace} \par
+            e) $+84$
+            \\ { \color{azul} }
+
+            \vspace{\Aspace} \par
+            f) $-190$
+            \\ { \color{azul} }
+            
+            \vspace{\Aspace} \par
+            g) $+3$
+            \\ { \color{azul} }
+
+            \vspace{\Aspace} \par
+            h) $-3$
+            \\ { \color{azul} }
 
 
 
-        \newpage
         % - Problema 3
-        \item Diseñe el circuito lógico que corresponde a la tabla de verdad que se muestra a continuación:
-        \begin{center}
-            \begin{tabular}{ccc|c}
-                \textbf{A} & \textbf{B} & \textbf{C} & \textbf{x} \\
-                \hline
-                0 & 0 & 0 & 1 \\
-                0 & 0 & 1 & 0 \\
-                0 & 1 & 0 & 1 \\
-                0 & 1 & 1 & 1 \\
-                1 & 0 & 0 & 1 \\
-                1 & 0 & 1 & 0 \\
-                1 & 1 & 0 & 0 \\
-                1 & 1 & 1 & 1
-            \end{tabular}
-        \end{center}
-            % Respuesta:
+        \item Cada uno de los siguientes números representa un número decimal con signo en el sistema de complemento a 2. Determine el valor decimal de los siguientes valores:
+            % Respuestas:
             \vspace{\Aspace} \par
-            { \color{azul} 
-                $x = \bar{A}\bar{B}\bar{C} + \bar{A}B\bar{C} + \bar{A}BC + A\bar{B}\bar{C} + ABC$
-                \par $x = \bar{A}\bar{C}(\bar{B} + B) + BC(\bar{A} + A) + A\bar{B}\bar{C}$
-                \par $x = \bar{A}\bar{C} + BC + A\bar{B}\bar{C}$
-                \par $x = \bar{C}(\bar{A} + A\bar{B}) + BC$
-                \par $x = \bar{C}(\bar{A} + \bar{B}) + BC$
-                \begin{figure}[!ht]
-                    \centering
-                    \includegraphics[width=0.7\textwidth]{Circuitos/Respuestas/Respuesta-3.pdf}
-                \end{figure}
-            }
+            a) $10000000$
+            \\ { \color{azul} }
+
+            \vspace{\Aspace} \par
+            b) $11111111$
+            \\ { \color{azul} }
+
+            \vspace{\Aspace} \par
+            c) $10000001$
+            \\ { \color{azul} }
+
+            \vspace{\Aspace} \par
+            d) $01100011$
+            \\ { \color{azul} }
+
+            \vspace{\Aspace} \par
+            e) $11011001$
+            \\ { \color{azul} }
 
 
 
         % - Problema 4
         \vspace{\Pspace}
-        \item Diseñe un circuito lógico cuya salida esté en ALTO sólo cuando la mayoría de las entradas A, B y C estén en BAJO.
-            % Respuesta:
-            \vspace{\Aspace} \par
-            { \color{azul} 
-                \begin{figure}[!ht]
-                    \centering
-                    \includegraphics[width=0.5\textwidth]{Circuitos/Respuestas/Respuesta-4.pdf}
-                \end{figure}
-            }
-
-
-
-        \newpage
-        % - Problema 5
-        \item Determine la expresión mínima para cada uno de los mapas K en la figura. \par
+        \item La razón por la que el método de signo-magnitud para representar números con signo $n$ se utiliza en la mayoría de las computadoras puede ilustrarse mediante lo siguiente:.
             % Respuestas:
             \vspace{\Aspace} \par
-            a) 
-            \begin{tabular}{ccccc}
-                & $\bar{C}\bar{D}$ & $\bar{C}D$ & $CD$ & $C\bar{D}$ \\
-                $\bar{A}\bar{B}$ & 1 & 1 & 1 & 1 \\
-                $\bar{A}B$ & 1 & 1 & 0 & 0 \\
-                $AB$ & 0 & 0 & 0 & 1 \\
-                $A \bar{B}$ & 0 & 0 & 1 & 1
-            \end{tabular}
-
-            \par { \color{azul} 
-                $\bar{A}\bar{B} + \bar{A}B\bar{C} + AC\bar{D} + A\bar{B}C$
-                \par $\bar{A}(\bar{B} + B\bar{C}) + AC(\bar{D} + \bar{B})$
-                \par $\bar{A}(\bar{B} + \bar{C}) + AC(\bar{D} + \bar{B})$
-            }
+            a) Represente +12 en ocho bits, utilizando la forma signo-magnitud.
+            \\ { \color{azul} }
 
             \vspace{\Aspace} \par
-            b) 
-            \begin{tabular}{ccccc}
-                & $\bar{C}\bar{D}$ & $\bar{C}D$ & $CD$ & $C\bar{D}$ \\
-                $\bar{A}\bar{B}$ & 1 & 0 & 1 & 1 \\
-                $\bar{A}B$ & 1 & 0 & 0 & 1 \\
-                $AB$ & 0 & 0 & 0 & 0 \\
-                $A \bar{B}$ & 1 & 0 & 1 & 1
-            \end{tabular}
+            b) Represente -12 en ocho bits, utilizando la forma signo-magnitud.
+            \\ { \color{azul} }
 
-            \par { \color{azul} 
-                $\bar{A}\bar{C}\bar{D} + \bar{A}\bar{B}C + \bar{A}C\bar{D} + \bar{B}\bar{C}\bar{D} + A\bar{B}C$
-                \par $\bar{A}\bar{D}(\bar{C} + C) + \bar{B}C(\bar{A} + A) + \bar{B}\bar{C}\bar{D}$
-                \par $\bar{A}\bar{D} + \bar{B}C + \bar{B}\bar{C}\bar{D}$
-                \par $\bar{A}\bar{D} + \bar{B}(C + \bar{C}\bar{D})$
-                \par $\bar{A}\bar{D} + \bar{B}(C + \bar{D})$
-            }
+            \vspace{\Aspace} \par
+            c) Sume los dos números binarios y observe que la suma no se parece en nada a cero.
+            \\ { \color{azul} }
 
 
+        \vspace{\Pspace}
+        % - Problema 5
+        \item Multiplique los siguientes pared de números binarios. \par
+            % Respuestas:
+            \vspace{\Aspace} \par
+            a) $111 \times 101$
+            \\ { \color{azul} }
 
+            \vspace{\Aspace} \par
+            b) $1011 \times 1011$
+            \\ { \color{azul} }
+
+            \vspace{\Aspace} \par
+            c) $101{.}101 \times 110{.}010$
+            \\ { \color{azul} }
+
+            \vspace{\Aspace} \par
+            d) $0.1101 \times 0.1011$
+            \\ { \color{azul} }
+
+
+    
+        \newpage
         % - Problema 6
         \vspace{\Pspace}
-        \item Empezando con la tabla de verdad del problema 3, utilizce un mapa K para encontrar la ecuación SOP más simple.
+        \item Realice las siguientes divisiones.
             % Respuesta:
             \vspace{\Aspace} \par
-            { \color{azul} 
-               \begin{tabular}{ccc}
-                    & $C$ & $\bar{C}$ \\
-                    $\bar{A}\bar{B}$ & 0 & 1 \\
-                    $\bar{A}B$ & 1 & 1 \\
-                    $AB$ & 1 & 0 \\
-                    $A \bar{B}$ & 0 & 1
-                \end{tabular}
-                
-                \par $\bar{A}\bar{C} + BC + \bar{B}\bar{C}$
-                \par $\bar{C}(\bar{A} + \bar{B}) + BC$
-            }
+            a) $1100 \div 100$
+            \\ { \color{azul} }
 
+            \vspace{\Aspace} \par
+            b) $111111 \div 1001$
+            \\ { \color{azul} }
+
+            \vspace{\Aspace} \par
+            c) $10111 \div 100$
+            \\ { \color{azul} }
+
+            \vspace{\Aspace} \par
+            d) $10110{.}1101 \div 1{.}1$
+            \\ { \color{azul} }
             
 
-        \newpage
-        % - Problema 7
-        \item Simplifique la expresión utilizando un mapa K.
-            % Respuestas:
-            \vspace{\Aspace} \par
-            a) $x = ABC + \bar{A}BC$
-            \par { \color{azul}
-                \begin{tabular}{ccc}
-                    & $C$ & $\bar{C}$ \\
-                    $\bar{A}\bar{B}$ & 0 & 0 \\
-                    $\bar{A}B$ & 1 & 0 \\
-                    $AB$ & 1 & 0 \\
-                    $A \bar{B}$ & 0 & 0
-                \end{tabular}
-            }
-
-            \vspace{\Aspace} \par
-            b) $x = \bar{A}\bar{B}\bar{C} + \bar{A}BC + ABC + A\bar{B}\bar{C} + A\bar{B}C$
-            \par { \color{azul}
-                \begin{tabular}{ccc}
-                    & $C$ & $\bar{C}$ \\
-                    $\bar{A}\bar{B}$ & 0 & 1 \\
-                    $\bar{A}B$ & 1 & 0 \\
-                    $AB$ & 1 & 0 \\
-                    $A \bar{B}$ & 1 & 1
-                \end{tabular}
-            }
-
-
-
-        % - Problema 8
+        
         \vspace{\Pspace}
-        \item Determine las condiciones de entrada necesarias para producir $x = 1$ en la figura.
+        % - Problema 7
+        \item Escriba la tabla de funciones para un medio sumador, $HA$ (entradas $A$ y $B$; salidas SUMA y ACARREO). A partir de la tabla de funciones, diseñe un circuito lógico que actúe como medio sumador.
         \begin{figure}[!ht]
             \centering
-            \includegraphics[width=0.7\textwidth]{Circuitos/Figuras/Figura-8.pdf}
+            \includegraphics[width=0.5\textwidth]{Circuitos/Figuras/Figura_8.pdf}
         \end{figure}
             % Respuesta:
             \vspace{\Aspace} \par
-            { \color{azul} 
-                Expresión:
-                \par $((A + B)(\bar{A} + \bar{B}))\overline{((B + C)(\bar{B} + \bar{C}))}C$
-                \par $((A + B)(\bar{A} + \bar{B}))((\bar{B}\bar{C} + (BC))C$
+            { \color{azul} }
 
-                \vspace{\Aspace}
-                \par Condiciones necesarias:
-                \par $A = 0$, $B = 1$ y $C = 1$
-            }
+
+
+        \newpage
+        % - Problema 8
+        \vspace{\Pspace}
+        \item El desbordamiento ocurre cuando los dos números que se van a sumar o a restar producen un resultado que contiene más bits que la capacidad del acumulador. Diseñe un circuito lógico para el sumador de la figura que produzca una salida de 1 cada vez que ocurra la condición de desbordamiento.
+        \begin{figure}[!ht]
+            \centering
+            \includegraphics[width=0.8\textwidth]{Circuitos/Figuras/Figura_9.pdf}
+        \end{figure}
+            % Respuesta:
+            \vspace{\Aspace} \par
+            { \color{azul} }
     \end{enumerate}
 \end{document}
