@@ -1,0 +1,72 @@
+
+\documentclass[a4paper,12pt]{article}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{geometry}
+\usepackage{caption}
+\geometry{margin=2.5cm}
+
+\begin{document}
+
+\begin{center}
+    {\LARGE \textbf{Sumador Completo de 5 Bits en Logisim-Evolution}}\\[0.5cm]
+    \textbf{Diseño de Sistemas Digitales}\\
+    \textbf{Bórquez Guerrero Angel Fernando - 219208106}\\
+    \textbf{Fecha: \today}
+\end{center}
+
+\vspace{1cm}
+
+\section*{Descripción general}
+El objetivo de esta práctica es diseñar un \textbf{sumador completo de 5 bits} utilizando el software \textit{Logisim-Evolution}.  
+Para realizar la suma de dos números binarios de 5 bits, se emplean cinco módulos de \textit{sumadores completos (Full Adders, FA)} conectados en paralelo.  
+Cada FA se encarga de sumar los bits correspondientes de las entradas \( A_i \) y \( B_i \), junto con el acarreo de entrada (\( C_{in} \)) proveniente del bit anterior.
+
+\vspace{0.5cm}
+
+\section*{Sumador completo (FA)}
+El sumador completo es el bloque básico del circuito.  
+Cuenta con tres entradas: \( A \), \( B \) y \( C_{in} \); y dos salidas: la \textbf{suma} (\( S \)) y el \textbf{acarreo de salida} (\( C_{out} \)).  
+Su comportamiento se define mediante las siguientes expresiones lógicas:
+
+\[
+S = A \oplus B \oplus C_{in}
+\]
+\[
+C_{out} = (A \cdot B) + (C_{in} \cdot (A \oplus B))
+\]
+
+A continuación, se muestra el circuito implementado en Logisim-Evolution:
+
+\begin{center}
+    \includegraphics[width=0.8\textwidth]{FA.png}
+    \captionof{figure}{Circuito del sumador completo (FA).}
+\end{center}
+
+\vspace{0.5cm}
+
+\section*{Sumador completo de 5 bits}
+Para realizar la suma de dos números binarios de 5 bits, se conectaron cinco módulos FA.  
+El \textbf{acarreo de salida} (\( C_{out} \)) de cada módulo se conecta al \textbf{acarreo de entrada} (\( C_{in} \)) del siguiente, comenzando con un acarreo inicial igual a cero.
+
+El resultado final del circuito incluye:
+\begin{itemize}
+    \item Cinco salidas de suma (\( S_0, S_1, S_2, S_3, S_4 \))
+    \item Un acarreo de salida global (\( C_{out} \))
+\end{itemize}
+
+\begin{center}
+    \includegraphics[width=0.9\textwidth]{Circuito.png}
+    \captionof{figure}{Sumador completo de 5 bits usando cinco módulos FA.}
+\end{center}
+
+\vspace{0.5cm}
+
+\section*{Conclusión}
+El diseño del sumador completo de 5 bits demuestra cómo un sistema más complejo puede construirse a partir de bloques básicos como el FA.  
+Este enfoque modular facilita la comprensión y el diseño de circuitos digitales de mayor escala.  
+El circuito cumple correctamente con la operación de suma binaria, propagando el acarreo de manera adecuada entre los distintos bits.
+
+\end{document}
