@@ -79,15 +79,36 @@
              % Respuestas:
             \vspace{\Aspace} \par
             a) $0{.}1011 + 0{.}1111$
-            \\ { \color{azul} }
+            \\ { \color{azul} 
+                \begin{tabular}{r|}
+                    $0{.}1011$ \\
+                    $0{.}1111$ \\
+                    \hline 
+                    $1{.}1010$
+                \end{tabular}
+            }
 
             \vspace{\Aspace} \par
             b) $10011011 + 10011101$
-            \\ { \color{azul} }
+            \\ { \color{azul} 
+                \begin{tabular}{r|}
+                    $10011011$ \\
+                    $10011101$ \\
+                    \hline 
+                    $100111000$
+                \end{tabular}
+            }
 
             \vspace{\Aspace} \par
-            c) $1010.01 + 10.111$
-            \\ { \color{azul} }
+            c) $1010{.}01 + 10{.}111$
+            \\ { \color{azul} 
+                \begin{tabular}{r|}
+                    $1010{.}010$ \\
+                    $10{.}111$ \\
+                    \hline 
+                    $1101{.}001$
+                \end{tabular}
+            }
 
 
 
@@ -97,35 +118,63 @@
             % Respuestas:
             \vspace{\Aspace} \par
             a) $+1$
-            \\ { \color{azul} }
+            \\ { \color{azul} 00000001}
 
             \vspace{\Aspace} \par
             b) $-128$
-            \\ { \color{azul} }
+            \\ { \color{azul}
+                \begin{tabular}{r|}
+                    $10000000$  \\
+                    \hline
+                    $01111111$  \\
+                    $1$         \\
+                    \hline 
+                    $10000000$
+                \end{tabular}
+            }
 
             \vspace{\Aspace} \par
             c) $+169$
-            \\ { \color{azul} }
+            \\ { \color{azul} Dado que este número requiere 8 bits para su representación usaremos un bit extra para el signo. \\ 010101001 }
 
-            \vspace{\Aspace} \par
+            \newpage
             d) $0$
-            \\ { \color{azul} }
+            \\ { \color{azul} 00000000 }
 
             \vspace{\Aspace} \par
             e) $+84$
-            \\ { \color{azul} }
+            \\ { \color{azul} 01010100 }
 
             \vspace{\Aspace} \par
             f) $-190$
-            \\ { \color{azul} }
+            \\ { \color{azul} 
+Dado que este número requiere 8 bits para su representación usaremos un bit extra para el signo. \\
+                \begin{tabular}{r|}
+                    $010111110$  \\
+                    \hline
+                    $101000001$  \\
+                    $1$         \\
+                    \hline 
+                    $101000010$
+                \end{tabular}
+            }
             
             \vspace{\Aspace} \par
             g) $+3$
-            \\ { \color{azul} }
+            \\ { \color{azul} 00000011 }
 
             \vspace{\Aspace} \par
             h) $-3$
-            \\ { \color{azul} }
+            \\ { \color{azul} 
+                \begin{tabular}{r|}
+                    $00000011$  \\
+                    \hline
+                    $11111100$  \\
+                    $1$         \\
+                    \hline 
+                    $11111101$
+                \end{tabular}
+            }
 
 
 
@@ -134,23 +183,56 @@
             % Respuestas:
             \vspace{\Aspace} \par
             a) $10000000$
-            \\ { \color{azul} }
+            \\ { \color{azul} $-2^{7} = -128$}
 
             \vspace{\Aspace} \par
             b) $11111111$
-            \\ { \color{azul} }
+            \\ { \color{azul} 
+                \begin{tabular}{r|}
+                    $11111111$  \\
+                    \hline
+                    $00000000$  \\
+                    $1$         \\
+                    \hline 
+                    $00000001$
+                \end{tabular}
+                \vspace{\Aspace}\\
+                R:/ $11111111 = -1$
+            }
 
             \vspace{\Aspace} \par
             c) $10000001$
-            \\ { \color{azul} }
+            \\ { \color{azul}
+                \begin{tabular}{r|}
+                    $10000001$  \\
+                    \hline
+                    $01111110$  \\
+                    $1$         \\
+                    \hline 
+                    $01111111$
+                \end{tabular}
+                \vspace{\Aspace}\\
+                R:/ $10000001 = -127$
+            }
 
             \vspace{\Aspace} \par
             d) $01100011$
-            \\ { \color{azul} }
+            \\ { \color{azul} 99 }
 
             \vspace{\Aspace} \par
             e) $11011001$
-            \\ { \color{azul} }
+            \\ { \color{azul} 
+                \begin{tabular}{r|}
+                    $11011001$  \\
+                    \hline
+                    $00100110$  \\
+                    $1$         \\
+                    \hline 
+                    $00100111$
+                \end{tabular}
+                \vspace{\Aspace}\\
+                R:/ $11011001 = -39$
+            }
 
 
 
@@ -160,15 +242,25 @@
             % Respuestas:
             \vspace{\Aspace} \par
             a) Represente +12 en ocho bits, utilizando la forma signo-magnitud.
-            \\ { \color{azul} }
+            \\ { \color{azul} 00001100 }
 
             \vspace{\Aspace} \par
             b) Represente -12 en ocho bits, utilizando la forma signo-magnitud.
-            \\ { \color{azul} }
+            \\ { \color{azul} 10001100}
 
             \vspace{\Aspace} \par
             c) Sume los dos números binarios y observe que la suma no se parece en nada a cero.
-            \\ { \color{azul} }
+            \\ { \color{azul} 
+                \begin{tabular}{r|}
+                    $00001100$  \\
+                    $10001100$  \\
+                    \hline 
+                    $10011000$
+                \end{tabular} \\
+En signo-magnitud, el bit más significativo indica el signo (0 positivo, 1 negativo).
+Así, +12 y -12 tienen los mismos 7 bits de magnitud (0001100), solo cambia el bit de signo.
+Pero al sumarlos, los bits no “se cancelan” como en complemento a 2 — el resultado 10011000 no representa cero, mostrando la gran desventaja del método.
+            }
 
 
         \vspace{\Pspace}
@@ -177,46 +269,96 @@
             % Respuestas:
             \vspace{\Aspace} \par
             a) $111 \times 101$
-            \\ { \color{azul} }
+            \\ { \color{azul} 
+                \begin{tabular}{r|}
+                    $111$  \\
+                    $\times101$  \\
+                    \hline 
+                    $111$ \\
+                    $000\phantom{0}$ \\
+                    $+111\phantom{00}$ \\
+                    \hline
+                    $100011$
+                \end{tabular} \\
+            }
 
             \vspace{\Aspace} \par
             b) $1011 \times 1011$
-            \\ { \color{azul} }
+            \\ { \color{azul} 
+                \begin{tabular}{r|}
+                    $1011$  \\
+                    $\times1011$  \\
+                    \hline 
+                    $1011$ \\
+                    $1011\phantom{0}$ \\
+                    $0000\phantom{00}$ \\
+                    $+1011\phantom{000}$ \\
+                    \hline
+                    $1111001$
+                \end{tabular} \\
+            }
 
             \vspace{\Aspace} \par
             c) $101{.}101 \times 110{.}010$
-            \\ { \color{azul} }
+            \\ { \color{azul} 
+                \begin{tabular}{r|}
+                    $101{.}101$  \\
+                    $\times110{.}010$  \\
+                    \hline 
+                    ${.}000000$ \\
+                    $1{.}01101\phantom{0}$ \\
+                    $00{.}0000\phantom{00}$ \\
+                    $000{.}000\phantom{000}$ \\
+                    $1011{.}01\phantom{0000}$ \\
+                    $+10110{.}1\phantom{00000}$ \\
+                    \hline
+                    $100011{.}001010$
+                \end{tabular} \\
+            }
 
+            \newpage
             \vspace{\Aspace} \par
-            d) $0.1101 \times 0.1011$
-            \\ { \color{azul} }
+            d) $0{.}1101 \times 0{.}1011$
+            \\ { \color{azul} 
+                \begin{tabular}{r|}
+                    $0{.}1101$  \\
+                    $\times0{.}1011$  \\
+                    \hline 
+                    $01101$ \\
+                    $01101\phantom{0}$ \\
+                    $00000\phantom{00}$ \\
+                    ${.}01101\phantom{000}$ \\
+                    $+0{.}0000\phantom{0000}$ \\
+                    \hline
+                    $0{.}10001111$
+                \end{tabular} \\
+            }
 
 
     
-        \newpage
         % - Problema 6
         \vspace{\Pspace}
         \item Realice las siguientes divisiones.
             % Respuesta:
             \vspace{\Aspace} \par
             a) $1100 \div 100$
-            \\ { \color{azul} }
+            \\ { \color{azul}  R/: 11}
 
             \vspace{\Aspace} \par
             b) $111111 \div 1001$
-            \\ { \color{azul} }
+            \\ { \color{azul} R/: 111}
 
             \vspace{\Aspace} \par
             c) $10111 \div 100$
-            \\ { \color{azul} }
+            \\ { \color{azul} R/: 101.11}
 
             \vspace{\Aspace} \par
             d) $10110{.}1101 \div 1{.}1$
-            \\ { \color{azul} }
+            \\ { \color{azul} R/: $1111{.}0011\overline{01}$}
             
 
         
-        \vspace{\Pspace}
+        \newpage
         % - Problema 7
         \item Escriba la tabla de funciones para un medio sumador, $HA$ (entradas $A$ y $B$; salidas SUMA y ACARREO). A partir de la tabla de funciones, diseñe un circuito lógico que actúe como medio sumador.
         \begin{figure}[!ht]
@@ -225,7 +367,20 @@
         \end{figure}
             % Respuesta:
             \vspace{\Aspace} \par
-            { \color{azul} }
+            { \color{azul} 
+                \begin{tabular}{cc|cc}
+                    \textbf{A} & \textbf{B} & \textbf{Suma} & \textbf{Acarreo} \\
+                    \hline
+                    1 & 1 & 0 & 1 \\
+                    1 & 0 & 1 & 0 \\
+                    0 & 1 & 1 & 0 \\
+                    0 & 0 & 0 & 0 \\
+                \end{tabular} \\
+                \begin{figure}[!ht]
+                    \centering
+                    \includegraphics[width=0.8\textwidth]{Circuitos/Respuestas/Respuesta_7.pdf}
+                \end{figure}
+            }
 
 
 

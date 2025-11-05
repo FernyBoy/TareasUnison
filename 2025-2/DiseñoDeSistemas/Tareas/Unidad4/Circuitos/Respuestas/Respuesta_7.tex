@@ -1,0 +1,56 @@
+\documentclass{standalone}
+
+% Paquetes necesarios
+\usepackage{circuitikz}
+\usetikzlibrary{circuits.logic.IEC}
+
+\begin{document}
+\begin{circuitikz}
+\tikzstyle{every node}=[font=\LARGE]
+\node [font=\LARGE] at (-11,18) {A};
+\node [font=\LARGE] at (-11,16.5) {B};
+\node [font=\LARGE] at (-0.75,14.25) {Suma};
+\node [font=\LARGE] at (-3.25,17.75) {Acarreo};
+\draw (-6.5,18) to[short] (-6.25,18);
+\draw (-6.5,17.5) to[short] (-6.25,17.5);
+\draw (-6.25,18) node[ieeestd and port, anchor=in 1, scale=0.89](port){} (port.out) to[short] (-4.5,17.75);
+\draw (-6.5,15.5) to[short] (-6.25,15.5);
+\draw (-6.5,15) to[short] (-6.25,15);
+\draw (-6.25,15.5) node[ieeestd and port, anchor=in 1, scale=0.89](port){} (port.out) to[short] (-4.5,15.25);
+\draw (-6.5,13.5) to[short] (-6.25,13.5);
+\draw (-6.5,13) to[short] (-6.25,13);
+\draw (-6.25,13.5) node[ieeestd and port, anchor=in 1, scale=0.89](port){} (port.out) to[short] (-4.5,13.25);
+\draw (-3.75,14.5) to[short] (-3.5,14.5);
+\draw (-3.75,14) to[short] (-3.5,14);
+\draw (-3.5,14.5) node[ieeestd or port, anchor=in 1, scale=0.89](port){} (port.out) to[short] (-1.75,14.25);
+\draw (-8.25,13.5) node[ieeestd not port, anchor=in](port){} (port.out) to[short] (-6.5,13.5);
+\draw (port.in) to[short] (-8.5,13.5);
+\draw (-8.25,15) node[ieeestd not port, anchor=in](port){} (port.out) to[short] (-6.5,15);
+\draw (port.in) to[short] (-8.5,15);
+\draw (-6.5,18) to[short] (-10.5,18);
+\draw (-10.5,16.5) to[short] (-7,16.5);
+\draw (-7,16.5) to[short] (-7,17.5);
+\draw (-7,17.5) to[short] (-6.5,17.5);
+\draw (-6.5,15.5) to[short] (-6.5,16);
+\draw (-6.5,16) to[short] (-8.25,16);
+\draw (-8.25,16) to[short] (-8.25,18);
+\draw (-8.5,15) to[short] (-8.75,15);
+\draw (-9,15) to[short] (-9,16.5);
+\draw (-9.5,18) to[short] (-9.5,13.5);
+\draw (-9.5,13.5) to[short] (-8.5,13.5);
+\draw (-8.5,15) to[short] (-9,15);
+\draw (-10,16.5) to[short] (-10,12.5);
+\draw (-6.5,13) to[short] (-6.5,12.5);
+\draw (-6.5,12.5) to[short] (-10,12.5);
+\draw (-4.5,13.25) to[short] (-3.75,13.25);
+\draw (-4.5,15.25) to[short] (-3.75,15.25);
+\draw (-3.75,15.25) to[short] (-3.75,14.5);
+\draw (-3.75,14) to[short] (-3.75,13.25);
+\node at (-10,16.5) [circ] {};
+\node at (-9.5,18) [circ] {};
+\node at (-8.25,18) [circ] {};
+\node at (-9,16.5) [circ] {};
+\node at (-4.25,17.75) [circ] {};
+\node at (-1.5,14.25) [circ] {};
+\end{circuitikz}
+\end{document}
