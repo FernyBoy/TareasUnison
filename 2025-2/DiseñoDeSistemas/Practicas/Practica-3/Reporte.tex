@@ -1,0 +1,61 @@
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{titlesec}
+
+\titleformat{\section}{\normalfont\Large\bfseries}{\thesection.}{1em}{}
+
+\title{\textbf{Práctica: Contador de 4 bits con límite en 9 y reset automático}}
+\author{Bórquez Guerrero Angel Fernando - 219208106 \\ Universidad de Sonora \\ Diseño de Sistemas Digitales}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Objetivo}
+Diseñar y simular en \textbf{Logisim Evolution} un contador de 4 bits capaz de contar desde 0 hasta 9 y mostrar su valor en un display de siete segmentos. Además, implementar una lógica de \textit{reset} automático para evitar que el contador sobrepase el valor máximo representable en el display decimal.
+
+\section{Descripción del circuito}
+El circuito se compone de cuatro flip-flops tipo \textbf{JK} conectados en cascada, los cuales conforman un contador binario de 4 bits. Las salidas de los flip-flops (\textbf{A}, \textbf{B}, \textbf{C}, \textbf{D}) se conectan a un decodificador \textbf{7447}, encargado de convertir el número binario a un formato adecuado para mostrarse en un \textbf{display de siete segmentos}.
+
+\section{Problema identificado}
+Inicialmente, el contador continuaba su conteo más allá del número 9 (1001 en binario), llegando hasta 15 (1111). Este comportamiento provocaba que el display mostrara valores erróneos o se “rompiera”, debido a que el decodificador 7447 solo está diseñado para representar los números del 0 al 9.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{./Images/Contador.png}
+    \caption{Versión inicial del contador que contaba hasta 15.}
+\end{figure}
+
+\section{Solución implementada}
+Para corregir el problema, se añadió una compuerta \textbf{AND} que detecta el momento en que el contador alcanza el valor \textbf{10} (1010 en binario).  
+Cuando esto ocurre, la salida de la compuerta AND envía una señal de \textit{reset} a todos los flip-flops, reiniciando el contador a cero.  
+De esta manera, el sistema se comporta como un \textbf{contador decimal (mod-10)} completamente funcional.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{./Images/Contador_con_reset.png}
+    \caption{Versión corregida con compuerta AND para el reset automático al llegar a 10.}
+\end{figure}
+
+\section{Funcionamiento general}
+\begin{itemize}
+    \item Cada flip-flop cambia de estado en función del pulso de reloj y del estado del flip-flop anterior.
+    \item El decodificador 7447 convierte las salidas binarias a señales para el display.
+    \item La compuerta AND supervisa las salidas \textbf{B} y \textbf{D} (correspondientes a los bits 1 y 3), generando la señal de reset cuando ambas están en alto (condición 1010).
+\end{itemize}
+
+\section{Conclusiones}
+La adición del circuito de \textit{reset} permitió convertir un contador binario simple en un contador decimal (mod-10) confiable.  
+El uso de compuertas lógicas para detectar condiciones específicas es una técnica común y fundamental en el diseño de sistemas digitales.  
+Con esta práctica se logró consolidar el entendimiento del funcionamiento de flip-flops, decodificadores y displays de siete segmentos.
+
+\end{document}
