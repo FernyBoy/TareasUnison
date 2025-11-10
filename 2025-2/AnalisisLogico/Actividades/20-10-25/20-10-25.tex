@@ -1,0 +1,225 @@
+\documentclass[a4paper, 11pt]{article}
+
+% -- Language --
+%\usepackage[spanish]{babel}
+% \usepackage[utf8]{inputenc}
+
+% -- Coments
+\usepackage{verbatim}
+
+% ----- Fonts -----
+% -- Fuente --
+% \usepackage{fontspec}
+% \setmonofont{JetBrainsMono Nerd Font}  
+
+% -- Color --
+\usepackage{xcolor}
+%\definecolor{azul}{RGB}{00,33,99}
+\definecolor{azul}{RGB}{35,72,180}
+
+% -- Page Margin --
+\usepackage[margin=1in]{geometry}
+
+% -- Espaciados --
+\newcommand{\Pspace}{0.5cm}
+\newcommand{\Aspace}{0.2cm}
+
+% -- Columnas --
+\usepackage{multicol}
+
+% -- Imagenes --
+\usepackage{graphicx}
+\usepackage{float}
+
+% -- Matemáticas --
+\usepackage{amsmath, amssymb}
+
+% -- Gráficas --
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% -- Código --
+\usepackage{listings}
+\lstset{
+    language=C++,                   % Lenguaje del código
+    basicstyle=\ttfamily\small,     % Fuente del código
+    keywordstyle=\color{blue},      % Color de palabras clave
+    commentstyle=\color{gray},      % Color de comentarios
+    stringstyle=\color{red},        % Color de cadenas
+    numbers=left,                   % Números de línea a la izquierda
+    numberstyle=\tiny\color{gray},
+    breaklines=true,                % Permitir saltos de línea
+    frame=single                    % Marco alrededor del código
+}
+
+\begin{comment}
+-- Formato de pregunta simple
+    % - Problema n
+    \vspace{\Pspace}
+    \item Problema \par
+        % Respuesta:
+        \vspace{\Aspace} \par
+        { \color{azul}  }
+
+
+ -- Formato de pregunta multimple
+        % - Problema 
+        \vspace{\Pspace}
+        \item Problema \par
+             % Respuestas:
+            \vspace{\Aspace} \par
+            a) Inciso
+            \\ { \color{azul} }
+
+            \vspace{\Aspace} \par
+            b) Inciso
+            \\ { \color{azul} }
+
+
+ -- Formato de imagen
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.5\textwidth]{}
+\end{figure}
+
+
+ -- Formato de tabla
+\begin{tabular}{c|c}
+    \textbf{A} & \textbf{B} \\
+    \hline
+    Texto & Texto \\
+    Texto & Texto
+\end{tabular} \\
+\end{comment}
+
+
+\title
+{
+    Análisis Lógico 2025-2 \\
+    Actividad 20-10-25
+}
+
+    \begin{document}
+
+    \maketitle
+
+    \begin{center}
+        \begin{tabular}{r|l}
+            \textbf{Expediente} & \textbf{Nombre} \\ \hline
+            219208106 & Bórquez Guerrero Angel Fernando \\
+        \end{tabular}
+    \end{center}
+
+    \rule{\linewidth}{0.3mm}
+
+    \vspace{0.3cm}
+    \begin{enumerate}
+        % - Problema 1
+        \vspace{\Pspace}
+        \item Traduzca las siguientes oraciones a fbf de LPO \par
+             % Respuestas:
+            \vspace{\Aspace} \par
+            a) Cualquier que sea persistente puede aprender lógica
+            \\ { \color{azul} }
+
+            \vspace{\Aspace} \par
+            b) Ningún político es honesto.
+            \\ { \color{azul} }
+
+            \vspace{\Aspace} \par
+            c) No todas las aves pueden volar.
+            \\ { \color{azul} }
+
+            \vspace{\Aspace} \par
+            d) Ningún ave puede volar.
+            \\ { \color{azul} }
+
+            \vspace{\Aspace} \par
+            e) $x$ es trascendental si y solo si es irracional.
+            \\ { \color{azul} }
+
+            \vspace{\Aspace} \par
+            f) Si cualquiera puede resolver el problema, Ernesto puede.
+            \\ { \color{azul} }
+
+            \vspace{\Aspace} \par
+            g) Nadie ama a un perdedor.
+            \\ { \color{azul} }
+
+            \vspace{\Aspace} \par
+            h) Nadie en la clase de estadística es más inteligente que cualquiera en la clase de lógica. 
+            \\ { \color{azul} }
+
+            \vspace{\Aspace} \par
+            i) Todos aman a alguien y nadie ama a todo el mundo, o alguien ama a todo el mundo y alguien no ama a nadie. 
+            \\ { \color{azul} }
+
+            \vspace{\Aspace} \par
+            j) Puedes engañar a algunas personas todo el tiempo, y puedes engañar a todas las personas alguna vez, pero no puedes engañar a todas las personas al mismo tiempo. 
+            \\ { \color{azul} }
+
+            \vspace{\Aspace} \par
+            k) Cualesquiera conjuntos que tengan los mismos elementos son iguales.
+            \\ { \color{azul} }
+
+            \vspace{\Aspace} \par
+            l) Toda persona que conoce a Julia la ama.
+            \\ { \color{azul} }
+
+            \vspace{\Aspace} \par
+            m) No existe un conjunto que pertenezca exactamente a aquellos conjuntos que no pertenecen a sí mismos. 
+            \\ { \color{azul} }
+
+            \vspace{\Aspace} \par
+            n) No existe un barbero que afeite precisamente a aquellos hombres que no se afeitan a sí mismos.
+            \\ { \color{azul} }
+
+        % - Problema 
+        \vspace{\Pspace}
+        \item Traduzca a lenguaje natural las siguientes fbf. \par
+             % Respuestas:
+            \vspace{\Aspace} \par
+            a) $ \forall x (M(x) \land \forall y \lnot W(x,y) \rightarrow U(x)) $
+            \begin{itemize}
+                \item $M(x) = $ ``$x$ es un hombre"
+                \item $W(x,y) = $ ``$x$ está casado con $y$"
+                \item $U(x) = $ ``$x$ es infeliz"
+            \end{itemize}
+            \par { \color{azul} }
+
+            \vspace{\Aspace} \par
+            b) $\forall x (V(x) \land P(x) \rightarrow A(x,b))$
+            \begin{itemize}
+                \item $V(x) = $ ``$x$ es un entero par"
+                \item $P(x) = $ ``$x$ es un primo entero"
+                \item $A(x,y) = $ ``\(x = y\)" y $b$ denota 2
+            \end{itemize}
+            \par { \color{azul} }
+
+            \vspace{\Aspace} \par
+            c) $\lnot \exists y (I(y) \land \forall x (I(x) \rightarrow L(x,y)))$
+            \begin{itemize}
+                \item $I(y) = $ ``$y$ es un entero"
+                \item $L(x, y) = x \leq y$ 
+            \end{itemize}
+            \par { \color{azul} }
+
+            \vspace{\Aspace} \par
+            d) En las siguientes fbf: 
+            \begin{itemize}
+                \item $A^{1}_{1}(x) = $ ``$x$ es una persona"
+                \item $A^{2}_{1}(x, y) = $ ``$x$ odia a $y$"
+            \end{itemize}
+            \par \hspace*{2em} i. $\exists x (A^{1}_{1} x \land \forall y (A^{1}_{1} y \rightarrow A^{2}_{1}(x,y)))$
+            \par \hspace*{2em} { \color{azul}  }
+
+            \par \hspace*{2em} ii. $\forall x (A^{1}_{1} x \rightarrow \forall y (A^{1}_{1} y \rightarrow A^{2}_{1}(x,y)))$
+            \par \hspace*{2em} { \color{azul}  }
+
+            \par \hspace*{2em} iii. $\exists x (A^{1}_{1} x \land \forall y (A^{1}_{1} y \rightarrow (A^{2}_{1}(x,y) \leftrightarrow A^{2}_{1}(x,y))))$
+            \par \hspace*{2em} { \color{azul}  }
+
+
+
+    \end{enumerate}
+\end{document}
