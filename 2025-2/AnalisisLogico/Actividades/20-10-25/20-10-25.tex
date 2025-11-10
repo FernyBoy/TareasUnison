@@ -90,6 +90,14 @@
     Texto & Texto \\
     Texto & Texto
 \end{tabular} \\
+
+            { \color{azul} 
+                \begin{itemize}
+                    \item $P(x) = $ ``$x$ "
+                    \item $H(x) = $ ``$x$ "
+                \end{itemize}
+                \hspace*{2em} $$
+            }
 \end{comment}
 
 
@@ -112,43 +120,90 @@
 
     \rule{\linewidth}{0.3mm}
 
-    \vspace{0.3cm}
     \begin{enumerate}
         % - Problema 1
-        \vspace{\Pspace}
         \item Traduzca las siguientes oraciones a fbf de LPO \par
              % Respuestas:
             \vspace{\Aspace} \par
             a) Cualquier que sea persistente puede aprender lógica
-            \\ { \color{azul} }
+            { \color{azul}
+                \begin{itemize}
+                    \item $P(x) = $ ``$x$ es persistente"
+                    \item $A(x) = $ ``$x$ puede aprender lógica"
+                \end{itemize}
+                \hspace*{2em} $\forall x (P(x) \rightarrow A(x))$
+            }
 
             \vspace{\Aspace} \par
             b) Ningún político es honesto.
-            \\ { \color{azul} }
+            { \color{azul} 
+                \begin{itemize}
+                    \item $P(x) = $ ``$x$ es político"
+                    \item $H(x) = $ ``$x$ es honesto"
+                \end{itemize}
+                \hspace*{2em} $\lnot \exists x (P(x) \land H(x)) \equiv \forall x (P(x) \rightarrow \lnot H(x))$
+            }
 
             \vspace{\Aspace} \par
             c) No todas las aves pueden volar.
-            \\ { \color{azul} }
+            { \color{azul} 
+                \begin{itemize}
+                    \item $A(x) = $ ``$x$ es ave"
+                    \item $V(x) = $ ``$x$ puede volar"
+                \end{itemize}
+                \hspace*{2em} $\lnot \forall x (A(x) \rightarrow V(x)) \equiv \exists x (A(x) \land \lnot V(x))$
+            }
 
             \vspace{\Aspace} \par
             d) Ningún ave puede volar.
-            \\ { \color{azul} }
-
+            { \color{azul} 
+                \begin{itemize}
+                    \item $A(x) = $ ``$x$ es ave"
+                    \item $V(x) = $ ``$x$ puede volar"
+                \end{itemize}
+                \hspace*{2em} $\lnot \exists x (A(x) \rightarrow V(x)) \equiv \forall x (A(x) \land \lnot V(x))$
+            }
+            
+            \newpage
             \vspace{\Aspace} \par
             e) $x$ es trascendental si y solo si es irracional.
-            \\ { \color{azul} }
+            { \color{azul} 
+                \begin{itemize}
+                    \item $T(x) = $ ``$x$ es trascendental"
+                    \item $I(x) = $ ``$x$ es irracional"
+                \end{itemize}
+                \hspace*{2em} $\exists x (T(x) \leftrightarrow I(x))$
+            }
 
             \vspace{\Aspace} \par
             f) Si cualquiera puede resolver el problema, Ernesto puede.
-            \\ { \color{azul} }
+            { \color{azul} 
+                \begin{itemize}
+                    \item $R(x) = $ ``$x$ puede resolver el problema"
+                    \item $e = $ Ernesto
+                \end{itemize}
+                \hspace*{2em} $\forall x (R(x) \rightarrow R(e))$
+            }
 
             \vspace{\Aspace} \par
             g) Nadie ama a un perdedor.
-            \\ { \color{azul} }
+            { \color{azul} 
+                \begin{itemize}
+                    \item $A(x) = $ ``$x$ ama a un perdedor"
+                \end{itemize}
+                \hspace*{2em} $\lnot \exists x A(x)$
+            }
 
             \vspace{\Aspace} \par
             h) Nadie en la clase de estadística es más inteligente que cualquiera en la clase de lógica. 
-            \\ { \color{azul} }
+            { \color{azul} 
+                \begin{itemize}
+                    \item $E(x) = $ ``$x$ está en clase de estadística"
+                    \item $I(x,y) = $ ``$x$ es más inteligente que $y$"
+                    \item $L(x) = $ ``$x$ está en clase de lógica"
+                \end{itemize}
+                \hspace*{2em} $\lnot \exists x \forall y ((E(x) \land L(y)) \rightarrow I(x,y))$
+            }
 
             \vspace{\Aspace} \par
             i) Todos aman a alguien y nadie ama a todo el mundo, o alguien ama a todo el mundo y alguien no ama a nadie. 
@@ -164,15 +219,31 @@
 
             \vspace{\Aspace} \par
             l) Toda persona que conoce a Julia la ama.
-            \\ { \color{azul} }
+            { \color{azul} 
+                \begin{itemize}
+                    \item $C(x) = $ ``$x$ conoce a Julia"
+                    \item $A(x) = $ ``$x$ ama a Julia"
+                \end{itemize}
+                \hspace*{2em} $\forall x (C(x) \rightarrow A(x))$
+            }
 
             \vspace{\Aspace} \par
             m) No existe un conjunto que pertenezca exactamente a aquellos conjuntos que no pertenecen a sí mismos. 
-            \\ { \color{azul} }
+            { \color{azul} 
+                \begin{itemize}
+                    \item $P(x) = $ ``$x$ es un conjunto que pertenece a sí mismo"
+                \end{itemize}
+                \hspace*{2em} $\lnot \exists x (P(x) \land \lnot P(x))$
+            }
 
             \vspace{\Aspace} \par
             n) No existe un barbero que afeite precisamente a aquellos hombres que no se afeitan a sí mismos.
-            \\ { \color{azul} }
+            { \color{azul} 
+                \begin{itemize}
+                    \item $A(x) = $ ``$x$ es un barbero que se afeita a sí mismo"
+                \end{itemize}
+                \hspace*{2em} $\lnot \exists x (A(x) \land \lnot A(x))$
+            }
 
         % - Problema 
         \vspace{\Pspace}
@@ -185,7 +256,7 @@
                 \item $W(x,y) = $ ``$x$ está casado con $y$"
                 \item $U(x) = $ ``$x$ es infeliz"
             \end{itemize}
-            \par { \color{azul} }
+            \par { \color{azul} Todas las personas que son hombres y no están casados con cualquier otra persona son infelices. }
 
             \vspace{\Aspace} \par
             b) $\forall x (V(x) \land P(x) \rightarrow A(x,b))$
@@ -194,7 +265,7 @@
                 \item $P(x) = $ ``$x$ es un primo entero"
                 \item $A(x,y) = $ ``\(x = y\)" y $b$ denota 2
             \end{itemize}
-            \par { \color{azul} }
+            \par { \color{azul} Todo número que es entero par y primo entero es igual a dos. }
 
             \vspace{\Aspace} \par
             c) $\lnot \exists y (I(y) \land \forall x (I(x) \rightarrow L(x,y)))$
@@ -202,7 +273,7 @@
                 \item $I(y) = $ ``$y$ es un entero"
                 \item $L(x, y) = x \leq y$ 
             \end{itemize}
-            \par { \color{azul} }
+            \par { \color{azul} No existe número entero que cualquier otro numero sea menor o igual. }
 
             \vspace{\Aspace} \par
             d) En las siguientes fbf: 
