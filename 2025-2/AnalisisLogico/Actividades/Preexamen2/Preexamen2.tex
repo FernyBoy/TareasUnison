@@ -1,0 +1,710 @@
+\documentclass[a4paper, 11pt]{article}
+
+% -- Language --
+
+% -- Coments
+\usepackage{verbatim}
+
+% ----- Fonts -----
+% -- Fuente --
+% \usepackage{fontspec}
+% \setmonofont{JetBrainsMono Nerd Font}  
+
+% -- Color --
+\usepackage{xcolor}
+%\definecolor{azul}{RGB}{00,33,99}
+\definecolor{azul}{RGB}{35,72,180}
+
+% -- Page Margin --
+\usepackage[margin=1in]{geometry}
+
+% -- Espaciados --
+\newcommand{\Pspace}{0.5cm}
+\newcommand{\Aspace}{0.2cm}
+
+% -- Columnas --
+\usepackage{multicol}
+
+% -- Imagenes --
+\usepackage{graphicx}
+\usepackage{float}
+
+% -- Matemáticas --
+\usepackage{amsmath, amssymb}
+\usepackage{mathtools}
+
+% -- Gráficas --
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% -- Código --
+\usepackage{listings}
+\lstset{
+    language=C++,                   % Lenguaje del código
+    basicstyle=\ttfamily\small,     % Fuente del código
+    keywordstyle=\color{blue},      % Color de palabras clave
+    commentstyle=\color{gray},      % Color de comentarios
+    stringstyle=\color{red},        % Color de cadenas
+    numbers=left,                   % Números de línea a la izquierda
+    numberstyle=\tiny\color{gray},
+    breaklines=true,                % Permitir saltos de línea
+    frame=single                    % Marco alrededor del código
+}
+
+\usepackage{enumerate}
+
+\begin{comment}
+-- Formato de pregunta simple
+    % - Problema n
+    \vspace{\Pspace}
+    \item Problema \par
+        % Respuesta:
+        \vspace{\Aspace} \par
+        { \color{azul}  }
+
+
+ -- Formato de pregunta multimple
+        % - Problema 
+        \vspace{\Pspace}
+        \item  \par
+             % Respuestas:
+            \vspace{\Aspace} \par
+            a) 
+            \\ { \color{azul} }
+
+            \vspace{\Aspace} \par
+            b) 
+            \\ { \color{azul} }
+
+
+ -- Formato de imagen
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.5\textwidth]{}
+\end{figure}
+
+
+ -- Formato de tabla
+\begin{tabular}{c|c}
+    \textbf{A} & \textbf{B} \\
+    \hline
+    Texto & Texto \\
+    Texto & Texto
+\end{tabular} \\
+\end{comment}
+
+
+\title
+{
+    Análisis Lógico 2025-2 \\
+    Tarea pre-examen Unidad II
+}
+
+    \begin{document}
+
+    \maketitle
+
+    \begin{center}
+        \begin{tabular}{r|l}
+            \textbf{Expediente} & \textbf{Nombre} \\ \hline
+            219208106 & Bórquez Guerrero Angel Fernando \\
+        \end{tabular}
+    \end{center}
+
+    \rule{\linewidth}{0.3mm}
+    
+    
+\begin{enumerate}[I.]
+    \item Responde si las siguientes afirmaciones son verdaderas (V) o falsas (F), justificando en una línea si es falso (corrige la afirmación)
+    \begin{enumerate}[1.]
+        \item {\color{azul}\textbf{[V]}} En un lenguaje de primer orden no puede haber símbolos de función de aridad 0.
+
+
+        \item {\color{azul}\textbf{[V]}} Toda constante es, desde el punto de vista sintáctico, un término.
+
+
+        \item {\color{azul}\textbf{[F]}} El alcance de un cuantificador $\forall x$ o $\exists x$ es toda la fórmula en la que aparece.
+        \\ { \color{azul} El alcance se limita a la subfórmula que sigue al cuantificador. }
+
+
+        \item {\color{azul}\textbf{[F]}} El alfabeto de primer orden se compone de variables, constantes, funciones, predicados, conectivos lógicos, símbolos especiales.
+        \\ { \color{azul} Faltan los cuantificadores. }
+
+
+        \item {\color{azul}\textbf{[F]}} Los predicados se representan con una letra minúscula (Ej. $p(x) = $ ``$x$ es par").
+        \\ { \color{azul} La letra debe de ser mayúscula. }
+
+
+        \item {\color{azul}\textbf{[F]}} La aridad representa el número de predicado o función sobre el cual estamos hablando.
+        \\ { \color{azul} La aridad es el número de elementos (objetos o variables) sobre los que un predicado o una función se aplica. }
+
+
+        \item {\color{azul}\textbf{[V]}} $Ama(x,y) = $ ``$x$ ama a $y$" es un ejemplo de aridad 2.
+
+
+        \item {\color{azul}\textbf{[F]}} Un término es cualquier expresión que ``nombra" un objeto del dominio. Nos dice si algo es verdadero o falso.
+        \\ { \color{azul} Aunque es verdad que un término nombra un objeto del dominio, lo que nos dice si algo es verdadero o falso es un predicado. }
+
+
+        \item {\color{azul}\textbf{[F]}} Un predicado es un ejemplo de término.
+        \\ { \color{azul} Un predicado dice si algo es verdadero o falso, los términos representan objetos del dominio.  }
+
+
+        \item {\color{azul}\textbf{[V]}} Una fórmula atómica (o átomo) es un predicado aplicado a un término.
+
+
+        \item {\color{azul}\textbf{[F]}} LPO significa: Lógica de primer orden.
+        \\ { \color{azul} LPO significa: Lenguaje de Primer Orden. }
+
+
+        \item {\color{azul}\textbf{[F]}} Una variable ligada es aquella que no cae dentro del alcance de un cuantificador.
+            \\ { \color{azul} Las variables ligadas son aquellas ocurrencias de variables que se dan dentro del alcance del cuantificador que la nombra.. }
+
+
+        \item {\color{azul}\textbf{[V]}} Clausurar significa convertir nuestra fórmula en una oración, ligando todas las variables libres.
+
+
+        \item {\color{azul}\textbf{[V]}} Una estructura $M$ consta de un dominio y una interpretación que le da sentido a todos nuestros símbolos no lógicos de nuestra función.
+
+
+        \item {\color{azul}\textbf{[V]}} Si nuestra fórmula tiene variables libres su verdad dependerá de una asignación $s$.
+
+
+        \item {\color{azul}\textbf{[V]}} Una fórmula es válida si es verdadera en toda estructura (y toda asignación).
+
+
+        \item {\color{azul}\textbf{[V]}} Si $\varphi$ es válida, entonces $\lnot \varphi$ es insatisfacible.
+
+
+        \item {\color{azul}\textbf{[V]}} Dos estructuras pueden tener el mismo dominio, pero ser distintas si se interpretan de forma diferente algún símbolo no lógico.
+
+
+        \item {\color{azul}\textbf{[V]}} Si $\varphi \vDash \theta$ entonces toda estructura que satisface a $\varphi$ satisface $\theta$.
+
+
+        \item {\color{azul}\textbf{[F]}} La interpretación de un símbolo de función $f$ en una estructura está determinada sólo por el dominio.
+        \\ { \color{azul} La interpretación de una función también depende de cómo se asigna una operación específica dentro de ese dominio. }
+    \end{enumerate}
+
+
+    \vspace{\Pspace}
+    \item Traducir los siguientes argumentos en lenguaje natural a LPO.
+    \\ \textbf{Ejemplos}
+    \begin{enumerate}[1.]
+        \item Cualquiera puede cocinar.
+        \begin{itemize}
+            \item $D = \{$Personas$\}$
+            \item $P(x) = $ ``$x$ puede cocinar"
+        \end{itemize}
+        \hspace*{2em} $\forall x P(x)$
+
+        \item Todo el que conoce a Julia la ama.
+        \begin{itemize}
+            \item $D = \{$Personas$\}$
+            \item $j = $ Julia
+            \item $Conoce(x,y) = $ ``$x$ conoce a $y$"
+            \item $Ama(x,y) = $ ``$x$ ama a $y$"
+        \end{itemize}
+        \hspace*{2em} $\forall x (Conoce(x,j) \rightarrow Ama(x,j))$
+    \end{enumerate}
+    
+    \textbf{Ejercicios}
+    \begin{enumerate}[1.]
+        \item No hay barbero que afeite precisamente a aquellos hombres que no se afeitan a sí mismos.
+        % - Respuesta
+        { \color{azul} 
+            \vspace{-0.5cm}
+            \begin{itemize}
+                \item $D = \{$ Personas $\}$
+                \item $B(x) = $ ``$x$ es barbero"
+                \item $H(x) = $ ``$x$ es hombre"
+                \item $A(x,y) = $ ``$x$ afeita a $y$"
+            \end{itemize}
+            $\lnot \exists x (B(x) \land \forall y (H(y) \rightarrow (A(x,y) \leftrightarrow \lnot A(y,y))))$
+        }
+
+
+        \vspace{\Pspace}
+        \item Andrés odia a aquellas personas que no se odian a sí mismas.
+        % - Respuesta
+        { \color{azul} 
+            \begin{itemize}
+                \item $D = \{$ Personas $\}$
+                \item $O(x,y) = $ ``$x$ odia a $y$"
+                \item $a = $ Andrés
+            \end{itemize}
+            $\forall x (O(a, x) \rightarrow \lnot O(x,x))$
+        }
+
+
+        \newpage
+        \item Nadie en la clase de estadística es más inteligente que cualquiera en la clase de lógica.
+        % - Respuesta
+        { \color{azul} 
+            \begin{itemize}
+                \item $D = \{$ Estudiantes $\}$
+                \item $E(x) \coloneqq$ ``$x$ está en clase de estadística"
+                \item $L(x) \coloneqq$ ``$x$ está en clase de lógica"
+                \item $I(x,y) \coloneqq$ ``$x$ es más inteligente que $y$"
+            \end{itemize}
+            $\lnot \exists x (E(x) \land \forall y (L(y) \rightarrow I(x,y)))$
+        }
+
+
+        \vspace{\Pspace}
+        \item Si cualquiera puede resolver el problema, entonces Amaya puede.
+        % - Respuesta
+        { \color{azul} 
+            \begin{itemize}
+                \item $D = \{$ Personas $\}$
+                \item $R(x) = $ ``$x$ puede resolver el problema"
+                \item $a = Amaya$
+            \end{itemize}
+            $\forall x (R(x) \rightarrow R(a))$
+        }
+
+
+        \vspace{\Pspace}
+        \item Nadie ama a un americanista.
+        { \color{azul} 
+            \begin{itemize}
+                \item $D = \{$ Personas $\}$
+                \item $A(x,y) = $ ``$x$ ama a $y$"
+                \item $M(x) = $ ``$x$ es americanista"
+            \end{itemize}
+            $\lnot \exists x \exists y (M(y) \land A(x,y)))$
+        }
+
+
+        \vspace{\Pspace}
+        \item No existe ningún conjunto que pertenezca precisamente a aquellos conjuntos que no pertenecen a sí mismos.
+        { \color{azul}
+            \begin{itemize}
+                \item $D = \{$ Conjuntos $\}$
+                \item $P(x,y) \coloneqq$ ``$x$ pertenece a $y$"
+            \end{itemize}
+            $\lnot \exists x \forall y (P(x,y) \leftrightarrow \lnot P(y,y))$
+        }
+
+
+        \vspace{\Pspace}
+        \item Existen al menos dos personas distintas que son profesores
+        { \color{azul}
+            \begin{itemize}
+                \item $D = \{$ Personas $\}$
+                \item $P(x) \coloneqq$ ``$x$ es profesor"
+            \end{itemize}
+            $\exists x \exists y (x \neq y \land P(x) \land P(y))$
+        }
+
+
+        \vspace{\Pspace}
+        \item Existe alguien que conoce a Julia y no la ama.
+        { \color{azul}
+            \begin{itemize}
+                \item $D = \{$ Personas $\}$
+                \item $C(x,y) \coloneqq$ ``$x$ conoce a $y$"
+                \item $A(x,y) \coloneqq$ ``$x$ ama a $y$"
+                \item $j = $ Julia
+            \end{itemize}
+            $\exists x (C(x, j) \land \lnot A(x, j))$
+        }
+    \end{enumerate}
+
+
+
+    \newpage
+    \item Traduzca de LPO a lenguaje natural lo siguiente.
+    \begin{enumerate}[A.]
+        \item Estructura 1:
+        \begin{itemize}
+            \item $D = $Personas
+            \item $Conoce(x,y) = $ ``$x$ conoce a $y$"
+            \item $Odia(x,y) = $ ``$x$ odia a $y$"
+            \item $j = $ Juan
+            \item $g = $ Gerardo
+        \end{itemize}
+        \textbf{Ejemplo}
+        \\ $\forall x (Conoce(x,j) \rightarrow Odia(x, j))$
+        \\ ``Todo el que conoce a Juan lo odia"
+        \\ \textbf{Ejercicios}
+        \begin{enumerate}[1.]
+            \item $\lnot \exists x Odia(x, g)$
+            \\ { \color{azul} ``Nadie odia a Gerardo" }
+
+
+            \item $\exists x \lnot Conoce(x, j)$
+            \\ { \color{azul} ``Alguien no conoce a Juan" }
+
+
+            \item $\forall x (Odia(x,j) \leftrightarrow Odia(x,g))$
+            \\ { \color{azul} ``Toda persona que odia a Juan también odia a Gerardo y toda persona que odia a Gerardo también odia a Juan" }
+        \end{enumerate}
+
+        
+        \vspace{\Pspace}
+        \item Estructura 2:
+        \begin{itemize}
+            \item $D = ${Personas, cursos}
+            \item $Est(x) \coloneqq$ ``$x$ es un estudiante"
+            \item $Prof(x) \coloneqq$ ``$x$ es un profesor"
+            \item $Curso(x) \coloneqq$ ``$x$ es un curso"
+            \item $Toma(x,y) = $ ``$x$ toma el curso $y$"
+            \item $Conoce(x,y) = $ ``$x$ conoce a $y$"
+            \item log = Lógica
+            \item mat = Matemáticas
+        \end{itemize}
+        \begin{enumerate}[1.]
+            \item $\forall x (Est(x) \rightarrow \exists y (Curso(y) \land Toma(x,y)))$
+            \\ { \color{azul} ``Toda persona que es estudiante toma un curso" }
+
+
+            \item $\forall x (Est(x) \rightarrow \lnot Toma(x,mat))$
+            \\ { \color{azul} ``Toda persona que es estudiante no toma el curso de matemáticas" }
+        \end{enumerate}
+    \end{enumerate}
+
+
+
+    \item Para las siguientes fbf, determine:
+    \\ a) El alcance de cada cuantificador.
+    \\ b) Variables libres (FV()) y ligadas.
+    \\ c) Si hay variables libres, clausurar de manera existencial y universal.
+    \begin{enumerate}[1.]
+        \item $\forall x (P(x) \rightarrow Q(x))$ \par
+        { \color{azul}
+            \begin{tabular}{c|c|c}
+                \textbf{Alcance} & $FV(\varphi)$ & $LV(\varphi)$\\
+                \hline
+                $\forall x$: $P(x) \rightarrow Q(x)$ & $\emptyset$ & $x$
+            \end{tabular} \\
+        }
+
+        \vspace{\Pspace}
+        \item $\exists y P(y,z)$ \par
+        { \color{azul}
+            \begin{tabular}{c|c|c|c|c}
+                \textbf{Alcance} & $FV(\varphi)$ & $LV(\varphi)$ & $Cl_{\exists}$ & $Cl_{\forall}$\\
+                \hline
+                $\exists y$: $P(y,z)$ & $z$ & $y$ & $\exists z \exists y P(y,z)$ & $\forall z \exists y P(y,z)$
+            \end{tabular} \\
+        }
+
+
+        \vspace{\Pspace}
+        \item $\forall x (P(x) \land \forall y Q(y))$ \par
+        { \color{azul}
+            \begin{tabular}{c|c|c}
+                \textbf{Alcance} & $FV(\varphi)$ & $LV(\varphi)$\\
+                \hline
+                $\forall x$: $P(x) \land \forall y Q(y)$, $\forall y$: $Q(y)$ & $\emptyset$ & $x$, $y$
+            \end{tabular} \\
+        }
+
+
+        \vspace{\Pspace}
+        \item $\forall x (P(y) \rightarrow \exists y (Q(y) \land R(x,y)))$ \par
+        { \color{azul}
+            \begin{tabular}{c|c|c}
+                \textbf{Alcance} & $FV(\varphi)$ & $LV(\varphi)$\\
+                \hline
+                $\forall x$: $P(y) \rightarrow \exists y (Q(y) \land R(x,y))$, $\exists y$: $Q(y) \land R(x,y)$ & $\emptyset$ & $x$, $y$
+            \end{tabular} \\
+        }
+
+
+        \vspace{\Pspace}
+        \item $\exists x \forall y (R(x,y) \rightarrow R(y,x))$ \par
+        { \color{azul}
+            \begin{tabular}{c|c|c}
+                \textbf{Alcance} & $FV(\varphi)$ & $LV(\varphi)$\\
+                \hline
+                $\exists x$: $R(x,y) \rightarrow R(y,x)$, $\forall y$: $R(x,y) \rightarrow R(y,x)$ & $\emptyset$ & $x$, $y$
+            \end{tabular} \\
+        }
+
+
+        \vspace{\Pspace}
+        \item $\forall x (P(f(x)) \lor \exists y Q(g(y), x))$ \par
+        { \color{azul}
+            \begin{tabular}{c|c|c|c|c}
+                \textbf{Alcance} & $FV(\varphi)$ & $LV(\varphi)$ & $Cl_{\exists}$ & $Cl_{\forall}$\\
+                \hline
+            \end{tabular} \\
+        }
+
+
+        \vspace{\Pspace}
+        \item $\exists z (\forall x P(x,z) \rightarrow \exists x Q(x,z))$ \par
+        { \color{azul}
+            \begin{tabular}{c|c|c|c|c}
+                \textbf{Alcance} & $FV(\varphi)$ & $LV(\varphi)$ & $Cl_{\exists}$ & $Cl_{\forall}$\\
+                \hline
+            \end{tabular} \\
+        }
+
+
+        \vspace{\Pspace}
+        \item $\forall x P(x, f(y))$ \par
+        { \color{azul}
+            \begin{tabular}{c|c|c|c|c}
+                \textbf{Alcance} & $FV(\varphi)$ & $LV(\varphi)$ & $Cl_{\exists}$ & $Cl_{\forall}$\\
+                \hline
+                $\forall x$: $P(x, f(y))$ & $y$ & $x$ & $\exists y (\forall x P(x, f(y)))$ & $\forall y (\forall x P(x, f(y)))$
+            \end{tabular} \\
+        }
+
+
+        \vspace{\Pspace}
+        \item $\exists x (Q(x) \land \forall y (x = y \rightarrow P(y)))$ \par
+        { \color{azul}
+            \begin{tabular}{c|c|c|c|c}
+                \textbf{Alcance} & $FV(\varphi)$ & $LV(\varphi)$ & $Cl_{\exists}$ & $Cl_{\forall}$\\
+                \hline
+            \end{tabular} \\
+        }
+
+
+        \vspace{\Pspace}
+        \item $\exists y (R(y) \land \forall x (P(x,y) \rightarrow \exists y Q(x,y)))$ \par
+        { \color{azul}
+            \begin{tabular}{c|c|c|c|c}
+                \textbf{Alcance} & $FV(\varphi)$ & $LV(\varphi)$ & $Cl_{\exists}$ & $Cl_{\forall}$\\
+                \hline
+            \end{tabular} \\
+        }
+    \end{enumerate}
+
+
+
+    \item Para las siguientes fbf
+    \\ a) Proponga una estructura $M$ que la satisfaga
+    \\ b) Proponga una estructura $M$ que la haga falsa (contra-modelo)
+    \\ \textbf{Ejemplos}
+    \\ $\forall x (P(x) \rightarrow \exists y R(x,y))$
+    \begin{enumerate}[1.]
+        \item Propuesta de modelo 1.
+        \begin{itemize}
+            \item $D = \{0,1\}$
+            \item $P^{M} = \{0\}$
+            \item $R^{M} = \{(0,0)\}$
+        \end{itemize}
+
+        \item Propuesta de modelo 2.
+        \begin{itemize}
+            \item $D = \mathbb{N}$
+            \item $P^{M}(x) \coloneqq $ ``$x$ es par"
+            \item $R^{M}(x,y) \coloneqq$ ``$x$ es mayor que $y$"
+        \end{itemize}
+
+        \item Propuesta de contra-modelo 1.
+        \begin{itemize}
+            \item $D = \{a\}$
+            \item $P^{M} = \{a\}$
+            \item $R^{M} = \emptyset$ (es falsa porque hay $a$ con $P(a)$ pero sin testigo $y$).
+        \end{itemize}
+
+        \item Propuesta de contra-modelo 2.
+        \begin{itemize}
+            \item $D = \mathbb{N}$
+            \item $P^{M}(x) \coloneqq $ ``$x$ es un número natural"
+            \item $R^{M}(x,y) \coloneqq $ ``$x$ es menor que $y$"
+        \end{itemize}
+    \end{enumerate}
+
+
+    \par \textbf{Ejercicios}
+    \begin{enumerate}[1.]
+        \item $\exists x (P(x) \land \forall y Q(y))$
+        \par a) $M$:
+        { \color{azul} 
+            \begin{itemize}
+                \item $D = $
+            \end{itemize}
+        }
+
+        \par b) $M$:
+        { \color{azul} 
+            \begin{itemize}
+                \item $D = $
+            \end{itemize}
+        }
+        
+        
+        \vspace{\Pspace}
+        \item $\forall x \exists y (x = y \land R(x,y))$
+        % - Respuestas:
+        \par a) $M$:
+        { \color{azul} 
+            \begin{itemize}
+                \item $D = \mathbb{N}$
+                \item $R^{M}(x,y) \coloneqq $ ``$\frac{x}{y} = 1$"
+            \end{itemize}
+        }
+
+        \par b) $M$:
+        { \color{azul} 
+            \begin{itemize}
+                \item $D = \mathbb{N}$
+                \item $R^{M}(x,y) \coloneqq $ ``$x > y$"
+            \end{itemize}
+        }
+
+        \vspace{\Pspace}
+        \item $\forall x P(f(x))$
+        \par a) $M$:
+        { \color{azul} 
+            \begin{itemize}
+                \item $D = \mathbb{N}$
+                \item $P^{M}(x) \coloneqq$ ``$x$ es par"
+                \item $f^{M}(x) = 2x$
+            \end{itemize}
+        }
+
+        \par b) $M$:
+        { \color{azul} 
+            \begin{itemize}
+                \item $D = \mathbb{N}$
+                \item $P^{M}(x) \coloneqq$ ``$x$ es par"
+                \item $f^{M}(x) = 2x + 1$
+            \end{itemize}
+        }
+
+
+        \vspace{\Pspace}
+        \item $\exists x (x = c \land f(f(x)) = x)$
+        \par a) $M$:
+        { \color{azul} 
+            \begin{itemize}
+                \item $D = \mathbb{R}$
+                \item $c^{M} = 5$
+                \item $f^{M}(x) = 1(x)$
+            \end{itemize}
+        }
+
+        \par b) $M$:
+        { \color{azul} 
+            \begin{itemize}
+                \item $D = \mathbb{R}$
+                \item $c^{M} = 5$
+                \item $f^{M}(x) = x + 1$
+            \end{itemize}
+        }
+
+
+        \vspace{\Pspace}
+        \item $\forall x (f(x) = x) \rightarrow \forall x P(x)$
+        \par a) $M$:
+        { \color{azul} 
+            \begin{itemize}
+                \item $D = $
+            \end{itemize}
+        }
+
+        \par b) $M$:
+        { \color{azul} 
+            \begin{itemize}
+                \item $D = $
+            \end{itemize}
+        }
+
+
+        \vspace{\Pspace}
+        \item $\forall x \forall y (E(x,y) \rightarrow E(y,x))$
+        \par a) $M$:
+        { \color{azul} 
+            \begin{itemize}
+                \item $D = \{$ (Fer, Fer), (Fer, Javi), (Javi, Fer), (Javi, Javi) $\}$
+                \item $E^{M}(x, y) \coloneqq $ ``$x$ conoce a $y$"
+            \end{itemize}
+        }
+
+        \par b) $M$:
+        { \color{azul} 
+            \begin{itemize}
+                \item $D = \{$ (Fer, Javi) $\}$
+                \item $E^{M}(x, y) \coloneqq $ ``$x$ conoce a $y$"
+            \end{itemize}
+        }
+    \end{enumerate}
+
+    
+    
+    \newpage
+    \item Dada la siguiente estructura $M$, determine si $M \vDash \varphi_{n}$
+    \begin{itemize}
+        \item $D = \mathbb{R}$
+        \item $a^{M} = 4$
+        \item $f^{M}(n) = n - 2$
+        \item $Par^{M}(n) \coloneqq $ ``$n$ es par"
+        \item $R^{M}(m,n) \coloneqq m < n$
+        \item Secuencia: $s(x) = 3$, $s(y) = 2$
+    \end{itemize}
+
+    \par \textbf{Ejemplo}
+    \\ $\varphi = R(x, f(y))$
+    \\ $\rightarrow s^{*}(x) = 3, s^{*}(y) = 2, s^{*}(f(y)) = 0$
+    \\ $\rightarrow R(x, f(y)) = R(3,0); (3,0) \notin R^{M} \therefore M \nvDash \varphi_{1}$
+
+    \vspace{\Pspace}
+    \par \textbf{Ejercicios}
+    \vspace{-0.2cm}
+    \begin{enumerate}[1.]
+        \item $\varphi_{1} = Par(f(x))$
+        % - Respuesta:
+        { \color{azul}
+            \\ $\rightarrow s^{*}(x) = 3$ 
+            \\ $\rightarrow s^{*}(f(x)) = 3 - 2 = 1$; $1 \notin Par(x)$
+            \\ $\rightarrow$ $\therefore M \nvDash \varphi_{1}$
+        }
+
+
+        \item $\varphi_{2} = \forall x R(x, f(x))$
+        % - Respuesta:
+        { \color{azul}
+            \\ $\rightarrow \forall d \in \mathbb{R}$ 
+            \\ $\rightarrow s^{*}[x|d](x) = d$
+            \\ $\rightarrow s^{*}[x|d](f(x)) = d - 2$
+            \\ $\rightarrow R(d, d-2) \notin R^{M}$ ya que $d \nless d - 2$
+            \\ $\rightarrow$ $\therefore M \nvDash \varphi_{2}$
+        }
+
+
+        \item $\varphi_{3} = \forall x (Par(x) \rightarrow Par(f(x))$
+        % - Respuesta:
+        { \color{azul}
+            \\ $\rightarrow \forall d \in \mathbb{R}$ 
+            \\ $\rightarrow s^{*}[x|d](x) = d$
+            \\ $\rightarrow s^{*}[x|d](f(x)) = d - 2$ 
+            \\ $\rightarrow d \in Par^{M}$ solo si $d \in \{x \in \mathbb{Z} | x = 2k, k \in \mathbb{Z} \}$
+            \\ $\rightarrow$ Reemplazamos $d$ por $2k$ en $d - 2$ 
+            \\ $\rightarrow 2k - 2 = 2(k - 1) = 2j$; $d - 2 \in Par^{M}$
+            \\ $\rightarrow$ $\therefore M \vDash \varphi_{3}$
+        }
+
+
+        \item $\varphi_{4} = \forall x R(a, x)$
+        % - Respuesta:
+        { \color{azul}
+            \\ $\rightarrow \forall d \in \mathbb{R}$ 
+            \\ $\rightarrow s^{*}[x|d] = d$
+            \\ $\rightarrow R(4,d) = 4 < d$ 
+            \\ $\rightarrow$ Dado que la fórmula no se cumple con valores para $d$ menores o iguales a 4 la fórmula no es satisfacible.
+            \\ $\rightarrow$ $\therefore M \nvDash \varphi_{4}$ 
+        }
+
+
+        \item $\varphi_{5} = \exists y R(a, f(y))$
+        % - Respuesta:
+        { \color{azul}
+            \\ $\rightarrow \forall d \in \mathbb{R}$
+            \\ $\rightarrow s^{*}[y|d](y) = d$
+            \\ $\rightarrow s^{*}[y|d](f(y)) = d - 2$
+            \\ $\rightarrow R(4, d - 2) = 4 < d - 2$
+            \\ $\rightarrow R(4, d - 2)$ se cumple cuando $d > 6$, por lo tanto si existen valores que hacen la fórmula satisfacible.
+            \\ $\rightarrow$ $\therefore M \vDash \varphi_{5}$
+        }
+    \end{enumerate}
+
+\end{enumerate}
+\end{document}
