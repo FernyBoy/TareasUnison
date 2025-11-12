@@ -58,7 +58,7 @@
     % - Problema n
     \vspace{\Pspace}
     \item Problema \par
-        % Respuesta:
+        % Respuesta: es impa
         \vspace{\Aspace} \par
         { \color{azul}  }
 
@@ -120,74 +120,93 @@
         \item {\color{azul}\textbf{[V]}} En un lenguaje de primer orden no puede haber símbolos de función de aridad 0.
 
 
+        \vspace{\Pspace}
         \item {\color{azul}\textbf{[V]}} Toda constante es, desde el punto de vista sintáctico, un término.
 
 
+        \vspace{\Pspace}
         \item {\color{azul}\textbf{[F]}} El alcance de un cuantificador $\forall x$ o $\exists x$ es toda la fórmula en la que aparece.
         \\ { \color{azul} El alcance se limita a la subfórmula que sigue al cuantificador. }
 
 
+        \vspace{\Pspace}
         \item {\color{azul}\textbf{[F]}} El alfabeto de primer orden se compone de variables, constantes, funciones, predicados, conectivos lógicos, símbolos especiales.
         \\ { \color{azul} Faltan los cuantificadores. }
 
 
+        \vspace{\Pspace}
         \item {\color{azul}\textbf{[F]}} Los predicados se representan con una letra minúscula (Ej. $p(x) = $ ``$x$ es par").
         \\ { \color{azul} La letra debe de ser mayúscula. }
 
 
+        \vspace{\Pspace}
         \item {\color{azul}\textbf{[F]}} La aridad representa el número de predicado o función sobre el cual estamos hablando.
         \\ { \color{azul} La aridad es el número de elementos (objetos o variables) sobre los que un predicado o una función se aplica. }
 
 
+        \vspace{\Pspace}
         \item {\color{azul}\textbf{[V]}} $Ama(x,y) = $ ``$x$ ama a $y$" es un ejemplo de aridad 2.
 
 
+        \vspace{\Pspace}
         \item {\color{azul}\textbf{[F]}} Un término es cualquier expresión que ``nombra" un objeto del dominio. Nos dice si algo es verdadero o falso.
         \\ { \color{azul} Aunque es verdad que un término nombra un objeto del dominio, lo que nos dice si algo es verdadero o falso es un predicado. }
 
 
+        \vspace{\Pspace}
         \item {\color{azul}\textbf{[F]}} Un predicado es un ejemplo de término.
         \\ { \color{azul} Un predicado dice si algo es verdadero o falso, los términos representan objetos del dominio.  }
 
 
+        \vspace{\Pspace}
         \item {\color{azul}\textbf{[V]}} Una fórmula atómica (o átomo) es un predicado aplicado a un término.
 
 
+        \vspace{\Pspace}
         \item {\color{azul}\textbf{[F]}} LPO significa: Lógica de primer orden.
         \\ { \color{azul} LPO significa: Lenguaje de Primer Orden. }
 
 
+        \vspace{\Pspace}
         \item {\color{azul}\textbf{[F]}} Una variable ligada es aquella que no cae dentro del alcance de un cuantificador.
             \\ { \color{azul} Las variables ligadas son aquellas ocurrencias de variables que se dan dentro del alcance del cuantificador que la nombra.. }
 
 
+        \vspace{\Pspace}
         \item {\color{azul}\textbf{[V]}} Clausurar significa convertir nuestra fórmula en una oración, ligando todas las variables libres.
 
 
+        \vspace{\Pspace}
         \item {\color{azul}\textbf{[V]}} Una estructura $M$ consta de un dominio y una interpretación que le da sentido a todos nuestros símbolos no lógicos de nuestra función.
 
 
+        \vspace{\Pspace}
         \item {\color{azul}\textbf{[V]}} Si nuestra fórmula tiene variables libres su verdad dependerá de una asignación $s$.
 
 
+        \vspace{\Pspace}
         \item {\color{azul}\textbf{[V]}} Una fórmula es válida si es verdadera en toda estructura (y toda asignación).
 
 
+        \vspace{\Pspace}
         \item {\color{azul}\textbf{[V]}} Si $\varphi$ es válida, entonces $\lnot \varphi$ es insatisfacible.
 
 
+        \vspace{\Pspace}
         \item {\color{azul}\textbf{[V]}} Dos estructuras pueden tener el mismo dominio, pero ser distintas si se interpretan de forma diferente algún símbolo no lógico.
 
 
+        \vspace{\Pspace}
         \item {\color{azul}\textbf{[V]}} Si $\varphi \vDash \theta$ entonces toda estructura que satisface a $\varphi$ satisface $\theta$.
 
 
+        \vspace{\Pspace}
         \item {\color{azul}\textbf{[F]}} La interpretación de un símbolo de función $f$ en una estructura está determinada sólo por el dominio.
         \\ { \color{azul} La interpretación de una función también depende de cómo se asigna una operación específica dentro de ese dominio. }
     \end{enumerate}
 
 
-    \vspace{\Pspace}
+    \newpage
     \item Traducir los siguientes argumentos en lenguaje natural a LPO.
     \\ \textbf{Ejemplos}
     \begin{enumerate}[1.]
@@ -236,9 +255,10 @@
             $\forall x (O(a, x) \rightarrow \lnot O(x,x))$
         }
 
-
-        \newpage
+    
+        \vspace{\Pspace}
         \item Nadie en la clase de estadística es más inteligente que cualquiera en la clase de lógica.
+        \vspace{-0.5cm}
         % - Respuesta
         { \color{azul} 
             \begin{itemize}
@@ -264,7 +284,7 @@
         }
 
 
-        \vspace{\Pspace}
+        \newpage
         \item Nadie ama a un americanista.
         { \color{azul} 
             \begin{itemize}
@@ -332,11 +352,13 @@
             \item $\lnot \exists x Odia(x, g)$
             \\ { \color{azul} ``Nadie odia a Gerardo" }
 
-
+            
+            \vspace{\Pspace}
             \item $\exists x \lnot Conoce(x, j)$
             \\ { \color{azul} ``Alguien no conoce a Juan" }
 
 
+            \vspace{\Pspace}
             \item $\forall x (Odia(x,j) \leftrightarrow Odia(x,g))$
             \\ { \color{azul} ``Toda persona que odia a Juan también odia a Gerardo y toda persona que odia a Gerardo también odia a Juan" }
         \end{enumerate}
@@ -359,6 +381,7 @@
             \\ { \color{azul} ``Toda persona que es estudiante toma un curso" }
 
 
+            \vspace{\Pspace}
             \item $\forall x (Est(x) \rightarrow \lnot Toma(x,mat))$
             \\ { \color{azul} ``Toda persona que es estudiante no toma el curso de matemáticas" }
         \end{enumerate}
@@ -366,6 +389,7 @@
 
 
 
+    \newpage
     \item Para las siguientes fbf, determine:
     \\ a) El alcance de cada cuantificador.
     \\ b) Variables libres (FV()) y ligadas.
@@ -384,7 +408,7 @@
         }
 
 
-        \newpage
+        \vspace{\Pspace}
         \item $\exists y P(y,z)$ \par
         { \color{azul}
             \renewcommand{\arraystretch}{1.5}
@@ -476,7 +500,7 @@
         }
 
 
-        \newpage
+        \vspace{\Pspace}
         \item $\forall x P(x, f(y))$ \par
         { \color{azul}
             \renewcommand{\arraystretch}{1.5}
@@ -526,6 +550,7 @@
 
 
 
+    \newpage
     \item Para las siguientes fbf
     \\ a) Proponga una estructura $M$ que la satisfaga
     \\ b) Proponga una estructura $M$ que la haga falsa (contra-modelo)
@@ -562,7 +587,6 @@
     \end{enumerate}
 
     
-    \newpage
     \par \textbf{Ejercicios}
     \begin{enumerate}[1.]
         \item $\exists x (P(x) \land \forall y Q(y))$
@@ -604,6 +628,8 @@
             \end{itemize}
         }
 
+
+        \newpage
         \vspace{\Pspace}
         \item $\forall x P(f(x))$
         \par a) $M$:
@@ -645,8 +671,8 @@
             \end{itemize}
         }
 
-
-        \newpage
+        
+        \vspace{\Pspace}
         \item $\forall x (f(x) = x) \rightarrow \forall x P(x)$
         \par a) $M$:
         { \color{azul} 
