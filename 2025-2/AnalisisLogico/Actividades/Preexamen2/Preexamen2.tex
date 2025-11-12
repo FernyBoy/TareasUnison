@@ -373,105 +373,154 @@
     \begin{enumerate}[1.]
         \item $\forall x (P(x) \rightarrow Q(x))$ \par
         { \color{azul}
-            \begin{tabular}{c|c|c}
-                \textbf{Alcance} & $FV(\varphi)$ & $LV(\varphi)$\\
+            \renewcommand{\arraystretch}{1.5}
+            \begin{tabular}{l|l}
+                \textbf{Alcance} & $\forall x:P(x) \rightarrow Q(x)$ \\
                 \hline
-                $\forall x$: $P(x) \rightarrow Q(x)$ & $\emptyset$ & $x$
-            \end{tabular} \\
+                $FV(\varphi)$ & \emptyset \\
+                \hline
+                $LV(\varphi)$ & $x$
+            \end{tabular}
         }
 
-        \vspace{\Pspace}
+
+        \newpage
         \item $\exists y P(y,z)$ \par
         { \color{azul}
-            \begin{tabular}{c|c|c|c|c}
-                \textbf{Alcance} & $FV(\varphi)$ & $LV(\varphi)$ & $Cl_{\exists}$ & $Cl_{\forall}$\\
+            \renewcommand{\arraystretch}{1.5}
+            \begin{tabular}{l|l}
+                \textbf{Alcance} & $\exists y: P(y,z)$ \\
                 \hline
-                $\exists y$: $P(y,z)$ & $z$ & $y$ & $\exists z \exists y P(y,z)$ & $\forall z \exists y P(y,z)$
-            \end{tabular} \\
+                $FV(\varphi)$ & $z$ \\
+                \hline
+                $LV(\varphi)$ & $y$ \\
+                \hline
+                $Cl_{\exists}$ & $\exists z \exists y P(y,z)$ \\
+                \hline
+                $Cl_{\forall}$ & $\forall z \exists y P(y,z)$
+            \end{tabular}
         }
 
 
         \vspace{\Pspace}
         \item $\forall x (P(x) \land \forall y Q(y))$ \par
         { \color{azul}
-            \begin{tabular}{c|c|c}
-                \textbf{Alcance} & $FV(\varphi)$ & $LV(\varphi)$\\
+            \renewcommand{\arraystretch}{1.5}
+            \begin{tabular}{l|l}
+                \textbf{Alcance} & $\forall x: P(x) \land \forall y Q(y)$, $\forall y: Q(y)$\\
                 \hline
-                $\forall x$: $P(x) \land \forall y Q(y)$, $\forall y$: $Q(y)$ & $\emptyset$ & $x$, $y$
-            \end{tabular} \\
+                $FV(\varphi)$ & $\emptyset$ \\
+                \hline
+                $LV(\varphi)$ & $x$, $y$ \\
+            \end{tabular}
         }
 
 
         \vspace{\Pspace}
         \item $\forall x (P(y) \rightarrow \exists y (Q(y) \land R(x,y)))$ \par
         { \color{azul}
-            \begin{tabular}{c|c|c}
-                \textbf{Alcance} & $FV(\varphi)$ & $LV(\varphi)$\\
+            \renewcommand{\arraystretch}{1.5}
+            \begin{tabular}{l|l}
+                \textbf{Alcance} & $\forall x: P(y) \rightarrow \exists y (Q(y) \land R(x,y))$, $\exists y: Q(y) \land R(x,y)$\\
                 \hline
-                $\forall x$: $P(y) \rightarrow \exists y (Q(y) \land R(x,y))$, $\exists y$: $Q(y) \land R(x,y)$ & $\emptyset$ & $x$, $y$
-            \end{tabular} \\
+                $FV(\varphi)$ & $y$\\
+                \hline
+                $LV(\varphi)$ & $x$, $y$\\
+                \hline
+                $Cl_{\exists}$ & $\exists y \forall x (P(y) \rightarrow \exists z (Q(z) \land R(x,z)))$ \\
+                \hline
+                $Cl_{\forall}$ & $\forall y \forall x (P(y) \rightarrow \exists z (Q(z) \land R(x,z)))$ 
+            \end{tabular}
         }
 
 
         \vspace{\Pspace}
         \item $\exists x \forall y (R(x,y) \rightarrow R(y,x))$ \par
         { \color{azul}
-            \begin{tabular}{c|c|c}
-                \textbf{Alcance} & $FV(\varphi)$ & $LV(\varphi)$\\
+            \renewcommand{\arraystretch}{1.5}
+            \begin{tabular}{l|l}
+                \textbf{Alcance} & $\exists x: R(x,y) \rightarrow R(y,x)$, $\forall y: R(x,y) \rightarrow R(y,x)$ \\
                 \hline
-                $\exists x$: $R(x,y) \rightarrow R(y,x)$, $\forall y$: $R(x,y) \rightarrow R(y,x)$ & $\emptyset$ & $x$, $y$
-            \end{tabular} \\
+                $FV(\varphi)$ & $\emptyset$ \\
+                \hline
+                $LV(\varphi)$ & $x$, $y$ \\
+            \end{tabular}
         }
 
 
         \vspace{\Pspace}
         \item $\forall x (P(f(x)) \lor \exists y Q(g(y), x))$ \par
         { \color{azul}
-            \begin{tabular}{c|c|c|c|c}
-                \textbf{Alcance} & $FV(\varphi)$ & $LV(\varphi)$ & $Cl_{\exists}$ & $Cl_{\forall}$\\
+            \renewcommand{\arraystretch}{1.5}
+            \begin{tabular}{l|l}
+                \textbf{Alcance} & $\forall x: P(f(x)) \lor \exists y Q(g(y), x)$, $\exists y: Q(g(y), x)$ \\
                 \hline
-            \end{tabular} \\
+                $FV(\varphi)$ & $\emptyset$ \\
+                \hline
+                $LV(\varphi)$ & $x$, $y$ \\
+            \end{tabular}
         }
 
 
         \vspace{\Pspace}
         \item $\exists z (\forall x P(x,z) \rightarrow \exists x Q(x,z))$ \par
         { \color{azul}
-            \begin{tabular}{c|c|c|c|c}
-                \textbf{Alcance} & $FV(\varphi)$ & $LV(\varphi)$ & $Cl_{\exists}$ & $Cl_{\forall}$\\
+            \renewcommand{\arraystretch}{1.5}
+            \begin{tabular}{l|l}
+                \textbf{Alcance} & $\exists z: \forall x P(x,z) \rightarrow \exists x Q(x,z)$, $\forall x: P(x,z)$, $\exists x: Q(x,z)$ \\
                 \hline
-            \end{tabular} \\
+                $FV(\varphi)$ & $\emptyset$ \\
+                \hline
+                $LV(\varphi)$ & $x$, $z$ \\
+            \end{tabular}
         }
 
 
-        \vspace{\Pspace}
+        \newpage
         \item $\forall x P(x, f(y))$ \par
         { \color{azul}
-            \begin{tabular}{c|c|c|c|c}
-                \textbf{Alcance} & $FV(\varphi)$ & $LV(\varphi)$ & $Cl_{\exists}$ & $Cl_{\forall}$\\
+            \renewcommand{\arraystretch}{1.5}
+            \begin{tabular}{l|l}
+                \textbf{Alcance} & $\forall x$: $P(x, f(y))$ \\
                 \hline
-                $\forall x$: $P(x, f(y))$ & $y$ & $x$ & $\exists y (\forall x P(x, f(y)))$ & $\forall y (\forall x P(x, f(y)))$
-            \end{tabular} \\
+                $FV(\varphi)$ & $y$ \\
+                \hline
+                $LV(\varphi)$ & $x$ \\
+                \hline
+                $Cl_{\exists}$ & $\exists y (\forall x P(x, f(y)))$ \\
+                \hline
+                $Cl_{\forall}$ & $\forall y (\forall x P(x, f(y)))$
+            \end{tabular}
         }
 
 
         \vspace{\Pspace}
         \item $\exists x (Q(x) \land \forall y (x = y \rightarrow P(y)))$ \par
         { \color{azul}
-            \begin{tabular}{c|c|c|c|c}
-                \textbf{Alcance} & $FV(\varphi)$ & $LV(\varphi)$ & $Cl_{\exists}$ & $Cl_{\forall}$\\
+            \renewcommand{\arraystretch}{1.5}
+            \begin{tabular}{l|l}
+                \textbf{Alcance} & $\exists x: Q(x) \land \forall y (x = y \rightarrow P(y))$, $\forall y: x = y \rightarrow P(y)$ \\
                 \hline
-            \end{tabular} \\
+                $FV(\varphi)$ & $\emptyset$ \\
+                \hline
+                $LV(\varphi)$ & $x$, $y$ \\
+            \end{tabular}
         }
 
 
         \vspace{\Pspace}
         \item $\exists y (R(y) \land \forall x (P(x,y) \rightarrow \exists y Q(x,y)))$ \par
         { \color{azul}
-            \begin{tabular}{c|c|c|c|c}
-                \textbf{Alcance} & $FV(\varphi)$ & $LV(\varphi)$ & $Cl_{\exists}$ & $Cl_{\forall}$\\
+            \renewcommand{\arraystretch}{1.5}
+            \begin{tabular}{l|l}
+                $\alpha$-renombrar & $\exists y (R(y) \land \forall x (P(x,y) \rightarrow \exists z Q(x,z)))$ \\
                 \hline
-            \end{tabular} \\
+                \textbf{Alcance} & $\exists y: R(y) \land \forall x (P(x,y) \rightarrow \exists z Q(x,z))$, $\forall x: P(x,y) \rightarrow \exists z Q(x,z)$, $\exists z: Q(x,z)$ \\
+                \hline
+                $FV(\varphi)$ & $\emptyset$ \\
+                \hline
+                $LV(\varphi)$ & $x$, $y$, $z$ \\
+            \end{tabular}
         }
     \end{enumerate}
 
@@ -512,21 +561,26 @@
         \end{itemize}
     \end{enumerate}
 
-
+    
+    \newpage
     \par \textbf{Ejercicios}
     \begin{enumerate}[1.]
         \item $\exists x (P(x) \land \forall y Q(y))$
         \par a) $M$:
         { \color{azul} 
             \begin{itemize}
-                \item $D = $
+                \item $D = \{x | x = 2k, k \in \mathbb{N}\}$
+                \item $P(x) \coloneqq$ ``$x$ es menor que 4"
+                \item $Q(x) \coloneqq$ ``$x$ es par"
             \end{itemize}
         }
 
         \par b) $M$:
         { \color{azul} 
             \begin{itemize}
-                \item $D = $
+                \item $D = \{x | x = 2k, k \in \mathbb{N}\}$
+                \item $P(x) \coloneqq$ ``$x$ es menor que 4"
+                \item $Q(x) \coloneqq$ ``$x$ es impar"
             \end{itemize}
         }
         
@@ -592,19 +646,23 @@
         }
 
 
-        \vspace{\Pspace}
+        \newpage
         \item $\forall x (f(x) = x) \rightarrow \forall x P(x)$
         \par a) $M$:
         { \color{azul} 
             \begin{itemize}
-                \item $D = $
+                \item $D = \{x | x = 2k, k \in \mathbb{N}\}$
+                \item $P(x) \coloneqq$ ``$x$ es par"
+                \item $f(x) = 1(x)$
             \end{itemize}
         }
 
         \par b) $M$:
         { \color{azul} 
             \begin{itemize}
-                \item $D = $
+                \item $D = \{x | x = 2k, k \in \mathbb{N}\}$
+                \item $P(x) \coloneqq$ ``$x$ es impar"
+                \item $f(x) = 1(x)$
             \end{itemize}
         }
 
