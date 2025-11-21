@@ -1,0 +1,114 @@
+\documentclass[a4paper, 11pt]{article}
+
+% -- Language --
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+
+% ----- Fonts -----
+% -- Fuente --
+% \usepackage{fontspec}
+% \setmonofont{JetBrainsMono Nerd Font}  
+
+% -- Color --
+\usepackage{xcolor}
+%\definecolor{azul}{RGB}{00,33,99}
+\definecolor{azul}{RGB}{35,72,180}
+
+% -- Page Margin --
+\usepackage[margin=1in]{geometry}
+
+% -- Espaciados --
+\newcommand{\Pspace}{0.5cm}
+\newcommand{\Aspace}{0.2cm}
+
+% -- Columnas --
+\usepackage{multicol}
+
+% -- Imagenes --
+\usepackage{graphicx}
+\usepackage{float}
+
+% -- Matemáticas --
+\usepackage{amsmath, amssymb}
+
+% -- Gráficas --
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% -- Código --
+\usepackage{listings}
+\lstset{
+    language=C++,                   % Lenguaje del código
+    basicstyle=\ttfamily\small,     % Fuente del código
+    keywordstyle=\color{blue},      % Color de palabras clave
+    commentstyle=\color{gray},      % Color de comentarios
+    stringstyle=\color{red},        % Color de cadenas
+    numbers=left,                   % Números de línea a la izquierda
+    numberstyle=\tiny\color{gray},
+    breaklines=true,                % Permitir saltos de línea
+    frame=single                    % Marco alrededor del código
+}
+
+
+
+\title
+{
+    Anlisis lógico 2025-2 \\
+}
+
+    \begin{document}
+
+    \maketitle
+
+    \begin{center}
+        \begin{tabular}{r|l}
+            \textbf{Expediente} & \textbf{Nombre} \\ \hline
+            219208106 & Bórquez Guerrero Angel Fernando \\
+        \end{tabular}
+    \end{center}
+
+    \rule{\linewidth}{0.3mm}
+
+
+    Elegir una estructura $M$ que haga válida, satisfacible e inválidas a las siguientes fbf.
+    \vspace{0.3cm}
+    \begin{enumerate}
+        % - Problema 1
+        \item $\varphi: \forall x \exists y R(x,y)$ \par
+             % Respuestas:
+            \vspace{\Aspace} \par
+            a) Válida
+            \\ { \color{azul} 
+                $M: D = \mathbb{N}, R^{M}(m,n) = m = n$
+                \\ $\rightarrow \forall d \in D$
+                \\ $\rightarrow s^{*}[x|d](x) = d$
+                \\ $\rightarrow \exists e \in D$
+                \\ $\rightarrow s^{*}[y|e](y) = d$
+                \\ $\rightarrow d \in R^{M} \forall d$
+                \\ $\rightarrow d \in R^{M} \exists e$
+                \\ $\rightarrow \therefore M \vDash \varphi$
+            }
+
+            \vspace{\Aspace} \par
+            b) $10011011 + 10011101$
+            \\ { \color{azul} 
+                \begin{tabular}{r|}
+                    $10011011$ \\
+                    $10011101$ \\
+                    \hline 
+                    $100111000$
+                \end{tabular}
+            }
+
+            \vspace{\Aspace} \par
+            c) $1010{.}01 + 10{.}111$
+            \\ { \color{azul} 
+                \begin{tabular}{r|}
+                    $1010{.}010$ \\
+                    $10{.}111$ \\
+                    \hline 
+                    $1101{.}001$
+                \end{tabular}
+            }
+    \end{enumerate}
+\end{document}
