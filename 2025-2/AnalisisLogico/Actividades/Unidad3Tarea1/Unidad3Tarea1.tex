@@ -1,0 +1,219 @@
+\documentclass[a4paper, 11pt]{article}
+
+% -- Coments
+\usepackage{verbatim}
+
+% ----- Fonts -----
+% -- Fuente --
+% \usepackage{fontspec}
+% \setmonofont{JetBrainsMono Nerd Font}  
+
+% -- Color --
+\usepackage{xcolor}
+%\definecolor{azul}{RGB}{00,33,99}
+\definecolor{azul}{RGB}{35,72,180}
+
+% -- Page Margin --
+\usepackage[margin=1in]{geometry}
+
+% -- Espaciados --
+\newcommand{\Pspace}{0.5cm}
+\newcommand{\Aspace}{0.2cm}
+
+% -- Columnas --
+\usepackage{multicol}
+
+% -- Imagenes --
+\usepackage{graphicx}
+\usepackage{float}
+
+% -- Matemáticas --
+\usepackage{amsmath, amssymb}
+
+% -- Gráficas --
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% -- Código --
+\usepackage{listings}
+\lstset{
+    language=C++,                   % Lenguaje del código
+    basicstyle=\ttfamily\small,     % Fuente del código
+    keywordstyle=\color{blue},      % Color de palabras clave
+    commentstyle=\color{gray},      % Color de comentarios
+    stringstyle=\color{red},        % Color de cadenas
+    numbers=left,                   % Números de línea a la izquierda
+    numberstyle=\tiny\color{gray},
+    breaklines=true,                % Permitir saltos de línea
+    frame=single                    % Marco alrededor del código
+}
+
+\begin{comment}
+-- Formato de pregunta simple
+    % - Problema n
+    \vspace{\Pspace}
+    \item Problema \par
+        % Respuesta:
+        \vspace{\Aspace} \par
+        { \color{azul}  }
+
+
+ -- Formato de pregunta multimple
+        % - Problema 
+        \vspace{\Pspace}
+        \item  \par
+             % Respuestas:
+            \vspace{\Aspace} \par
+            a) 
+            \\ { \color{azul} }
+
+            \vspace{\Aspace} \par
+            b) 
+            \\ { \color{azul} }
+
+
+ -- Formato de imagen
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.5\textwidth]{}
+\end{figure}
+
+
+ -- Formato de tabla
+\begin{tabular}{c|c}
+    \textbf{A} & \textbf{B} \\
+    \hline
+    Texto & Texto \\
+    Texto & Texto
+\end{tabular} \\
+\end{comment}
+
+
+\title
+{
+    Análisis Lógico 2025-2 \\
+    Tarea 1
+}
+
+\begin{document}
+
+    \maketitle
+
+    \begin{center}
+        \begin{tabular}{r|l}
+            \textbf{Expediente} & \textbf{Nombre} \\ \hline
+            219208106 & Bórquez Guerrero Angel Fernando \\
+        \end{tabular}
+    \end{center}
+
+    \rule{\linewidth}{0.3mm}
+
+    \vspace{0.3cm}
+
+    \begin{centering}
+    Transformar a cláusulas (FNCS) las siguientes fórmulas e identificar qué tipo de cláusulas son.
+    \end{centering}
+
+    \begin{enumerate}
+    % - Problema 1
+    \vspace{\Pspace}
+    \item $\forall x [P(x) \rightarrow P(x)]$ \par
+        % Respuesta:
+        \vspace{\Aspace} \par
+        { \color{azul} 
+            $\forall x [\lnot P(x) \lor P(x) ]$
+            \par $C_{1} = \{ \lnot P(x), P(x) \}$: Cláusula mixta y Horn
+        }
+
+
+
+    % - Problema 2
+    \vspace{\Pspace}
+    \item $[\lnot[\forall x P(x)]] \rightarrow \exists x P(X)$ \par
+        % Respuesta:
+        \vspace{\Aspace} \par
+        { \color{azul} 
+            $\lnot [ \lnot (\forall x P(x))] \lor \exists x P(x)$
+            \par $\forall x P(x) \lor \exists x P(x)$
+            \par $\forall x P(x) \lor \exists y P(y)$
+            \par $\forall x \exists y (P(x) \lor P(y))$
+            \par $\forall x (P(x) \lor P(f(x))$
+            \par $C_{1} = \{ P(x), P(f(x)) \}$: Cláusula positiva y no Horn
+        }
+
+    
+
+    % - Problema 3
+    \vspace{\Pspace}
+    \item $\lnot \forall x [P(x) \rightarrow [\forall y (P(y) \rightarrow P(f(x,y)) \land (\lnot \forall y (Q(x,y) \rightarrow P(y))]]$ \par
+        % Respuesta:
+        \vspace{\Aspace} \par
+        { \color{azul} 
+            \par $\forall y [\lnot \forall x [P(x) \rightarrow [\forall z (P(z) \rightarrow P(f(x,z))) \land (\lnot \forall w Q(x,w) \rightarrow P(y))]]]$
+            \par $\forall y \exists x \lnot [\lnot P(x) \lor [\forall z (\lnot P(z) \lor P(f(x,z))) \land (\lnot \lnot \forall w Q(x,w) \lor P(y))]]$
+            \par $\forall y \exists x [P(x) \land \lnot [\forall z (\lnot P(z) \lor P(f(x,z))) \land (\forall w Q(x,w) \lor P(y)]]$
+            \par $\forall y \exists x [P(x) \land [\exists z \lnot (\lnot P(z) \lor P(f(x,z))) \lor \lnot (\forall w Q(x,w) \lor P(y)]]$
+            \par $\forall y \exists x [P(x) \land [\exists z (P(z) \land \lnot P(f(x,z))) \lor (\exists w \lnot Q(x,w) \land \lnot P(y)]]$
+            \par $\forall y \exists x [P(x) \land [\exists z (P(z) \land \lnot P(f(x,z))) \lor \exists w (\lnot Q(x,w) \land \lnot P(y)]]$
+            \par $\forall y \exists x [P(x) \land \exists z \exists w [(P(z) \land \lnot P(f(x,z))) \lor (\lnot Q(x,w) \land \lnot P(y)]]$
+            \par $\forall y \exists x \exists z \exists w [P(x) \land [(P(z) \land \lnot P(f(x,z))) \lor (\lnot Q(x,w) \land \lnot P(y)]]$
+            \par $\forall y [P(g(y)) \land [(P(h(y)) \land \lnot P(f(g(y),h(y)))) \lor (\lnot Q(g(y),i(y)) \land \lnot P(y)]]$
+            \par $\forall y [P(g(y) \land ( P(g(y)) \lor \lnot Q(g(y),i(y)) ) \land ( P(h(y)) \lor \lnot P(y) ) \land ( \lnot P(f(g(y),h(y))) \lor \lnot Q(g(y),i(y)) ) \land ( \lnot P(f(g(y),h(y))) \lor \lnot P(y) )]$
+            \par $C_{1} = \{ P(g(y) \}$: Cláusula unitaria, positiva y Horn
+            \par $C_{2} = \{ P(g(y)), \lnot Q(g(y),i(y)) \}$: Cláusula mixta y Horn
+            \par $C_{3} = \{ P(h(y)), \lnot P(y) \}$: Cláusula mixta y Horn
+            \par $C_{4} = \{ \lnot P(f(g(y),h(y))), \lnot Q(g(y),i(y)) \}$: Cláusula negativa y no Horn
+            \par $C_{5} = \{ \lnot P(f(g(y),h(y))), \lnot P(y) \}$: Cláusula negativa y no Horn
+        }
+
+
+
+    % - Problema 4
+    \vspace{\Pspace}
+    \item $\exists x [\forall y \exists z P(x,y,z) \land \exists z \forall y \lnot P(x,y,z)]$ \par
+        % Respuesta:
+        \vspace{\Aspace} \par
+        { \color{azul}  
+            $\exists x [\forall y \exists z P(x,y,z) \land \exists u \forall w \lnot P(x,w,u)]$
+            \par $\exists x \forall y \exists z \exists u \forall w [P(x,y,z) \land \lnot P(x,w,u)]$
+            \par $\forall y \exists z \exists u \forall w [P(c_{1},y,z) \land \lnot P(c_{1},w,u)]$
+            \par $\forall y \exists u \forall w [P(c_{1},y,f(y)) \land \lnot P(c_{1},w,u)]$
+            \par $\forall y \forall w [P(c_{1},y,f(y)) \land \lnot P(c_{1},w,g(y))]$
+            \par $C_{1} = \{ P(c_{1},y,f(y)) \}$: Cláusula unitaria, positiva y Horn
+            \par $C_{2} = \{ \lnot P(c_{1},w,g(y)) \}$: Cláusula unitaria, negativa y no Horn
+        }
+
+
+
+    % - Problema 5
+    \vspace{\Pspace}
+    \item $\forall x [\exists y Q(x,y) \lor \forall y \exists z P(x,y,z)]$ \par
+        % Respuesta:
+        \vspace{\Aspace} \par
+        { \color{azul}  
+            $\forall x [ \exists y Q(x,y) \lor \forall u \exists z P(x,u,z) ]$
+            \par $\forall x [ \exists y \forall u \exists z ( Q(x,y) \lor P(x,u,z) ) ]$
+            \par $\forall x \exists y \forall u \exists z ( Q(x,y) \lor P(x,u,z) )$
+            \par $\forall x \forall u \exists z ( Q(x, f(x)) \lor P(x,u,z) )$
+            \par $\forall x \forall u ( Q(x,f(x)) \lor P(x,u,g(x,u)) )$
+            \par $C_{1} = \{ Q(x,f(x)), P(x,u,g(x,u)) \}$: Cláusula positiva y no Horn
+        }
+
+
+
+    % - Problema 6
+    \vspace{\Pspace}
+\item $\lnot [[(P(x) \rightarrow Q(x)) \rightarrow \lnot Q(x)] \rightarrow \lnot Q(x)]$ \par
+        % Respuesta:
+        \vspace{\Aspace} \par
+        { \color{azul}  
+            $\lnot [ \lnot [ \lnot ( \lnot P(x) \lor Q(x)) \lor \lnot Q(x)] \lor \lnot Q(x)]$
+            \par $[(P(x) \land \lnot Q(x)) \lor \lnot Q(x)] \land Q(x)$
+            \par $[(P(x) \lor \lnot Q(x)) \land (\lnot Q(x) \lor \lnot Q(x))] \land Q(x)$
+            \par $(P(x) \lor \lnot Q(x)) \land \lnot Q(x) \land Q(x)$
+            \par $C_{1} = \{ P(x), \lnot Q(x) \}$: Cláusula mixta y Horn
+            \par $C_{2} = \{ \lnot Q(x) \}$: Cláusula unitaria, negativa y no Horn
+            \par $C_{3} = \{ Q(x) \}$: Cláusula unitaria, positiva y Horn
+        }
+    \end{enumerate}
+\end{document}
