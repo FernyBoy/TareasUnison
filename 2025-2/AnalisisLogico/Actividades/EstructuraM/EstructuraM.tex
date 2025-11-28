@@ -33,6 +33,7 @@
 
 % -- Matemáticas --
 \usepackage{amsmath, amssymb}
+\usepackage{mathtools}
 
 % -- Gráficas --
 \usepackage{pgfplots}
@@ -119,18 +120,91 @@
              % Respuestas:
             \vspace{\Aspace} \par
             a) $\forall x \exists y R(x,y)$
-            \\ { \color{azul}  }
+            \\ { \color{azul}  
+                Válido
+                \par $M: D = \mathbb{N}, R^{M}(m,n) = m = n$
+                \par $\rightarrow \forall d \in D$
+                \par $\rightarrow s^{*}[x|d](x) = d$
+                \par $\rightarrow \exists e \in D$
+                \par $\rightarrow s^{*}[y|e](y) = d$
+                \par $\rightarrow d \in R^{M} \forall d$
+                \par $\rightarrow d \in R^{M} \exists e$
+                \par $\rightarrow \; \therefore M \vDash \varphi$
+
+                \vspace{\Aspace}
+                Satisfacible
+                \par $M: D = \mathbb{N}, R^{M}(m,n) = m > n$
+                \par En este caso podemos ver que se cumple para todos los números naturales, ya que siempre hay una $y$ menor a $x$, excepto cuando llegamos al 0 ya que no existe un número que sea menor, por lo tanto la estructura es satisfacible.
+                \par $\; \therefore M \vDash \varphi$
+            }
+
+
 
             \vspace{\Aspace} \par
             b) $\exists y \forall x R(x,y)$
-            \\ { \color{azul} }
+            \\ { \color{azul} 
+                Válido
+                \par $M: D = \{ (Fer, Fer), (Flor, Flor), (Fer, Flor), (Flor, Fer) \}, R^{M}(x,y) \coloneqq$ ``$x$ conoce a $y$''
+                La estructura nos dice que que existe una $y$ que conoce a todas las $x$, y dado que sin importar los valores que tomen las variables $x$ y $y$ el predicado $R^{M}$ se cumple para todos los casos podemos decir que esta es una estructura válida.
+                \par $\; \therefore M \vDash \varphi$
+
+                \vspace{\Aspace}
+                Satisfacible
+                \par $M: D = \{ (Fer, Fer), (Flor, Flor), (Fer, Flor) \}, R^{M}(x,y) \coloneqq$ ``$x$ conoce a $y$''
+                \par Esta estructura no se cumple para todos los casos, ya que si adoptamos el valor de $x = Fer$ este conocerá a los demás valores que adopte $y$, pero si tomamamos los valores $x = Flor$ y $y = Fer$ entonces $R(x,y) \notin R^{M}$, ya que contamos con un caso que no cumple la estructura pero otro que sí cumple con ella podemos decir que la estructura es satisfacible.
+                \par $\; \therefore M \vDash \varphi$
+
+                \vspace{\Aspace}
+                Insatisfacible
+                \par $M: D = \{ (Fer, Fer), (Flor, Flor) \}, R^{M}(x,y) \coloneqq$ ``$x$ conoce a $y$''
+                \par Si adoptamos el caso donde $x = Fer$ no podremos cumplir el caso $\exists y \forall x R(x,y)$ ya que Fer no conoce a Flor, y si adoptamos el caso donde $x = Flor$ tampoco podremos cumplir el caso ya que Flor no conoce a Fer. Ya que no existe un caso que cumpla $\exists y \forall x R(x,y)$ la estructura no es válida.
+                \par $\; \therefore M \nvDash \varphi$
+            }
+
+
 
             \vspace{\Aspace} \par
             c) $\forall x P(x) \rightarrow \exists x P(x)$
             \\ { \color{azul} }
 
+
+
             \vspace{\Aspace} \par
             b) $\forall x (P(x) \rightarrow \lnot P(x))$
-            \\ { \color{azul} }
+            \\ { \color{azul} 
+                Válido
+                \par $M: D = \{\, x \in \mathbb{N} \mid x = 2k,\; k \in \mathbb{N} \,\}$, $P^{M}(x) \coloneqq$ ``$x$ es impar''
+                \par $\rightarrow \forall d \in D$
+                \par $\rightarrow s^{*}[x\, |\, d](x) = d$
+                \par $\rightarrow d \notin P^{M} \forall d$
+                \par $\rightarrow d \in \lnot P^{M} \forall d$
+                \par $\rightarrow$ Podemos traducir esto como $(0 \rightarrow 1) = 1$
+                \par $\rightarrow \; \therefore M \vDash \varphi$
+
+                \vspace{\Aspace}
+                Satisfacible
+                \par $M: D = \{ 2, 3 \}$, $P^{M}(x) \coloneqq$ ``$x$ es impar''
+                \par $\rightarrow s^{*}(x) = 2$
+                \par $\rightarrow 2 \notin P^{M}$
+                \par $\rightarrow 2 \in \lnot P^{M}$
+                \par $\rightarrow$ Este caso puede ser traducido como $(0 \rightarrow 1) = 1$.
+                \par $\rightarrow s^{*}(x) = 3$
+                \par $\rightarrow 3 \in P^{M}$
+                \par $\rightarrow 3 \notin \lnot P^{M}$
+                \par $\rightarrow$ Mientras que este puede ser traducido como $(1 \rightarrow 0) = 0$.
+                \par $\rightarrow$ Hemos encontrado un caso en donde la estructura es válida mientras que en el otro caso no lo es, por lo tanto podemos decir que es satisfacible.
+                \par $\rightarrow \; \therefore M \vDash \varphi$\
+
+                \vspace{\Aspace}
+                Insatisfacible
+                \par $M: D = \{\, x \in \mathbb{N} \mid x = 2k + 1,\; k \in \mathbb{N} \,\}$, $P^{M}(x) \coloneqq$ ``$x$ es impar''
+                \par $\rightarrow \forall d \in D$
+                \par $\rightarrow s^{*}[x\, |\, d](x) = d$
+                \par $\rightarrow d \in P^{M} \forall d$
+                \par $\rightarrow d \notin \lnot P^{M} \forall d$
+                \par $\rightarrow$ Podemos traducir esto como $(1 \rightarrow 0) = 0$
+                \par $\rightarrow \; \therefore M \nvDash \varphi$
+
+            }
     \end{enumerate}
 \end{document}

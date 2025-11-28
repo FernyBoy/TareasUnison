@@ -58,7 +58,7 @@
     \vspace{\Pspace}
     \item Problema \par
         % Respuesta:
-        \vspace{\Aspace} \par
+        \vspace{\Pspace} \par
         { \color{azul}  }
 
 
@@ -67,11 +67,11 @@
         \vspace{\Pspace}
         \item Problema \par
              % Respuestas:
-            \vspace{\Aspace} \par
+            \vspace{\Pspace} \par
             a) Inciso
             \\ { \color{azul} }
 
-            \vspace{\Aspace} \par
+            \vspace{\Pspace} \par
             b) Inciso
             \\ { \color{azul} }
 
@@ -124,7 +124,7 @@
         % - Problema 1
         \item Traduzca las siguientes oraciones a fbf de LPO \par
              % Respuestas:
-            \vspace{\Aspace} \par
+            \vspace{\Pspace} \par
             a) Cualquier que sea persistente puede aprender lógica
             { \color{azul}
                 \begin{itemize}
@@ -134,7 +134,7 @@
                 \hspace*{2em} $\forall x (P(x) \rightarrow A(x))$
             }
 
-            \vspace{\Aspace} \par
+            \vspace{\Pspace} \par
             b) Ningún político es honesto.
             { \color{azul} 
                 \begin{itemize}
@@ -144,7 +144,7 @@
                 \hspace*{2em} $\lnot \exists x (P(x) \land H(x)) \equiv \forall x (P(x) \rightarrow \lnot H(x))$
             }
 
-            \vspace{\Aspace} \par
+            \vspace{\Pspace} \par
             c) No todas las aves pueden volar.
             { \color{azul} 
                 \begin{itemize}
@@ -154,7 +154,7 @@
                 \hspace*{2em} $\lnot \forall x (A(x) \rightarrow V(x)) \equiv \exists x (A(x) \land \lnot V(x))$
             }
 
-            \vspace{\Aspace} \par
+            \vspace{\Pspace} \par
             d) Ningún ave puede volar.
             { \color{azul} 
                 \begin{itemize}
@@ -165,7 +165,7 @@
             }
             
             \newpage
-            \vspace{\Aspace} \par
+            \vspace{\Pspace} \par
             e) $x$ es trascendental si y solo si es irracional.
             { \color{azul} 
                 \begin{itemize}
@@ -175,7 +175,7 @@
                 \hspace*{2em} $\exists x (T(x) \leftrightarrow I(x))$
             }
 
-            \vspace{\Aspace} \par
+            \vspace{\Pspace} \par
             f) Si cualquiera puede resolver el problema, Ernesto puede.
             { \color{azul} 
                 \begin{itemize}
@@ -185,7 +185,7 @@
                 \hspace*{2em} $\forall x (R(x) \rightarrow R(e))$
             }
 
-            \vspace{\Aspace} \par
+            \vspace{\Pspace} \par
             g) Nadie ama a un perdedor.
             { \color{azul} 
                 \begin{itemize}
@@ -194,8 +194,9 @@
                 \hspace*{2em} $\lnot \exists x A(x)$
             }
 
-            \vspace{\Aspace} \par
+            \vspace{\Pspace} \par
             h) Nadie en la clase de estadística es más inteligente que cualquiera en la clase de lógica. 
+            \vspace{-0.7cm}
             { \color{azul} 
                 \begin{itemize}
                     \item $E(x) = $ ``$x$ está en clase de estadística"
@@ -205,19 +206,40 @@
                 \hspace*{2em} $\lnot \exists x \forall y ((E(x) \land L(y)) \rightarrow I(x,y))$
             }
 
-            \vspace{\Aspace} \par
+            \vspace{\Pspace} \par
             i) Todos aman a alguien y nadie ama a todo el mundo, o alguien ama a todo el mundo y alguien no ama a nadie. 
-            \\ { \color{azul} }
+            \vspace{-0.7cm}
+            \\ { \color{azul} 
+                \begin{itemize}
+                    \item $A(x,y) = $ ``$x$ ama a $y$"
+                \end{itemize}
+                \hspace*{2em} $[\forall x \exists y A(x,y) \land \lnot \forall x \forall y A(x,y)] \lor [ \exists x \forall y A(x,y) \land \exists y \lnot \forall x A(y,x) ]$
+            }
 
-            \vspace{\Aspace} \par
+
+            \vspace{\Pspace} \par
             j) Puedes engañar a algunas personas todo el tiempo, y puedes engañar a todas las personas alguna vez, pero no puedes engañar a todas las personas al mismo tiempo. 
-            \\ { \color{azul} }
+            \vspace{-0.7cm}
+            \\ { \color{azul} 
+                \begin{itemize}
+                    \item $E(x),y = $ ``Puedes engañar $x$ personas $y$ vez"
+                \end{itemize}
+                \hspace*{2em} $[ \exists x \forall y E(x,y) \land \forall x \exists y E(x,y) ] \lor [ \forall x \forall y \lnot E(x,y)]$
+            }
 
-            \vspace{\Aspace} \par
+
+            \vspace{\Pspace} \par
             k) Cualesquiera conjuntos que tengan los mismos elementos son iguales.
-            \\ { \color{azul} }
+            \vspace{-0.7cm}
+            \\ { \color{azul} 
+                \begin{itemize}
+                    \item $P(x,y) = $ ``$x$ pertenece a $y$"
+                \end{itemize}
+                \hspace*{2em} $\forall x \forall y (x = y \leftrightarrow \forall z(P(z,x) \leftrightarrow P(z,x)))$
+            }
 
-            \vspace{\Aspace} \par
+            \newpage
+            \vspace{\Pspace} \par
             l) Toda persona que conoce a Julia la ama.
             { \color{azul} 
                 \begin{itemize}
@@ -227,7 +249,7 @@
                 \hspace*{2em} $\forall x (C(x) \rightarrow A(x))$
             }
 
-            \vspace{\Aspace} \par
+            \vspace{\Pspace} \par
             m) No existe un conjunto que pertenezca exactamente a aquellos conjuntos que no pertenecen a sí mismos. 
             { \color{azul} 
                 \begin{itemize}
@@ -236,7 +258,7 @@
                 \hspace*{2em} $\lnot \exists x (P(x) \land \lnot P(x))$
             }
 
-            \vspace{\Aspace} \par
+            \vspace{\Pspace} \par
             n) No existe un barbero que afeite precisamente a aquellos hombres que no se afeitan a sí mismos.
             { \color{azul} 
                 \begin{itemize}
@@ -249,7 +271,7 @@
         \vspace{\Pspace}
         \item Traduzca a lenguaje natural las siguientes fbf. \par
              % Respuestas:
-            \vspace{\Aspace} \par
+            \vspace{\Pspace} \par
             a) $ \forall x (M(x) \land \forall y \lnot W(x,y) \rightarrow U(x)) $
             \begin{itemize}
                 \item $M(x) = $ ``$x$ es un hombre"
@@ -258,7 +280,7 @@
             \end{itemize}
             \par { \color{azul} Todas las personas que son hombres y no están casados con cualquier otra persona son infelices. }
 
-            \vspace{\Aspace} \par
+            \vspace{\Pspace} \par
             b) $\forall x (V(x) \land P(x) \rightarrow A(x,b))$
             \begin{itemize}
                 \item $V(x) = $ ``$x$ es un entero par"
@@ -267,7 +289,7 @@
             \end{itemize}
             \par { \color{azul} Todo número que es entero par y primo entero es igual a dos. }
 
-            \vspace{\Aspace} \par
+            \vspace{\Pspace} \par
             c) $\lnot \exists y (I(y) \land \forall x (I(x) \rightarrow L(x,y)))$
             \begin{itemize}
                 \item $I(y) = $ ``$y$ es un entero"
@@ -275,20 +297,20 @@
             \end{itemize}
             \par { \color{azul} No existe número entero que cualquier otro numero sea menor o igual. }
 
-            \vspace{\Aspace} \par
+            \newpage
             d) En las siguientes fbf: 
             \begin{itemize}
                 \item $A^{1}_{1}(x) = $ ``$x$ es una persona"
                 \item $A^{2}_{1}(x, y) = $ ``$x$ odia a $y$"
             \end{itemize}
             \par \hspace*{2em} i. $\exists x (A^{1}_{1} x \land \forall y (A^{1}_{1} y \rightarrow A^{2}_{1}(x,y)))$
-            \par \hspace*{2em} { \color{azul}  }
+            \par \hspace*{2em} { \color{azul} ``Existe una persona que odia a todas las otras personas" }
 
             \par \hspace*{2em} ii. $\forall x (A^{1}_{1} x \rightarrow \forall y (A^{1}_{1} y \rightarrow A^{2}_{1}(x,y)))$
-            \par \hspace*{2em} { \color{azul}  }
+            \par \hspace*{2em} { \color{azul} ``Toda persona odia a todas las personas" }
 
             \par \hspace*{2em} iii. $\exists x (A^{1}_{1} x \land \forall y (A^{1}_{1} y \rightarrow (A^{2}_{1}(x,y) \leftrightarrow A^{2}_{1}(x,y))))$
-            \par \hspace*{2em} { \color{azul}  }
+            \par \hspace*{2em} { \color{azul} ``Existe una persona que odia a todas las demás solo si las odia" }
 
 
 
