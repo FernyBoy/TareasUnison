@@ -1,0 +1,308 @@
+\documentclass[a4paper, 11pt]{article}
+
+% -- Coments
+\usepackage{verbatim}
+
+% ----- Fonts -----
+% -- Fuente --
+% \usepackage{fontspec}
+% \setmonofont{JetBrainsMono Nerd Font}  
+
+% -- Color --
+\usepackage{xcolor}
+%\definecolor{azul}{RGB}{00,33,99}
+\definecolor{azul}{RGB}{35,72,180}
+
+% -- Page Margin --
+\usepackage[margin=1.5cm]{geometry}
+
+% -- Espaciados --
+\newcommand{\Pspace}{0.5cm}
+\newcommand{\Aspace}{0.2cm}
+
+% -- Columnas --
+\usepackage{multicol}
+
+% -- Imagenes --
+\usepackage{graphicx}
+\usepackage{float}
+
+% -- Matemáticas --
+\usepackage{amsmath, amssymb}
+\usepackage{mathtools}
+
+% -- Gráficas --
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% -- Código --
+\usepackage{listings}
+\lstset{
+    language=C++,                   % Lenguaje del código
+    basicstyle=\ttfamily\small,     % Fuente del código
+    keywordstyle=\color{blue},      % Color de palabras clave
+    commentstyle=\color{gray},      % Color de comentarios
+    stringstyle=\color{red},        % Color de cadenas
+    numbers=left,                   % Números de línea a la izquierda
+    numberstyle=\tiny\color{gray},
+    breaklines=true,                % Permitir saltos de línea
+    frame=single                    % Marco alrededor del código
+}
+
+\usepackage{enumerate}
+
+\begin{comment}
+-- Formato de pregunta simple
+    % - Problema n
+    \vspace{\Pspace}
+    \item Problema \par
+        % Respuesta: es impa
+        \vspace{\Aspace} \par
+        { \color{azul}  }
+
+
+ -- Formato de pregunta multimple
+        % - Problema 
+        \vspace{\Pspace}
+        \item  \par
+             % Respuestas:
+            \vspace{\Aspace} \par
+            a) 
+            \\ { \color{azul} }
+
+            \vspace{\Aspace} \par
+            b) 
+            \\ { \color{azul} }
+
+
+ -- Formato de imagen
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.5\textwidth]{}
+\end{figure}
+
+
+ -- Formato de tabla
+\begin{tabular}{c|c}
+    \textbf{A} & \textbf{B} \\
+    \hline
+    Texto & Texto \\
+    Texto & Texto
+\end{tabular} \\
+\end{comment}
+
+
+\title
+{
+    Análisis Lógico 2025-2 \\
+    Tarea pre-examen Unidad III
+}
+
+    \begin{document}
+
+    \maketitle
+
+    \begin{center}
+        \begin{tabular}{r|l}
+            \textbf{Expediente} & \textbf{Nombre} \\ \hline
+            219208106 & Bórquez Guerrero Angel Fernando \\
+        \end{tabular}
+    \end{center}
+
+    \rule{\linewidth}{0.3mm}
+    
+    
+\begin{enumerate}[I.]
+    \item Defina lo siguiente:
+    \begin{enumerate}[1.]
+        \item FNN \par
+        \vspace{\Aspace} \par
+        { \color{azul} Forma Normal Negada }
+
+
+        
+        \vspace{\Pspace}
+        \item PRENEX \par
+        \vspace{\Aspace} \par
+        { \color{azul} Forma estándar de escribir fórmulas lógicas en la que todos los cuantificadores se agrupan al inicio, seguidos por una matriz libre de cuantificadores. 
+            \par $Q_{1}x_{1}Q_{2}x_{2}Q_{3}x_{3}...Q_{n}x_{n}\Phi$, $\Phi = $ Matriz sin $\forall$ y $\exists$
+        }
+
+
+
+        \vspace{\Pspace}
+        \item FNC \par
+        \vspace{\Aspace} \par
+            { \color{azul} Forma Normal Conjuntiva. Una fbf está en FNC si es una conjunción de la forma $F_{1} \land F_{2} \land ... \land F_{n}$ en donde cada $F_{i}$ es una disyunción de literales, es decir $\land^{m}_{i = 1} \lor^{n_{i}}_{j = 1}L_{ij}$.}
+
+
+
+        \vspace{\Pspace}
+        \item Skolem \par
+        \vspace{\Aspace} \par
+        { \color{azul} Fórmula de primer ordenen FNC-PRENEX que contiene únicamente cuantificadores universales. }
+
+
+
+        \vspace{\Pspace}
+        \item Cláusula \par
+        \vspace{\Aspace} \par
+        { \color{azul} Es una disyunción de literales. }
+
+
+
+        \vspace{\Pspace}
+        \item Cláusula Horn \par
+        \vspace{\Aspace} \par
+        { \color{azul} Es una cláusula que tiene, a lo sumo, un literal positivo. }
+
+
+
+        \vspace{\Pspace}
+        \item Hecho Horn \par
+        \vspace{\Aspace} \par
+        { \color{azul} Es una cláusula Horn que tiene exactamente un literal positivo y ningún literal negativo. Se asume como verdad. }
+
+
+
+        \vspace{\Pspace}
+        \item Regla Horn \par
+        \vspace{\Aspace} \par
+            { \color{azul} Es una cláusula Horn con exactamente un literal positivo y uno o más negativos, es decir:
+                \par $(\lnot p_{1} \lor \lnot p_{2} \lor ... \lor \lnot p_{n} \lor q) \equiv (\lnot p_{1} \lor \lnot p_{2} \lor ... \lor \lnot p_{n}) \rightarrow q)$
+            }
+    \end{enumerate}
+
+
+
+    \item Dados los siguientes enunciados en lenguaje natural, transformar a FNN, PRENEX, FNC, Skolem, FNCS, forma clausal e identificar el tipo de cláusulas que los conforman.
+    \begin{enumerate}[1.]
+        \vspace{\Pspace}
+        \item Existe exactamente un reno con la nariz roja que trabaja para Santa. \par
+        \vspace{\Aspace} \par
+        { \color{azul}  
+            \vspace{-0.2cm}
+            \begin{itemize}
+                \item $D = \{ renos \}$
+                \item $R(x) \coloneqq$ ``$x$ tiene la nariz roja''
+                \item $S(x) \coloneqq$ ``$x$ trabaja para Santa''
+            \end{itemize}
+            $F: \exists x [ (R(x) \land S(x)) \land \forall y ( (R(y) \land S(y)) \rightarrow y = x ) ]$
+            \par $FNN: \exists x [ R(x) \land S(x) \land \forall y ( (\lnot R(y) \lor \lnot S(y)) \lor y = x ) ]$
+            \par $PRENEX: \exists x \forall y [ R(x) \land S(x) \land ( \lnot R(y) \lor \lnot S(y) \lor y = x ) ]$
+            \par $Skolem: \forall y [ R(c) \land S(c) \land ( \lnot R(y) \lor \lnot S(y) \lor y = c ) ]$
+            \par $Cl_{1} = \{ R(c) \}$: Cláusula unitaria, positiva y Horn
+            \par $Cl_{2} = \{ S(c) \}$: Cláusula unitaria, positiva y Horn
+            \par $Cl_{3} = \{ \lnot R(y), \lnot S(y), y = x \}$: Cláusula mixta y Horn
+        }
+
+
+
+        \vspace{\Pspace}
+        \item Todo elfo que fabrica juguetes ayuda al menos a un niño que los pidió en una carta. \par
+        \vspace{\Aspace} \par
+        { \color{azul} 
+            \begin{itemize}
+                \item $E(x) \coloneqq$ ``$x$ es un elfo''
+                \item $J(x) \coloneqq$ ``$x$ fabrica juguetes''
+                \item $A(x,y) \coloneqq$ ``$x$ ayuda a $y$''
+                \item $N(x) \coloneqq$ ``$x$ es un niño''
+                \item $C(x) \coloneqq$ ``$x$ pidió juguetes en una carta''
+            \end{itemize}
+            $F: \forall x [ (E(x) \land J(x)) \rightarrow \exists y (N(y) \land C(y) \land A(x,y) ]$
+            \par $FNN: \forall x [ (\lnot E(x) \lor \lnot J(x)) \lor \exists y (N(y) \land C(y) \land A(x,y) ]$
+            \par $PRENEX: \forall x \exists y[ (\lnot E(x) \lor \lnot J(x)) \lor (N(y) \land C(y) \land A(x,y) ]$
+            \par $Skolem: \forall x [ (\lnot E(x) \lor \lnot J(x)) \lor (N(f(x)) \land C(f(x)) \land A(x,f(x)) ]$
+            \par $FNCS: \forall x [ (\lnot E(x) \lor \lnot J(x) \lor N(f(x))) \land (\lnot E(x) \lor \lnot J(x) \lor C(f(x))) \land (\lnot E(x) \lor \lnot J(x) \lor A(x,f(x)))]$
+            \par $Cl_{1} = \{ \lnot E(x), \lnot J(x), N(f(x) \}$: Cláusula mixta y Horn
+            \par $Cl_{2} = \{ \lnot E(x), \lnot J(x), C(f(x)) \}$: Cláusula mixta y Horn
+            \par $Cl_{3} = \{ \lnot E(x), \lnot J(x), A(x,f(x)) \}$: Cláusula mixta y Horn
+        }
+
+
+
+        \vspace{\Pspace}
+        \item Si los alumnos de análisis lógico presentan el examen, entonces lo aprobarán y pasarán una feliz navidad. \par
+        \vspace{\Aspace} \par
+        { \color{azul} 
+            \vspace{-0.2cm}
+            \begin{itemize}
+                \item $D = \{ alumnos \}$
+                \item $L(x) \coloneqq$ ``$x$ es alumno de lógica''
+                \item $E(x) \coloneqq$ ``$x$ presenta el examen''
+                \item $A(x) \coloneqq$ ``$x$ aprueba el examen''
+                \item $N(x) \coloneqq$ ``$x$ pasa una feliz navidad''
+            \end{itemize}
+            $F: \forall x [ (L(x) \land E(x)) \rightarrow (A(x) \land N(x)) ]$
+            \par $FNN: \forall x [ (\lnot L(x) \lor \lnot E(x)) \lor (A(x) \land N(x)) ]$
+            \par $FNCS: \forall x [ (\lnot L(x) \lor \lnot E(x) \lor A(x)) \land (\lnot L(x) \lor \lnot E(x) \lor N(x)) ]$
+            \par $Cl_{1} = \{ \lnot L(x), \lnot E(x), A(x) \}$: Cláusula mixta y Horn
+            \par $Cl_{2} = \{ \lnot L(x), \lnot E(x), N(x) \}$: Cláusula mixta y Horn
+        }
+
+
+
+        \newpage
+        \item No todos pueden ser grandes artistas, pero un gran artista puede venir de cualquier lugar. \par
+        \vspace{\Aspace} \par
+        { \color{azul}  
+            \vspace{-0.2cm}
+            \begin{itemize}
+                \item $P(x) \coloneqq$ ``$x$ es una persona''
+                \item $L(x) \coloneqq$ ``$x$ es un lugar''
+                \item $A(x) \coloneqq$ ``$x$ es un gran artista''
+                \item $V(x,y) \coloneqq$ ``$x$ viene de $y$''
+            \end{itemize}
+            $F: \exists x (P(x) \land \lnot A(x)) \land \forall l (L(l) \rightarrow \exists y (P(y) \land A(y) \land V(y, l)))$
+            \par $FNN: \exists x (P(x) \land \lnot A(x)) \land \forall l (\lnot L(l) \lor \exists y (P(y) \land A(y) \land V(y, l)))$
+            \par $PRENEX: \exists x \forall l \exists y [(P(x) \land \lnot A(x)) \land (\lnot L(l) \lor (P(y) \land A(y) \land V(y, l)))]$
+            \par $Skolem: \forall l [ (P(c) \land \lnot A(c)) \land (\lnot L(l) \lor (P(f(l)) \land A(f(l)) \land V(f(l), l))) ]$
+            \par $FNCS: \forall l [ P(c) \land \lnot A(c) \land (\lnot L(l) \lor P(f(l))) \land (\lnot L(l) \lor A(f(l))) \land (\lnot L(l) \lor V(f(l), l))]$
+            \par $Cl_{1} = \{ P(C) \}$: Cláusula unitaria, positiva y Horn
+            \par $Cl_{2} = \{ \lnot A(c) \}$: Cláusula unitaria, positiva y Horn
+            \par $Cl_{3} = \{ \lnot L(l), P(f(l)) \}$: Cláusula mixta y Horn
+            \par $Cl_{4} = \{ \lnot L(l), A(f(l)) \}$: Cláusula mixta y Horn
+            \par $Cl_{5} = \{ \lnot L(l), V(f(l), l) \}$: Cláusula mixta y Horn
+        }
+
+
+
+        \vspace{\Pspace}
+        \item Si Fernando puede resolver el examen, entonces Alcantar puede. \par
+        \vspace{\Aspace} \par
+        { \color{azul}  
+            \vspace{-0.2cm}
+            \begin{itemize}
+                \item $D = \{ personas \}$
+                \item $E(x) \coloneqq$ ``$x$ puede resolver el examen''
+                \item $f = ``Fernando''$
+                \item $a = ``Alcantar''$
+            \end{itemize}
+            $F: P(f) \rightarrow P(a)$
+            \par $FNN: \lnot P(f) \lor P(a)$
+            \par $Cl_{1} = \{ \lnot P(f), P(a) \}$: Cláusula mixta y Horn
+        }
+
+
+
+        \vspace{\Pspace}
+        \item Ningún robot causará daño a un ser humano o permitirá, con su inacción, que un humano sea lastimado. \par
+        \vspace{\Aspace} \par
+        { \color{azul} 
+            \vspace{-0.2cm}
+            \begin{itemize}
+                \item $R(x) \coloneqq$ ``$x$ es un robot''
+                \item $H(x) \coloneqq$ ``$x$ es un humano''
+                \item $L(x,y) \coloneqq$ ``$x$ lastima a $y$''
+                \item $D(x,y) \coloneqq$ ``$x$ permite que $y$ sea lastimado''
+            \end{itemize}
+            $F: \forall x [ R(x) \rightarrow \lnot \exists y ( H(y) \land ( L(x,y) \lor D(x,y) ) ) ]$
+            \par $FNN: \forall x [ \lnot R(x) \lor \forall y ( \lnot H(y) \lor ( \lnot L(x,y) \land \lnot D(x,y) ) ) ]$
+            \par $PRENEX: \forall x \forall y[ \lnot R(x) \lor ( \lnot H(y) \land ( \lnot L(x,y) \lor \lnot D(x,y) ) ) ]$
+            \par $FNCS: \forall x \forall y[ (\lnot R(x) \lor \lnot H(y)) \land (\lnot R(x) \lor \lnot L(x,y) \lor \lnot D(x,y) ) ) ]$
+            \par $Cl_{1} = \{ \lnot R(x), \lnot H(y) \}$: Cláusula negativa y Horn
+            \par $Cl_{2} = \{ \lnot R(x), \lnot L(x,y), \lnot D(x,y) \}$: Cláusula negativa y Horn
+        }
+    \end{enumerate}
+\end{enumerate}
+\end{document}
