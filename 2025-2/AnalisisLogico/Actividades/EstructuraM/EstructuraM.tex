@@ -136,11 +136,17 @@
                 \par $M: D = \mathbb{N}, R^{M}(m,n) = m > n$
                 \par En este caso podemos ver que se cumple para todos los números naturales, ya que siempre hay una $y$ menor a $x$, excepto cuando llegamos al 0 ya que no existe un número que sea menor, por lo tanto la estructura es satisfacible.
                 \par $\; \therefore M \vDash \varphi$
+
+                \vspace{\Aspace}
+                Insatisfacible
+                \par $M: D = \{ 256, 256, 256 \}, R^{M}(m,n) = m > n$
+                \par Dado que todos los elementos del dominio son el mismo número entonces no existse una $R(x,y) \in R^{M}$, esto nos dice que esta estructura es inválida.
+                \par $\; \therefore M \nvDash \varphi$
             }
 
 
 
-            \vspace{\Aspace} \par
+            \newpage
             b) $\exists y \forall x R(x,y)$
             \\ { \color{azul} 
                 Válido
@@ -163,14 +169,21 @@
 
 
 
-            \vspace{\Aspace} \par
+            \vspace{\Pspace} \par
             c) $\forall x P(x) \rightarrow \exists x P(x)$
-            \\ { \color{azul} }
+            \\ { \color{azul} 
+                Utilizando equivalencias podemos desarrollar la fórmula anterior de la siguiente forma:
+                \par $\rightarrow \lnot \forall x P(x) \lor \exists x P(x)$
+                \par $\rightarrow \exists x \lnot P(x) \lor \exists x P(x)$
+                \par $\rightarrow \exists x (\lnot P(x) \lor P(x))$
+                \par Dado que $\lnot P(x) \lor P(x)$ es una tautología entonces el enunciado siempre será valido en todo caso.
+                \par $\; \therefore M \vDash \varphi$
+            }
 
 
 
-            \vspace{\Aspace} \par
-            b) $\forall x (P(x) \rightarrow \lnot P(x))$
+            \vspace{\Pspace} \par
+            d) $\forall x (P(x) \rightarrow \lnot P(x))$
             \\ { \color{azul} 
                 Válido
                 \par $M: D = \{\, x \in \mathbb{N} \mid x = 2k,\; k \in \mathbb{N} \,\}$, $P^{M}(x) \coloneqq$ ``$x$ es impar''
@@ -181,7 +194,7 @@
                 \par $\rightarrow$ Podemos traducir esto como $(0 \rightarrow 1) = 1$
                 \par $\rightarrow \; \therefore M \vDash \varphi$
 
-                \vspace{\Aspace}
+                \newpage
                 Satisfacible
                 \par $M: D = \{ 2, 3 \}$, $P^{M}(x) \coloneqq$ ``$x$ es impar''
                 \par $\rightarrow s^{*}(x) = 2$
