@@ -1,0 +1,27 @@
+Ejercicio 1: \w+oon
+
+Ejercicio 2: \w+ *\w*
+
+Ejercicio 3: [br]*[af]+fg\w{1,5}
+
+Ejercicio 4: \d{1, 2} - \d{1,2} = \d{1,2}
+
+Ejercicio 5: ([a-z]{3}|\d{3}|[\?\=\+]{3})[.;]
+
+Ejercicio 6: -?\d{1,2} [-\+] \d{1,2} = -?\d{1,2}
+
+Ejercicio 7: (\**\+\*+)|(\*+\+\*?)
+
+Ejercicio 8a: \[\d\]
+
+Ejercicio 8b: \d{4}
+
+Ejercicio 8c: \([^()]*\)
+
+Ejercicio 8d: (a|e|i|o|u)\1
+
+Ejercicio 8e: ([b-z]|[B-Z]){3}
+
+Ejercicio 8f: \b([b-z]|[B-Z]){3}
+
+Ejercicio 8g: [\w\d]+@\w+\.\w+
