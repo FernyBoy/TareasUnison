@@ -1,0 +1,202 @@
+\documentclass[a4paper, 11pt]{article}
+
+% -- Coments
+\usepackage{verbatim}
+
+% ----- Fonts -----
+% -- Fuente --
+% \usepackage{fontspec}
+% \setmonofont{JetBrainsMono Nerd Font}  
+
+% -- Color --
+\usepackage{xcolor}
+%\definecolor{azul}{RGB}{00,33,99}
+\definecolor{azul}{RGB}{35,72,180}
+
+% -- Page Margin --
+\usepackage[margin=1in]{geometry}
+
+% -- Espaciados --
+\newcommand{\Pspace}{0.5cm}
+\newcommand{\Aspace}{0.2cm}
+
+% -- Columnas --
+\usepackage{multicol}
+
+% -- Imagenes --
+\usepackage{graphicx}
+\usepackage{float}
+
+% -- Matemáticas --
+\usepackage{amsmath, amssymb}
+
+% -- Gráficas --
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% -- Código --
+\usepackage{listings}
+\lstset{
+    language=C++,                   % Lenguaje del código
+    basicstyle=\ttfamily\small,     % Fuente del código
+    keywordstyle=\color{blue},      % Color de palabras clave
+    commentstyle=\color{gray},      % Color de comentarios
+    stringstyle=\color{red},        % Color de cadenas
+    numbers=left,                   % Números de línea a la izquierda
+    numberstyle=\tiny\color{gray},
+    breaklines=true,                % Permitir saltos de línea
+    frame=single                    % Marco alrededor del código
+}
+
+\title
+{
+    Teoría de la Computación 2026-1 \\
+    Ejercicio 7
+}
+
+    \begin{document}
+
+    \maketitle
+
+    \begin{center}
+        \begin{tabular}{r|l}
+            \textbf{Expediente} & \textbf{Nombre} \\ \hline
+            223209096 & Ahumada Herrera Jorge Alán \\
+            219208106 & Bórquez Guerrero Angel Fernando \\
+            222206586 & Juan Valenzuela Gael \\
+            223201053 & Solis Zatarain Owen Adiel \\
+        \end{tabular}
+    \end{center}
+
+    \rule{\linewidth}{0.3mm}
+
+    \vspace{0.3cm}
+
+    \vspace{\Pspace}
+    Sean $L$, $M$ y $N$ lenguajes cualesquiera, todos con un mismo alfabeto. Pruebe o de un contraejemplo de cada una de las siguientes afirmaciones:\par
+    \begin{enumerate}
+            \vspace{\Aspace} \par
+            \item$L(M \cap N) = LM \cap LN$
+            \\ { \color{azul} 
+                Supongamos $L = \{u, uv\}$, $M = \{v\}$ y $N = \{\varepsilon \}$
+                \par Se define a la concatenación de lenguajes como $LM = \{ xy : x \in L \land y \in M \}$
+                \par reemplazamos los valores en la igualdad
+                \par $\{ u, uv \}(\{ v \} \cap \{ \varepsilon \}) = \{ uv, uvv \} \cap \{ u, uv \}$
+                \par $\{ u, uv \} \varnothing = \{ uv \}$
+                \par $\varnothing = \{ uv \}$
+                \par $\therefore L(M \cap N) \neq LM \cap LN$
+            }
+
+            \vspace{\Aspace} \par
+            \item $L \cap (MN) = (L \cap M)(L \cap N)$
+            \\ { \color{azul}  
+                Supongamos $L = \{ u, v, w \}$, $M = \{ v \}$ y $N = \{ w \}$
+                \par Reemplazamos en la igualdad
+                \par $\{ u, v, w \} \cap \{ vw \} = (\{ u, v, w \} \cap \{ v \})(\{ u, v, w \} \cap \{ w \})$
+                \par $\varnothing = (\{ v \})(\{ w \})$
+                \par $\varnothing = \{ vw \}$
+                \par $\therefore L \cap (MN) \neq (L \cap M)(L \cap N)$
+            }
+
+            \vspace{\Aspace} \par
+            \item $LM = ML$
+            \\ { \color{azul} 
+                Supongamos $L = \{ u \}$ y $M = \{ v \}$
+                \par Se define a la concatenación de lenguajes como $LM = \{ xy : x \in L \land y \in M \}$
+                \par Entonces $LM = \{ uv \}$ y $ML = \{ vu \}$
+                \par $\therefore LM \neq ML$
+            }
+
+            \newpage
+                \item $LL^{*} = L^{*}L$
+            \\ { \color{azul} 
+                Parte 1: $LL^* \subseteq L^*L$
+                \par Sea $w \in LL^*$.
+                \par Por definición, $w = x \cdot y$ con $x \in L$ e $y \in L^*$.
+                \par Por definición de cerradura de Kleene, existe $n \ge 0$ tal que $y \in L^n$.
+
+                \par \textbf{Caso $n=0$ ($y = \varepsilon$):}
+                \par $w = x \cdot \epsilon = x$
+                \par $ w = \epsilon \cdot x \implies w \in L^0 L \subseteq L^*L$
+
+                \par \textbf{Caso $n > 0$:}
+                \par Por definición, $y = x_1 \dots x_n$ con $x_i \in L$ para $i=1,\dots,n$.
+                \par Sustituyendo en $w$:
+                \par \( w = x \cdot (x_1 \dots x_n) \)
+
+                \par Por asociatividad de la concatenación:
+                \par $ w = (x \cdot x_1 \dots x_{n-1}) \cdot x_n $
+
+                \par Sea $z = x \cdot x_1 \dots x_{n-1}$.
+                \par Notamos que $z$ está formado por la concatenación de $x$ (1 elemento) y $n-1$ elementos ($x_1 \dots x_{n-1}$).
+                \par Total de elementos: $1 + (n-1) = n$.
+                \par $ \therefore z \in L^n \subseteq L^* $
+
+                \par Como $x_n \in L$, tenemos:
+                \par $ w = z \cdot x_n \implies w \in L^*L $
+
+                \par $ \therefore LL^* \subseteq L^*L $
+
+                \par Parte 2: $L^*L \subseteq LL^*$
+
+                \par Sea $w \in L^*L$.
+                \par Por definición, $w = y \cdot x$ con $y \in L^*$ y $x \in L$.
+                \par Por definición, existe $n \ge 0$ tal que $y \in L^n$.
+
+                \par \textbf{Caso $n=0$ ($y = \epsilon$):}
+                \par \( w = \epsilon \cdot x = x \)
+                \par $ w = x \cdot \epsilon \implies w \in L L^0 \subseteq LL^* $
+
+                \par \textbf{Caso $n > 0$:}
+                \par Por definición, $y = x_1 \dots x_n$ con $x_i \in L$.
+                \par Sustituyendo en $w$:
+                \par $ w = (x_1 \dots x_n) \cdot x $
+
+                \par Por asociatividad, separamos el primer elemento:
+                \par $ w = x_1 \cdot (x_2 \dots x_n \cdot x) $
+
+                \par Sea $z = x_2 \dots x_n \cdot x$. 
+                \par Notamos que $z$ está formado por $n-1$ elementos ($x_2 \dots x_n$) más el elemento $x$.
+                \par Total de elementos: $(n-1) + 1 = n$.
+                \par $ \therefore z \in L^n \subseteq L^* $
+
+                \par Como $x_1 \in L$, tenemos:
+                \par $ w = x_1 \cdot z \implies w \in LL^* $
+
+                \par $ \therefore L^*L \subseteq LL^* $
+
+
+                \par Conclusión
+                \par $ LL^* \subseteq L^L \quad \land \quad L^*L \subseteq LL^* \implies LL^* = L^*L \quad \blacksquare $
+            }
+
+            \vspace{\Aspace} \par
+            \item Para todo $n > 0$, $(LM)^{n} = L^{n}M^{n}$.
+            \\ { \color{azul} 
+                Sea $L = \{ u \}$, $M = \{ v \}$ y $n = 2$
+                \par $(LM)^{2} = L^{2}M^{2}$
+                \par $(\{ u \}\{ v \})(\{ u \}\{ v \}) = \{ u \}\{ u \}\{ v \}\{ v \}$
+                \par $\{ uvuv \} = \{ uuvv \}$
+                \par $\therefore n > 0$, $(LM)^{n} \neq L^{n}M^{n}$
+            }
+
+            \vspace{\Aspace} \par
+            \item Para todo $n$, $m > 0$, $(L^{n})^{m} = (L^{m})^{n}$.
+            \\ { \color{azul} 
+                Sea $w = u_{1}u_{2}...u_m$ con $u_{i} \in L^{n}$
+                \par $w \in (L^{n})^{m}$
+                \par Cada cadena $u_{i} = x_{i1}x_{i2}...x_{in}$ con $x_{ij} \in L$
+                \par Por lo tanto $w = (x_{11}...x_{1n})(x_{21}...x_{2n})...(x_{m1}...x_{mn})$
+                \par Esto es una concatenación de $nm$ cadenas de $L$, en este orden fijo
+                \par Agrupamos ahora en bloques de tamaño $m$
+                \par $w = (x_{11}x_{21}...x_{m1})(x_{12}x_{22}...x_{m2})...(x_{1n}x_{2n}...x_{mn})$
+                \par Cada bloque es una concatenación de $m$ cadenas de $L$
+                \par $(x_{1j}x_{2j}...x_{mj}) \in L^{m}$
+                \par Y hay $n$ bloques
+                \par Por definición $w \in (L^{m})^{n}$
+                \par Entonces $(L^{n})^{m} \subseteq (L^{m})^{n}$
+                \par Por simetría podemos decir que el mismo razonamiento al revés nos da $(L^{m})^{n} \subseteq (L^{n})^{m}$
+                \par $\therefore n$, $m > 0$, $(L^{n})^{m} = (L^{m})^{n}$
+            }
+    \end{enumerate}
+\end{document}
