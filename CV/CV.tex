@@ -1,101 +1,156 @@
-\documentclass{resume}
-\usepackage[left=0.6in,top=0.6in,right=0.6in,bottom=0.6in]{geometry}
-\usepackage[svgnames]{xcolor}
+\documentclass[11pt]{article}
+
+%====================
+% Basic setup
+%====================
+\usepackage[left=0.7in, right=0.7in, top=0.7in, bottom=0.7in]{geometry}
 \usepackage{hyperref}
-\hypersetup{%
-  colorlinks=true,          % hyperlinks
-  allcolors=DarkRed,%
-  pdfborderstyle={/S/U/W 1} % border style will be underline of width 1pt
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{setspace}
+
+\hypersetup{
+    colorlinks=true,
+    urlcolor=black
 }
 
-\usepackage{vwcol}
-\usepackage{natbib}
-\usepackage{cfr-lm}         % make old style numbers default
-\usepackage{graphicx}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\pagenumbering{gobble}
 
+%====================
+% Section formatting
+%====================
+\titleformat{\section}
+  {\large\bfseries}
+  {}
+  {0pt}
+  {}
+  [\vspace{2pt}\titlerule]
+
+%====================
+% Document
+%====================
 \begin{document}
 
 %====================
 % Header
 %====================
-\begin{center}
-    \name{Angel Fernando Borquez Guerrero}
-    \contact
-        {+52 633 100 5991}
-        {\href{https://www.linkedin.com/in/fernandoborquez/}{LinkedIn}
-        {\href{mailto:fernandoborquez215@icloud.com}{fernandoborquez215@icloud.com}}
-        {\href{https://github.com/FernyBoy}{GitHub}}
-\end{center}
-
-\vspace{0.3cm}
+{\Huge \textbf{Angel Fernando Borquez Guerrero}} \\
+\vspace{-0.4cm}
+\par \href{https://www.linkedin.com/in/fernandoborquez/}{LinkedIn} \quad | \quad
+\href{https://github.com/FernyBoy}{GitHub} \quad | \quad
+\href{mailto:fernandoborquez215@icloud.com}{fernandoborquez215@icloud.com} \quad | \quad
++52 633 100 5991 \\
+Hermosillo, Sonora.
 
 %====================
 % Education
 %====================
 \section*{Education}
-\textbf{Universidad de Sonora} \hfill \textbf{2023 - 2028 (Expected)} \\
-Bachelor of Science in Computer Science
+\textbf{Universidad de Sonora} \hfill GPA: 90\%\\
+Bachelor of Science in Computer Science \hfill \textbf{August 2023 -- Present}
 
 %====================
 % Professional Experience
 %====================
 \section*{Professional Experience}
-\textbf{ACARUS -- Supercomputing Area} \hfill \textbf{2025 - Present} \\
-Professional Intern
+\textbf{ACARUS — Supercomputing Area} \hfill Supervisor: Dra. María del Carmen Heras Sánchez\\
+Professional Intern \hfill \textbf{September 2025 -- Present}
+\vspace{-0.3cm}
 \begin{itemize}[leftmargin=*]
-    \item Currently completing a professional internship within the Supercomputing area at the University of Sonora.
-    \item Member of a development team building a specialized forum for users of \textit{Yuca}, the university's high-performance computing system.
-    \item Contributing to features such as user posts, direct messaging, and service request workflows.
-    \item Supporting a real HPC user community by improving communication, collaboration, and technical support processes.
+    \item Professional internship in the Supercomputing area at the University of Sonora.
+    \vspace{-0.3cm}
+    \item Part of a development team building a specialized forum for users of \textit{Yuca}, the university HPC system.
+    \vspace{-0.3cm}
+    \item Implementing features such as user posts, direct messaging, and service request workflows.
+    \vspace{-0.3cm}
+    \item Supporting an active HPC user community by improving communication and technical support processes.
 \end{itemize}
 
 %====================
 % Research Experience
 %====================
 \section*{Research Experience}
-\textbf{University of Guadalajara} \hfill June 2025 -- July 2025 \\
-Research Intern
+\textbf{University of Guadalajara} \hfill Supervisor: Dr. Rafael Morales Gamboa \\
+Research Intern \hfill \textbf{June -- July 2025}
+\vspace{-0.3cm}
 \begin{itemize}[leftmargin=*]
-    \item Summer research internship focused on associative entropy-based memory models.
-    \item Worked under academic supervision on exploratory research related to memory systems and computational models.
+    \item Extended a validated Entropic Associative Memory (EAM) model through large-scale experimental validation and robustness analysis.
+    \vspace{-0.3cm}
+    \item Adapted and refactored the data pipeline to support class balancing, dynamic class selection, and scalable dataset handling.
+    \vspace{-0.3cm}
+    \item Retrained perceptual neural networks (autoencoder and classifier) to generate feature representations compatible with the EAM architecture.
+    \vspace{-0.3cm}
+    \item Designed and implemented a novelty detection experiment to evaluate the model’s ability to reject unseen classes.
+    \vspace{-0.3cm}
+    \item Introduced experimental controls enabling partial memory registration and quantitative analysis of rejection behavior via no-response metrics.
+    \vspace{-0.3cm}
+    \item Refactored the system into a flexible experimental framework allowing controlled evaluations with a variable number of classes.
 \end{itemize}
 
+
 %====================
-% Competitions \& Projects
+% Competitions & Projects
 %====================
 \section*{Competitions \& Projects}
-
-\textbf{NASA Space Apps Challenge} \\
-\textit{DeltaGreen Map} (2024) \\
+\textbf{NASA Space Apps Challenge (2024)} \hfill Project: Voyager CXXV\\
+Project Co-Lead \hfill \textbf{October 2024}
+\vspace{-0.3cm}
 \begin{itemize}[leftmargin=*]
-    \item Developed a GIS-based project simulating temperature and air quality improvements through urban reforestation.
-    \item Designed interactive heat maps allowing users to visualize long-term environmental impact scenarios.
+    \item Co-led the development of a geospatial simulation tool to evaluate the impact of urban green areas on temperature and air quality in Hermosillo, Mexico.
+    \vspace{-0.3cm}
+    \item Designed and implemented a system allowing users to define custom zones and simulate long-term environmental effects of urban reforestation.
+    \vspace{-0.3cm}
+    \item Integrated spatial data visualization through heat maps to support data-driven insights for urban planning scenarios.
+    \vspace{-0.3cm}
+    \item Coordinated technical tasks within the team, contributing to project planning, feature definition, and final integration.
 \end{itemize}
 
-\textit{YIPI Weather App} (2025) \\
+\textbf{TE AI CUP (2025)} \hfill Project: AI Generated Machine Downtime Insights\\
+UI Developer \hfill \textbf{January -- May 2025}
+\vspace{-0.3cm}
 \begin{itemize}[leftmargin=*]
-    \item Built a weather application for children featuring an educational narrative and daily climate trivia.
-    \item Focused on climate awareness and user engagement through an accessible interface.
+    \item Developed the user interface for an AI-based industrial downtime analysis tool, focusing on clear visualization of patterns, anomalies, and clustering results derived from machine time-series data.
+    \vspace{-0.3cm}
+    \item Designed an accessible and intuitive frontend to enable non-technical users to explore insights generated by unsupervised learning models.
 \end{itemize}
 
-\textbf{Copa TE} \\
+\textbf{NASA Space Apps Challenge (2025)} \hfill Project: Endurance CXXV\\
+Project Co-Lead \hfill \textbf{October 2025}
+\vspace{-0.3cm}
 \begin{itemize}[leftmargin=*]
-    \item Participant and winner in Copa TE 2025.
-    \item Currently competing in Copa TE 2026.
+    \item Co-led the development of an educational weather application designed for a children-oriented audience, focused on climate awareness and engagement.
+    \vspace{-0.3cm}
+    \item Developed both frontend and backend components of the application, contributing to core functionality and system integration.
+    \vspace{-0.3cm}
+    \item Designed and implemented the user interface with an emphasis on accessibility, usability, and age-appropriate interaction.
 \end{itemize}
 
-\textbf{MICAI 2025 -- Medal Challenge} \\
+\textbf{1st Place Winner -- MICAI 2025 MeDA Challenge} \hfill \textbf{October 2025}
+\vspace{-0.3cm}
 \begin{itemize}[leftmargin=*]
-    \item First place winner as part of a team in a national-level academic competition.
-    \item Project and results were featured in news outlets and academic publications.
+    \item Contributed to a 1st Place victory in a national academic competition focused on Medical Domain Adaptation using Self-Supervised Learning (SSL), leading to an invitation to publish in a special issue of the \textit{Health Information Science and Systems} journal.
+    \vspace{-0.3cm}
+    \item Structured and organized the dataset used for model training by designing a clear directory hierarchy to support reproducible and efficient experimentation.
+    \vspace{-0.3cm}
+    \item Collaborated in the writing and revision of the scientific article, contributing to the methodological description and overall presentation of results.
+    \vspace{-0.3cm}
+    \item Developed visual and presentation assets used to communicate the project during the competition and dissemination stages.
 \end{itemize}
+
 
 %====================
 % Technical Skills
 %====================
+
 \section*{Technical Skills}
-\textbf{Programming:} Python, C++, Java, SQL \\
-\textbf{Systems:} Linux, High Performance Computing (HPC) \\
-\textbf{Tools:} Git, GIS Tools
+\textbf{Programming:} Python, C++, Java, SQL, JavaScript, TypeScript\\
+\textbf{Web Development:} HTML, CSS, SASS, Vue.js, Django, NPM\\
+\textbf{Systems \& Virtualization:} Linux (Arch Linux), High Performance Computing (HPC), Virtual Machines, Proxmox VE, VirtualBox\\
+\textbf{Data \& Research Tools:} Jupyter, Google Colab, LaTeX, GIS tools\\
+\textbf{Version Control \& Platforms:} Git, GitHub
+
 
 \end{document}
