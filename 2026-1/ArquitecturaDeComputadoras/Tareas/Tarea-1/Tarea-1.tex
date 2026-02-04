@@ -292,25 +292,63 @@
              % Respuestas:
             \vspace{\Aspace} \par
             a) ¿Cuál implementación es más rápida?
-            \\ { \color{azul} }
+            \\ { \color{azul} 
+                \textbf{ - Calculamos el CPI de cada implementación} \vspace{0.2cm} \\
+                \hspace*{0.5cm} $CPI_{P1} = (1 * 0.1) + (2 * 0.2) + (3 * 0.5) + (3 * 0.2) = 0.1 + 0.4 + 1.5 + 0.6 = 2.6$ \\
+                \hspace*{0.5cm} $CPI_{P2} = (2 * 0.1) + (2 * 0.2) + (4 * 0.5) + (4 * 0.2) = 0.2 + 0.4 + 2.0 + 0.8 = 3.4$
+
+                \textbf{ - Calculamos el tiempo de ejecución de cada implementación} \vspace{0.2cm} \\
+                \hspace*{0.5cm} $T_{P1} = \frac{7 * 10^{9} * 2.6}{2*10^{9}} = 9.1s$ \\
+                \hspace*{0.5cm} $T_{P2} = \frac{7 * 10^{9} * 3.4}{3*10^{9}} \approx 7.93 s$ 
+
+                \textbf{ - Respuesta} \vspace{0.2cm} \\
+                \hspace*{0.5cm} R/: La implementación más rápida es P2.
+            }
 
             \vspace{\Aspace} \par
             b) ¿Cuál es el CPI del programa en cada implementación?
-            \\ { \color{azul} }
+            \\ { \color{azul} 
+                \hspace*{0.5cm} Utilizamos los valores obtenidos en el inciso anterior. \\
+                \textbf{ - Respuesta} \vspace{0.2cm} \\
+                \hspace*{0.5cm} R/: $CPI_{P1} = 2.6$ y $CPI_{P2} = 3.4$
+            }
 
             \vspace{\Aspace} \par
             c) ¿Cuántos ciclos hace el programa en cada implementación?
-            \\ { \color{azul} }
+            \\ { \color{azul} 
+                \textbf{ - Obtenemos el número de instrucciones de cada clase} \vspace{0.2cm} \\
+                \hspace*{0.5cm} $A = 7 * 10^{9} * 0.1 = 7*10^{8}$ \\
+                \hspace*{0.5cm} $B = 7 * 10^{9} * 0.2 = 14*10^{8}$ \\
+                \hspace*{0.5cm} $C = 7 * 10^{9} * 0.5 = 35*10^{8}$ \\
+                \hspace*{0.5cm} $D = 7 * 10^{9} * 0.2 = 14*10^{8}$ \\
 
-            \vspace{\Aspace} \par
+                \textbf{ - Calculamos los CR de cada implementación} \vspace{0.2cm} \\
+                \hspace*{0.5cm} $CR_{P1} = (1 * 7 * 10^{8}) + (2 * 14 * 10^{8}) + (3 * 35 * 10^{8}) + (3 * 14 * 10^{8})$ \\
+                \hspace*{0.5cm} $CR_{P1} = 7 * 10^{8} + 28 * 10^{8} + 105 * 10^{8} + 42 * 10^{8} = 18.2 * 10^{9}$ \\ 
+                \hspace*{0.5cm} $CR_{P2} = (2 * 7 * 10^{8}) + (2 * 14 * 10^{8}) + (4 * 35 * 10^{8}) + (4 * 14 * 10^{8})$ \\
+                \hspace*{0.5cm} $CR_{P2} = 14 * 10^{8} + 28 * 10^{8} + 140 * 10^{8} + 56 * 10^{8} = 23.8 * 10^{9}$
+
+                \textbf{ - Respuesta} \vspace{0.2cm} \\
+                \hspace*{0.5cm} R/: $CR_{P1} = 18.2 * 10^{9}$ y $CPI_{P2} = 23.8 * 10^{9}$
+            }
+
             d) ¿Cuál es la velocidad pico de cada implementación?
-            \\ { \color{azul} }
+            \\ { \color{azul} 
+                \textbf{ - Calculamos la velocidad pico de cada implementación utilizando su CPI mínimo} \vspace{0.2cm} \\
+                \hspace*{0.5cm} $CPI_{P1}$ mínimo = 1 \\
+                \hspace*{0.5cm} $VP_{P1} = \frac{2GHz}{1} = 2GHz$ \\
+                \hspace*{0.5cm} $CPI_{P2}$ mínimo = 2 \\
+                \hspace*{0.5cm} $VP_{P2} = \frac{3GHz}{2} = 1.5GHz$ \\
+
+                \textbf{ - Respuesta} \vspace{0.2cm} \\
+                \hspace*{0.5cm} R/: $VP_{P1} = 2GHz$ y $VP_{P2} = 1.5GHz$
+            }
 
 
 
         % - Problema 3
         \vspace{\Pspace}
-        \item Suponer que, para un programa, el compilador A genera un número de instrucciones de 1.0E9 y un tiempo de ejecución de 1.1s, mientras que el compilador B genera un número de instrucciones de 1.2E9 y un tiempo de ejecución de 1.5s. \par
+        \item Suponer que, para un programa, el compilador A genera un número de instrucciones de $1.0 * 10^9$ y un tiempo de ejecución de 1.1s, mientras que el compilador B genera un número de instrucciones de $1.2 * 10^9$ y un tiempo de ejecución de 1.5s. \par
              % Respuestas:
             \vspace{\Aspace} \par
             a) Encontrar el CPI promedio para cada programa, dado que el procesador tiene un ciclo de reloj de 1 ns.
