@@ -332,6 +332,7 @@
                 \hspace*{0.5cm} R/: $CR_{P1} = 18.2 * 10^{9}$ y $CPI_{P2} = 23.8 * 10^{9}$
             }
 
+            \newpage
             d) ¿Cuál es la velocidad pico de cada implementación?
             \\ { \color{azul} 
                 \textbf{ - Calculamos la velocidad pico de cada implementación utilizando su CPI mínimo} \vspace{0.2cm} \\
@@ -352,15 +353,39 @@
              % Respuestas:
             \vspace{\Aspace} \par
             a) Encontrar el CPI promedio para cada programa, dado que el procesador tiene un ciclo de reloj de 1 ns.
-            \\ { \color{azul} }
+            \\ { \color{azul} 
+                \textbf{ - Factorizamos el CPI} \vspace{0.2cm} \\
+                \hspace*{0.5cm} $T = \frac{Ni * CPI}{Vr}$ \\
+                \hspace*{0.5cm} $T * Vr = Ni * CPI$ \\
+                \hspace*{0.5cm} $CPI = \frac{T * Vr}{Ni}$ \\
+
+                \textbf{ - CPI promedio de A} \vspace{0.2cm} \\
+                \hspace*{0.5cm} $CPI_{A} = \frac{1.1 * 10^{9}}{1 * 10^{9}} = 1.1$ \\
+
+                \textbf{ - CPI promedio de B} \vspace{0.2cm} \\
+                \hspace*{0.5cm} $CPI_{B} = \frac{1.5 * 10^{9}}{1.2 * 10^{9}} = 1.25$ \\
+
+                \textbf{ - Respuesta} \vspace{0.2cm} \\
+                \hspace*{0.5cm} R/: $CPI_{A} = 1.1$ y $CPI_{B} = 1.25$
+            }
 
             \vspace{\Aspace} \par
             b) Suponer que los programas compilados se ejecutan en dos procesadores diferentes. Si los tiempos de ejecución en ambos procesadores son iguales, ¿cuánto más rápido es el reloj del procesador que ejecuta el código del compilador A en comparación con el reloj del procesador que ejecuta el código del compilador B?
             \\ { \color{azul} }
 
-            \vspace{\Aspace} \par
+            \newpage
             c) Se desarrolla un nuevo compilador C que utiliza solo 6.0E8 instrucciones y tiene un CPI promedio 1.1. ¿Cuál es el speedup al usar este nuevo compilador en compración con usar el compilador A o el compilador B en el procesador original?
-            \\ { \color{azul} }
+            \\ { \color{azul} 
+                \textbf{ - Calculamos el tiempo del compilador C} \vspace{0.2cm} \\
+                \hspace*{0.5cm}$T = \frac{6*10^{8} * 1.1}{1*10^{9}} = 0.66s$
+
+                \textbf{ - Calculamos la mejora respecto a los compiladores A y B} \vspace{0.2cm} \\
+                \hspace*{0.5cm}$S_{A/C} = \frac{1.1}{0.66} \approx 1.667$ \\
+                \hspace*{0.5cm}$S_{B/C} = \frac{1.5}{0.66} \approx 2.278$ \\
+
+                \textbf{ - Respuesta} \vspace{0.2cm} \\
+                \hspace*{0.5cm} R/: El compilador C es 66.7\% más rápido respecto al compilador A y 127.8\% respecto al compilador B.
+            }
 
 
 
