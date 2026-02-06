@@ -395,9 +395,25 @@
              % Respuestas:
             \vspace{\Aspace} \par
             a) Plantear claramente la ecuación a resolver.
-            \\ { \color{azul} }
+            \\ { \color{azul} 
+                \textbf{ - Valores actuales} \vspace{0.2cm} \\
+                \hspace*{0.5cm}$t_{old} = 90s$ \\
+                \hspace*{0.5cm}$S_{global} = 1.5$ \\
+                \hspace*{0.5cm}$f_{mejora} = 0.4$ \\
 
-            \vspace{\Aspace} \par
+                \textbf{ - Despejamos la ecuación para obtener el Speedup de la nueva tarjeta gráfica} \vspace{0.2cm} \\
+                \hspace*{0.5cm} $S_{global} = \dfrac{1}{1-f_{mejora}+\dfrac{f_{mejora}}{S_{mejora}}}$ \vspace{0.2cm} \\
+                \hspace*{0.5cm} $S_{global} \Big( 1 - f_{mejora} + \dfrac{f_{mejora}}{S_{mejora}} \Big) = 1$ \vspace{0.2cm} \\
+                \hspace*{0.5cm} $1 - f_{mejora} + \dfrac{f_{mejora}}{S_{mejora}} = \dfrac{1}{S_{global}}$ \vspace{0.2cm} \\
+                \hspace*{0.5cm} $\dfrac{f_{mejora}}{S_{mejora}} = \dfrac{1}{S_{global}} - 1 + f_{mejora}$ \vspace{0.2cm} \\
+                \hspace*{0.5cm} $\dfrac{f_{mejora}}{S_{mejora}} = \dfrac{1}{S_{global}} - \dfrac{S_{global}}{S_{global}} + \dfrac{f_{mejora} * S_{global}}{S_{global}}$ \vspace{0.2cm} \\
+                \hspace*{0.5cm} $\dfrac{f_{mejora}}{S_{mejora}} = \dfrac{1 - S_{global} + f_{mejora} * S_{global}}{S_{global}}$ \vspace{0.2cm} \\
+                \hspace*{0.5cm} $\dfrac{f_{mejora} * S_{global}}{S_{mejora}} = 1 - S_{global} + f_{mejora} * S_{global}$ \vspace{0.2cm} \\
+                \hspace*{0.5cm} $f_{mejora} * S_{global} = (1 - S_{global} + f_{mejora} * S_{global}) * S_{mejora}$ \vspace{0.2cm} \\
+                \hspace*{0.5cm} $S_{mejora} = \dfrac{f_{mejora} * S_{global}}{1 - S_{global} + f_{mejora} * S_{global}}$
+            }
+
+            \newpage
             b) Resolver la ecuación correctamente.
             \\ { \color{azul} }
     \end{enumerate}
