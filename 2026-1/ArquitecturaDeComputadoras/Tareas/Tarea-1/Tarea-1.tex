@@ -371,7 +371,19 @@
 
             \vspace{\Aspace} \par
             b) Suponer que los programas compilados se ejecutan en dos procesadores diferentes. Si los tiempos de ejecución en ambos procesadores son iguales, ¿cuánto más rápido es el reloj del procesador que ejecuta el código del compilador A en comparación con el reloj del procesador que ejecuta el código del compilador B?
-            \\ { \color{azul} }
+            \\ { \color{azul} 
+                \textbf{ - Igualamos las ecuaciones de tiempo} \vspace{0.2cm} \\
+                \hspace*{0.5cm} $\dfrac{Ni_{A} * CPI_{A}}{Vr_{A}} = \dfrac{Ni_{B} * CPI_{B}}{Vr_{B}}$
+
+                \textbf{ - Despejamos las velocidades de reloj} \vspace{0.2cm} \\
+                \hspace*{0.5cm} $\dfrac{Vr_{B}}{Vr_{A}} = \dfrac{Ni_{B} * CPI_{B}}{Ni_{A} * CPI_{A}}$
+
+                \textbf{ - Reemplazamos los valores en la ecuación} \vspace{0.2cm} \\
+                \hspace*{0.5cm} $\dfrac{Vr_{B}}{Vr_{A}} = \dfrac{1.2 * 10^{9} * 1.25}{1 * 10^{9} * 1.1} \approx 1.367$
+
+                \textbf{ - Resultado} \vspace{0.2cm} \\
+                \hspace*{0.5cm} La computadora A es 36.7\% más rápida que la computadora B.
+            }
 
             \newpage
             c) Se desarrolla un nuevo compilador C que utiliza solo 6.0E8 instrucciones y tiene un CPI promedio 1.1. ¿Cuál es el speedup al usar este nuevo compilador en compración con usar el compilador A o el compilador B en el procesador original?
@@ -415,6 +427,18 @@
 
             \newpage
             b) Resolver la ecuación correctamente.
-            \\ { \color{azul} }
+            \\ { \color{azul} 
+                \textbf{ - Reemplazamos los valores en la ecuación resultante} \vspace{0.2cm} \\
+                \hspace*{0.5cm}$S_{global} = 1.5$ \\
+                \hspace*{0.5cm}$f_{mejora} = 0.4$ \\
+                \hspace*{0.5cm} $S_{mejora} = \dfrac{0.4 * 1.5}{1 - 1.5 + 0.4 * 1.5}$
+
+                \textbf{ - Desarrollamos} \vspace{0.2cm} \\
+                \hspace*{0.5cm} $S_{mejora} = \dfrac{0.6}{1 - 1.5 + 0.6}$ \vspace{0.2cm} \\
+                \hspace*{0.5cm} $S_{mejora} = \dfrac{0.6}{0.1}$
+
+                \textbf{ - Respuesta} \vspace{0.2cm} \\
+                \hspace*{0.5cm} R/: $S_{mejora} = 6$
+            }
     \end{enumerate}
 \end{document}
