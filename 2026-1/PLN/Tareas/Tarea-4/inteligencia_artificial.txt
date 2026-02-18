@@ -1,0 +1,56 @@
+Inteligencia Artificial 
+
+La prueba de Turing 
+
+Cada año se lleva a cabo la competición del Premio Loebner, donde los jueces declaran ganador al chatbot de la IA que cuente con las características más parecidas a las humanas, es decir, que dispongan de la capacidad de comunicarse con los jueces de forma interactiva e intuitiva y puedan hacerse pasar por humanos. Por tanto, que sean capaces de superar la prueba de Turing. 
+
+Pasos para la prueba de Turing 
+
+Objeción teológica. 
+
+Argumento que sugiere que la inteligencia artificial puede ser objetada desde una perspectiva religiosa, ya que desafía la creencia en la exclusividad de la mente humana. 
+
+Objeción del avestruz. 
+
+Hace referencia a la tendencia de algunas personas a “esconder la cabeza como un avestruz” y negar la posibilidad de que las máquinas puedan ser inteligentes como los humanos. 
+
+Objeción matemática. 
+
+Cuestiona si la prueba de Turing es una base matemáticamente sólida para definir la inteligencia, argumentando que no todos los procesos mentales pueden reducirse a cálculos. 
+
+Argumento de conciencia. 
+
+Debate si una máquina pudiera tener conciencia o experiencia subjetiva, y si la prueba de Turing es suficiente para demostrarlo. 
+
+Argumento de diversas discapacidades. 
+
+Señala que algunos seres humanos tienen discapacidades mentales o cognitivas que los hacen parecer “no inteligentes”, lo que plantea interrogantes sobre los estándares de la prueba de Turing. 
+
+Objeción de Lady Lovelace. 
+
+Se refiere a la idea de que las máquinas solo pueden hacer lo que se les programa para hacer, en lugar de demostrar verdadera inteligencia creativa. Esta objeción se atribuye a Ada Lovelace. 
+
+
+Argumento del sistema nervioso. 
+
+Sostiene que la diferencia clave entre humanos y máquinas radica en la bilogía del sistema nervioso, lo que limita la comparación de inteligencia. 
+
+Argumento de comportamiento informal. 
+
+Argumenta que la prueba de Turing se enfoca demasiado en el comportamiento superficial y no aborda la verdadera comprensión o conciencia. 
+
+Argumento de percepción extrasensorial. 
+
+Hace referencia a la idea de que la inteligencia artificial podría poseer habilidades fuera de las capacidades humanas, como la percepción extrasensorial, lo que haría diferente de la inteligencia humana.  
+
+El término inteligencia artificial 
+
+La conferencia de Dartmouth se basó en la premisa de que cada aspecto del aprendizaje o cualquier otra característica de la inteligencia puede, en principio, ser descrito con tanta precisión que puede fabricarse una máquina para simularlo. 
+
+Se eligió el término “inteligencia artificial” para el nuevo campo por su neutralidad, ya que evitaba centrarse en la estrecha teoría de los autómatas y evitar la cibernética, muy entrada en la retroalimentación analógica. 
+
+Inteligencia artificial resultó ser un muy mal nombre. 
+
+¿Qué es la inteligencia artificial? 
+
+Es el desarrollo de agentes que al interactuar con un entorno (y posiblemente otros agentes) maximice la esperance de utilidad futura. 

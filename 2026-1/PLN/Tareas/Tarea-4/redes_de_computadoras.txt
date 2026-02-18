@@ -1,0 +1,25 @@
+Redes de computadoras 
+
+El Dr. Donald José Rodríguez Úbeda y su experiencia 
+
+Inicios 
+
+Su experiencia comenzó en el área de graficación, por aquellos días los sistemas operativos no contaban con un software con dicha capacidad, por lo que él tenía que crearlo. Además de su trabajo en el desarrollo de interfaces gráficas, trabajó en la simulación de circuitos con la ayuda de uno de sus maestros en la universidad. 
+
+Mejor desarrollo 
+
+Para llevar a cabo un mejor desarrollo en sus proyectos, creó sus propias bibliotecas que próximamente compartió con sus compañeros para un mayor nivel de eficiencia. 
+
+NetWare 
+
+Estas experiencias en el desarrollo de interfaces gráficas, bibliotecas y circuitos, le otorgaron las bases para trabajar en la creación de una interfaz gráfica para el ambiente de la red llamada NetWare, la cual permitía a los usuarios explorar archivos compartidos en la red. 
+
+Un voto fácil y seguro 
+
+Fue integrante de un grupo de trabajo que elaboró un prototipo para centros de votación virtual. La idea principal fue hacer un sistema que permitiera a las personas votas con su credencial de elector capturando sus datos y mandándolos a un servidor que validaba los datos y registraba el voto, de esta manera, evitando fraudes y dobles votos. 
+
+El procesador Z80 
+
+El procesador Z80 es un microprocesador de 8 bits cuya arquitectura se encuentra a medio camino entre la organización de acumulador y de registros generales. Fue lanzado al mercado en marzo de 1976 por la compañía Zilog, y se popularizó en los años 1980 a través de ordenadores como el Sinclair ZX Spectrum, Amstrad CPC o los ordenadores de sistema MSX. 
+
+Al surgir dispositivos de tamaño reducido que disponían de este procesador, contaban con el detalle de no incluir un sistema operativo, por lo cual, cuando trabajó en el desarrollo de un punto de venta móvil para una tienda dedicada a la venta de jugos también se vio en la necesidad de elaborar un sistema para este procesador. 

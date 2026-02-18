@@ -1,0 +1,77 @@
+Ensayo sobre Ingeniería en Ciencias de la computación 
+La ingeniería en sistemas integra otras disciplinas y grupos de especialidad en un esfuerzo de equipo, el cual va formando un proceso de desarrollo estructurado. Una de las principales diferencias de la ingeniería en sistemas computacionales, consiste en que la Ingeniería en Sistemas Computacionales no construye productos tangible, los ingenieros en sistemas tratan con sistemas abstractos con la cual cuentan con la ayuda de las metodologías de la ciencia de sistemas tecnológicos, y  además en otras disciplinas tratan de  diseñar y entregar los productos tangibles que son la realización de esos sistemas,  esto sin olvidar el gran diseño estructurado de esta ingeniería nos da un enfoque para el desarrollo de la Inteligencia artificial el cual siendo una ingeniería avanzada proveniente de las Ciencias de la Computación. Otro ámbito el cual caracteriza a la Ingeniería en Sistemas Computacionales es la interrelación con otras disciplinas en un trabajo transdisciplinario. Un ingeniero en sistemas debe explorar estas cuestiones y tomar decisiones críticas, hasta ahora no hay métodos que garanticen que las decisiones tomadas serán válidas cuando el sistema entre en servicio años o décadas después de ser concebido, pero hay metodologías que ayudan al proceso de toma de decisiones hasta este momento según los ingenieros en sistemas. La ingeniería en sistemas computacionales se define como la aplicación de las ciencias matemáticas, físicas e informáticas en conjunto con la electrónica para desarrollar sistemas que utilicen económicamente materiales tecnológicos para el beneficio de la humanidad. El ingeniero en sistemas aprende a programar, para dirigir programadores y al momento de la creación de un programa debe saber y tener en cuenta los métodos básicos como tal, pero su función realmente es el diseño y planeación, y todo lo referente al sistema o redes, su mantenimiento y efectividad, respuesta y tecnología. 
+La ingeniería en sistemas computacionales es la aplicación de esfuerzos científicos y de ingeniería el cual tiene varias características que son como transformar una necesidad de operación en una descripción de parámetros de rendimiento del sistema y ah una configuración del sistema a través del uso de un proceso interactivo de definición, síntesis, análisis, diseño, prueba y evaluación, también ah integrar parámetros técnicos relacionados para asegurar la compatibilidad de todos las interfaces de programa y funcionales de manera que optimice la definición y diseño del sistema total y por ultimo  integrar factores de fiabilidad, mantenibilidad, seguridad, supervivencia, humanos y otros en el esfuerzo de ingeniería total a fin de cumplir los objetivos de coste, planificación y rendimiento técnico.
+ En esto de la Ingeniería en Sistemas existen muchos de los campos relacionados los cuales podrían ser considerados con estrechas vinculaciones a la Ingeniería, muchas de estas áreas han contribuido al desarrollo de la Ingeniería en Sistemas Computacionales como un Sistema de Información o (SI) el cual es un conjunto de elementos que interactúan entre sí con el fin de apoyar las actividades de una empresa o negocio se dice que no siempre un Sistema de Información debe estar automatizado, y es válido hablar de Sistemas de Información Manuales. Estos normalmente se desarrollan siguiendo Metodologías de Desarrollo de Sistemas de Información. Otro es como la Investigación de Operaciones o (IO) este enseña que a veces en los departamentos de ingeniería industrial o de matemática aplicada, pero las herramientas de la IO son enseñadas en un curso de estudio en Ingeniería de Sistemas. La IO trata de la optimización de un proceso arbitrario bajo múltiples restricciones. Se dice que la ingeniería de sistemas cognitivos es una rama de la ingeniería de sistemas el cual trata los entes cognitivos, sean humanos o no, mejor dicho, es como un tipo de sistemas capaces de tratar información y de utilizar recursos cognitivos como la percepción, la memoria o el procesamiento de información. Mejor dicho, depende de la aplicación directa de la experiencia y la investigación tanto en psicología cognitiva como en ingeniería de sistemas La ingeniería de sistemas cognitivos se enfoca en cómo los entes cognitivos interactúan con el entorno. 
+La ingeniería de sistemas trabaja en la intersección como el desarrollo de la sociedad en esta nueva era, los problemas impuestos por el mundo, las necesidades de los agentes como ejemplo humano, hardware y software y por último la interacción entre los varios sistemas y tecnologías que son afectados por la situación. Habitualmente, los avances en ingeniería de sistemas cognitivos se desarrollan en los departamentos y áreas de Informática, donde se estudian profundamente e integran la inteligencia artificial, la ingeniería del conocimiento y el desarrollo de interfaces hombre-máquina. La Ingeniería en Sistemas Computacionales tiene como objetivo discutir sobre las muchas maneras en que las computadoras tienen efecto en nuestras vidas, reconocer las principales características de las computadoras desde la época antigua hasta época moderna e identificar la clasificación y los componentes de un sistema de cómputo. En esto de la Ingeniería en Sistemas se puede dar cualquier organización o entidad que tenga necesidades de software y sistemas información. Como las Organizaciones o entidades que desarrollan software, otra son las Organizaciones Especializadas en la proveeduría de consultaría y servicios de software y soluciones informáticas. El cual creando su propia empresa y ofreciendo servicios de desarrollo   de software, de consultoría o de integración de soluciones.  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Ciencias de la Computación
+A. Como funciona
+1.  Integra varias disciplinas en un esfuerzo de equipo para formar un proceso de desarrollo estructurado
+2. No construye productos tangibles
+3. Da un enfoque en el desarrollo de la Inteligencia Artificial
+B. Definición
+1. Es la aplicación de las ciencias matemáticas, físicas e informáticas en la que se desarrollan sistemas 
+2. En la carrera se aprende a programar y dirigir programadores para tener en cuenta los métodos para su diseño y planeación 
+3. Tiene varios objetivos
+a. Transforma una necesidad de operación en una descripción de parámetros
+b. Configuración de sistemas
+1) Por medio de procesos de definición, síntesis, análisis, diseño, prueba y evaluación 
+c. Integra parámetros técnicos para asegurar la compatibilidad de las interfaces de los programas
+d. Integra factores de fiabilidad, mantenibilidad, seguridad, supervivencia, humanos y otros.
+C. Campos relacionados
+1. Sistemas de información 
+a. Conjuntos de elementos que interactúan entre si con el fin de apoyar las actividades de una empresa o negocio
+2. Investigación de operaciones 
+a. Es la optimización de procesos arbitrarios bajo múltiples restricciones 
+D. Ingeniería de sistemas cognitivos
+1. Se enfoca en como los entes cognitivos interactúan con el entorno
+2. Se desarrollan en los departamentos y áreas de informática
+
+
+
+
+
+
+
+
+
+
+Examina
+Ingeniería en Ciencias de la Computación
+Pregunta
+¿Qué define la ingeniería en sistemas computacionales?
+¿Cuál es el enfoque principal de un ingeniero en sistemas?
+¿Qué metodologías se utilizan en la toma de decisiones en la ingeniería de sistemas?
+¿Cuáles son las características clave de un Sistema de Información (SI)?
+¿Qué es la Investigación de Operaciones (IO)?
+¿Qué es la ingeniería de sistemas cognitivos y cuál es su enfoque?
+Lee
+La ingeniería en sistemas integra otras disciplinas y grupos de especialidad en un esfuerzo de equipo, el cual va formando un proceso de desarrollo estructurado. Una de las principales diferencias de la ingeniería en sistemas computacionales, consiste en que la Ingeniería en Sistemas Computacionales no construye productos tangible, los ingenieros en sistemas tratan con sistemas abstractos con la cual cuentan con la ayuda de las metodologías de la ciencia de sistemas tecnológicos, y  además en otras disciplinas tratan de  diseñar y entregar los productos tangibles que son la realización de esos sistemas,  esto sin olvidar el gran diseño estructurado de esta ingeniería nos da un enfoque para el desarrollo de la Inteligencia artificial el cual siendo una ingeniería avanzada proveniente de las Ciencias de la Computación. Otro ámbito el cual caracteriza a la Ingeniería en Sistemas Computacionales es la interrelación con otras disciplinas en un trabajo transdisciplinario. Un ingeniero en sistemas debe explorar estas cuestiones y tomar decisiones críticas, hasta ahora no hay métodos que garanticen que las decisiones tomadas serán válidas cuando el sistema entre en servicio años o décadas después de ser concebido, pero hay metodologías que ayudan al proceso de toma de decisiones hasta este momento según los ingenieros en sistemas. La ingeniería en sistemas computacionales se define como la aplicación de las ciencias matemáticas, físicas e informáticas en conjunto con la electrónica para desarrollar sistemas que utilicen económicamente materiales tecnológicos para el beneficio de la humanidad. El ingeniero en sistemas aprende a programar, para dirigir programadores y al momento de la creación de un programa debe saber y tener en cuenta los métodos básicos como tal, pero su función realmente es el diseño y planeación, y todo lo referente al sistema o redes, su mantenimiento y efectividad, respuesta y tecnología. 
+La ingeniería en sistemas computacionales es la aplicación de esfuerzos científicos y de ingeniería el cual tiene varias características que son como transformar una necesidad de operación en una descripción de parámetros de rendimiento del sistema y ah una configuración del sistema a través del uso de un proceso interactivo de definición, síntesis, análisis, diseño, prueba y evaluación, también ah integrar parámetros técnicos relacionados para asegurar la compatibilidad de todos las interfaces de programa y funcionales de manera que optimice la definición y diseño del sistema total y por ultimo  integrar factores de fiabilidad, mantenibilidad, seguridad, supervivencia, humanos y otros en el esfuerzo de ingeniería total a fin de cumplir los objetivos de coste, planificación y rendimiento técnico.
+ En esto de la Ingeniería en Sistemas existen muchos de los campos relacionados los cuales podrían ser considerados con estrechas vinculaciones a la Ingeniería, muchas de estas áreas han contribuido al desarrollo de la Ingeniería en Sistemas Computacionales como un Sistema de Información o (SI) el cual es un conjunto de elementos que interactúan entre sí con el fin de apoyar las actividades de una empresa o negocio se dice que no siempre un Sistema de Información debe estar automatizado, y es válido hablar de Sistemas de Información Manuales. Estos normalmente se desarrollan siguiendo Metodologías de Desarrollo de Sistemas de Información. Otro es como la Investigación de Operaciones o (IO) este enseña que a veces en los departamentos de ingeniería industrial o de matemática aplicada, pero las herramientas de la IO son enseñadas en un curso de estudio en Ingeniería de Sistemas. La IO trata de la optimización de un proceso arbitrario bajo múltiples restricciones. Se dice que la ingeniería de sistemas cognitivos es una rama de la ingeniería de sistemas el cual trata los entes cognitivos, sean humanos o no, mejor dicho, es como un tipo de sistemas capaces de tratar información y de utilizar recursos cognitivos como la percepción, la memoria o el procesamiento de información. Mejor dicho, depende de la aplicación directa de la experiencia y la investigación tanto en psicología cognitiva como en ingeniería de sistemas La ingeniería de sistemas cognitivos se enfoca en cómo los entes cognitivos interactúan con el entorno. 
+La ingeniería de sistemas trabaja en la intersección como el desarrollo de la sociedad en esta nueva era, los problemas impuestos por el mundo, las necesidades de los agentes como ejemplo humano, hardware y software y por último la interacción entre los varios sistemas y tecnologías que son afectados por la situación. Habitualmente, los avances en ingeniería de sistemas cognitivos se desarrollan en los departamentos y áreas de Informática, donde se estudian profundamente e integran la inteligencia artificial, la ingeniería del conocimiento y el desarrollo de interfaces hombre-máquina. La Ingeniería en Sistemas Computacionales tiene como objetivo discutir sobre las muchas maneras en que las computadoras tienen efecto en nuestras vidas, reconocer las principales características de las computadoras desde la época antigua hasta época moderna e identificar la clasificación y los componentes de un sistema de cómputo. En esto de la Ingeniería en Sistemas se puede dar cualquier organización o entidad que tenga necesidades de software y sistemas información. Como las Organizaciones o entidades que desarrollan software, otra son las Organizaciones Especializadas en la proveeduría de consultaría y servicios de software y soluciones informáticas. El cual creando su propia empresa y ofreciendo servicios de desarrollo   de software, de consultoría o de integración de soluciones.  
+Recita
+Repasa
+Integra varias disciplinas en un esfuerzo de equipo para formar un proceso de desarrollo estructurado.No construye productos tangibles.Da un enfoque en el desarrollo de la Inteligencia Artificial
+Es la aplicación de las ciencias matemáticas, físicas e informáticas en la que se desarrollan sistemas. En la carrera se aprende a programar y dirigir programadores para tener en cuenta los métodos para su diseño y planeación 
+Transforma una necesidad de operación en una descripción de parámetros. Configuración de sistemas: Por medio de procesos de definición, síntesis, análisis, diseño, prueba y evaluación. Integra parámetros técnicos para asegurar la compatibilidad de las interfaces de los programas. Integra factores de fiabilidad, mantenibilidad, seguridad, supervivencia, humanos y otros.
+Sistemas de información: Conjuntos de elementos que interactúan entre si con el fin de apoyar las actividades de una empresa o negocio. Investigación de operaciones: Es la optimización de procesos arbitrarios bajo múltiples restricciones 
+Ingeniería de sistemas cognitivos: Se enfoca en como los entes cognitivos interactúan con el entorno. Se desarrollan en los departamentos y áreas de informática
+Flor Machado LCC
+

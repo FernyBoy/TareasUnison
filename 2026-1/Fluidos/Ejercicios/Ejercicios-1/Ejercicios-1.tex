@@ -1,0 +1,488 @@
+\documentclass[a4paper, 11pt]{article}
+
+% -- Coments
+\usepackage{verbatim}
+
+% ----- Fonts -----
+% -- Fuente --
+% \usepackage{fontspec}
+% \setmonofont{JetBrainsMono Nerd Font}  
+
+% -- Color --
+\usepackage{xcolor}
+%\definecolor{azul}{RGB}{00,33,99}
+\definecolor{azul}{RGB}{35,72,180}
+
+% -- Page Margin --
+\usepackage[margin=1in]{geometry}
+
+% -- Espaciados --
+\newcommand{\Pspace}{0.5cm}
+\newcommand{\Aspace}{0.2cm}
+
+% -- Columnas --
+\usepackage{multicol}
+
+% -- Imagenes --
+\usepackage{graphicx}
+\usepackage{float}
+
+% -- Matemáticas --
+\usepackage{amsmath, amssymb}
+
+% -- Gráficas --
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% -- Código --
+\usepackage{listings}
+\lstset{
+    language=C++,                   % Lenguaje del código
+    basicstyle=\ttfamily\small,     % Fuente del código
+    keywordstyle=\color{blue},      % Color de palabras clave
+    commentstyle=\color{gray},      % Color de comentarios
+    stringstyle=\color{red},        % Color de cadenas
+    numbers=left,                   % Números de línea a la izquierda
+    numberstyle=\tiny\color{gray},
+    breaklines=true,                % Permitir saltos de línea
+    frame=single                    % Marco alrededor del código
+}
+
+\begin{comment}
+-- Formato de pregunta simple
+    % - Problema n
+    \vspace{\Pspace}
+    \item Problema \par
+        % Respuesta:
+        \vspace{\Aspace} \par
+        { \color{azul}  }
+
+
+ -- Formato de pregunta multimple
+        % - Problema 
+        \vspace{\Pspace}
+        \item  \par
+             % Respuestas:
+            \vspace{\Aspace} \par
+            a) 
+            \\ { \color{azul} }
+
+            \vspace{\Aspace} \par
+            b) 
+            \\ { \color{azul} }
+
+
+ -- Formato de imagen
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.5\textwidth]{}
+\end{figure}
+
+
+ -- Formato de tabla
+\begin{tabular}{c|c}
+    \textbf{A} & \textbf{B} \\
+    \hline
+    Texto & Texto \\
+    Texto & Texto
+\end{tabular} \\
+\end{comment}
+
+
+\title
+{
+    Materia Año-Periodo \\
+    Título
+}
+
+    \begin{document}
+
+    \maketitle
+
+    \begin{center}
+        \begin{tabular}{r|l}
+            \textbf{Expediente} & \textbf{Nombre} \\ \hline
+            219208106 & Bórquez Guerrero Angel Fernando \\
+        \end{tabular}
+    \end{center}
+
+    \rule{\linewidth}{0.3mm}
+
+    \vspace{0.3cm}
+    {\Large \textbf{Ejercicios 27/01/2026}}
+    \begin{enumerate}
+        % - Problema 1
+        \vspace{\Pspace}
+        \item Un bloque sólido tiene una masa de $2.5kg$ y ocupa un volumen de $0.0018m^3$. \par
+             % Respuestas:
+            \vspace{\Aspace} \par
+            a) Calcula la densidad.
+            \\ { \color{azul}  
+                $\rho = \frac{M}{V}$
+                \par $\rho = \frac{2.5kg}{}$
+                \par R/: $\rho = 1388.89 \frac{kg}{m^3}$.
+            }
+
+            \vspace{\Aspace} \par
+            b) ¿Es más denso o menos denso que el agua?
+            \\ { \color{azul} 
+                $\rho_{Agua} = 1000 \frac{kg}{m^{3}}$
+                \par $\rho_{Bloque} = 1388.89 \frac{kg}{m^{3}}$
+                \par $\rho_{Agua} < \rho_{Bloque}$
+                \par R/: El bloque es más denso que el agua.
+            }
+
+
+
+        % - Problema 2
+        \vspace{\Pspace}
+        \item Un líquido utilizado para refrigeración de un centro de datos tiene una masa de $850g$ y ocupa un volumen de $750ml$. \par
+             % Respuestas:
+            \vspace{\Aspace} \par
+            a) Convierte las unidades al SI.
+            \\ { \color{azul} 
+                $1kg = 1000g$
+                \par $850g = \frac{850}{1000} = 0.85g$
+                \par $1L = 1000ml$
+                \par $750ml = frac{750}{1000} = 0.75L$
+                \par $1L = 0.001m^{3}$
+                \par $0.75L = 0.75 * 0.001 = 0.00075m^{3}$
+                \par R/: $850g = 0.85kg$ y $750ml = 0.00075m^{3}$.
+            }
+
+            \vspace{\Aspace} \par
+            b) Calcula su densidad.
+            \\ { \color{azul} 
+                $\rho = \frac{M}{V}$
+                \par R/: $\rho = \frac{0.85kg}{0.00075m^{3}} = 1133.33 \frac{kg}{m^{3}}$.
+            }
+
+            \vspace{\Aspace} \par
+            c) ¿Flotaría sobre el agua?
+            \\ { \color{azul} 
+                $\rho_{Agua} = 1000 \frac{kg}{m^{3}}$
+                \par $\rho = 1133.33 \frac{kg}{m^3}$
+                \par $\rho_{Agua} < \rho_{Refrigeración}$
+                \par R/: No flotaría dado que su densidad es mayor.
+            }
+
+
+
+        % - Problema 3
+        \vspace{\Pspace}
+    \item Un servidor ejerce una fuerza de $1200N$ sobre el piso, el área de contacto de sus patas con el suelo es de $0.025m^{2}$. \par
+             % Respuestas:
+            \vspace{\Aspace} \par
+            a) Calcula la presión ejercida sobre el piso.
+            \\ { \color{azul} 
+                $P = \frac{F}{A} = \frac{N}{m^{2}}$
+                \par R/: $P = \frac{1200N}{0.025m^{2}} = 48000 Pa$.
+            }
+
+            \vspace{\Aspace} \par
+            b) ¿Qué ocurre con la presión si el área de contacto se reduce a la mitad?
+            \\ { \color{azul} 
+                $P = \frac{1200N}{(0.025m^{2})/2} = 96000 Pa$
+                \par R/: La presión aumenta.
+            }
+
+
+
+        % - Problema 4
+        \vspace{\Pspace}
+        \item Un tanque contiene agua hasta una altura de $1.8m$. \par
+             % Respuestas:
+            \vspace{\Aspace} \par
+            a) Calcula la presión ejercida por el agua en el fondo del tanque.
+            \\ { \color{azul} 
+                $P = \rho g h$
+                \par $P = 1000\frac{kg}{m^{3}} * 9.8 \frac{m}{s^2} * 1.8m$
+                \par R/: $P = 17640 \frac{kg}{m * s^2}(Pa)$.
+            }
+
+            \vspace{\Aspace} \par
+            b) ¿Depende la presión del área del fondo?
+            \\ { \color{azul} R/: No, la presión no depende del área, depende de la altura para este caso. }
+
+
+
+        % - Problema 5
+        \vspace{\Pspace}
+        \item Dos recipientes idénticos se llenan hasta una altura de $0.9m$, uno con agua y otro con aceite. \par
+             % Respuestas:
+            \vspace{\Aspace} \par
+            a) Calcula la presión en el fondo de cada recipiente.
+            \\ { \color{azul} 
+                $\rho_{Agua} = 1000\frac{kg}{m^3}$
+                \par $\rho_{Aceite} = 850\frac{kg}{m^{3}}$
+                \par $P = 1000\frac{kg}{m^{3}} * 9.8\frac{m}{s^{2}} * 0.9m = 8820 Pa$
+                \par $P = 850\frac{kg}{m^3} * 9.8\frac{m}{s^2} * 0.9m = 7497 Pa$
+                \par R/: $8820 Pa$ y $7497 Pa$.
+            }
+
+            \vspace{\Aspace} \par
+            b) ¿En cuál es mayor la presión?
+            \\ { \color{azul} R/: En el recipiente con agua. }
+
+            \vspace{\Aspace} \par
+            c) ¿Por qué, si la altura es la misma?
+            \\ { \color{azul} R/: Porque la densidad del agua es mayor. }
+    \end{enumerate}
+
+
+
+    \newpage
+    {\Large \textbf{Ejercicios 29/01/2026}}
+    \begin{enumerate}
+    % - Problema 1
+        \vspace{\Pspace}
+    \item Una prensa hidráulica se utiliza para levantar una carga de $18000N$. El área del pistón grande es de $0.30m^{2}$, y el del pistón pequeño es de $0.02m^{2}$. \par
+             % Respuestas:
+            \vspace{\Aspace} \par
+            a) Calcule la $F_{1}$.
+            \\ { \color{azul} 
+                $\frac{F_0}{A_0} = \frac{F_1}{A_1}$
+                \par $\frac{F_0}{A_0} A_1 = F_1$
+                \par $F_1 = \frac{18000N}{0.30m^{2}} * 0.02m^{2}$
+                \par R/: $F_1 = 1200N$.
+            }
+
+            \vspace{\Aspace} \par
+            b) ¿Existe alguna ventaja mecánica?
+            \\ { \color{azul} R/: La ventaja es que se requiere una menor cantidad de fuerza para levantar una mayor cantidad de carga. }
+
+
+
+        % - Problema 2
+        \vspace{\Pspace}
+        \item En una prensa hidráulica, el área del pistón grande es 20 veces mayor que la del pistón pequeño. \par
+             % Respuestas:
+            \vspace{\Aspace} \par
+            a) ¿Cuántas veces mayor será la fuerza en el pistón grande?
+            \\ { \color{azul} 
+                $A_0 = 20A_1$
+                \par $\frac{F_0}{A_0} = \frac{F_1}{A_1}$
+                \par $\frac{F_0}{20A_1} = \frac{F_1}{A_1}$
+                \par $F_0 = \frac{F_1}{A_1} * 20A_1$
+                \par R/: $F_0 = 20F_1$.
+            }
+
+            \vspace{\Aspace} \par
+            b) Si en el pistón pequeño se aplican $90N$, ¿qué masa puede levantar el pistón grande?
+            \\ { \color{azul}
+                $F_1 = 90N$
+                \par $F_0 = 20 * 90N = 1800N$
+                \par $M = \frac{F}{g}$
+                \par $M = \frac{1800kg\frac{m}{s^2}}{9.8\frac{m}{s^2}}$
+                \par R/: $M = 183.6735 kg$.
+            }
+
+
+
+        % - Problema 3
+        \vspace{\Pspace}
+        \item Un elevador hidráulico para autos utiliza un pistón pequeño de $r = 2.5cm$ y una grande de $r = 18cm$. \par
+             % Respuestas:
+            \vspace{\Aspace} \par
+            a) Calcula el área de cada pistón.
+            \\ { \color{azul} 
+                $A_0 = \pi r_0^2 = \pi * (0.18m)^2 = \pi * 0.0324m^2 = 0.1018m^2$
+                \par $A_1 = \pi r_1^2 = \pi (0.025m)^2 = \pi * 0.000625m^2 = 0.0019m^2$
+                \par R/: $A_0 = 0.1018m^2$ y $A_1 = 0.0019m^2$.
+            }
+
+            \newpage
+            b) Si se aplican $200N$ en el pistón pequeño, ¿cuál es el peso máximo que puede levantarse?
+            \\ { \color{azul} 
+                $F_1 = 200N$
+                \par $\frac{F_0}{A_0} = \frac{F_1}{A_1}$
+                \par $F_0 = \frac{F_1}{A_1} A_0$
+                \par $F_0 = \frac{200N}{0.0019m^2} * 0.1018m^2 = 10715.7895N$
+                \par $M = \frac{F}{g}$
+                \par $M = \frac{10715.7895kg\frac{m}{s^2}}{9.8\frac{m}{s^2}}$
+                \par R/: $M = 1093.4479kg$
+            }
+
+            \vspace{\Aspace} \par
+            c) ¿Qué tanta distancia hay que desplazar el pistón pequeño para levantar el auto a $5m$?
+            \\ { \color{azul} 
+                $V_0 = V_1$
+                \par $d_0A_0 = d_1A_1$
+                \par $\frac{d_0A_0}{A_1} = d_1$
+                \par $d_1 = \frac{5m * 0.1018m^2}{0.0019m^2}$
+                \par R/: $d_1 = 267.8947m$
+            }
+    \end{enumerate}
+
+
+    \vspace{\Pspace}
+    {\Large \textbf{Ejercicios 05/02/2026}}
+    \begin{enumerate}
+    % - Problema 1
+        \vspace{\Pspace}
+        \item Un bloque se sumerge en agua completamente y desplaza un volumen de $0.0025m^3$. Calcula el empuje sobre el bloque\par
+            % Respuesta:
+            \vspace{\Aspace} \par
+            { \color{azul}  
+                $F_{E} = \rho g V$ 
+                \par $F_{E} = 1000\frac{kg}{m^3} * 9.8\frac{m}{s^2} * 0.0025 m^3$
+                \par R/: $24.5 N$
+            }
+
+
+
+        % - Problema 2
+        \vspace{\Pspace}
+        \item Un objeto tiene masa de $4kg$ y volumen de $0.003m^3$, se introduce completamente en agua.\par
+             % Respuestas:
+            \vspace{\Aspace} \par
+            a) Calcula el empuje y el peso del objeto.
+            \\ { \color{azul} 
+                $F_{E} = 1000\frac{kg}{m^3} * 9.8\frac{m}{s^2} * 0.003 m^3 = 29.4N$
+                \par $w = m * g$
+                \par $4kg * 9.8\frac{m}{s^2} = 39.2N$
+                \par R/: $F_{E} = 29.4N$ y $w = 39.2N$
+            }
+
+            \vspace{\Aspace} \par
+            b) ¿Flota, se hunde o queda en equilibrio?
+            \\ { \color{azul} R/: Dado que el peso es mayor a la fuerza de empuje el objeto se hunde. }
+
+
+
+        % - Problema 3
+        \vspace{\Pspace}
+        \item Un cuerpo de volumen $0.0018m^3$ se sumerge completamente en dos fluidos distintos: agua y aceite.\par
+             % Respuestas:
+            \vspace{\Aspace} \par
+            a) Calcula el empuje de cada fluido.
+            \\ { \color{azul} 
+                $F_{E_{Agua}} = 1000 \frac{kg}{m^3} * 9.8\frac{m}{s^2} * 0.0018m^3 = 17.64N$
+                \par $F_{E_{Aceite}} = 850 \frac{kg}{m^3} * 9.8\frac{m}{s^2} * 0.0018m^3 = 14.994N$
+                \par R/: $F_{E_{Agua}} = 17.64N$ y $F_{E_{Aceite}} = 14.994N$
+            }
+
+            \vspace{\Aspace} \par
+            b) ¿En cuál es mayor el empuje y por qué?
+            \\ { \color{azul} 
+                R/: Dado que el agua tiene mayor densidad el empuje es mayor.
+            }
+
+
+
+        % - Problema 4
+        \vspace{\Pspace}
+        \item Un sensor cilíndrico de volumen $0.0012m^3$ y masa de $1.1kg$ se coloca dentro de un tanque de agua.\par
+             % Respuestas:
+            \vspace{\Aspace} \par
+            a) Calcula el empuje sobre el sensor.
+            \\ { \color{azul} 
+                $F_{E} = 1000 \frac{kg}{m^3} * 9.8\frac{m}{s^2} * 0.0012m^3$
+                \par R/: $F_{E} = 11.76N$
+            }
+
+            \vspace{\Aspace} \par
+            b) Determina la fuerza neta sobre el sensor.
+            \\ { \color{azul} 
+                $w = 1.1kg * 9.8\frac{m}{s^2} = 10.78N$
+                \par $F_{N} = F_{E} - w$
+                \par $F_{N} = 11.76N = 10.78N$
+                \par R/: $F_{N} = 0.98N$
+            }
+
+            \vspace{\Aspace} \par
+            c) ¿Flota, se hunde o queda en equilibrio?
+            \\ { \color{azul} Dado que la fuerza neta es mayor a 0 entonces flota. }
+    \end{enumerate}
+
+
+
+    \vspace{\Pspace}
+    {\Large \textbf{Ejercicios 11/02/2026}}
+    \begin{enumerate}
+    % - Problema 1
+        \vspace{\Pspace}
+        \item Un fluido incompresible fluye por una tubería que se estrecha de manera uniforme. \par
+             % Respuestas:
+            \vspace{\Aspace} \par
+            a) Calcula $v_2$
+            \\ { \color{azul} 
+                $A_1v_1 = A_2v_2$
+                \par $\frac{A_1v_1}{A_2} = v_2$
+                \par R/: $v_2 = \frac{0.06m^2 * 2\frac{m}{s}}{0.02m^2} = 6\frac{m}{s}$
+            }
+
+            \vspace{\Aspace} \par
+            b) Indica si el fluido se mueve más rápido o lento en la parte angosta.
+            \\ { \color{azul} 
+                R/: El fluido se mueve más rápido por la parte angosta.
+            }
+
+
+
+        % - Problema 2
+        \vspace{\Pspace}
+        \item En una tubería el flujo volumétrico es $Q = 0.12\frac{m^3}{s}$, además $A_1 = 0.03m^2$ y $A_2 = 0.15m^2$. Calcula la velocidad en cada sección.\par
+             % Respuesta:
+            \vspace{\Aspace} \par
+            { \color{azul} 
+                $Q = Av$
+                \par $\frac{Q}{A} = v$
+                \par $v_1 = \frac{0.12\frac{m^3}{s}}{0.03m^2} = 4 \frac{m}{s}$
+                \par $v_2 = \frac{0.12\frac{m^3}{s}}{0.15m^2} = 0.8 \frac{m}{s}$
+                \par R/: $v_1 = 4 \frac{m}{s}$ y $v_2 = 0.8\frac{m}{s}$
+            }
+
+
+
+        \newpage
+        % - Problema 3
+        \vspace{\Pspace}
+    \item El agua fluye por una tubería circular con diámetros de: $d_1 = 12cm$ y $d_2 = 6cm$, además de una $v_1 = 1\frac{m}{s}$. \par
+             % Respuestas:
+            \vspace{\Aspace} \par
+            a) Calcula el área de cada sección.
+            \\ { \color{azul} 
+                $A_1 = \pi (\frac{d_1}{2})^2 = \pi (\frac{0.12m}{2})^2 = 0.0113m^2$
+                \par $A_2 = \pi (\frac{d_2}{2})^2 = \pi (\frac{0.06m}{2})^2 = 0.0028m^2$
+                \par R/: $A_1 = 0.0113m^2$ y $A_2 = 0.0028m^2$.
+            }
+
+            \vspace{\Aspace} \par
+            b) Calcula $Q$
+            \\ { \color{azul} 
+                $Q = Av$
+                \par $Q = 0.0113m^2 * 1 \frac{m}{s}$
+                \par R/: $0.0113m^3$.
+            }
+
+            \vspace{\Aspace} \par
+            c) Calcula $v_2$
+            \\ { \color{azul} 
+                $A_1v_1 = A_2v_2$
+                \par $\frac{A_1v_1}{A_2} = v_2$
+                \par R/: $v_2 = \frac{0.0113m^2 * 1 \frac{m}{2}}{0.0028m^2} = 4.0357 \frac{m}{s}$
+            }
+
+
+
+        % - Problema 4
+        \vspace{\Pspace}
+        \item Una manguera tiene una salida 4 veces menor que el área de entrada. Si el agua entra con $v_1 = 0.8 \frac{m}{s}$. \par
+             % Respuestas:
+            \vspace{\Aspace} \par
+            a) ¿Cuál es la velocidad de salida?
+            \\ { \color{azul} 
+                $A_1v_1 = A_2v_2$
+                \par $A_1v_1 = \frac{A_1}{4}v_2$
+                \par $\frac{A_1v_14}{A_1} = v_2$
+                \par $v_14 = v_2$
+                \par $v_2 = 0.8 \frac{m}{s} * 4$
+                \par R/: $v_2 = 3.2 \frac{m}{s}$
+            }
+
+            \vspace{\Aspace} \par
+            b) ¿Por qué el chorro sale con mayor velocidad?
+            \\ { \color{azul} R/: Porque el agua se conserva mientras fluye. No puede amontonarse dentro de la manguera, así que al pasar por una sección más estrecha tiene que moverse más rápido.}
+    \end{enumerate}
+\end{document}

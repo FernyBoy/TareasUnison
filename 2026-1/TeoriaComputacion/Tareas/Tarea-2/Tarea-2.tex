@@ -1,0 +1,250 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb}
+
+% -- Page Margin --
+\usepackage[margin=1in]{geometry}
+
+
+\title
+{
+    Teoría de la Computación 2026-1 \\
+    Tarea 2
+}
+
+    \begin{document}
+
+    \maketitle
+
+    \begin{center}
+        \begin{tabular}{r|l}
+            \textbf{Expediente} & \textbf{Nombre} \\ \hline
+            223209096 & Ahumada Herrera Jorge Alán \\
+            219208106 & Bórquez Guerrero Angel Fernando \\
+            222206586 & Juan Valenzuela Gael \\
+            223201053 & Solis Zatarain Owen Adiel \\
+        \end{tabular}
+    \end{center}
+
+    \rule{\linewidth}{0.3mm}
+
+    \vspace{0.3cm}
+
+
+
+\textbf{Ejercicio 16.} Para cada $n > 0$ fijo, construya un AFD de $n$ estados que distinga solamente a las cadenas de $\{a\}^*$ de la forma $a^{kn}$ donde $k \ge 0$.
+
+\vspace{1em}
+
+\begin{flushleft}
+$A = (Q, \Sigma, \delta, q_0, F)$\\[1em]
+
+$Q = \{q_0, q_1, q_2, \dots, q_{n-1}\}$\\[1em]
+    
+$\Sigma = \{a\}$\\[1em]
+    
+$q_0 = q_0$\\[1em]
+    
+$F = \{q_0\}$\\[1em]
+    
+$\delta(q_i, a) = q_{(i+1) \bmod n} \quad \text{para todo } 0 \le i \le n-1$
+\end{flushleft}
+
+
+
+\newpage
+\textbf{Ejercicio 17.} Considere una máquina despachadora de bebidas. 
+Esta máquina solo vende dos tipos de bebida: agua purificada y horchata. El agua vale 15
+pesos y la horchata vale 20 pesos. La máquina solo acepta monedas de 5 y de
+10 pesos y no da cambio. Diseñe un AFD que modele el conteo de las monedas
+que el cliente está insertando. Ya que la máquina no da cambio, los estados
+de aceptación serán aquellos en el que el cliente haya insertado una cantidad
+suficiente para comprar n aguas y m horchatas (por supuesto m ó n pueden
+ser cero, pero no ambas a la vez, es decir si el cliente no inserta nada, no se
+estaría en un estado de aceptación). Por ejemplo, si el cliente introduce en total
+25 pesos no se estaría en un estado de aceptación, ya que se podría comprar
+una horchata pero sobrarían 5 pesos. Si el cliente inserta en total 55 pesos, sí se
+estaría en un estado de aceptación ya que se podrían comprar 2 horchatas y un
+agua purificada exactamente. \\
+
+\( AFD = \{ Q, \Sigma, \delta, q_{0}, F \} \) \\
+
+\( Q = \{ q_{0}, 5, 10, 15, 20, 25, 30 \} \) \\ 
+
+\( \Sigma = \{ 5, 10 \} \) \\
+
+\( F = \{ 15, 20, 30 \} \) \\
+
+\begin{tabular}{c|cc}
+    $\delta$ & 5 & 10 \\
+    \hline
+    $q_{0}$ & 5 & 10 \\
+    5 & 10 & 15 \\
+    10 & 15 & 20 \\
+    15 & 20 & 25 \\
+    20 & 25 & 30 \\
+    25 & 30 & 30 \\
+    30 & 30 & 30 
+
+\end{tabular} \\
+
+
+
+\newpage
+\textbf{Ejercicio 19.} Sea $A=(Q,\Sigma,\delta,q_{0},F)$ un AFD y sea $A^{c}=(Q,\Sigma,\delta,q_{0},Q\setminus F)$. Pruebe que $L(A^{c})=L(A)^{c}$.
+
+\vspace{1.5em}
+
+\textbf{Demostraci\'on:}
+
+Sea $w \in \Sigma^*$ una cadena cualquiera.
+
+\begin{flalign*}
+w \in L(A^c) &\iff \hat{\delta}(q_0, w) \in (Q \setminus F) &\\[1em]
+&\iff \hat{\delta}(q_0, w) \in Q \quad \text{y} \quad \hat{\delta}(q_0, w) \notin F &\\[1em]
+&\iff \hat{\delta}(q_0, w) \notin F \quad \text{(dado que } \hat{\delta}(q_0, w) \in Q \text{ siempre en un AFD)} &\\[1em]
+&\iff w \notin L(A) &\\[1em]
+&\iff w \in L(A)^c &
+\end{flalign*}
+
+Por lo tanto, se concluye que $L(A^c) = L(A)^c$. \hfill $\blacksquare$
+
+
+
+\textbf{Ejercicio 20.} Sea $A=(Q,\Sigma,\delta,q_0,F)$ el AFD de la figura, donde:
+\[
+Q=\{q_0,q_1,q_2\}, \qquad 
+\Sigma=\{0,1\},
+\]
+\[
+F=\{q_0,q_2\}.
+\]
+
+Las transiciones son:
+
+\[
+\begin{aligned}
+\delta(q_0,0)&=q_1, & \delta(q_0,1)&=q_2, \\
+\delta(q_1,0)&=q_1, & \delta(q_1,1)&=q_2, \\
+\delta(q_2,0)&=q_1, & \delta(q_2,1)&=q_2.
+\end{aligned}
+\]
+
+Queremos demostrar que:
+
+\[
+L(A)=\{\varepsilon\}\cup\{x1 : x\in\{0,1\}^*\}.
+\]
+
+Sea 
+\[
+S=\{\varepsilon\}\cup\{x1 : x\in\{0,1\}^*\}.
+\]
+
+Demostraremos que $L(A)=S$ probando doble inclusión.
+
+\paragraph{Nota.}
+Para demostrar que $A=B$ se usa \textbf{doble inclusión}: 
+se prueba que $A\subseteq B$ y que $B\subseteq A$. 
+Si ambos contienen exactamente los mismos elementos, entonces son iguales.
+
+
+\newpage
+\subsection*{1. $L(A)\subseteq S$}
+
+Sea $w\in L(A)$. Entonces $\hat{\delta}(q_0,w)\in F$.
+
+Comportamiento del autómata:
+
+\begin{itemize}
+\item $q_0$ es estado inicial y de aceptación.
+\item $q_2$ es estado de aceptación.
+\item $q_1$ no es de aceptación.
+\end{itemize}
+
+Observamos que:
+
+\begin{itemize}
+\item Cada vez que se lee un símbolo $1$, el autómata pasa a $q_2$.
+\item Cada vez que se lee un símbolo $0$, el autómata pasa a $q_1$.
+\end{itemize}
+
+Por lo que, el estado en el que termina el autómata depende únicamente del \textbf{último símbolo} de la cadena:
+
+\begin{itemize}
+\item Si la cadena termina en $1$, termina en $q_2$ (estado de aceptación).
+\item Si la cadena termina en $0$, termina en $q_1$ (no aceptación).
+\end{itemize}
+
+Aparte, la cadena vacía $\varepsilon$ es aceptada porque el estado inicial $q_0$ es de aceptación.
+
+Entonces, si $w\in L(A)$, necesariamente:
+
+\begin{itemize}
+\item $w=\varepsilon$, o
+\item $w$ termina en $1$.
+\end{itemize}
+
+En el segundo caso, existe $x\in\{0,1\}^*$ tal que $w=x1$.
+
+Por lo tanto, $w\in S$. Concluimos que:
+
+\[
+L(A)\subseteq S.
+\]
+
+\newpage
+\subsection*{2. $S\subseteq L(A)$}
+
+Sea ahora $w\in S$.
+
+\begin{itemize}
+\item Si $w=\varepsilon$, entonces $\delta^*(q_0,\varepsilon)=q_0\in F$, por lo tanto $\varepsilon\in L(A)$.
+\item Si $w=x1$, entonces el último símbolo de $w$ es $1$. Como vimos antes, al leer un $1$ el autómata termina en $q_2$, que es estado de aceptación.
+\end{itemize}
+
+Por lo tanto, toda cadena que termina en $1$ es aceptada por el autómata.
+
+Así, $w\in L(A)$ y se cumple:
+
+\[
+S\subseteq L(A).
+\]
+
+\subsection*{Conclusión}
+
+Probamos que:
+
+\[
+L(A)\subseteq S
+\quad \text{y} \quad
+S\subseteq L(A).
+\]
+
+Por lo tanto,
+
+\[
+L(A)=\{\varepsilon\}\cup\{x1 : x\in\{0,1\}^*\}.
+\]
+
+\hfill $\square$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
