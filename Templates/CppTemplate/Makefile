@@ -8,7 +8,7 @@ Objects = $(patsubst $(SourcesDirectory)/%.cpp, $(ObjectsDirectory)/%.o, $(Sourc
 
 # Compiler and Flags
 CXX = g++
-CXXFLAGS = -std=c++17 -Wall -Wextra
+CXXFLAGS = -std=c++17 -Wall -Wextra -O3 -march=native
 
 # Cross-Compiler for Windows
 WIN_CXX = x86_64-w64-mingw32-g++
