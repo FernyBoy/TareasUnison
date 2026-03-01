@@ -1,0 +1,459 @@
+\documentclass[a4paper, 11pt]{article}
+
+% -- Coments
+\usepackage{verbatim}
+
+% -- Fuente --
+% \usepackage{fontspec}
+% \setmonofont{JetBrainsMono Nerd Font}  
+
+% -- Color --
+\usepackage{xcolor}
+%\definecolor{azul}{RGB}{00,33,99}
+\definecolor{azul}{RGB}{35,72,180}
+
+% -- Page Margin --
+\usepackage[margin=1in]{geometry}
+
+% -- Espaciados --
+\newcommand{\Pspace}{0.5cm}
+\newcommand{\Aspace}{0.2cm}
+
+% -- Columnas --
+\usepackage{multicol}
+
+% -- Imagenes --
+\usepackage{graphicx}
+\usepackage{float}
+
+% -- Matemáticas --
+\usepackage{amsmath, amssymb}
+
+% -- Gráficas --
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% -- Código --
+\usepackage{minted}
+\setminted{
+    fontsize=\small,
+    breaklines=true,               % Ajusta el código al ancho de página
+    frame=lines,                   % Añade líneas arriba y abajo
+    framesep=2mm,
+    baselinestretch=1.2,
+    bgcolor=lightgray!10           % Color de fondo muy suave
+}
+
+\usepackage{listings}
+\lstset{
+    language=C++,                   % Lenguaje del código
+    basicstyle=\ttfamily\small,     % Fuente del código
+    keywordstyle=\color{blue},      % Color de palabras clave
+    commentstyle=\color{gray},      % Color de comentarios
+    stringstyle=\color{red},        % Color de cadenas
+    numbers=left,                   % Números de línea a la izquierda
+    numberstyle=\tiny\color{gray},
+    breaklines=true,                % Permitir saltos de línea
+    frame=single                    % Marco alrededor del código
+}
+
+\usepackage[colorlinks=true, linkcolor=blue, urlcolor=blue]{hyperref}
+
+\begin{comment}
+-- Formato de pregunta simple
+    % - Problema n
+    \vspace{\Pspace}
+    \item Problema \par
+        % Respuesta:
+        \vspace{\Aspace} \par
+        { \color{azul}  }
+
+
+ -- Formato de pregunta multimple
+    % - Problema 
+    \vspace{\Pspace}
+    \item  \par
+        % Respuestas:
+        \vspace{\Aspace} \par
+        a) 
+        \\ { \color{azul} }
+
+        \vspace{\Aspace} \par
+        b) 
+        \\ { \color{azul} }
+
+        \vspace{\Aspace} \par
+        c) 
+        \\ { \color{azul} }
+
+
+ -- Formato de imagen
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.5\textwidth]{}
+\end{figure}
+
+
+ -- Formato de tabla
+\begin{tabular}{c|c}
+    \textbf{A} & \textbf{B} \\
+    \hline
+    Texto & Texto \\
+    Texto & Texto
+\end{tabular} \\
+\end{comment}
+
+
+\title
+{
+    Arquitectura de Computadoras 2026-1 \\
+    Tarea 2
+}
+
+\begin{document}
+
+    \maketitle
+
+    \begin{center}
+        \begin{tabular}{r|l}
+            \textbf{Expediente} & \textbf{Nombre} \\ \hline
+            219208106 & Bórquez Guerrero Angel Fernando \\
+        \end{tabular}
+    \end{center}
+
+    \rule{\linewidth}{0.3mm}
+
+    \vspace{0.3cm}
+    \begin{enumerate}
+    % - Problema 1
+    \vspace{\Pspace}
+    \item En el modelo de von Neumann, ¿qué problema se genera debido al uso de una memoria única para datos e instrucciones? \par
+        % Respuesta:
+        \vspace{\Aspace} \par
+        { \color{azul} Cuello de botella. }
+
+
+
+    % - Problema 2
+    \vspace{\Pspace}
+    \item Mencionar una técnica moderna que ayude a mitigar el problema del modelo de Von Neumann. \par
+        % Respuesta:
+        \vspace{\Aspace} \par
+        { \color{azul} Arquitectura Harvard Modificada. Implementa dos memorias, una que almacena las instrucciones y otra que almacena los datos, lo que permite el acceso simultáneo. }
+
+
+
+    % - Problema 3
+    \vspace{\Pspace}
+    \item Suponer una arquitectura de 32 bits y los siguientes tipos de datos:
+    \begin{itemize}
+        \item \mintinline{mips}{char} (1 byte)
+        \item \mintinline{mips}{short} (2 bytes)
+        \item \mintinline{mips}{int} (4 bytes)
+    \end{itemize}
+    Dada la siguiente estructura:
+    \begin{minted}{mips}
+
+        struct Dato
+        {
+            char a;
+            int b;
+            short c;
+        }
+
+    \end{minted}
+        % Respuestas:
+        \newpage
+        a) Determinar el tamaño total de la estructura suponiendo que la memoria está alineada a 4 bytes.
+        \\ { \color{azul} 
+
+                \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+                    \hline
+                    \textbf{Dirección} & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 \\
+                    \hline
+                    \textbf{Variable} & a &  &  &  & b & b & b & b & c & c &  & \\ 
+                    \hline
+                \end{tabular} \\\\ 
+                Dado que b es de tipo int y ocupa 4 bytes entonces se recorre a la siguiente posición múltiplo de 4 dejando los bytes 1 al 3 como relleno, y dado que c es de tipo short con tamaño de 2 bytes esta puede ocupar la posición 8 al ser múltiplo de 2. Al final, se quedan de relleno los bytes 10 y 11 para que la estructura esté alineada a 4 bytes.
+        }
+
+        \vspace{\Aspace} \par
+        b) Indicar dónde se insertan los bytes de relleno.
+        \\ { \color{azul} Posiciones: 1, 2, 3, 10 y 11. }
+
+        \vspace{\Aspace} \par
+        c) ¿Cuál es la ventaja de tener la memoria alineada?
+        \\ { \color{azul} Mejora el rendimiento al permitir que el procesador acceda a los datos en un solo ciclo de lectura. }
+
+
+
+    % - Problema 4
+    \vspace{\Pspace}
+    \item Dado el siguiente número \mintinline{mips}{0xFEDCBA98} y suponiendo que se pide guardarlo en la dirección \mintinline{mips}{5000}. \par
+        % Respuestas:
+        \vspace{\Aspace} \par
+        a) Representar cómo se guarda en la memoria si la CPU es big-endian.
+        \\ { \color{azul} 
+                Transformamos el número \mintinline{mips}{0xFEDCBA98} de base 16 a base 2. \\ 
+                \begin{tabular}{|c|c|c|c|c|c|c|c|}
+                    \hline
+                    \textbf{F} & \textbf{E} & \textbf{D} & \textbf{C} & \textbf{B} & \textbf{A} & \textbf{9} & \textbf{8} \\
+                    \hline
+                    1111 & 1110 & 1101 & 1100 & 1011 & 1010 & 1001 & 1000 \\
+                    \hline
+                    \multicolumn{2}{|c|}{Byte más alto} & \multicolumn{4}{c}{} & \multicolumn{2}{|c|}{Byte más bajo} \\
+                    \hline
+                \end{tabular} \\
+
+                \begin{tabular}{c|c}
+                    \textbf{A} & \textbf{B} \\
+                    \hline
+                    Texto & Texto \\
+                    Texto & Texto
+                \end{tabular}
+                \begin{tabular}{c|c}
+                    \textbf{A} & \textbf{B} \\
+                    \hline
+                    Texto & Texto \\
+                    Texto & Texto
+                \end{tabular}
+                \begin{tabular}{c|c}
+                    \textbf{A} & \textbf{B} \\
+                    \hline
+                    Texto & Texto \\
+                    Texto & Texto
+                \end{tabular}
+        }
+
+        \vspace{\Aspace} \par
+        b) Representar cómo se guarda en la memoria si la CPU es little-endian.
+        \\ { \color{azul} }
+
+        \vspace{\Aspace} \par
+        c) Si en ambos casos, se lee un \mintinline{mips}{short} en la dirección \mintinline{mips}{5000}, ¿qué valor se obtiene?
+        \\ { \color{azul} }
+
+
+
+    % - Problema 5
+    \vspace{\Pspace}
+    \item Suponer una ISA con instrucciones de tamaño fijo de 4 bytes y 64 registros: \par
+        % Respuestas:
+        \vspace{\Aspace} \par
+        a) ¿Cuántos bits se requieren para especificar un registro?
+        \\ { \color{azul} }
+
+        \vspace{\Aspace} \par
+        b) Si una instrucción tipo R necesita 3 registros, ¿cuántos bits quedan para el opcode y campos adicionales?
+        \\ { \color{azul} }
+
+        \vspace{\Aspace} \par
+        c) ¿Cuál es la ventaja de usar longitud fija?
+        \\ { \color{azul} }
+
+
+
+    % - Problema 6
+    \vspace{\Pspace}
+    \item Dado el siguiente código en C:
+    \begin{minted}{c}
+        a = b + c;
+        d = a + c;
+    \end{minted}
+    Escribir la secuencia de instrucciones en:
+        % Respuestas:
+        \vspace{\Aspace} \par
+        a) Arquitectura de pila.
+        \\ { \color{azul} }
+
+        \vspace{\Aspace} \par
+        b) Arquitectura de acumulador.
+        \\ { \color{azul} }
+
+        \vspace{\Aspace} \par
+        c) Arquitectura GPR memoria a memoria (tipo x86).
+        \\ { \color{azul} }
+
+
+
+    % - Problema 7
+    \vspace{\Pspace}
+    \item ¿Qué restricción impone la arquitectura load/store? \par
+        % Respuesta:
+        \vspace{\Aspace} \par
+        { \color{azul}  }
+
+
+
+    % - Problema 8
+    \vspace{\Pspace}
+    \item Suponer una CPU RISC con instrucciones de tamaño fijo de 4 bytes y una CPU CISC con instrucciones de tamaño variable y un promedio de 18 bits por instrucción. Suponer que un programa se compila en la CPU RISC y produce 120 instrucciones y que luego se compila en la CPU CISC y produce 95 instrucciones. \par
+        % Respuestas:
+        \vspace{\Aspace} \par
+        a) ¿Cuál es el tamaño total del programa en ambas arquitecturas?
+        \\ { \color{azul} }
+
+        \vspace{\Aspace} \par
+        b) ¿Cuál tiene mayor densidad?
+        \\ { \color{azul} }
+
+        \vspace{\Aspace} \par
+        c) ¿Cuál es la ventaja de usar instrucciones de tamaño variable?
+        \\ { \color{azul} }
+
+
+
+    % - Problema 9
+    \vspace{\Pspace}
+    \item Suponer una ISA load/store con instrucciones de tamaño fijo de 32 bits y que las instrucciones de carga y store utilizan 8 bits para el opcode, 5 bits para el registro base y el resto para el offset. Determinar cual es el rango de direcciones que se puede accesar, suponiendo que el offset es un entero con signo. \par
+        % Respuesta:
+        \vspace{\Aspace} \par
+        { \color{azul}  }
+
+
+
+    % - Problema 10
+    \vspace{\Pspace}
+    \item Dado el número \mintinline{mips}{0x8D09FFFC} indicar qué instrucción MIPS es. \par
+        % Respuesta:
+        \vspace{\Aspace} \par
+        { \color{azul}  }
+
+
+
+    % - Problema 11
+    \vspace{\Pspace}
+    \item Dado el número \mintinline{mips}{0x8D2A0008} indicar qué instrucción MIPS es y cuál es la dirección efectiva. \par
+        % Respuesta:
+        \vspace{\Aspace} \par
+        { \color{azul}  }
+
+
+
+    % - Problema 12
+    \vspace{\Pspace}
+    \item Dado el número \mintinline{mips}{0x0800002A} indicar qué instrucción MIPS es y cuál es al dirección efectiva. \par
+        % Respuesta:
+        \vspace{\Aspace} \par
+        { \color{azul}  }
+
+
+
+    % - Problema 13
+    \vspace{\Pspace}
+    \item Dado el siguiente código MIPS:
+    \begin{minted}{mips}
+            .data
+        A:  .word 1, 2, 3, 4, 5
+        B:  .word 21, 22, 23, 24, 25
+            .text
+            la $t0, B
+            lw $t1, -8($t0)
+    \end{minted}
+    Escribir los valores finales de \mintinline{mips}{$t0} y \mintinline{mips}{$t1}. \par
+        % Respuesta:
+        \vspace{\Aspace} \par
+        { \color{azul}  }
+
+
+
+    % - Problema 14
+    \vspace{\Pspace}
+    \item Dado el siguiente código MIPS:
+    \begin{minted}{mips}
+            .data
+        A:  .word 11, 12, 13, 14, 15
+            .text
+            la $t0, A
+            lw $t1, 0($t0)
+            lw $t2, 12($t0)
+            mul $t3, $t1, $t2
+    \end{minted}
+    Escribir los valores finales de \mintinline{mips}{$t0}, \mintinline{mips}{$t1}, \mintinline{mips}{$t2} y \mintinline{mips}{$t3} \par
+        % Respuesta:
+        \vspace{\Aspace} \par
+        { \color{azul}  }
+
+
+
+    % - Problema 15
+    \vspace{\Pspace}
+    \item Suponer que \mintinline{mips}{$s0} vale \mintinline{mips}{0x80000000} y que \mintinline{mips}{$s1} vale \mintinline{mips}{0xD0000000}, para las siguientes instrucciones MIPS indicar el valor de los registros destino y si ese valor es el deseado o si ocurrió overflow. \par
+        % Respuestas:
+        \vspace{\Aspace} \par
+        a) \mintinline{mips}{add $t0, $s0, $s1}
+        \\ { \color{azul} }
+
+        \vspace{\Aspace} \par
+        b) \mintinline{mips}{sub $t1, $s0, $s1}
+        \\ { \color{azul} }
+
+        \vspace{\Aspace} \par
+        c) \mintinline{mips}{add $t0, $s0, $s1} y luego \mintinline{mips}{add $t0, $t0, $s0}
+        \\ { \color{azul} }
+
+
+
+    % - Problema 16
+    \vspace{\Pspace}
+    \item Suponer que \mintinline{mips}{$t0} vale \mintinline{mips}{0xAAAAAAAA} y que \mintinline{mips}{$t1} vale \mintinline{mips}{0x12345678}. Para las siguientes instrucciones MIPS indicar el valor de los registros destino\par
+        % Respuestas:
+        \vspace{\Aspace} \par
+        a) \mintinline{mips}{sll $t2, $t0, 4} y luego \mintinline{mips}{or $t2, $t2, $t1}.
+        \\ { \color{azul} }
+
+        \vspace{\Aspace} \par
+        b) \mintinline{mips}{sll $t3, $t0, 4} y luego \mintinline{mips}{andi $t3, $t3, -1}.
+        \\ { \color{azul} }
+
+        \vspace{\Aspace} \par
+        c) \mintinline{mips}{srl $t4, $t0, 3} y luego \mintinline{mips}{andi $t4, $t4, 0xFFEF}.
+        \\ { \color{azul} }
+
+
+
+    % - Problema 17
+    \vspace{\Pspace}
+    \item ARM tiene esta instrucción:
+    \begin{minted}{mips}
+        addne r1, r2, r3
+    \end{minted}
+    Investigar qué hace y cuál es su ventaja sobre un branch. \par
+        % Respuesta:
+        \vspace{\Aspace} \par
+        { \color{azul}  }
+
+
+
+    % - Problema 18
+    \vspace{\Pspace}
+    \item Dado el siguiente código en x86 (sintaxis intel): \par
+    \begin{minted}{mips}
+        mov eax, [A]
+        add eax, [B]
+        mov [C], eax
+    \end{minted}
+    Indicar a qué operación de alto nivel corresponde y cuál es la diferencia fundamental con un lenguaje RISC tipo MIPS.
+        % Respuesta:
+        \vspace{\Aspace} \par
+        { \color{azul}  }
+
+
+
+    % - Problema 19
+    \vspace{\Pspace}
+    \item En x86, ¿cuál es la diferencia entre la bandera de carry y la bandera de overflow? ¿Cuándo se prende o se apaga cada una de ellas? \par
+        % Respuesta:
+        \vspace{\Aspace} \par
+        { \color{azul}  }
+
+
+
+    % - Problema 20
+    \vspace{\Pspace}
+\item La página 22 de los \href{https://unisonmx.sharepoint.com/sites/Arquitecturadecomputadoras2026-1/Class%20Materials/Slides/09-x86-Overview.pdf#page=22}{apuntes sobre x86} dice que la instrucción \mintinline{mips}{jl} (jump if less) brinca si la bandera de signo es diferente a la de overflow. Explicar la lógica de esto y por qué funciona. \par
+        % Respuesta:
+        \vspace{\Aspace} \par
+        { \color{azul}  }
+    \end{enumerate}
+\end{document}

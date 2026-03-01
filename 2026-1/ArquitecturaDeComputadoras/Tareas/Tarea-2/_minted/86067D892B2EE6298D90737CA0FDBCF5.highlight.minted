@@ -1,0 +1,10 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+
+\PYG{+w}{        }struct\PYG{+w}{ }Dato
+\PYG{+w}{        }\PYG{n+nb}{\PYGZob{}}
+\PYG{+w}{            }char\PYG{+w}{ }a\PYG{n+nb}{;}
+\PYG{+w}{            }int\PYG{+w}{ }\PYG{n+nv}{b}\PYG{n+nb}{;}
+\PYG{+w}{            }short\PYG{+w}{ }c\PYG{n+nb}{;}
+\PYG{+w}{        }\PYG{n+nb}{\PYGZcb{}}
+
+\end{MintedVerbatim}
