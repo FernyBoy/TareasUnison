@@ -1,0 +1,10 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{+w}{        }PUSH\PYG{+w}{ }\PYG{n+nv}{b}
+\PYG{+w}{        }PUSH\PYG{+w}{ }c
+\PYG{+w}{        }ADD
+\PYG{+w}{        }POP\PYG{+w}{ }a
+\PYG{+w}{        }PUSH\PYG{+w}{ }a
+\PYG{+w}{        }PUSH\PYG{+w}{ }c
+\PYG{+w}{        }ADD
+\PYG{+w}{        }POP\PYG{+w}{ }d
+\end{MintedVerbatim}

@@ -1,0 +1,4 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{+w}{        }ADD\PYG{+w}{ }a\PYG{n+nb}{,}\PYG{+w}{ }\PYG{n+nv}{b}\PYG{n+nb}{,}\PYG{+w}{ }c
+\PYG{+w}{        }ADD\PYG{+w}{ }d\PYG{n+nb}{,}\PYG{+w}{ }a\PYG{n+nb}{,}\PYG{+w}{ }c
+\end{MintedVerbatim}

@@ -205,51 +205,65 @@
                     \hline
                 \end{tabular} \\
 
-                \begin{tabular}{c|c}
-                    \textbf{A} & \textbf{B} \\
+                Representación Big-endian\\
+                \begin{tabular}{|c|cc|}
                     \hline
-                    Texto & Texto \\
-                    Texto & Texto
-                \end{tabular}
-                \begin{tabular}{c|c}
-                    \textbf{A} & \textbf{B} \\
+                    \textbf{Dirección} & \multicolumn{2}{|c|}{\textbf{Byte}} \\
                     \hline
-                    Texto & Texto \\
-                    Texto & Texto
-                \end{tabular}
-                \begin{tabular}{c|c}
-                    \textbf{A} & \textbf{B} \\
+                    5000 & 1111 & 1110 \\
+                    5001 & 1101 & 1100 \\
+                    5002 & 1011 & 1010 \\
+                    5003 & 1001 & 1000 \\
                     \hline
-                    Texto & Texto \\
-                    Texto & Texto
-                \end{tabular}
+                \end{tabular} \\
         }
 
         \vspace{\Aspace} \par
         b) Representar cómo se guarda en la memoria si la CPU es little-endian.
-        \\ { \color{azul} }
+        \\ { \color{azul} 
+                Representación Little-endian\\
+                \begin{tabular}{|c|cc|}
+                    \hline
+                    \textbf{Dirección} & \multicolumn{2}{|c|}{\textbf{Byte}} \\
+                    \hline
+                    5000 & 1001 & 1000 \\
+                    5001 & 1011 & 1010 \\
+                    5002 & 1101 & 1100 \\
+                    5003 & 1111 & 1110 \\
+                    \hline
+                \end{tabular} \\
+        }
 
         \vspace{\Aspace} \par
         c) Si en ambos casos, se lee un \mintinline{mips}{short} en la dirección \mintinline{mips}{5000}, ¿qué valor se obtiene?
-        \\ { \color{azul} }
+        \\ { \color{azul} 
+            Big-endian: 1111 1110 1101 1100 \\
+            Little-endian: 1011 1010 1001 1000
+        }
 
 
 
     % - Problema 5
-    \vspace{\Pspace}
+    \newpage
     \item Suponer una ISA con instrucciones de tamaño fijo de 4 bytes y 64 registros: \par
         % Respuestas:
         \vspace{\Aspace} \par
         a) ¿Cuántos bits se requieren para especificar un registro?
-        \\ { \color{azul} }
+        \\ { \color{azul} 
+            Dado que cada registro necesita un número único, entonces se requiere una cantidad de bits de $\log_{2}(64)$, lo que equivale a una longitud de 6 bits.
+        }
 
         \vspace{\Aspace} \par
         b) Si una instrucción tipo R necesita 3 registros, ¿cuántos bits quedan para el opcode y campos adicionales?
-        \\ { \color{azul} }
+        \\ { \color{azul} 
+            3 registros equivalen a 18 bits, y dado que el tamaño de nuestras instrucciones es de 4 bytes que son 32 bits, entonces nos quedan $32 - 18 = 14$ bits para el opcode y campos adicionales.
+        }
 
         \vspace{\Aspace} \par
         c) ¿Cuál es la ventaja de usar longitud fija?
-        \\ { \color{azul} }
+        \\ { \color{azul} 
+            Como el procesador sabe que cada instrucción mide lo mismo, puede empezar a buscar la siguiente instrucción antes de terminar la actual.
+        }
 
 
 
@@ -264,15 +278,39 @@
         % Respuestas:
         \vspace{\Aspace} \par
         a) Arquitectura de pila.
-        \\ { \color{azul} }
+        { \color{azul} 
+            \begin{minted}{mips}
+        PUSH b
+        PUSH c
+        ADD
+        POP a
+        PUSH a
+        PUSH c
+        ADD
+        POP d
+            \end{minted}
+        }
 
         \vspace{\Aspace} \par
         b) Arquitectura de acumulador.
-        \\ { \color{azul} }
+        { \color{azul} 
+            \begin{minted}{mips}
+        LOAD b
+        ADD c
+        STORE a
+        ADD c
+        STORE d
+            \end{minted}
+        }
 
         \vspace{\Aspace} \par
         c) Arquitectura GPR memoria a memoria (tipo x86).
-        \\ { \color{azul} }
+        { \color{azul} 
+            \begin{minted}{mips}
+        ADD a, b, c
+        ADD d, a, c
+            \end{minted}
+        }
 
 
 
@@ -281,7 +319,7 @@
     \item ¿Qué restricción impone la arquitectura load/store? \par
         % Respuesta:
         \vspace{\Aspace} \par
-        { \color{azul}  }
+        { \color{azul} Solo las instrucciones load y store pueden interactuar con la memoria. }
 
 
 
@@ -291,15 +329,23 @@
         % Respuestas:
         \vspace{\Aspace} \par
         a) ¿Cuál es el tamaño total del programa en ambas arquitecturas?
-        \\ { \color{azul} }
+        \\ { \color{azul} 
+            RISC: 4 bytes = 32 bits $*$ 120 = 3840 bits \\
+            Para CISC dado que tenemos un tamaño variable promedio entonces su tamaño total es aproximado. \\
+            CISC: 18 bits $*$ 95 $\approx$ 1710 bits
+        }
 
         \vspace{\Aspace} \par
         b) ¿Cuál tiene mayor densidad?
-        \\ { \color{azul} }
+        \\ { \color{azul} 
+            Como el programa en CISC logra realizar la misma tarea ocupando menos espacio total en memoria entonces este tiene una mayor densidad.
+        }
 
         \vspace{\Aspace} \par
         c) ¿Cuál es la ventaja de usar instrucciones de tamaño variable?
-        \\ { \color{azul} }
+        \\ { \color{azul} 
+            La ventaja es en el uso en memoria. Al permitir el tamaño variable las instrucciones pueden ir desde 1 hasta 15 bytes aprovechando mejor el espacio al utilizar solo la cantidad de bytes necesarios.
+        }
 
 
 
