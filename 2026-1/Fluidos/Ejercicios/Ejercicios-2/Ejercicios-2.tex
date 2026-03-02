@@ -1,0 +1,163 @@
+\documentclass[a4paper, 11pt]{article}
+
+% -- Coments
+\usepackage{verbatim}
+
+% ----- Fonts -----
+% -- Fuente --
+% \usepackage{fontspec}
+% \setmonofont{JetBrainsMono Nerd Font}  
+
+% -- Color --
+\usepackage{xcolor}
+%\definecolor{azul}{RGB}{00,33,99}
+\definecolor{azul}{RGB}{35,72,180}
+
+% -- Page Margin --
+\usepackage[margin=1in]{geometry}
+
+% -- Espaciados --
+\newcommand{\Pspace}{0.5cm}
+\newcommand{\Aspace}{0.2cm}
+
+% -- Columnas --
+\usepackage{multicol}
+
+% -- Imagenes --
+\usepackage{graphicx}
+\usepackage{float}
+
+% -- Matemáticas --
+\usepackage{amsmath, amssymb}
+
+% -- Gráficas --
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% -- Código --
+\usepackage{listings}
+\lstset{
+    language=C++,                   % Lenguaje del código
+    basicstyle=\ttfamily\small,     % Fuente del código
+    keywordstyle=\color{blue},      % Color de palabras clave
+    commentstyle=\color{gray},      % Color de comentarios
+    stringstyle=\color{red},        % Color de cadenas
+    numbers=left,                   % Números de línea a la izquierda
+    numberstyle=\tiny\color{gray},
+    breaklines=true,                % Permitir saltos de línea
+    frame=single                    % Marco alrededor del código
+}
+
+\begin{comment}
+-- Formato de pregunta simple
+    % - Problema n
+    \vspace{\Pspace}
+    \item Problema \par
+        % Respuesta:
+        \vspace{\Aspace} \par
+        { \color{azul}  }
+
+
+ -- Formato de pregunta multimple
+    % - Problema 
+    \vspace{\Pspace}
+    \item  \par
+        % Respuestas:
+        \vspace{\Aspace} \par
+        a) 
+        \\ { \color{azul} }
+
+        \vspace{\Aspace} \par
+        b) 
+        \\ { \color{azul} }
+
+
+ -- Formato de imagen
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.5\textwidth]{}
+\end{figure}
+
+
+ -- Formato de tabla
+\begin{tabular}{c|c}
+    \textbf{A} & \textbf{B} \\
+    \hline
+    Texto & Texto \\
+    Texto & Texto
+\end{tabular} \\
+\end{comment}
+
+
+\title
+{
+    Fluidos y fenómenos térmicos 2026-1 \\
+    Ejercicios Parcial 2
+}
+
+    \begin{document}
+
+    \maketitle
+
+    \begin{center}
+        \begin{tabular}{r|l}
+            \textbf{Expediente} & \textbf{Nombre} \\ \hline
+            219208106 & Bórquez Guerrero Angel Fernando \\
+        \end{tabular}
+    \end{center}
+
+    \rule{\linewidth}{0.3mm}
+
+    \vspace{0.3cm}
+    {\Large \textbf{Ejercicios 02/03/2026}}
+    \begin{enumerate}
+    % - Problema 1
+    \vspace{\Pspace}
+\item Una pista de cobre en una placa electrónica mide 8cm a 20°C. Durante operación intensa, la temperatura alcanza 85°C. Calcula cuánto se alarga la pista si $\alpha_{\text{Cu}} = 1.7 \times 10^{-5}$°C$^{-1}$ \par
+        % Respuesta:
+        \vspace{\Aspace} \par
+        { \color{azul}  }
+
+
+
+    % - Problema 2
+    \vspace{\Pspace}
+    \item Un cable de fibra con refuerzo metálico mide 25m a 10°C. En verano alcanza 50°C \par
+        % Respuestas:
+        \vspace{\Aspace} \par
+        a) ¿Cuánto se alarga?
+        \\ { \color{azul} }
+
+        \vspace{\Aspace} \par
+        b) ¿Cuál es la longitud final?
+        \\ { \color{azul} }
+
+
+
+    % - Problema 3
+    \vspace{\Pspace}
+    \item Una batería tiene un volumen de 0.0008$m^{3}$ a 25°C. Durante operación intensa aumenta 40°C \par
+        % Respuestas:
+        \vspace{\Aspace} \par
+        a) Calcula el aumento de volumen.
+        \\ { \color{azul} }
+
+        \vspace{\Aspace} \par
+        b) ¿Por qué puede ser peligroso si se calienta más?
+        \\ { \color{azul} }
+
+
+
+    % - Problema 4
+    \vspace{\Pspace}
+    \item Un depósito contiene 3L de refrigerante a 20°C. La temperatura aumenta 50°C \par
+        % Respuestas:
+        \vspace{\Aspace} \par
+        a) ¿Cuál es el volumen a los 50°C?
+        \\ { \color{azul} }
+
+        \vspace{\Aspace} \par
+        b) Es necesario espacio extra? ¿Por qué?
+        \\ { \color{azul} }
+    \end{enumerate}
+\end{document}
