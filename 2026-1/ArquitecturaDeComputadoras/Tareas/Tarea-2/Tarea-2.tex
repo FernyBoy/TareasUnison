@@ -1,5 +1,6 @@
 \documentclass[a4paper, 11pt]{article}
 
+
 % -- Coments
 \usepackage{verbatim}
 
@@ -34,6 +35,8 @@
 \pgfplotsset{compat=1.18}
 
 % -- Código --
+% \usepackage{minted}
+
 \usepackage{minted}
 \setminted{
     fontsize=\small,
@@ -43,6 +46,7 @@
     baselinestretch=1.2,
     bgcolor=lightgray!10           % Color de fondo muy suave
 }
+\newcommand{\mips}[1]{\mintinline{mips}{#1}}
 
 \usepackage{listings}
 \lstset{
@@ -357,7 +361,16 @@
     \item Suponer una ISA load/store con instrucciones de tamaño fijo de 32 bits y que las instrucciones de carga y store utilizan 8 bits para el opcode, 5 bits para el registro base y el resto para el offset. Determinar cual es el rango de direcciones que se puede accesar, suponiendo que el offset es un entero con signo. \par
         % Respuesta:
         \vspace{\Aspace} \par
-        { \color{azul}  }
+        { \color{azul}  
+            \textbf{Calculamos los bits disponibles para el offset} \\
+            $32 \text{(total)} - 8 \text{(opcode)} - 5 \text{(registro)} = 19$ \\
+    
+            \textbf{Calculamos el rango de direcciones} \\
+            Dado que el offset es un entero con signo sus direcciones van desde $-2^{n-1}$ hasta $2^{n-1} - 1$: \\
+            $-2^{19-1} = -2^{18} = -262144$ \\
+            $2^{19-1} - 1 = 2^{18} - 1 = 262144 - 1 = 262143$ \\
+            R/: El rango de direcciones del offset es -262144 hasta 262143.
+        }
 
 
 
@@ -365,8 +378,29 @@
     \vspace{\Pspace}
     \item Dado el número \mintinline{mips}{0x8D09FFFC} indicar qué instrucción MIPS es. \par
         % Respuesta:
-        \vspace{\Aspace} \par
-        { \color{azul}  }
+        \vspace{\Aspace}
+        { \color{azul}  
+            \textbf{Transformamos el número \mintinline{mips}{0x8D09FFFC} de base 16 a base 2} \\ 
+            \begin{tabular}{|c|c|c|c|c|c|c|c|}
+                \hline
+                \textbf{8} & \textbf{D} & \textbf{0} & \textbf{9} & \textbf{F} & \textbf{F} & \textbf{F} & \textbf{C} \\
+                \hline
+                1000 & 1101 & 0000 & 1001 & 1111 & 1111 & 1111 & 1100 \\
+                \hline
+            \end{tabular} \\
+
+            \textbf{Descomponemos en el formato MIPS tipo I} \\
+            \begin{tabular}{|c|c|c|c|}
+                \hline
+                \textbf{Opcode (6 bits)} & \textbf{rs (5 bits)} & \textbf{rt (5 bits)} & \textbf{Immediate/Offset (16 bits)} \\
+                \hline 
+                10 0011 & 0 1000 & 0 1001 & 1111 1111 1111 1100 \\
+                \hline
+                lw & \$t0 & \$t1 & -4 \\
+                \hline
+            \end{tabular} \\\\
+            Instrucción: \mintinline{mips}{lw $t1, -4($t0)}
+        }
 
 
 
@@ -375,7 +409,29 @@
     \item Dado el número \mintinline{mips}{0x8D2A0008} indicar qué instrucción MIPS es y cuál es la dirección efectiva. \par
         % Respuesta:
         \vspace{\Aspace} \par
-        { \color{azul}  }
+        { \color{azul}  
+            \textbf{Transformamos el número \mintinline{mips}{0x8D2A0008} de base 16 a base 2} \\ 
+            \begin{tabular}{|c|c|c|c|c|c|c|c|}
+                \hline
+                \textbf{8} & \textbf{D} & \textbf{2} & \textbf{A} & \textbf{0} & \textbf{0} & \textbf{0} & \textbf{8} \\
+                \hline
+                1000 & 1101 & 0010 & 1010 & 0000 & 0000 & 0000 & 1000 \\
+                \hline
+            \end{tabular} \\
+
+            \textbf{Descomponemos en el formato MIPS tipo I} \\
+            \begin{tabular}{|c|c|c|c|}
+                \hline
+                \textbf{Opcode (6 bits)} & \textbf{rs (5 bits)} & \textbf{rt (5 bits)} & \textbf{Immediate/Offset (16 bits)} \\
+                \hline 
+                10 0011 & 0 1001 & 0 1010 & 0000 0000 0000 1000 \\
+                \hline
+                lw & \$t1 & \$t2 & 8 \\
+                \hline
+            \end{tabular} \\\\
+            Instrucción: \mintinline{mips}{lw $t2, 8($t1)} \\
+            Dirección efectiva: \mintinline{mips}{$t1 + 8}
+        }
 
 
 
@@ -384,7 +440,29 @@
     \item Dado el número \mintinline{mips}{0x0800002A} indicar qué instrucción MIPS es y cuál es al dirección efectiva. \par
         % Respuesta:
         \vspace{\Aspace} \par
-        { \color{azul}  }
+        { \color{azul}  
+            \textbf{Transformamos el número \mintinline{mips}{0x0800002A} de base 16 a base 2} \\ 
+            \begin{tabular}{|c|c|c|c|c|c|c|c|}
+                \hline
+                \textbf{0} & \textbf{8} & \textbf{0} & \textbf{0} & \textbf{0} & \textbf{0} & \textbf{2} & \textbf{A} \\
+                \hline
+                0000 & 1000 & 0000 & 0000 & 0000 & 0000 & 0010 & 1010 \\
+                \hline
+            \end{tabular} \\
+
+            \textbf{Descomponemos en el formato MIPS tipo J} \\
+            \begin{tabular}{|c|c|}
+                \hline
+                \textbf{Opcode (6 bits)} & \textbf{Address (26 bits)} \\
+                \hline 
+                00 0010 & 00 0000 0000 0000 0000 0010 1010 \\
+                \hline
+                j & 42 \\
+                \hline
+            \end{tabular} \\\\
+            Instrucción: \mintinline{mips}{j 42} \\
+            Dirección efectiva: \mintinline{mips}{0xA8}
+        }
 
 
 
@@ -392,17 +470,44 @@
     \vspace{\Pspace}
     \item Dado el siguiente código MIPS:
     \begin{minted}{mips}
-            .data
-        A:  .word 1, 2, 3, 4, 5
-        B:  .word 21, 22, 23, 24, 25
-            .text
+        .data
+            A: .word 1, 2, 3, 4, 5
+            B: .word 21, 22, 23, 24, 25
+        .text
             la $t0, B
             lw $t1, -8($t0)
     \end{minted}
     Escribir los valores finales de \mintinline{mips}{$t0} y \mintinline{mips}{$t1}. \par
         % Respuesta:
         \vspace{\Aspace} \par
-        { \color{azul}  }
+        { \color{azul}  
+            Creemos una tabla con direcciones relativas \\\\
+            \begin{tabular}{|c|c|c|}
+                \hline
+                \textbf{Dirección relativa} & \textbf{Etiqueta} & \textbf{Valor} \\
+                \hline
+                0x10010000 & A & 1 \\
+                0x10010004 & A & 2 \\
+                0x10010008 & A & 3 \\
+                0x1001000C & A & 4 \\
+                0x10010010 & A & 5 \\
+                \hline
+            \end{tabular}
+            \begin{tabular}{|c|c|c|}
+                \hline
+                \textbf{Dirección relativa} & \textbf{Etiqueta} & \textbf{Valor} \\
+                \hline
+                0x10010014 & B & 21 \\
+                0x10010018 & B & 22 \\
+                0x1001001C & B & 23 \\
+                0x10010020 & B & 24 \\
+                0x10010024 & B & 25 \\
+                \hline
+            \end{tabular} \\\\
+            $\rightarrow$ "\mintinline{mips}{la $t0, B}" guarda el la dirección de \mintinline{mips}{B} en \mintinline{mips}{$t0}, siendo esta \mintinline{mips}{0x10010014}. \\
+            $\rightarrow$ "\mintinline{mips}{lw $t1, -8($t0)}" guarda en \mintinline{mips}{$t1} el valor de la dirección \mintinline{mips}{B} -8 bytes, siendo este la dirección \mintinline{mips}{0x1001000C} con un valor de 4. \\
+            R/: \mintinline{mips}{$t0 = 0x10010014} y \mintinline{mips}{$t1 = 4}.
+        }
 
 
 
@@ -410,9 +515,9 @@
     \vspace{\Pspace}
     \item Dado el siguiente código MIPS:
     \begin{minted}{mips}
-            .data
-        A:  .word 11, 12, 13, 14, 15
-            .text
+        .data
+            A: .word 11, 12, 13, 14, 15
+        .text
             la $t0, A
             lw $t1, 0($t0)
             lw $t2, 12($t0)
@@ -421,7 +526,25 @@
     Escribir los valores finales de \mintinline{mips}{$t0}, \mintinline{mips}{$t1}, \mintinline{mips}{$t2} y \mintinline{mips}{$t3} \par
         % Respuesta:
         \vspace{\Aspace} \par
-        { \color{azul}  }
+        { \color{azul}  
+            Creemos una tabla con direcciones relativas \\\\
+            \begin{tabular}{|c|c|c|}
+                \hline
+                \textbf{Dirección relativa} & \textbf{Etiqueta} & \textbf{Valor} \\
+                \hline
+                0x10010000 & A & 11 \\
+                0x10010004 & A & 12 \\
+                0x10010008 & A & 13 \\
+                0x1001000C & A & 14 \\
+                0x10010010 & A & 15 \\
+                \hline
+            \end{tabular} \\\\
+            $\rightarrow$ "\mips{la $t0, A}" carga la dirección \mips{0x10010000} en \mips{$t0}. \\
+            $\rightarrow$ "\mips{lw $t1, 0($t0)}" guarda el valor 11 en \mips{$t1}. \\
+            $\rightarrow$ "\mips{lw $t2, 12($t0)}" guarda el valor 14 en \mips{$t2}. \\
+            $\rightarrow$ "\mips{mul $t3, $t1, $t2}" multiplica los valores de \mips{$t1} y \mips{$t2} y guarda el resultado en \mips{$t3}, siendo este resultado 154. \\
+            R/: \mips{$t0 = 0x10010000}, \mips{$t1 = 11}, \mips{$t2 = 14} y \mips{$t3 = 154}.
+        }
 
 
 

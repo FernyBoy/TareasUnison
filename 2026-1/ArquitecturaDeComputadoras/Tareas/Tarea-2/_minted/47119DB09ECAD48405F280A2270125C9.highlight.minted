@@ -1,0 +1,9 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{+w}{        }\PYG{n+ni}{.data}
+\PYG{+w}{            }\PYG{n+nf}{A:}\PYG{+w}{ }\PYG{n+ni}{.word}\PYG{+w}{ }\PYG{k+kc}{11}\PYG{n+nb}{,}\PYG{+w}{ }\PYG{k+kc}{12}\PYG{n+nb}{,}\PYG{+w}{ }\PYG{k+kc}{13}\PYG{n+nb}{,}\PYG{+w}{ }\PYG{k+kc}{14}\PYG{n+nb}{,}\PYG{+w}{ }\PYG{k+kc}{15}
+\PYG{+w}{        }\PYG{n+ni}{.text}
+\PYG{+w}{            }\PYG{n+nv}{la}\PYG{+w}{ }\PYG{k+kt}{\PYGZdl{}t0}\PYG{n+nb}{,}\PYG{+w}{ }A
+\PYG{+w}{            }\PYG{k}{lw}\PYG{+w}{ }\PYG{k+kt}{\PYGZdl{}t1}\PYG{n+nb}{,}\PYG{+w}{ }\PYG{k+kc}{0}(\PYG{k+kt}{\PYGZdl{}t0})
+\PYG{+w}{            }\PYG{k}{lw}\PYG{+w}{ }\PYG{k+kt}{\PYGZdl{}t2}\PYG{n+nb}{,}\PYG{+w}{ }\PYG{k+kc}{12}(\PYG{k+kt}{\PYGZdl{}t0})
+\PYG{+w}{            }\PYG{k}{mul}\PYG{+w}{ }\PYG{k+kt}{\PYGZdl{}t3}\PYG{n+nb}{,}\PYG{+w}{ }\PYG{k+kt}{\PYGZdl{}t1}\PYG{n+nb}{,}\PYG{+w}{ }\PYG{k+kt}{\PYGZdl{}t2}
+\end{MintedVerbatim}
