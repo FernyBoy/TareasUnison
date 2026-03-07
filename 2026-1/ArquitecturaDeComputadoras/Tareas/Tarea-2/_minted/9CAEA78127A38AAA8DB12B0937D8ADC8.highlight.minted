@@ -1,0 +1,10 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{+w}{        }...
+\PYG{+w}{        }\PYG{k}{beq}\PYG{+w}{ }\PYG{k+kt}{\PYGZdl{}t1}\PYG{n+nb}{,}\PYG{+w}{ }\PYG{k+kt}{\PYGZdl{}zero}\PYG{n+nb}{,}\PYG{+w}{ }omitir\PYGZus{}suma
+\PYG{+w}{        }\PYG{k}{add}\PYG{+w}{ }\PYG{k+kt}{\PYGZdl{}t0}\PYG{n+nb}{,}\PYG{+w}{ }\PYG{k+kt}{\PYGZdl{}t0}\PYG{n+nb}{,}\PYG{+w}{ }\PYG{k+kt}{\PYGZdl{}t1}
+\PYG{+w}{        }\PYG{k}{j}\PYG{+w}{ }continuar
+\PYG{+w}{        }\PYG{n+nf}{omitir\PYGZus{}suma:}
+\PYG{+w}{            }...
+\PYG{+w}{        }\PYG{n+nf}{continuar:}
+\PYG{+w}{            }...
+\end{MintedVerbatim}

@@ -47,6 +47,7 @@
     bgcolor=lightgray!10           % Color de fondo muy suave
 }
 \newcommand{\mips}[1]{\mintinline{mips}{#1}}
+\newcommand{\asm}[1]{\mintinline{asm}{#1}}
 
 \usepackage{listings}
 \lstset{
@@ -554,15 +555,59 @@
         % Respuestas:
         \vspace{\Aspace} \par
         a) \mintinline{mips}{add $t0, $s0, $s1}
-        \\ { \color{azul} }
+        \\ { \color{azul} 
+            \mips{$s0 = 0x80000000} \\
+            \mips{$s1 = 0xD0000000} \par
+            \begin{tabular}{r|l}
+                \mips{0x80000000} & \\
+                \mips{0xD0000000} & + \\
+                \hline
+                \mips{0x150000000} & \\
+            \end{tabular} \par
+            Como el registro es de únicamente 32 bits el "1" de la izquierda se lleva de carry, entonces desaparece y solamente queda \mips{0x50000000}. \par
+            \mips{$t0 = 0x50000000} \par
+            Siguiendo las reglas donde \textbf{Negativo + Negativo = Postivo} significa un overflow y nuestro resultado final fue un número positivo, concluimos que hubo un overflow.
+        }
 
-        \vspace{\Aspace} \par
+        \newpage
         b) \mintinline{mips}{sub $t1, $s0, $s1}
-        \\ { \color{azul} }
+        \\ { \color{azul}
+            \mips{$s0 = 0x80000000} \\
+            \mips{$s1 = 0xD0000000} \\
+            Dado que \mips{0xD0000000} es complemento a 2 podemos reemplazar la resta por una suma invirtiendo los bits de \mips{$s1}. \par
+            Complemento de \mips{0xD0000000}: \mips{0x30000000}
+
+            \begin{tabular}{r|l}
+                \mips{0x80000000} & \\
+                \mips{0x30000000} & + \\
+                \hline
+                \mips{0xB0000000} & \\
+            \end{tabular} \par
+            \mips{$t1 = 0xB0000000} \par
+            Se ha obtenido el valor deseado.
+        }
 
         \vspace{\Aspace} \par
         c) \mintinline{mips}{add $t0, $s0, $s1} y luego \mintinline{mips}{add $t0, $t0, $s0}
-        \\ { \color{azul} }
+        \\ { \color{azul} 
+            \mips{$s0 = 0x80000000} \\
+            \mips{$s1 = 0xD0000000} \\
+            \begin{tabular}{r|l}
+                \mips{0x80000000} & \\
+                \mips{0xD0000000} & + \\
+                \hline
+                \mips{0x150000000} & \\
+            \end{tabular} \par
+            \mips{$t0 = 0x50000000} \par
+            \begin{tabular}{r|l}
+                \mips{0x50000000} & \\
+                \mips{0x80000000} & + \\
+                \hline
+                \mips{0xD0000000} & \\
+            \end{tabular} \par
+            \mips{$t0 = 0xD0000000} \par
+            Aunque la segunda instrucción \mips{add} no provoca un overflow por sí misma (al sumar un positivo con un negativo), la primera operación sí generó un desbordamiento. Por lo tanto, el valor final en \mips{$t0} es incorrecto desde el punto de vista de la aritmética de números con signo.
+        }
 
 
 
@@ -572,35 +617,165 @@
         % Respuestas:
         \vspace{\Aspace} \par
         a) \mintinline{mips}{sll $t2, $t0, 4} y luego \mintinline{mips}{or $t2, $t2, $t1}.
-        \\ { \color{azul} }
+        \\ { \color{azul} 
+            \textbf{Shift Left Logical (\mips{sll})} \par
+            \mips{$t0 = 0xAAAAAAAA} \par
+            \mips{$t1 = 0x12345678} \par
+            $\rightarrow$ Transformamos \mips{$t0} en binario. \par
+            \mips{$t0 = 1010 1010 1010 1010 1010 1010 1010 1010} \par
+            $\rightarrow$ Aplicamos \mips{sll} con 4 bits. \par
+            \begin{tabular}{r|l}
+                1010 1010 1010 1010 1010 1010 1010 1010 & $\leftarrow$ 4 bits \\
+                \hline
+                1010 1010 1010 1010 1010 1010 1010 0000 &
+            \end{tabular} \par
+            \mips{$t2 = 1010 1010 1010 1010 1010 1010 1010 0000} \par
+
+            \newpage
+            \textbf{Or (\mips{or})} \par
+            \begin{tabular}{|c|c|c|c|}
+                \hline
+                \mips{$t2} & \mips{$t1} & \mips{or} & \textbf{Hex} \\
+                \hline
+                1010 & 0001 & 1011 & B \\
+                1010 & 0010 & 1010 & A \\
+                1010 & 0011 & 1011 & B \\
+                1010 & 0100 & 1110 & E \\
+                1010 & 0101 & 1111 & F \\
+                1010 & 0110 & 1110 & E \\
+                1010 & 0111 & 1111 & F \\
+                0000 & 1000 & 1000 & 8 \\
+                \hline
+            \end{tabular} \par
+            \mips{$t2 = BABEFEF8}
+        }
 
         \vspace{\Aspace} \par
         b) \mintinline{mips}{sll $t3, $t0, 4} y luego \mintinline{mips}{andi $t3, $t3, -1}.
-        \\ { \color{azul} }
+        \\ { \color{azul} 
+            \textbf{Shift Left Logical (\mips{sll})} \par
+            \mips{$t0 = 0xAAAAAAAA} \par
+            \mips{$t1 = 0x12345678} \par
+            $\rightarrow$ Transformamos \mips{$t0} en binario. \par
+            \mips{$t0 = 1010 1010 1010 1010 1010 1010 1010 1010} \par
+            $\rightarrow$ Aplicamos \mips{sll} con 4 bits. \par
+            \begin{tabular}{r|l}
+                1010 1010 1010 1010 1010 1010 1010 1010 & $\leftarrow$ 4 bits \\
+                \hline
+                1010 1010 1010 1010 1010 1010 1010 0000 &
+            \end{tabular} \par
+            \mips{$t3 = 1010 1010 1010 1010 1010 1010 1010 0000} \par
+
+            \vspace{\Aspace}
+            \textbf{And Immediate (\mips{andi})} \par
+            \begin{tabular}{|c|c|c|c|}
+                \hline
+                \mips{$t3} & \mips{-1} & \mips{andi} & \textbf{Hex} \\
+                \hline
+                1010 & 1111 & 1010 & A \\
+                1010 & 1111 & 1010 & A \\
+                1010 & 1111 & 1010 & A \\
+                1010 & 1111 & 1010 & A \\
+                1010 & 1111 & 1010 & A \\
+                1010 & 1111 & 1010 & A \\
+                1010 & 1111 & 1010 & A \\
+                0000 & 1111 & 0000 & 0 \\
+                \hline
+            \end{tabular} \par
+            \mips{$t3 = AAAAAAA0}
+        }
 
         \vspace{\Aspace} \par
         c) \mintinline{mips}{srl $t4, $t0, 3} y luego \mintinline{mips}{andi $t4, $t4, 0xFFEF}.
-        \\ { \color{azul} }
+        \\ { \color{azul} 
+            \textbf{Shift Right Logical (\mips{srl})} \par
+            \mips{$t0 = 0xAAAAAAAA} \par
+            \mips{$t1 = 0x12345678} \par
+            $\rightarrow$ Transformamos \mips{$t0} en binario. \par
+            \mips{$t0 = 1010 1010 1010 1010 1010 1010 1010 1010} \par
+            $\rightarrow$ Aplicamos \mips{srl} con 3 bits. \par
+            \begin{tabular}{r|l}
+                1010 1010 1010 1010 1010 1010 1010 1010 & $\rightarrow$ 3 bits \\
+                \hline
+                0001 0101 0101 0101 0101 0101 0101 0101 &
+            \end{tabular} \par
+            \mips{$t4 = 0001 0101 0101 0101 0101 0101 0101 0101} \par
+
+            \newpage
+            \vspace{\Aspace}
+            \textbf{And Immediate (\mips{andi})} \par
+            $\rightarrow$ El valor inmediato \mips{0xFFEF} es de 16 bits. En operaciones lógicas inmediatas, MIPS realiza una extensión de ceros, por lo que el valor real de comparación es \mips{0x0000FFEF}. \par
+            \begin{tabular}{|c|c|c|c|}
+                \hline
+                \mips{$t4} & \mips{0xFFEF} & \mips{andi} & \textbf{Hex} \\
+                \hline
+                0001 & 0000 & 0000 & 0 \\
+                0101 & 0000 & 0000 & 0 \\
+                0101 & 0000 & 0000 & 0 \\
+                0101 & 0000 & 0000 & 0 \\
+                0101 & 1111 & 0101 & 5 \\
+                0101 & 1111 & 0101 & 5 \\
+                0101 & 1110 & 0100 & 4 \\
+                0101 & 1111 & 0101 & 5 \\
+                \hline
+            \end{tabular} \par
+            \mips{$t4 = 00005545}
+        }
 
 
 
     % - Problema 17
     \vspace{\Pspace}
     \item ARM tiene esta instrucción:
-    \begin{minted}{mips}
-        addne r1, r2, r3
+    \begin{minted}{asm}
+        ADDNE r1, r2, r3
     \end{minted}
     Investigar qué hace y cuál es su ventaja sobre un branch. \par
         % Respuesta:
         \vspace{\Aspace} \par
-        { \color{azul}  }
+        { \color{azul}  
+            En ARM la mayoría de instrucciones tienen un sufijo condicional, en este caso \mips{ne}. \par
+            
+            \mips{add}: Operación \textbf{suma}. \\
+            \mips{ne}: \textbf{n}ot \textbf{e}qual, que significa "no igual". \par
+
+            La instrucción completa es \mips{r1 = r2 + r3} \textbf{solo si} el flag de estado indica que la comparación anterior resultó en \textbf{no igual}. \par
+
+            \textbf{Por ejemplo} \\
+            Supongamos que queremos sumarle puntos a un equipo de fútbol americano, estos puntos pueden ser 0, 3 o 7, pero únicamente queremos sumar puntos cuando no sean 0. \par
+            $\rightarrow$ Código MIPS \\
+            \mips{$t0}: Puntos totales \\
+            \mips{$t1}: Puntos en la última jugada
+            \begin{minted}{mips}
+        ...
+        beq $t1, $zero, omitir_suma
+        add $t0, $t0, $t1
+        j continuar
+        omitir_suma:
+            ...
+        continuar:
+            ...
+            \end{minted} 
+        
+            \newpage
+            $\rightarrow$ Código ARM \par
+            \mintinline{asm}{r0}: Puntos totales \\
+            \mintinline{asm}{r1}: Puntos en la última jugada
+            \begin{minted}{asm}
+        ...
+        CMP r1, #0
+        ADDNE r0, r0, r1
+            \end{minted}
+            \textbf{Ventaja} \\
+            Los procesadores modernos usan \textbf{pipelining}, ejecutando varias etapas de distintas instrucciones simultáneamente. Cuando hay un salto de control (branch), el procesador debe predecir el camino a seguir; si la predicción falla, se debe vaciar el pipeline, perdiendo varios ciclos de reloj. Al utilizar \mintinline{asm}{ADDNE}, ARM elimina la necesidad de saltos condicionales para tareas simples, manteniendo el flujo de ejecución lineal. Esto resulta en un pipeline más eficiente, menor consumo de energía y una mayor densidad de código.
+        }
 
 
 
     % - Problema 18
     \vspace{\Pspace}
     \item Dado el siguiente código en x86 (sintaxis intel): \par
-    \begin{minted}{mips}
+    \begin{minted}{asm}
         mov eax, [A]
         add eax, [B]
         mov [C], eax
@@ -608,7 +783,25 @@
     Indicar a qué operación de alto nivel corresponde y cuál es la diferencia fundamental con un lenguaje RISC tipo MIPS.
         % Respuesta:
         \vspace{\Aspace} \par
-        { \color{azul}  }
+        { \color{azul}  
+            \textbf{Operación de alto nivel} \\
+            $\rightarrow$ \asm{mov eax, [A]} \\
+            Carga el contendio de \asm{A} en el registro \asm{eax}. \\
+            
+            $\rightarrow$ \asm{add eax, [B]} \\
+            Suma el valor contendio en \asm{eax} con el valor contendio en \asm{B} y lo guarda en el registro \asm{eax}. \\
+                
+            $\rightarrow$ \asm{mov [C], eax} \\
+            Guarda el resultado en la dirección \asm{C}. \\
+
+            $\rightarrow$ Operación \\
+            \mips{C = A + B} \par
+
+            \textbf{Diferencia fundamental} \\
+            La diferencia reside en las filosofías de diseño CISC (x86) frente a RISC (MIPS). \\
+            x86 permite operandos de memoria directamente en instrucciones aritméticas (como en \asm{add eax, [B]}). En cambio, MIPS es una arquitectura \textbf{Load/Store}, lo que obliga a separar el acceso a memoria (\mips{lw}/\mips{sw}) de la operación lógica o aritmética. \\
+            Mientras que en RISC cada instrucción realiza una sola tarea atómica para facilitar el pipelining, en CISC una sola instrucción puede realizar el ciclo completo de "Lectura-Modificación-Escritura", reduciendo el número total de líneas de código a costa de una mayor complejidad en el hardware del procesador.
+        }
 
 
 
@@ -617,7 +810,20 @@
     \item En x86, ¿cuál es la diferencia entre la bandera de carry y la bandera de overflow? ¿Cuándo se prende o se apaga cada una de ellas? \par
         % Respuesta:
         \vspace{\Aspace} \par
-        { \color{azul}  }
+        { \color{azul}  
+            La diferencia fundamental radica en cómo se interpretan los datos: la bandera de \textbf{Carry} se utiliza para aritmética sin signo, mientras que la de \textbf{Overflow} se utiliza para aritmética con signo.
+
+            \begin{itemize}
+                \item \textbf{Carry Flag (CF):} Se activa cuando el resultado de una operación requiere un bit adicional de transporte fuera del bit más significativo (MSB). En una resta, actúa como un ``préstamo". Indica que el valor está fuera del rango $[0, 2^n - 1]$.
+                \item \textbf{Overflow Flag (OF):} Se activa cuando el resultado de una operación con signo es erróneo porque excede el rango representable en complemento a 2..
+            \end{itemize}
+
+            \textbf{Criterios de activación:}
+            \begin{itemize}
+                \item \textbf{CF:} Se prende si hay un acarreo saliente del bit más significativo durante una suma, o un préstamo en una resta.
+                \item \textbf{OF:} Se prende si el bit de acarreo que entra al MSB es diferente al bit de acarreo que sale del MSB. En otras palabras: ocurre al sumar dos números del mismo signo y obtener un resultado del signo opuesto.
+            \end{itemize}
+        }
 
 
 
@@ -626,6 +832,14 @@
 \item La página 22 de los \href{https://unisonmx.sharepoint.com/sites/Arquitecturadecomputadoras2026-1/Class%20Materials/Slides/09-x86-Overview.pdf#page=22}{apuntes sobre x86} dice que la instrucción \mintinline{mips}{jl} (jump if less) brinca si la bandera de signo es diferente a la de overflow. Explicar la lógica de esto y por qué funciona. \par
         % Respuesta:
         \vspace{\Aspace} \par
-        { \color{azul}  }
+        { \color{azul}
+            La instrucción \asm{jl} se basa en el resultado de una resta interna ($A - B$). La lógica de saltar si \textbf{SF $\neq$ OF} funciona porque el Overflow Flag actúa como un corrector del Sign Flag.
+            \begin{itemize}
+                \item \textbf{Caso sin Overflow (OF = 0):} El signo del resultado es verídico. Si $A < B$, la resta arroja un número negativo ($SF = 1$). Como $1 \neq 0$, la condición se cumple y el salto ocurre.
+                \item \textbf{Caso con Overflow (OF = 1):} El signo del resultado es erróneo (se ha invertido). Si $A < B$ pero ocurre un desbordamiento, el signo parecerá positivo ($SF = 0$). Sin embargo, como $0 \neq 1$, la instrucción identifica que el resultado ``debió" ser negativo y ejecuta el salto.
+            \end{itemize}
+
+            En resumen, si el signo es negativo y todo es normal, o si el signo es positivo pero sabemos que hubo un error de desbordamiento, significa matemáticamente que $A$ es menor que $B$. 
+        }
     \end{enumerate}
 \end{document}
