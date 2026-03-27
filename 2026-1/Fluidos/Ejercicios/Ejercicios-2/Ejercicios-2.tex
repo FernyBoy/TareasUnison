@@ -34,19 +34,6 @@
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.18}
 
-% -- Código --
-\usepackage{listings}
-\lstset{
-    language=C++,                   % Lenguaje del código
-    basicstyle=\ttfamily\small,     % Fuente del código
-    keywordstyle=\color{blue},      % Color de palabras clave
-    commentstyle=\color{gray},      % Color de comentarios
-    stringstyle=\color{red},        % Color de cadenas
-    numbers=left,                   % Números de línea a la izquierda
-    numberstyle=\tiny\color{gray},
-    breaklines=true,                % Permitir saltos de línea
-    frame=single                    % Marco alrededor del código
-}
 
 \begin{comment}
 -- Formato de pregunta simple
@@ -144,11 +131,11 @@
         % Respuestas:
         \vspace{\Aspace} \par
         a) Calcula la diferencia en K.
-        \\ { \color{azul} }
+        \\ { \color{azul} $\Delta K = 400K - 315K = 85K$ }
 
         \vspace{\Aspace} \par
         b) Calcula la diferencia en °C.
-        \\ { \color{azul} }
+        \\ { \color{azul} 85K = -188.15°C }
 
 
 
@@ -157,7 +144,7 @@
     \item Convierte 25°C a K.\par
         % Respuesta:
         \vspace{\Aspace} \par
-        { \color{azul}  }
+        { \color{azul} 25°C = 25 + 273.15 = 298.15K }
 
 
 
@@ -166,7 +153,7 @@
     \item Convierte 310K a °C. \par
         % Respuesta:
         \vspace{\Aspace} \par
-        { \color{azul}  }
+        { \color{azul}  310K = 310 - 273.15 = 36.85°C}
 
 
 
@@ -175,7 +162,7 @@
     \item Convierte 77°F a °C. \par
         % Respuesta:
         \vspace{\Aspace} \par
-        { \color{azul}  }
+        { \color{azul} 77°F = $(77 - 32) \times 5/9 = 25 \mathrm{^\circ C}$ }
 
 
 
@@ -184,7 +171,7 @@
     \item Convierte -40°C a °F. \par
         % Respuesta:
         \vspace{\Aspace} \par
-        { \color{azul}  }
+        { \color{azul} -40 $\mathrm{^\circ C} = \frac{9}{5} (-40) + 32 = -40 \mathrm{^\circ F}$}
 
 
 
@@ -193,7 +180,7 @@
     \item Convierte 450K a °F. \par
         % Respuesta:
         \vspace{\Aspace} \par
-        { \color{azul}  }
+        { \color{azul} 450K = $\mathrm{^\circ C} = \frac{9}{5} (450 - 273.15) + 32 = 350.33 \mathrm{^\circ F}$ }
 
 
 
@@ -202,7 +189,7 @@
     \item Convierte -10°F a K. \par
         % Respuesta:
         \vspace{\Aspace} \par
-        { \color{azul}  }
+        { \color{azul} -10°F = $(-10 - 32) \times 5/9 + 273.14 = 249.82$K }
     \end{enumerate}
 
 
@@ -391,16 +378,44 @@
     \begin{enumerate}
     % - Problema 1
     \vspace{\Pspace}
-    \item Pro \par
+    \item 1g de agua se vaporiza isobáricamente a 1 atm. Su volumen en el estado líquido $V_{i} = V_{\text{líquido}} = 1cm^{3}$ y su volumen en el estado de vapor es $V_{f} = V_{\text{vapor}} = 1.671cm^{3}$. Encuentre el trabajo invertido en la expansión y el cambio de energía en el sistema. No hay cambio de temperatura. \par
+        % Respuesta:
+        \vspace{\Aspace} \par
+        { \color{azul}  }
+
+
+
+    % - Problema 2
+    \vspace{\Pspace}
+    \item Una muestra de un gas ideal pasa por el proceso que se muestra a continuación. \par
+    \begin{figure}[!ht]
+        \hspace{1cm}
+        \includegraphics[width=0.45\textwidth]{./images/diagrama.jpg}
+    \end{figure}
+    \begin{itemize}
+        \item De $A$ a $B$ el proceso es adiabático.
+        \item De $B$ a $C$ el isobárico con 100kJ de energía que entran al sistema por calor.
+        \item De $C$ a $D$ es isotérmico.
+        \item De $D$ a $A$ es isobárico con 150kJ de energía que salen del sistema por calor.
+    \end{itemize}
+    Determine el cambio en la energía interna $E_{\text{int}_{B}} - E_{\text{int}_{A}}$.
+        % Respuesta:
+        \vspace{\Aspace} \par
+        { \color{azul}  }
+
+
+
+    % - Problema 3
+    \vspace{\Pspace}
+    \item Un mol de gas ideal realiza 3000J de trabajo sobre sus alrededores a medida que se expande isotérmicamente hasta una presión final de 1atm y 25L de volumen. \par
         % Respuestas:
         \vspace{\Aspace} \par
-        a) 
+        a) Determine el volumen inicial.
         \\ { \color{azul} }
 
         \vspace{\Aspace} \par
-        b) 
+        b) Determine la temperatura del gas.
         \\ { \color{azul} }
-
     \end{enumerate}
 
 
@@ -460,6 +475,55 @@
 
         \vspace{\Aspace} \par
         b) Calcule cuánto calor se deshecha.
+        \\ { \color{azul} }
+    \end{enumerate}
+
+
+
+    \newpage
+    {\Large \textbf{Ejercicios 20/03/2026}}
+    \begin{enumerate}
+    % - Problema 1
+    \vspace{\Pspace}
+    \item Una charola de hielo contiene 500g de agua líquida a 0°C. Calcule el cambio en la entropía del agua cuando se congela lenta y completamente a 0°C \par
+        % Respuesta:
+        \vspace{\Aspace} \par
+        { \color{azul}  }
+
+
+
+    % - Problema 2
+    \vspace{\Pspace}
+    \item Una masa de plomo de 3kg se funda a 327.3°C. Su $L_{f}$ es de $2.45x10^{4}$ J/kg. ¿Cuál es el cambio en la entropía? \par
+        % Respuesta:
+        \vspace{\Aspace} \par
+        { \color{azul}  }
+
+
+
+    % - Problema 3
+    \vspace{\Pspace}
+    \item Un bloque de aluminio de 0.8kg se calienta de 20°C a 80°C. Calcula el cambio en la entropía con $C_{Al} = 900 J/kg * °C$. \par
+        % Respuesta:
+        \vspace{\Aspace} \par
+        { \color{azul}  }
+
+
+
+    % - Problema 4
+    \vspace{\Pspace}
+    \item Dos sistemas reciben 1000 J de calor:
+    \begin{itemize}
+        \item A está a 500k.
+        \item B está a 250k.
+    \end{itemize}
+        % Respuestas:
+        \vspace{\Aspace} \par
+        a) Calcula $\Delta S$ para cada uno.
+        \\ { \color{azul} }
+
+        \vspace{\Aspace} \par
+        b) ¿En cuál aumenta más la entropía y por qué?
         \\ { \color{azul} }
     \end{enumerate}
 \end{document}
