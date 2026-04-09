@@ -1,0 +1,313 @@
+\documentclass[a4paper, 11pt]{article}
+
+% -- Coments
+\usepackage{verbatim}
+
+% -- References
+\usepackage{xurl}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Tarea 9 NLP},
+}
+
+% -- Color --
+\usepackage{xcolor}
+%\definecolor{azul}{RGB}{00,33,99}
+\definecolor{azul}{RGB}{35,72,180}
+
+% -- Page Margin --
+\usepackage[margin=1in]{geometry}
+
+% -- Espaciados --
+\newcommand{\Pspace}{0.5cm}
+\newcommand{\Aspace}{0.2cm}
+
+% -- Columnas --
+\usepackage{multicol}
+
+% -- Imagenes --
+\usepackage{graphicx}
+\usepackage{float}
+
+% -- Matemáticas --
+\usepackage{amsmath, amssymb}
+
+% -- Gráficas --
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% -- Código --
+\usepackage{listings}
+\lstset{
+    language=C++,                   % Lenguaje del código
+    basicstyle=\ttfamily\small,     % Fuente del código
+    keywordstyle=\color{blue},      % Color de palabras clave
+    commentstyle=\color{gray},      % Color de comentarios
+    stringstyle=\color{red},        % Color de cadenas
+    numbers=left,                   % Números de línea a la izquierda
+    numberstyle=\tiny\color{gray},
+    breaklines=true,                % Permitir saltos de línea
+    frame=single                    % Marco alrededor del código
+}
+
+\begin{comment}
+-- Formato de pregunta simple
+    % - Problema n
+    \vspace{\Pspace}
+    \item Problema \par
+        % Respuesta:
+        \vspace{\Aspace} \par
+        { \color{azul}  }
+
+
+ -- Formato de pregunta multimple
+        % - Problema 
+        \vspace{\Pspace}
+        \item  \par
+             % Respuestas:
+            \vspace{\Aspace} \par
+            a) 
+            \\ { \color{azul} }
+
+            \vspace{\Aspace} \par
+            b) 
+            \\ { \color{azul} }
+
+
+ -- Formato de imagen
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.5\textwidth]{}
+\end{figure}
+
+
+ -- Formato de tabla
+\begin{tabular}{c|c}
+    \textbf{A} & \textbf{B} \\
+    \hline
+    Texto & Texto \\
+    Texto & Texto
+\end{tabular} \\
+\end{comment}
+
+
+\title
+{
+    Procesamiento de Lenguaje Natural 2026-1 \\
+    Exploración LLMs
+}
+
+    \begin{document}
+
+    \maketitle
+
+    \begin{center}
+        \begin{tabular}{r|l}
+            \textbf{Expediente} & \textbf{Nombre} \\ \hline
+            219208106 & Bórquez Guerrero Angel Fernando \\
+        \end{tabular}
+    \end{center}
+
+    \rule{\linewidth}{0.3mm}
+
+    \vspace{0.3cm}
+    \begin{enumerate}
+        % - Problema 1
+        \vspace{\Pspace}
+        \item Escoge uno de los siguientes LLMs:
+        \begin{itemize}
+            \item Claude
+            \item Le Chat
+            \item DeepSeek
+            \item Qwen
+            \item Kimi
+            \item GLM
+            \item LlaMa
+        \end{itemize}
+        Averigua lo siguiente:
+             % Respuestas:
+            \vspace{\Aspace} \par
+            a) ¿Qué empresa lo desarrolló?
+            \\ { \color{azul} Claude fue desarrollado por el laboratorio de investigación \textbf{Anthropic}. \cite{ibmthink2024claudeai}}
+
+            \vspace{\Aspace} \par
+            b) ¿De dónde es la empresa?
+            \\ { \color{azul} San Francisco, California, Estados Unidos. \cite{forbes2026anthropic} }
+
+            \vspace{\Aspace} \par
+            c) ¿Qué modelos están disponibles para usar en la página?
+            \\ { \color{azul} Al día que se realiza esta tarea 9 de abril del 2026 los modelos disponibles son Claude Opus 4.6, Claude Sonnet 4.6 y Claude Haiku 4.5. \cite{claude2026models}}
+
+            \vspace{\Aspace} \par
+            d) ¿Cuánto cuesta la suscripción de paga?
+            \\ { \color{azul} Paquete Pro: \$17 dólares americanos, paquete Max: \$100 dólares americanos. \cite{claude2026pricing}}
+
+            \vspace{\Aspace} \par
+            e) ¿Cuántos parámetros tiene el modelo?
+            \\ { \color{azul} 
+                - Claude Opus 4: 300-500 mil millones (estimado). \\
+                - Claude Sonnet 4: 50-100 mil millones (estimado). \cite{medium2025claude}
+            }
+
+            \vspace{\Aspace} \par
+            f) ¿Cuál es el context size?
+            \\ { \color{azul} Tanto para Claude Opus 4 como para Claude Sonnet 4 es hasta 256 mil tokens. \cite{medium2025claude}}
+
+            \vspace{\Aspace} \par
+            g) ¿Cuál es la dimensión interna de los embeddings?
+            \\ { \color{azul} }
+
+            \vspace{\Aspace} \par
+            h) ¿En qué corpus se entrenó?
+            \\ { \color{azul} }
+
+
+
+        % - Problema 2
+        \vspace{\Pspace}
+        \item Escoge uno de los LLMs de la lista anterior (diferente a ChatGPT): \\
+        Escoge un modelo LLM de Hugging Face. Concéntrate en los modelos \texttt{Instruct}. Con cada uno de estos dos modelos realiza cada una de las siguientes actividades: \par
+             % Respuestas:
+            \vspace{\Aspace} \par
+            a) Pide información sobre un tema avanzado de un área de tu interés, ¿es correcta la respuesta?
+            \\ { \color{azul} }
+
+            \vspace{\Aspace} \par
+            b)
+            \begin{itemize}
+                \item Escribe un número de 16 dígitos de una tarjeta bancaria (inventa el número). Determina si el número es un número de tarjeta de crédito válido.
+                \item Busca un código ISBN de algún libro de tu elección, pregunta al LLM si es un número válido.
+            \end{itemize}
+            { \color{azul} }
+
+            \vspace{\Aspace} \par
+            c) Pide información sobre algún evento reciente (máximo una semana de antigüedad).
+            \\ { \color{azul} }
+
+            \vspace{\Aspace} \par
+            d) Determina si el LLM entiende varios idiomas, ¿puede hacerlo simultaneamente? Experimenta con errores ortográficos y sintácticos.
+            \\ { \color{azul} }
+
+            \vspace{\Aspace} \par
+            e) Introduce los siguientes prompts:
+            \begin{itemize}
+                \item Which letter is repeated more times in ``Mississippi', ``s' or ``i'?
+                \item How many times does the letter ``r' appear in the word ``strawberry'?
+                \item Is the word ``level' a palindrome? What about ``racecar'? And ``algorithm'?
+            \end{itemize}
+            Compara los resultados entre el LLM de interfaz web y el modelo de Hugging Face. ¿Qué nos enseñan los posibles errores en estas preguntas sobre cómo los LLMs procesan el texto? \par
+            { \color{azul} }
+
+            \vspace{\Aspace} \par
+            f) ¿Puedes hacer que el modelo te de detalles específicos de su arquitectura? Por ejemplo, número de capas de atención, dimenión interna de los embeddings, tamaño de los vectores \textbf{Q}, \textbf{K}, \textbf{V}.
+            \\ { \color{azul} }
+
+            \vspace{\Aspace} \par
+            g) Usando role prompting, genera dos diferentes resúmenes breves de algún texto largo que trate sobre un tema de tu interés, cada versión con un rol diferente (maestro de primaria o preescolar, experto en el tema, clase universitaria, plática formal entre amigos, etc).
+            \\ { \color{azul} }
+
+            \vspace{\Aspace} \par
+            h) Pide que te explique un concepto de tu interés, luego, repite la misma pregunta 3 veces. ¿Cambian las respuestas? ¿Por qué?
+            \\ { \color{azul} }
+
+            \vspace{\Aspace} \par
+            i) Escribir un prompt muy largo. Dentro del prompt incluye una instrucción que indique qué la salida deba ser solamente una palabra de tu elección. Prueba con esta instucción en diferentes posiciones:
+            \begin{itemize}
+                \item Al principio.
+                \item A la mitad.
+                \item Al final.
+            \end{itemize}
+            { \color{azul} }
+
+
+
+        % - Problema 3
+        \vspace{\Pspace}
+        \item Determina si el modelo al que accedes tiene herramientas disponibles (búsqueda web, ejecución de código, generación de imágenes, etc.). Realiza una tarea que se beneficie de alguna de estas herramientas y compara el resultado con el de un modelo Instruct de Hugging Face que no las tenga. \par
+             % Respuestas:
+            \vspace{\Aspace} \par
+            a) ¿Qué diferencias observas?
+            \\ { \color{azul} }
+
+            \vspace{\Aspace} \par
+            b) ¿Qué limitaciones encuentras en cada caso?
+            \\ { \color{azul} }
+
+
+
+        % - Problema 4
+        \vspace{\Pspace}
+        \item Revisa la política de privacidad del modelo que uses. \par
+             % Respuestas:
+            \vspace{\Aspace} \par
+            a) ¿Es claro qué hacen con la información que introduces?
+            \\ { \color{azul} }
+
+            \vspace{\Aspace} \par
+            b) ¿Lo usarías para subir información confidencial?
+            \\ { \color{azul} }
+
+
+
+        % - Problema 5
+        \vspace{\Pspace}
+        \item Basado en lo observado: \par
+             % Respuestas:
+            \vspace{\Aspace} \par
+            a) ¿Qué tareas crees que son fáciles/difíciles para un LLM?
+            \\ { \color{azul} }
+
+            \vspace{\Aspace} \par
+            b) ¿Por qué?
+            \\ { \color{azul} }
+
+
+
+        % - Problema 6
+        \vspace{\Pspace}
+        \item Genera el código para algún problema breve de alguna de tus otras clases o algún problema concreto que elijas. Evalúa y prueba de forma crítica el código generado. \par
+             % Respuestas:
+            \vspace{\Aspace} \par
+            a) ¿Funciona?
+            \\ { \color{azul} }
+
+            \vspace{\Aspace} \par
+            b) ¿Resuelve el problema?
+            \\ { \color{azul} }
+
+            \vspace{\Aspace} \par
+            c) ¿Es robusto?
+            \\ { \color{azul} }
+
+            \vspace{\Aspace} \par
+            d) ¿Es claro?
+            \\ { \color{azul} }
+
+            \vspace{\Aspace} \par
+            e) ¿Podría mejorarse en algún sentido?
+            \\ { \color{azul} }
+
+            \vspace{\Aspace} \par
+            f) ¿Qué papel juegas tú como futuro egresado de ciencias de la computación en esta nueva realidad?
+            \\ { \color{azul} }
+
+
+
+        % - Problema 7
+        \vspace{\Pspace}
+        \item ¿En qué situaciones confiarías (o no) en las respuestas de un LLM para tareas de tu área de especialización? \\
+        Ejemplo: depurar un fragmento de código, demostrar la correctitud de un algoritmo, entender un concepto nuevo, generar casos de prueba, etc. \par
+            % Respuesta:
+            \vspace{\Aspace} \par
+            { \color{azul}  }
+    \end{enumerate}
+
+
+
+    \bibliographystyle{plain} % Or 'ieeetr' if you want numbered references
+    \bibliography{references}  % Points to references.bib
+\end{document}
