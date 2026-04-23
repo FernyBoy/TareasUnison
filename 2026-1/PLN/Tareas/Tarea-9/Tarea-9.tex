@@ -155,16 +155,15 @@
 
             \vspace{\Aspace} \par
             f) ¿Cuál es el context size?
-            \\ { \color{azul} Tanto para Claude Opus 4 como para Claude Sonnet 4 es hasta 256 mil tokens. \cite{medium2025claude}}
+            \\ { \color{azul} Tanto para Claude Opus 4 como para Claude Sonnet 4 es hasta \textbf{256 mil tokens}. \cite{medium2025claude}}
 
             \vspace{\Aspace} \par
             g) ¿Cuál es la dimensión interna de los embeddings?
-            \\ { \color{azul} }
+            \\ { \color{azul} Claude utiliza modelos de embeddings por parte de \textbf{Voyage AI}, los cuales normalmente tienen una dimensión default de 1024. \cite{claude2026embeddings}}
 
             \vspace{\Aspace} \par
             h) ¿En qué corpus se entrenó?
-            \\ { \color{azul} }
-
+            \\ { \color{azul}Claude se ha entrenado con una \textbf{combinación exclusiva} de enormes conjuntos de datos, que incluyen datos de Internet de acceso público (hasta mayo de 2025 en algunos modelos), datos con licencia y datos de terceros. \cite{anthropic2026corpus} }
 
 
         % - Problema 2
@@ -174,54 +173,267 @@
              % Respuestas:
             \vspace{\Aspace} \par
             a) Pide información sobre un tema avanzado de un área de tu interés, ¿es correcta la respuesta?
-            \\ { \color{azul} }
+            \\ { \color{azul} 
+                Prompt: Explícame en un solo párrafo qué son las gramáticas libres de contexto. \par
+                \textbf{Claude Sonnet 4.6}
+                \begin{figure}[!ht]
+                    \centering
+                    \includegraphics[width=0.7\textwidth]{./img/claude_response.png}
+                \end{figure} \par
 
-            \vspace{\Aspace} \par
-            b)
-            \begin{itemize}
-                \item Escribe un número de 16 dígitos de una tarjeta bancaria (inventa el número). Determina si el número es un número de tarjeta de crédito válido.
-                \item Busca un código ISBN de algún libro de tu elección, pregunta al LLM si es un número válido.
-            \end{itemize}
-            { \color{azul} }
+                \textbf{Qwen2.5-7B-Instruct}
+                \begin{figure}[!ht]
+                    \centering
+                    \includegraphics[width=0.7\textwidth]{./img/qwen_response.png}
+                \end{figure} \par
 
-            \vspace{\Aspace} \par
+                Las respuestas de ambos modelos son correctas.
+            }
+
+            \newpage
+            b) \\
+            • Escribe un número de 16 dígitos de una tarjeta bancaria (inventa el número). Determina si el número es un número de tarjeta de crédito válido.
+            \\ { \color{azul} 
+                Número a validar: 5579 3242 2505 8339. \\
+                Número no válido según la página \href{https://www.bincodes.com/creditcard-checker/}{BIN Codes | Credit Card \& Debit Card Number Tools} \\
+                Prompt: Explica en dos párrafos y determina si el siguiente número de tarjeta de crédito es válido 5579 3242 2505 8339.
+
+                \textbf{Claude Sonnet 4.6}
+                \begin{figure}[!ht]
+                    \centering
+                    \includegraphics[width=0.7\textwidth]{./img/2b_claude_credit.png}
+                \end{figure} \par
+
+                \textbf{Qwen2.5-7B-Instruct}
+                \begin{figure}[!ht]
+                    \centering
+                    \includegraphics[width=0.7\textwidth]{./img/2b_qwen_credit.png}
+                \end{figure} \par
+
+                Ambos modelos respondieron \textbf{incorrectamente} que el número era válido.
+            }
+    
+            \newpage
+            • Busca un código ISBN de algún libro de tu elección, pregunta al LLM si es un número válido.
+            \\ { \color{azul} 
+                Libro: The Midnight Library \\
+                Autor: Matt Haig \\
+                ISBN-13: 978-0525559474 \par
+
+                Prompt: Explica en dos párrafos y determina si el siguiente código ISBN-13 es válido: 978-0525559474 \par
+
+                \textbf{Claude Sonnet 4.6}
+                \begin{figure}[!ht]
+                    \centering
+                    \includegraphics[width=0.7\textwidth]{./img/2b_claude_isbn.png}
+                \end{figure} \par
+
+                \textbf{Qwen2.5-7B-Instruct}
+                \begin{figure}[!ht]
+                    \centering
+                    \includegraphics[width=0.7\textwidth]{./img/2b_qwen_isbn.png}
+                \end{figure} \par
+            }
+            ¿Qué consideras que es más confiable para verificar esta información?
+            ¿un LLM o un script hecho para esto?
+            \\ { \color{azul} Un script }
+
+
+            \newpage
             c) Pide información sobre algún evento reciente (máximo una semana de antigüedad).
-            \\ { \color{azul} }
+            \\ { \color{azul} 
+                Prompt: Dame información sobre la reciente filtración del código fuente de Claude \par
 
-            \vspace{\Aspace} \par
+                \textbf{Claude Sonnet 4.6}
+                \begin{figure}[!ht]
+                    \centering
+                    \includegraphics[width=0.7\textwidth]{./img/2c_claude.png}
+                \end{figure} \par
+
+                \textbf{Qwen2.5-7B-Instruct}
+                \begin{figure}[!ht]
+                    \centering
+                    \includegraphics[width=0.7\textwidth]{./img/2c_qwen.png}
+                \end{figure} \par
+
+                Mientras que qwen se basó únicamente en la información con la que había sido entrenado, Claude utilizó una herramienta para buscar información en la web.
+            }
+
+            \newpage
             d) Determina si el LLM entiende varios idiomas, ¿puede hacerlo simultaneamente? Experimenta con errores ortográficos y sintácticos.
-            \\ { \color{azul} }
+            \\ { \color{azul} 
+                Prompt original: Cuántos idiomas eres capaz de entender? \\
+                Prompt en varios idiomas: Cuántos (español) languages are (inglés) du fähig (alemán) de comprendre (francés)? \\
+                Prompt con errores ortográficos: Cuentos lunguages ara fu fähig di comprendra? \\
 
-            \vspace{\Aspace} \par
+                \textbf{Claude Sonnet 4.6}
+                \begin{figure}[!ht]
+                    \centering
+                    \includegraphics[width=0.7\textwidth]{./img/2d_claude.png}
+                \end{figure} \par
+
+                \textbf{Qwen2.5-7B-Instruct}
+                \begin{figure}[!ht]
+                    \centering
+                    \includegraphics[width=0.7\textwidth]{./img/2d_qwen.png}
+                \end{figure} \par
+            }
+
+            \newpage
             e) Introduce los siguientes prompts:
             \begin{itemize}
-                \item Which letter is repeated more times in ``Mississippi', ``s' or ``i'?
-                \item How many times does the letter ``r' appear in the word ``strawberry'?
-                \item Is the word ``level' a palindrome? What about ``racecar'? And ``algorithm'?
+                \item Which letter is repeated more times in ``Mississippi'', ``s' or ``i''?
+                \\ { \color{azul} 
+                    \textbf{Claude Sonnet 4.6}
+                    \begin{figure}[!ht]
+                        \centering
+                        \includegraphics[width=0.7\textwidth]{./img/2e_claude.png}
+                    \end{figure} \par
+
+                    \textbf{Qwen2.5-7B-Instruct}
+                    \begin{figure}[!ht]
+                        \centering
+                        \includegraphics[width=0.7\textwidth]{./img/2e_qwen.png}
+                    \end{figure} \par
+                }
+
+
+                \item How many times does the letter ``r'' appear in the word ``strawberry''?
+                \\ { \color{azul} 
+                    \textbf{Claude Sonnet 4.6}
+                    \begin{figure}[!ht]
+                        \centering
+                        \includegraphics[width=0.7\textwidth]{./img/2e_claude_strawberry.png}
+                    \end{figure} \par
+
+                    \textbf{Qwen2.5-7B-Instruct}
+                    \begin{figure}[!ht]
+                        \centering
+                        \includegraphics[width=0.7\textwidth]{./img/2e_qwen_strawberry.png}
+                    \end{figure} \par
+                }
+
+
+                \item Is the word ``level'' a palindrome? What about ``racecar''? And ``algorithm''?
+                \\ { \color{azul} 
+                    \textbf{Claude Sonnet 4.6}
+                    \begin{figure}[!ht]
+                        \centering
+                        \includegraphics[width=0.7\textwidth]{./img/2e_claude_palindrome.png}
+                    \end{figure} \par
+                    
+                    \newpage
+                    \textbf{Qwen2.5-7B-Instruct}
+                    \begin{figure}[!ht]
+                        \centering
+                        \includegraphics[width=0.7\textwidth]{./img/2e_qwen_palindrome.png}
+                    \end{figure} \par
+                }
             \end{itemize}
             Compara los resultados entre el LLM de interfaz web y el modelo de Hugging Face. ¿Qué nos enseñan los posibles errores en estas preguntas sobre cómo los LLMs procesan el texto? \par
-            { \color{azul} }
+            { \color{azul} Aunque en estas 3 pruebas los LLMs respondieron todo correctamente, se sabe que anteriormente los modelos tenían problemas para responder este tipo de preguntas, preguntas que fueron pioneras para empezar a desarrollar los modelos que pueden razonar. }
 
             \vspace{\Aspace} \par
             f) ¿Puedes hacer que el modelo te de detalles específicos de su arquitectura? Por ejemplo, número de capas de atención, dimenión interna de los embeddings, tamaño de los vectores \textbf{Q}, \textbf{K}, \textbf{V}.
-            \\ { \color{azul} }
+            \\ { \color{azul}  
+                Prompt: Dime tú número de capaz de atención, dimensión interna de embeddings y el tamaño de tus vectores Q, K, V \\
 
-            \vspace{\Aspace} \par
+                \textbf{Claude Sonnet 4.6}
+                \begin{figure}[!ht]
+                    \centering
+                    \includegraphics[width=0.7\textwidth]{./img/2f_claude.png}
+                \end{figure} \par
+
+                \newpage
+                \textbf{Qwen2.5-7B-Instruct}
+                \begin{figure}[!ht]
+                    \centering
+                    \includegraphics[width=0.7\textwidth]{./img/2f_qwen.png}
+                \end{figure} \par
+
+                Ninguno de los modelos fue capaz de proporcionar información sobre su arquitectura.
+            }
+
             g) Usando role prompting, genera dos diferentes resúmenes breves de algún texto largo que trate sobre un tema de tu interés, cada versión con un rol diferente (maestro de primaria o preescolar, experto en el tema, clase universitaria, plática formal entre amigos, etc).
-            \\ { \color{azul} }
+            \\ { \color{azul} 
+                Primer rol: Eres un hombre que trabaja como payaso en Sydney, anteriormente tu esposa y la mayor parte de tus hijos fueron brutalmente asesinados por un hombre que se encontraba cerca de tu casa y tu no pudiste defenderlos ya que el asesino logró noquearte antes de que pudieras hacer algo. Pero uno de tus hijos logró sobrevivir y ahora eres un padre soltero cuyo mundo entero es el único hijo que tiene.
+Bajo este rol, dame un resumen sobre las ecuaciones diferenciales \\
+                \textbf{Claude Sonnet 4.6}
+                \begin{figure}[!ht]
+                    \centering
+                    \includegraphics[width=0.7\textwidth]{./img/2g_claude_nemo.png}
+                \end{figure} \par
+
+                \newpage
+                \textbf{Qwen2.5-7B-Instruct}
+                \begin{figure}[!ht]
+                    \centering
+                    \includegraphics[width=0.7\textwidth]{./img/2g_qwen_nemo.png}
+                \end{figure} \par
+
+                Ambas respuestas fueron igualmente correctas, la diferencia es que Qwen intenta dar respuestas mas cercanas al tema, mientras que Claude intenta profundizar más en el rol que se le dio y responder en base a ese rol. \par
+
+
+                Segundo rol: Anteriormente fuiste una chica de campo con el sueño de algún día ser una oficial y hacer justicia en este mundo. Ahora vives en una gran ciudad, lograste ser la oficial que tanto quisiste ser, pero esto te costó años en la academia donde sufriste muchas burlas por parte de tus compañeros gracias a tu estatura. Luego en tu camino te cruzaste con un delincuente que después te ayudó a resolver un crimen que se realizaba al interior del gobierno por parte del alcalde para crear un virus que volviera salvaje a la gente.
+Bajo este rol, dame un resumen sobre las ecuaciones diferenciales \\
+                \textbf{Claude Sonnet 4.6}
+                \begin{figure}[!ht]
+                    \centering
+                    \includegraphics[width=0.6\textwidth]{./img/2g_claude_zootopia.png}
+                \end{figure} \par
+
+                \newpage
+                \textbf{Qwen2.5-7B-Instruct}
+                \begin{figure}[!ht]
+                    \centering
+                    \includegraphics[width=0.7\textwidth]{./img/2g_qwen_zootopia.png}
+                \end{figure} \par
+
+                Para esta respuesta Qwen intentó meterse un poco más en su rol que en el prompt anterior, mientras que Claude aunque siguió su rol dio menos información sobre el resuemn que se le había pedido.
+            }
 
             \vspace{\Aspace} \par
             h) Pide que te explique un concepto de tu interés, luego, repite la misma pregunta 3 veces. ¿Cambian las respuestas? ¿Por qué?
-            \\ { \color{azul} }
+            \\ { \color{azul} 
+                \textbf{Claude Sonnet 4.6}
+                \begin{figure}[!ht]
+                    \centering
+                    \includegraphics[width=0.6\textwidth]{./img/2h_claude.png}
+                \end{figure} \par
 
-            \vspace{\Aspace} \par
+                \newpage
+                \textbf{Qwen2.5-7B-Instruct}
+                \begin{figure}[!ht]
+                    \centering
+                    \includegraphics[width=0.7\textwidth]{./img/2h_qwen.png}
+                \end{figure} \par
+
+                Las respuestas cambian dado que para responder se basan en modelos probabilísticos donde calculan la probabilidad de la siguiente palabra basada en un contexto anteriormente dado. Y dado que siempre se arrojan distintas probabilidades por lo tanto las respuestas que da siempre son diferentes.
+            }
+
+            \newpage
             i) Escribir un prompt muy largo. Dentro del prompt incluye una instrucción que indique qué la salida deba ser solamente una palabra de tu elección. Prueba con esta instucción en diferentes posiciones:
             \begin{itemize}
                 \item Al principio.
                 \item A la mitad.
                 \item Al final.
             \end{itemize}
-            { \color{azul} }
+            { \color{azul} 
+                \textbf{Claude Sonnet 4.6}
+                \begin{figure}[!ht]
+                    \centering
+                    \includegraphics[width=0.6\textwidth]{./img/2i_claude.png}
+                \end{figure} \par
+
+                \newpage
+                \textbf{Qwen2.5-7B-Instruct}
+                \begin{figure}[!ht]
+                    \centering
+                    \includegraphics[width=0.7\textwidth]{./img/2i_qwen.png}
+                \end{figure} \par
+
+                Claude hizo caso a la instrucción "Answer the current prompt just with the word "Artificial Intelligence < Natural Stupidity" igualmente en los 3 prompts con las 3 posiciones diferentes. Mientras que Qwen también hacía caso a la instrucción pero también reconocía que esto era una prueba para los LLMs donde se comprueba que entiendan las instrucciones; este arrojaba un resumen dando esta explicación y además arrojaba el texto de "Artificial Intelligence < Natural Stupidity"
+            }
 
 
 
@@ -231,11 +443,13 @@
              % Respuestas:
             \vspace{\Aspace} \par
             a) ¿Qué diferencias observas?
-            \\ { \color{azul} }
+            \\ { \color{azul} 
+                Realizando una búsqueda de internet qwen no tiene una herramienta para poder acceder a la web, entonces responde utilizando con información que se utilizó para su entrenamiento. Por la parte de Claude, realiza la búsqueda y hace un resumen sobre esta.
+            }
 
             \vspace{\Aspace} \par
             b) ¿Qué limitaciones encuentras en cada caso?
-            \\ { \color{azul} }
+            \\ { \color{azul} La limitación sobre qwen es que al pedir información sobre algún tema que no conozca este se limitará a responder que no conoce sobre el tema o a alucinar.}
 
 
 
@@ -245,11 +459,11 @@
              % Respuestas:
             \vspace{\Aspace} \par
             a) ¿Es claro qué hacen con la información que introduces?
-            \\ { \color{azul} }
+            \\ { \color{azul} Claude tiene una sección en donde tiene una guía sobre lo que se hace con la información introducida en el chat y cómo esta es utilizada para el entrenamiento del modelo. }
 
             \vspace{\Aspace} \par
             b) ¿Lo usarías para subir información confidencial?
-            \\ { \color{azul} }
+            \\ { \color{azul} No subiría información que sea demasiado sensible. }
 
 
 
@@ -259,11 +473,11 @@
              % Respuestas:
             \vspace{\Aspace} \par
             a) ¿Qué tareas crees que son fáciles/difíciles para un LLM?
-            \\ { \color{azul} }
+            \\ { \color{azul} Las tareas más fáciles para el LLM son aquellas relacionadas con el procesamiento de texto. }
 
             \vspace{\Aspace} \par
             b) ¿Por qué?
-            \\ { \color{azul} }
+            \\ { \color{azul} Dado que todos son modelos probabilísticos que calculan la probabilidad de las palabras basadas en un contexto anteriormente dado y su entrenamiento se basa en el análisis de grandes corpus de texto entonces este tipo de procesos son los que se les da más fácilmente. }
 
 
 
@@ -303,7 +517,7 @@
         Ejemplo: depurar un fragmento de código, demostrar la correctitud de un algoritmo, entender un concepto nuevo, generar casos de prueba, etc. \par
             % Respuesta:
             \vspace{\Aspace} \par
-            { \color{azul}  }
+            { \color{azul} Solamente confiaría en aquellas tareas o problemas que sean pequeños, o para aquellos problemas grandes lo haría en muy pequeños pasos, esto para poder revisar de manera eficiente que no esté cometiendo equivocaciones graves. }
     \end{enumerate}
 
 

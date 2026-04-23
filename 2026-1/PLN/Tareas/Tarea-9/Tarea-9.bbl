@@ -1,8 +1,16 @@
 \begin{thebibliography}{1}
 
+\bibitem{claude2026embeddings}
+Anthropic.
+\newblock Embeddings | claude by anthropic.
+
+\bibitem{anthropic2026corpus}
+Anthropic.
+\newblock How do you use personal data in model training?
+
 \bibitem{claude2026models}
 Anthropic.
-\newblock Models overview.
+\newblock Models overview | claude by anthropic.
 
 \bibitem{claude2026pricing}
 Anthropic.
