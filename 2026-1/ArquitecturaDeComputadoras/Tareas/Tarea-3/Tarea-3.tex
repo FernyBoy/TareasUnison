@@ -1,0 +1,197 @@
+\documentclass[a4paper, 11pt]{article}
+
+
+% -- Coments
+\usepackage{verbatim}
+
+% -- Fuente --
+% \usepackage{fontspec}
+% \setmonofont{JetBrainsMono Nerd Font}  
+
+% -- Color --
+\usepackage{xcolor}
+%\definecolor{azul}{RGB}{00,33,99}
+\definecolor{azul}{RGB}{35,72,180}
+
+% -- Page Margin --
+\usepackage[margin=1in]{geometry}
+
+% -- Espaciados --
+\newcommand{\Pspace}{0.5cm}
+\newcommand{\Aspace}{0.2cm}
+
+% -- Columnas --
+\usepackage{multicol}
+
+% -- Imagenes --
+\usepackage{graphicx}
+\usepackage{float}
+
+% -- Matemáticas --
+\usepackage{amsmath, amssymb}
+
+% -- Gráficas --
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% -- Código --
+% \usepackage{minted}
+
+\usepackage{minted}
+\setminted{
+    fontsize=\small,
+    breaklines=true,               % Ajusta el código al ancho de página
+    frame=lines,                   % Añade líneas arriba y abajo
+    framesep=2mm,
+    baselinestretch=1.2,
+    bgcolor=lightgray!10           % Color de fondo muy suave
+}
+\newcommand{\mips}[1]{\mintinline{mips}{#1}}
+\newcommand{\asm}[1]{\mintinline{asm}{#1}}
+\newcommand{\az}[1]{{\color{azul}{#1}}}
+
+\usepackage{listings}
+\lstset{
+    language=C++,                   % Lenguaje del código
+    basicstyle=\ttfamily\small,     % Fuente del código
+    keywordstyle=\color{blue},      % Color de palabras clave
+    commentstyle=\color{gray},      % Color de comentarios
+    stringstyle=\color{red},        % Color de cadenas
+    numbers=left,                   % Números de línea a la izquierda
+    numberstyle=\tiny\color{gray},
+    breaklines=true,                % Permitir saltos de línea
+    frame=single                    % Marco alrededor del código
+}
+
+\usepackage[colorlinks=true, linkcolor=blue, urlcolor=blue]{hyperref}
+
+\begin{comment}
+-- Formato de pregunta simple
+    % - Problema n
+    \vspace{\Pspace}
+    \item Problema \par
+        % Respuesta:
+        \vspace{\Aspace} \par
+        { \color{azul}  }
+
+
+ -- Formato de pregunta multimple
+    % - Problema 
+    \vspace{\Pspace}
+    \item  \par
+        % Respuestas:
+        \vspace{\Aspace} \par
+        a) 
+        \\ { \color{azul} }
+
+        \vspace{\Aspace} \par
+        b) 
+        \\ { \color{azul} }
+
+        \vspace{\Aspace} \par
+        c) 
+        \\ { \color{azul} }
+
+
+ -- Formato de imagen
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.5\textwidth]{}
+\end{figure}
+
+
+ -- Formato de tabla
+\begin{tabular}{c|c}
+    \textbf{A} & \textbf{B} \\
+    \hline
+    Texto & Texto \\
+    Texto & Texto
+\end{tabular} \\
+\end{comment}
+
+
+\title
+{
+    Arquitectura de Computadoras 2026-1 \\
+    Tarea 3
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{center}
+    \begin{tabular}{r|l}
+        \textbf{Expediente} & \textbf{Nombre} \\ \hline
+        223210350 & Amaya Soria Angel Alberto \\
+        219208106 & Bórquez Guerrero Angel Fernando \\
+        223215039 & Miranda Sánchez Javier Leonardo \\
+        223203899 & Tostado Cortes Dante Alejandro
+    \end{tabular}
+\end{center}
+
+\rule{\linewidth}{0.3mm}
+
+\vspace{0.3cm}
+\begin{enumerate}
+% - Problema 1
+\vspace{\Pspace}
+\item Suponer una CPU superescalar con scheduling dinámico con las siguientes características: \par
+\begin{itemize}
+    \item Emisión: 1 istrucción por ciclo.
+    \item Compromiso: 1 instrucción por ciclo.
+    \item ROB con suficientes entradas.
+    \item Estaciones de reserva suficientes.
+    \item Latencias: lw (2 ciclos), add (2 ciclos), mul (4 ciclos).
+\end{itemize}
+Usando el algoritmo de Tomasulo, simular la ejecución del siguiente programa y llenar la tabla: \\
+\begin{tabular}{|l|c|c|c|c|}
+    \hline
+    \textbf{Instrucción} & \textbf{Emisión} & \textbf{Ejecución} & \textbf{Escritura} & \textbf{Compromiso} \\
+    \hline
+    \mips{lw f2, 0(r1)} & \az{} & \az{} & \az{} & \az{} \\
+    \hline
+    \mips{lw f4, 0(r2)} & \az{} & \az{} & \az{} & \az{} \\
+    \hline
+    \mips{mul f6, f2, f4} & \az{} & \az{} & \az{} & \az{} \\
+    \hline
+    \mips{add f2, f6, f4} & \az{} & \az{} & \az{} & \az{} \\
+    \hline
+    \mips{add f8, f2, f4} & \az{} & \az{} & \az{} & \az{} \\
+    \hline
+    \mips{mul f10, f8, f2} & \az{} & \az{} & \az{} & \az{} \\
+    \hline
+    \mips{add f6, f2, f8} & \az{} & \az{} & \az{} & \az{} \\
+    \hline
+    \mips{add f12, f6, f10} & \az{} & \az{} & \az{} & \az{} \\
+    \hline
+\end{tabular} \\
+
+
+
+% - Problema 2
+\vspace{\Pspace}
+\item La figura 5.44 () \par
+    % Respuesta:
+    \vspace{\Aspace} \par
+    { \color{azul}  }
+
+
+
+% - Problema 3
+\vspace{\Pspace}
+\item Problema \par
+    % Respuesta:
+    \vspace{\Aspace} \par
+    { \color{azul}  }
+
+
+
+% - Problema 5
+\vspace{\Pspace}
+\item Problema \par
+    % Respuesta:
+    \vspace{\Aspace} \par
+    { \color{azul}  }
+\end{enumerate}
+\end{document}
