@@ -48,11 +48,12 @@
 }
 \newcommand{\mips}[1]{\mintinline{mips}{#1}}
 \newcommand{\asm}[1]{\mintinline{asm}{#1}}
+\newcommand{\clang}[1]{\mintinline{c}{#1}}
 \newcommand{\az}[1]{{\color{azul}{#1}}}
 
 \usepackage{listings}
 \lstset{
-    language=C++,                   % Lenguaje del código
+    language=C,                     % Lenguaje del código
     basicstyle=\ttfamily\small,     % Fuente del código
     keywordstyle=\color{blue},      % Color de palabras clave
     commentstyle=\color{gray},      % Color de comentarios
@@ -210,11 +211,61 @@ Usando el algoritmo de Tomasulo, simular la ejecución del siguiente programa y 
     % Respuestas:
     \vspace{\Aspace} \par
     a) Localidad temporal.
-    \\ { \color{azul} }
+    \\ { \color{azul} 
+        La \textbf{localidad temporal} se refiere al principio de que si un dato (variable o instrucción) fue accedido recientemente,
+        es muy probable que vuelva a ser accedido en un futuro cercano.
+        Los cachés se benefician de esto al mantener datos reciententes en niveles rápidos de memoria. \\
+        
+        \textbf{Ejemplo en C} \par
+        En el siguiente bucle, la variable \clang{sum} es accedida y modificada en cada iteración.
+        \begin{lstlisting}[language=C]
+#include <stdio.h>
+int main() 
+{
+    int arr[1000];
+    long long sum = 0;
+    for (int i = 0; i < 1000; i++) 
+    {
+        arr[i] = i;
+        sum += arr[i];
+    }
+
+    printf("Suma = %lld\n", sum);
+    return 0;
+}
+        \end{lstlisting}
+    }               
 
     \vspace{\Aspace} \par
     b) Localidad espacial.
-    \\ { \color{azul} }
+    \\ { \color{azul} 
+        La \textbf{localidad espacial} indica que si se accede a una dirección de memoria, 
+        es probable que pornto se acceda a direcciones cercanas.
+        Los cachés aprovechan esto cargando bloques completos de memoria, no solo el byte solicitado. \\
+
+        \textbf{Ejemplo en C} \par
+        El recorrido secuencial de un arreglo es el ejemplo más representativo:
+        cada elemento ocupa posiciones de memoria contiguas, por lo que al cargar un bloque de caché se traen varios elementos de una vez.
+        \begin{lstlisting}[language=C]
+#include <stdio.h>
+#define N 1024
+int main() 
+{
+    int matrix[N][N];
+    long long sum = 0;
+    for (int i = 0; i < N; i++) 
+    {
+        for (int j = 0; j < N; j++) 
+        {
+            sum += matrix[i][j];
+        }
+    }
+
+    printf("Suma = %lld\n", sum);
+    return 0;
+}
+    \end{lstlisting}
+    }
 
 
 
@@ -251,7 +302,7 @@ Usando el algoritmo de Tomasulo, simular la ejecución del siguiente programa y 
     \begin{itemize}
         \item ¿Cuántos conjuntos hay?
         \\ { \color{azul} 
-            $\text{Conjuntos} = \dfrac{\text{número de bloques}}{\text{Vías}} = \dfrac{256}{4} = 64 \text{ conjuntos}$
+            $\text{Conjuntos} = \dfrac{\text{número de bloques}}{\text{vías}} = \dfrac{256}{4} = 64 \text{ conjuntos}$
         }
 
         \item ¿Cuántos bits se usan para el índice de conjunto?
@@ -278,13 +329,34 @@ Usando el algoritmo de Tomasulo, simular la ejecución del siguiente programa y 
     }
 
 
-
+\newpage
 % - Problema 5
-\vspace{\Pspace}
 \item Se tiene un caché de 16KB, bloques de 64 bytes, direcciones de 32 bits, y organización 2-way set associative. Calcular el overhead total considerando que cada bloque tiene un bit para indicar si es válido y dos bits de protección. \par
     % Respuesta:
     \vspace{\Aspace} \par
-    { \color{azul} 
+    { \color{azul}
+        \textbf{Parámetros del caché} \par
+        $\text{Número de bloques} = \frac{16 \text{KB}}{64 \text{B}} = \frac{16384}{64} = 256 \text{ bloques}$ \par
+        $\text{Número de conjuntos} = \frac{256 \text{ bloques}}{2 \text{ vías}} = 128 \text{ conjuntos}$ \\
+
+        \textbf{Bits de dirección} \par
+        $\text{Bits offset} = log_{2}(64) = 6 \text{ bits}$ \par
+        $\text{Bits índice} = log_{2}(128) = 7 \text{ bits}$ \par
+        $\text{Bits etiqueta} = 32 - 7 - 6 = 19 \text{bits}$ \\
+
+        \textbf{Bits de overhead por bloque} \par
+        Cada bloque almacena:
+        \vspace{-0.2cm}
+        \begin{itemize}
+            \item 1 bit válido
+            \item 2 bits de protección
+            \item 19 bits de etiqueta
+        \end{itemize}
+        $\text{Overhead por bloque} = 1 + 2 + 19 = 22 \text{ bits}$ \\
+
+        \textbf{Overhead total} \par
+        $\text{Overhead total} = \text{overhead por bloque} \times \text{número total de bloques}$ \par
+        $\text{Overhead total} = 22 \text{ bits} \times 256 \text{ bloques} = 5,632 \text{ bits} = 704 \text{ bytes}$
     }
 \end{enumerate}
 \end{document}
