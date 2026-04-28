@@ -138,13 +138,15 @@
 \vspace{\Pspace}
 \item Suponer una CPU superescalar con scheduling dinámico con las siguientes características: \par
 \begin{itemize}
-    \item Emisión: 1 istrucción por ciclo.
+    \item Emisión: 1 instrucción por ciclo.
     \item Compromiso: 1 instrucción por ciclo.
     \item ROB con suficientes entradas.
     \item Estaciones de reserva suficientes.
     \item Latencias: lw (2 ciclos), add (2 ciclos), mul (4 ciclos).
 \end{itemize}
 Usando el algoritmo de Tomasulo, simular la ejecución del siguiente programa y llenar la tabla: \\
+\begin{figure}[!ht]
+\centering
 \begin{tabular}{|l|c|c|c|c|}
     \hline
     \textbf{Instrucción} & \textbf{Emisión} & \textbf{Ejecución} & \textbf{Escritura} & \textbf{Compromiso} \\
@@ -165,33 +167,124 @@ Usando el algoritmo de Tomasulo, simular la ejecución del siguiente programa y 
     \hline
     \mips{add f12, f6, f10} & \az{} & \az{} & \az{} & \az{} \\
     \hline
-\end{tabular} \\
+\end{tabular}
+\end{figure}
 
 
 
+\newpage
 % - Problema 2
 \vspace{\Pspace}
-\item La figura 5.44 () \par
+\item La figura 5.44 (página 472 del libro Computer Organization and Design) \par indica que la política de escritura (write policy) del caché primario (L1) de ARM Cortex-A8 es "write-back, write-allocate". Investigar esta política y describirla brevemente. \\
+\renewcommand{\thefigure}{5.\arabic{figure}}
+\setcounter{figure}{43}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{./img/figure_5.44.png}
+    \caption{Caches in the ARM Cortex-A8 and Intel Core i7 920.}
+\end{figure}
+\renewcommand{\thefigure}{\arabic{figure}} % restore default afterward
     % Respuesta:
     \vspace{\Aspace} \par
-    { \color{azul}  }
+    { \color{azul}  
+        \textbf{write-back} \par
+        Cuando el procesador escribe un dato, la modificación se realiza únicamente en el caché. 
+        El bloque modificado se marca con un dirty bit. 
+        La escritura de memoria principal ocurre solo cuando el bloque es desalojado del caché. 
+        Esto reduce el tráfico al bus de memoria comparado con \textbf{write-through}, 
+        ya que múltiples escrituras al mismo bloque generan una sola escritura a memoria. \\
+
+        \textbf{write-allocate} \par
+        Cuando ocurre un write miss, se carga el bloque completo desde memoria principal al caché antes de realizar la escritura.
+        Así, escrituras futuras al mismo bloque encontrarán el dato en caché.
+        Esta política es coherente con \textbf{write-back}, ya que al traer el bloque al caché se aprovecha la localidad espacial y tempporal. \\
+
+        Esta combinación es especialmente eficiente en cargas de trabajo con alta localidad temporal de escrituras,
+        ya que minimiza la latencia de escritura y el tráfico hacia niveles inferiores de la jerarquía de memoria.
+    }
 
 
-
+\newpage
 % - Problema 3
-\vspace{\Pspace}
-\item Problema \par
-    % Respuesta:
+\item Explicar con palabras propias y proporcionar un ejemplo de código (C, Java o Python) para cada caso. \par
+    % Respuestas:
     \vspace{\Aspace} \par
-    { \color{azul}  }
+    a) Localidad temporal.
+    \\ { \color{azul} }
+
+    \vspace{\Aspace} \par
+    b) Localidad espacial.
+    \\ { \color{azul} }
+
+
+
+% - Problema 4
+\vspace{\Pspace}
+\item Se tiene un sistema con direcciones de memoria de 32 bits y un caché de 8KB con bloques de 32 bytes. \par
+    % Respuestas:
+    \vspace{\Aspace} \par
+    a) Para un caché de mapeo directo:
+    \begin{itemize}
+        \item ¿Cuántos bloques tiene el caché?
+        \\ { \color{azul} 
+            $\text{Bloques} = \dfrac{\text{tamaño caché}}{\text{tamaño bloque}} = \dfrac{8\text{KB}}{32\text{B}} = \dfrac{8192}{32} = 256 \text{ bloques}$
+        }
+
+        \item ¿Cuántos bits se usan para el offset?
+        \\ { \color{azul} 
+            $\text{Bits offset} = log_{2}(\text{tamaño bloque}) = log_{2}(32) = 5 \text{ bits}$
+        }
+
+        \item ¿Cuántos bits para el índice?
+        \\ { \color{azul} 
+            $\text{Bits índice} = log_{2}(\text{número de bloques}) = log_{2}(256) = 8 \text{ bits}$
+        }
+
+        \item ¿Cuántos bits para la etiqueta?
+        \\ { \color{azul} 
+            $\text{Bits etiqueta} = 32 - \text{bits índice} - \text{bits offset} = 32 - 8 - 5 = 19 \text{ bits}$
+        }
+    \end{itemize}
+
+    \vspace{\Aspace} \par
+    b) Para un caché 4-way set associative:
+    \begin{itemize}
+        \item ¿Cuántos conjuntos hay?
+        \\ { \color{azul} 
+            $\text{Conjuntos} = \dfrac{\text{número de bloques}}{\text{Vías}} = \dfrac{256}{4} = 64 \text{ conjuntos}$
+        }
+
+        \item ¿Cuántos bits se usan para el índice de conjunto?
+        \\ { \color{azul}
+            $\text{Bits índice} = log_{2}(64) = 6 \text{ bits}$
+        }
+
+        \item ¿Cuántos bits para la etiqueta?
+        \\ { \color{azul} 
+            $\text{Bits etiqueta} = 32 - 6 - 5 = 21 \text{ bits}$
+        }
+    \end{itemize}
+
+    \vspace{\Aspace} \par
+    c) Explicar cómo cambia la probabilidad de conflicto entre mapeo directo y 4-way.
+    \\ { \color{azul} 
+        En el \textbf{mapeo directo}, cada bloque de memoria solo puede ubicarse en un Únicobloque del caché,
+        Si dos bloques frecuentemente usados mapean al mismo índice, se producen conflictos de caché: 
+        cada vezz que se accede a uno, el otro es desalojado, generando miss tras miss (trashing).
+        Esto ocurre auqnue el 99\% del caché esté vacío. \par
+        En el \textbf{4-way}, cada bloque de memoria puede ubicarse en cualquiera de 4 vías dentro de su conjunto.
+        Así, hasta 4 bloques que mapeen al mismo conjunto pueden coexistir simultáneamente. 
+        La probabilidad de conflicto se reduce significativamente porque la política de reemplazo puede elegir qué bloque desalojar, evitando el trashing.
+    }
 
 
 
 % - Problema 5
 \vspace{\Pspace}
-\item Problema \par
+\item Se tiene un caché de 16KB, bloques de 64 bytes, direcciones de 32 bits, y organización 2-way set associative. Calcular el overhead total considerando que cada bloque tiene un bit para indicar si es válido y dos bits de protección. \par
     % Respuesta:
     \vspace{\Aspace} \par
-    { \color{azul}  }
+    { \color{azul} 
+    }
 \end{enumerate}
 \end{document}
