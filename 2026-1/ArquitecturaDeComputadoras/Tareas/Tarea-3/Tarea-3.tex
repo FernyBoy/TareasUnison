@@ -1,12 +1,7 @@
 \documentclass[a4paper, 11pt]{article}
 
-
 % -- Coments
 \usepackage{verbatim}
-
-% -- Fuente --
-% \usepackage{fontspec}
-% \setmonofont{JetBrainsMono Nerd Font}  
 
 % -- Color --
 \usepackage{xcolor}
@@ -35,8 +30,6 @@
 \pgfplotsset{compat=1.18}
 
 % -- Código --
-% \usepackage{minted}
-
 \usepackage{minted}
 \setminted{
     fontsize=\small,
@@ -152,21 +145,21 @@ Usando el algoritmo de Tomasulo, simular la ejecución del siguiente programa y 
     \hline
     \textbf{Instrucción} & \textbf{Emisión} & \textbf{Ejecución} & \textbf{Escritura} & \textbf{Compromiso} \\
     \hline
-    \mips{lw f2, 0(r1)} & \az{} & \az{} & \az{} & \az{} \\
+    \mips{lw f2, 0(r1)} & \az{1} & \az{2 - 3} & \az{4} & \az{5} \\
     \hline
-    \mips{lw f4, 0(r2)} & \az{} & \az{} & \az{} & \az{} \\
+    \mips{lw f4, 0(r2)} & \az{2} & \az{3 - 4} & \az{5} & \az{6} \\
     \hline
-    \mips{mul f6, f2, f4} & \az{} & \az{} & \az{} & \az{} \\
+    \mips{mul f6, f2, f4} & \az{3} & \az{5 - 8} & \az{9} & \az{10} \\
     \hline
-    \mips{add f2, f6, f4} & \az{} & \az{} & \az{} & \az{} \\
+    \mips{add f2, f6, f4} & \az{4} & \az{9 - 10} & \az{11} & \az{12} \\
     \hline
-    \mips{add f8, f2, f4} & \az{} & \az{} & \az{} & \az{} \\
+    \mips{add f8, f2, f4} & \az{5} & \az{11 - 12} & \az{13} & \az{14} \\
     \hline
-    \mips{mul f10, f8, f2} & \az{} & \az{} & \az{} & \az{} \\
+    \mips{mul f10, f8, f2} & \az{6} & \az{13 - 16} & \az{17} & \az{18} \\
     \hline
-    \mips{add f6, f2, f8} & \az{} & \az{} & \az{} & \az{} \\
+    \mips{add f6, f2, f8} & \az{7} & \az{13 - 14} & \az{15} & \az{19} \\
     \hline
-    \mips{add f12, f6, f10} & \az{} & \az{} & \az{} & \az{} \\
+    \mips{add f12, f6, f10} & \az{8} & \az{17-18} & \az{19} & \az{20} \\
     \hline
 \end{tabular}
 \end{figure}
@@ -198,7 +191,7 @@ Usando el algoritmo de Tomasulo, simular la ejecución del siguiente programa y 
         \textbf{write-allocate} \par
         Cuando ocurre un write miss, se carga el bloque completo desde memoria principal al caché antes de realizar la escritura.
         Así, escrituras futuras al mismo bloque encontrarán el dato en caché.
-        Esta política es coherente con \textbf{write-back}, ya que al traer el bloque al caché se aprovecha la localidad espacial y tempporal. \\
+        Esta política es coherente con \textbf{write-back}, ya que al traer el bloque al caché se aprovecha la localidad espacial y temporal. \\
 
         Esta combinación es especialmente eficiente en cargas de trabajo con alta localidad temporal de escrituras,
         ya que minimiza la latencia de escritura y el tráfico hacia niveles inferiores de la jerarquía de memoria.
@@ -240,7 +233,7 @@ int main()
     b) Localidad espacial.
     \\ { \color{azul} 
         La \textbf{localidad espacial} indica que si se accede a una dirección de memoria, 
-        es probable que pornto se acceda a direcciones cercanas.
+        es probable que pronto se acceda a direcciones cercanas.
         Los cachés aprovechan esto cargando bloques completos de memoria, no solo el byte solicitado. \\
 
         \textbf{Ejemplo en C} \par
@@ -319,10 +312,10 @@ int main()
     \vspace{\Aspace} \par
     c) Explicar cómo cambia la probabilidad de conflicto entre mapeo directo y 4-way.
     \\ { \color{azul} 
-        En el \textbf{mapeo directo}, cada bloque de memoria solo puede ubicarse en un Únicobloque del caché,
+        En el \textbf{mapeo directo}, cada bloque de memoria solo puede ubicarse en un único bloque del caché,
         Si dos bloques frecuentemente usados mapean al mismo índice, se producen conflictos de caché: 
-        cada vezz que se accede a uno, el otro es desalojado, generando miss tras miss (trashing).
-        Esto ocurre auqnue el 99\% del caché esté vacío. \par
+        cada vez que se accede a uno, el otro es desalojado, generando miss tras miss (trashing).
+        Esto ocurre aunque el 99\% del caché esté vacío. \par
         En el \textbf{4-way}, cada bloque de memoria puede ubicarse en cualquiera de 4 vías dentro de su conjunto.
         Así, hasta 4 bloques que mapeen al mismo conjunto pueden coexistir simultáneamente. 
         La probabilidad de conflicto se reduce significativamente porque la política de reemplazo puede elegir qué bloque desalojar, evitando el trashing.
