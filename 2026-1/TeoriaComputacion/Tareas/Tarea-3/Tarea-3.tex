@@ -1,0 +1,303 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb}
+
+% -- Page Margin --
+\usepackage[margin=1in]{geometry}
+
+% -- Imagenes --
+\usepackage{graphicx}
+\usepackage{float}
+
+% -- Color --
+\usepackage{xcolor}
+\definecolor{azul}{RGB}{35,72,180}
+
+% -- Espaciados --
+\newcommand{\Pspace}{0.5cm}
+\newcommand{\Aspace}{0.2cm}
+
+% -- Assets para figura 2.1 --
+\newcommand{\lheight}{1.3em}
+\newcommand{\lraise}{-0.4em}
+\newcommand{\lon}{\raisebox{\lraise}{\includegraphics[height=\lheight]{./img/light_on_icon.png}}}
+\newcommand{\loff}{\raisebox{\lraise}{\includegraphics[height=\lheight]{./img/light_off_icon.png}}}
+
+\title
+{
+    Teoría de la Computación 2026-1 \\
+}
+
+    \begin{document}
+
+    \maketitle
+
+    \begin{center}
+        \begin{tabular}{r|l}
+            \textbf{Expediente} & \textbf{Nombre} \\\hline \vspace{-0.4cm} \\
+            223209096 & Ahumada Herrera Jorge Alán \\
+            219208106 & Bórquez Guerrero Angel Fernando \\
+            222206586 & Juan Valenzuela Gael \\
+            223201053 & Solis Zatarain Owen Adiel \\
+        \end{tabular}
+    \end{center}
+
+    \rule{\linewidth}{0.3mm}
+
+    \vspace{0.3cm}
+
+
+
+{ \large \textbf{Ejercicio 92.} } Diseñe dos AP diferentes que acepten por pila vacía al lenguaje aceptado por el AFD de <<los tres focos>> descrito enla figura 2.1.
+\renewcommand{\thefigure}{2.\arabic{figure}}
+\setcounter{figure}{0}
+\begin{figure}[!ht]
+\centering
+\begin{tabular}{r|ccc}
+    & $a$ & $b$ & $c$ \\
+    \hline
+    \vspace{-0.3cm} \\
+    { \large $\rightarrow$ } \hspace{-0.4cm} \loff \loff \loff & \lon \loff \loff & \loff \lon \loff & \loff \loff \lon \\ \vspace{-0.3cm} \\
+    
+    \lon \loff \loff & \loff \loff \loff & \lon \lon \loff & \lon \loff \lon \\ \vspace{-0.3cm} \\
+    
+    \loff \lon \loff & \lon \lon \loff & \loff \loff \loff & \loff \lon \lon \\ \vspace{-0.3cm} \\
+
+    \loff \loff \lon & \lon \loff \lon & \loff \lon \lon & \loff \loff \loff \\ \vspace{-0.3cm} \\
+
+    \lon \lon \loff & \loff \lon \loff & \lon \loff \loff & \lon \lon \lon \\ \vspace{-0.3cm} \\
+
+    \lon \loff \lon & \loff \loff \lon & \lon \lon \lon & \lon \loff \loff \\ \vspace{-0.3cm} \\
+
+    { \large $\ast$} \hspace{-0.3cm} \lon \lon \lon & \loff \lon \lon & \lon \loff \lon & \lon \lon \loff \\ \vspace{-0.3cm} \\
+
+    \loff \lon \lon & \lon \lon \lon & \loff \loff \lon & \loff \lon \loff
+\end{tabular} 
+\caption{Tabla de transición del autómata de los tres focos.}
+\end{figure}
+\renewcommand{\thefigure}{\arabic{figure}}
+    % Respuesta:
+    \vspace{\Aspace} \par
+    { \color{azul}
+        \textbf{Observación previa} \\
+        El autómata de los tres focos acepta las cadenas en $\{ a, b, c \}^{*}$ tales que cada foco termina encendido. 
+        Esto ocurre si y solo si cada símbolo aparece un número impar de veces. \\
+        $L = \{ w \in \{ a, b, c \}^{*}: |w|_{a}, |w|_{b}, |w|_{c} son impares \}$ \\
+        Este es un lenguaje regular, por lo que puede ser reconocido por un AP que simule al AFD. \\
+
+        \newpage
+        \textbf{Primer AP} \\
+        Definimos el AP: \\
+        $M_{1} = (Q, \Sigma, \Gamma, \delta, q_{0}, Z_{0})$ \\
+        donde: 
+        \begin{itemize}
+            \item $Q = \{ q_{000}, q_{100}, q_{010}, q_{001}, q_{110}, q_{101}, q_{011}, q_{111} \}$
+
+            \item $\Sigma = \{ a, b, c \}$
+
+            \item $\Gamma = \{ Z_0 \}$
+
+            \item Estado inicial: $q_{000}$
+        \end{itemize}
+        Cada estado representa la paridad de ($a$, $b$, $c$). \\
+        La pila nunca cambia (solo contiene $Z_{0}$). \\
+        Las transiciones son: \\
+        $\delta(q, x, Z_{0}) = (q', Z_{0})$ \\
+        donde $q'$ cambia la paridad correspondiente. \\
+
+        Por ejemplo: \\
+        $\delta(q_{000}, a, Z_{0}) = (q_{100}, Z_{0})$ \\
+        $\delta(q_{100}, a, Z_{0}) = (q_{000}, Z_{0})$ \\
+        y análogamente para $b$ y $c$. \\
+
+        Finalmente, se vacía la pila si se llega a $q_{111}$: \\
+        $\delta (q_{111}, \varepsilon, Z_{0}) = (q_{111}, \varepsilon)$ \\
+        Por tanto, acepta por pila vacía. \\
+
+        \vspace{\Pspace}
+
+        \textbf{Segundo AP} \\
+        Construimos un AP distinto usando conteo en pila. \\
+        $M_2 = (Q, \Sigma, \Gamma, \delta, q_0, Z_{0})$ \\
+        donde:
+        \begin{itemize}
+            \item $Q = \{ q \}$
+
+            \item $\Sigma = \{ a, b, c \}$
+
+            \item $\Gamma = \{ A, B, C, Z_{0} \}$
+        \end{itemize}
+        
+        La idea es:
+        \begin{itemize}
+            \item Cada vez que aparece $a$, alternamos entre empujar y sacar $A$.
+
+            \item Igual para $b$ y $c$.
+        \end{itemize}
+
+        \newpage
+        Ejemplo para $a$: \\
+        $\delta (q, a, Z_{0}) = (q, AZ_0)$ \\
+        $\delta (q, a, A) = (q, \varepsilon)$ \\
+
+        Análogamente para $B$ y $C$. \\
+        Al final, la pila queda vacía si cada símbolo apareció un número par de veces de empuje/salida,
+        lo que corresponde a impar en total (por construcción alternada). \\
+        Finalmente: \\
+        $\delta (q, \varepsilon, Z_0) = (q, \varepsilon)$ \\
+        Este AP es distinto porque usa la pila activamente.
+    }
+
+
+
+% ---------------------------------------------------------------------------
+
+
+
+\newpage { \large \textbf{Ejercicio 106.} } Pruebe que $A \overset{*}{\Rightarrow} \gamma$ si y solo si cualesquiera $\alpha$, $\beta \in (T \cup V)^{*}$,
+$\alpha A \beta \overset{*}{\Rightarrow} \alpha \gamma \beta$. Encuentre un contraejemplo para demostrar que en general no es cierto que si 
+$\alpha A \beta \overset{*}{\Rightarrow} \alpha \gamma \beta$ para algunas cadenas $\alpha$ y $\beta$ entonces $A \overset{*}{\Rightarrow} \gamma$.
+    % Respuesta:
+    \vspace{\Aspace} \par
+    { \color{azul} 
+        \textbf{Demostración} \\
+        ($\Rightarrow$) Suponga $A \equiv \gamma$ \\
+        Por definición de equivalencia en gramáticas, $A$ puede ser reemplazado por $\gamma$ en cualquier contexto \\
+        Por tanto, para cualesquiera $\alpha$, $\beta$: \\
+        $\alpha A \beta \Rightarrow \alpha \gamma \beta$ \\
+
+        \hspace{-0.6cm}($\Leftarrow$) Suponga que: \\
+        $\forall \alpha$, $\beta$, $\alpha A \beta \Rightarrow \alpha \gamma \beta$ \\
+        Tomando $\alpha = \varepsilon$ y $\beta = \varepsilon$: \\
+        $A \Rightarrow \gamma$ \\
+
+        Además, como la sustitución es válida en cualquier contexto, implica equivalencia estructural, por lo que: \\
+        $A \equiv \gamma$ \\ \\
+
+        \textbf{Contraejemplo} \\
+        Sea la gramática: \\
+        $A \rightarrow a | b$ \\
+        y $\gamma = a$ \\
+        Entonces: \\
+        $A \Rightarrow a$ \\
+        pero también: \\
+        $A \Rightarrow b$ \\
+
+        Ahora, para algunas cadenas (por ejemplo con $\alpha = \varepsilon$, $\beta = \varepsilon$): \\
+        $A = a$ \\
+        pero no es cierto que: \\
+        $A \equiv a$ \\
+        porque $A$ geneara más cadenas. \\
+
+        Esto demuestra que no basta que la propiedad se cumpla para algunas $\alpha$, $\beta$. \\ \\
+
+        \textbf{Conclusión} \\
+        Se construyeron dos AP distintos que aceptan el mismo lenguaje (uno simulando el AFD y el otro usando la pila activamente),
+        y se probó formalmente la equivalenica del ejercicio 106 junto con un contraejemplo que muestra la necesidad de la condición universal.
+    }
+
+
+
+
+% ---------------------------------------------------------------------------
+
+
+
+\newpage { \large \textbf{Ejercicio 109.} } Una \textit{gramática regular} (por la derecha) es una GLC que admite solo producciones de la forma: \par
+$A \rightarrow aB$ \par
+$C \rightarrow b$ \par
+$D \rightarrow \varepsilon$ \par
+donde $A$, $B$, $C$, $D$ son variables sintácticas y $a$, $b$ son símbolos terminales.
+Encuentre una gramática regular para los siguientes conjuntos:
+\begin{enumerate}
+    \item El conjunto de cadenas binarias que terminan en 111.
+        % Respuesta:
+        \vspace{\Aspace} \par
+        { \color{azul} 
+
+        }
+
+
+    \item $L_{a} = \{a^{2m + 1}: m \geq 0\}$.
+        % Respuesta:
+        \vspace{\Aspace} \par
+        { \color{azul} 
+
+        }
+
+
+    \item El conjunto de cadenas binarias con una cantidad impar de ceros y una cantidad impar de unos.
+        % Respuesta:
+        \vspace{\Aspace} \par
+        { \color{azul} 
+
+        }
+
+    
+    \item $L_{\text{son}}$ el lenguaje del ejemplo 15.
+    \renewcommand{\thefigure}{2.\arabic{figure}}
+    \setcounter{figure}{4}
+    \begin{figure}[!ht]
+        \centering
+        \includegraphics[width=0.8\textwidth]{./img/figura_2.3.png}
+        \caption{Autómata que lee \texttt{sonora}.}
+    \end{figure}
+    \renewcommand{\thefigure}{\arabic{figure}}
+        % Respuesta:
+        \vspace{\Aspace} \par
+        { \color{azul} 
+
+        }
+\end{enumerate}
+
+
+
+% ---------------------------------------------------------------------------
+
+
+
+\newpage { \large \textbf{Ejercicio 116.} } Desambigüe la GLC con producciones: \par
+\begin{tabular}{ccc}
+    $S$ & $\rightarrow$ & $[S]$ \\
+    & | & $(S)$ \\
+    & | & $\{S\}$ \\
+    & | & $SS$ \\
+    & | & $\varepsilon$
+\end{tabular} \\
+    % Respuesta:
+    \vspace{\Aspace} \par
+    { \color{azul} 
+
+    }
+
+
+
+% ---------------------------------------------------------------------------
+
+
+
+\newpage { \large \textbf{Ejercicio 117.} } La GLC del ejemplo 54 es ambigua.
+De dos ejemplos de árboles de derivación para una misma cadena. 
+Decide si la siguiente gramática alternativa es ambigua o no: \par
+\begin{tabular}{ccl}
+    $S$ & $\rightarrow$ & \texttt{IF} $C$ \texttt{THEN} $S$ \texttt{ENDIF} \\
+    & | & \texttt{IF} $C$ \texttt{THEN} $S$ \texttt{ELSE} $S$ \texttt{ENDIF} \\
+    & | & $E$ \\
+
+    $E$ & $\rightarrow$ & \texttt{print .°k"} \\
+    & | & \texttt{break} \\
+    & | & \texttt{return true} \\
+    & | & \texttt{return false} \\
+    & | & $E$ \texttt{print .°k"} \\
+    & | & $E$ \texttt{break} \\
+    & | & $E$ \texttt{return true} \\
+    & | & $E$ \texttt{return false} \\
+
+    $C$ & $\rightarrow$ & \texttt{false} \\
+    & | & \texttt{true} \\
+\end{tabular} \\
+    % Respuesta:
+    \vspace{\Aspace} \par
+    { \color{azul} 
+
+    }
+\end{document}
