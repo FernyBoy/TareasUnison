@@ -1,0 +1,52 @@
+\documentclass{standalone}
+
+% Paquetes necesarios
+\usepackage{circuitikz}
+\usetikzlibrary{circuits.logic.IEC}
+
+\usepackage{xcolor}
+\definecolor{azul}{RGB}{35,72,180}
+
+\begin{document}
+{ \color{azul}
+\centering
+\resizebox{1\textwidth}{!}{%
+\begin{circuitikz}
+\tikzstyle{every node}=[font=\fontsize{18.2pt}{23.7pt}\selectfont]
+\node [font=\fontsize{18.2pt}{23.7pt}\selectfont, inner xsep=0.080cm, inner ysep=0.085cm, rounded corners=0.020cm] at (13.75,15.5) {$S$};
+\node [font=\fontsize{18.2pt}{23.7pt}\selectfont, inner xsep=0.080cm, inner ysep=0.085cm, rounded corners=0.020cm] at (5.125,13) {IF};
+\node [font=\fontsize{18.2pt}{23.7pt}\selectfont, inner xsep=0.080cm, inner ysep=0.085cm, rounded corners=0.020cm] at (7.5,13) {$C$};
+\node [font=\fontsize{18.2pt}{23.7pt}\selectfont, inner xsep=0.080cm, inner ysep=0.085cm, rounded corners=0.020cm] at (10.125,13) {THEN};
+\node [font=\fontsize{18.2pt}{23.7pt}\selectfont, inner xsep=0.080cm, inner ysep=0.085cm, rounded corners=0.020cm] at (19.25,10.5) {$S$};
+\node [font=\fontsize{18.2pt}{23.7pt}\selectfont, inner xsep=0.080cm, inner ysep=0.085cm, rounded corners=0.020cm] at (16.875,10.5) {THEN};
+\node [font=\fontsize{18.2pt}{23.7pt}\selectfont, inner xsep=0.080cm, inner ysep=0.085cm, rounded corners=0.020cm] at (14.25,10.5) {$C$};
+\node [font=\fontsize{18.2pt}{23.7pt}\selectfont, inner xsep=0.080cm, inner ysep=0.085cm, rounded corners=0.020cm] at (11.875,10.5) {IF};
+\node [font=\fontsize{18.2pt}{23.7pt}\selectfont, inner xsep=0.080cm, inner ysep=0.085cm, rounded corners=0.020cm] at (21.75,10.5) {$ELSE$};
+\node [font=\fontsize{18.2pt}{23.7pt}\selectfont, inner xsep=0.080cm, inner ysep=0.085cm, rounded corners=0.020cm] at (24.25,10.5) {$S$};
+\node [font=\fontsize{18.2pt}{23.7pt}\selectfont, inner xsep=0.080cm, inner ysep=0.085cm, rounded corners=0.020cm] at (18,13) {$S$};
+\draw [short] (11.875,10.875) -- (18,12.75);
+\draw [short] (18,12.75) -- (14.25,10.875);
+\draw [short] (18,12.75) -- (16.875,10.875);
+\draw [short] (18,12.75) -- (19.25,10.875);
+\draw [short] (18,12.75) -- (21.75,10.875);
+\draw [short] (18,12.75) -- (24.25,10.875);
+\draw [short] (5.125,13.375) -- (13.75,15.25);
+\draw [short] (13.75,15.25) -- (7.5,13.375);
+\draw [short] (13.75,15.25) -- (10.125,13.375);
+\draw [short] (13.75,15.25) -- (18,13.375);
+\node [font=\fontsize{18.2pt}{23.7pt}\selectfont, inner xsep=0.080cm, inner ysep=0.085cm, rounded corners=0.020cm] at (7.5,10.5) {true};
+\draw [short] (7.5,12.75) -- (7.5,10.875);
+\node [font=\fontsize{18.2pt}{23.7pt}\selectfont, inner xsep=0.080cm, inner ysep=0.085cm, rounded corners=0.020cm] at (14.25,9) {true};
+\draw [short] (14.25,10.25) -- (14.25,9.375);
+\node [font=\fontsize{18.2pt}{23.7pt}\selectfont, inner xsep=0.080cm, inner ysep=0.085cm, rounded corners=0.020cm] at (19.25,9) {$E$};
+\node [font=\fontsize{18.2pt}{23.7pt}\selectfont, inner xsep=0.080cm, inner ysep=0.085cm, rounded corners=0.020cm] at (24.25,9) {$E$};
+\node [font=\fontsize{18.2pt}{23.7pt}\selectfont, inner xsep=0.080cm, inner ysep=0.085cm, rounded corners=0.020cm] at (19.25,7.5) {break};
+\node [font=\fontsize{18.2pt}{23.7pt}\selectfont, inner xsep=0.080cm, inner ysep=0.085cm, rounded corners=0.020cm] at (24.25,7.5) {return true};
+\draw [short] (19.25,10.25) -- (19.25,9.375);
+\draw [short] (24.25,10.25) -- (24.25,9.375);
+\draw [short] (19.25,8.75) -- (19.25,7.875);
+\draw [short] (24.25,8.75) -- (24.25,7.875);
+\end{circuitikz}
+}%
+}
+\end{document}

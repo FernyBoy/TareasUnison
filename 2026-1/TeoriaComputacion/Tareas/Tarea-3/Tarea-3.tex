@@ -212,8 +212,24 @@ Encuentre una gramática regular para los siguientes conjuntos:
     \item El conjunto de cadenas binarias que terminan en 111.
         % Respuesta:
         \vspace{\Aspace} \par
-        { \color{azul} 
+        { \color{azul}
+            \textbf{Gramática regular} \\
+            Cada variable rastrea cuántos 1s consecutivos lleva la cadena al final: \\
+            $S$: cero, $A$: uno, $B$: dos, $C$: tres o más. \\
 
+            Definimos $G = (V, T, P, S)$ con $V = \{ S, A, B, C \}$, $T = \{ 0, 1 \}$. \\
+            Producciones $P$: \\
+            \begin{tabular}{ccccccc}
+                $S$ & $\rightarrow$ & $0S$ & | & $1A$ && \\
+                $A$ & $\rightarrow$ & $0S$ & | & $1B$ && \\
+                $B$ & $\rightarrow$ & $0S$ & | & $1C$ && \\
+                $C$ & $\rightarrow$ & $0S$ & | & $1C$ & | & $\varepsilon$ \\
+            \end{tabular} \\
+
+            \textbf{Verificaci\'on:} \\
+            $S \Rightarrow 1A \Rightarrow 11B \Rightarrow 111C \Rightarrow 111$ \quad (acepta ``111'') \\
+            $S \Rightarrow 0S \Rightarrow 01A \Rightarrow 011B \Rightarrow 0111C \Rightarrow 0111$ \quad (acepta ``0111'') \\
+            $S \Rightarrow 1A \Rightarrow 11B \Rightarrow 110S$ \quad ($S$ no deriva $\varepsilon$, rechaza ``110'')
         }
 
 
@@ -221,18 +237,67 @@ Encuentre una gramática regular para los siguientes conjuntos:
         % Respuesta:
         \vspace{\Aspace} \par
         { \color{azul} 
+            \textbf{Gramática regular} \\
+            Este lenguaje es el conjunto de cadenas con cantidad impar de $a$: $\{ a, aaa, aaaaa, \ldots \}$. \\
+            Dos variables que alternan la paridad. \\
 
+            Definimos $G = (V, T, P, S)$ con $V = \{ S, A \}$, $T = \{ a \}$. \\
+            Producciones $P$: \\
+            \begin{tabular}{ccc}
+                $S$ & $\rightarrow$ & $aA$ \\
+                $A$ & $\rightarrow$ & $aS$ \\
+                & | & $\varepsilon$
+            \end{tabular} \\
+
+            $S$ = cantidad par de $a$ le\'idas (inicio, 0 es par). \\
+            $A$ = cantidad impar de $a$ le\'idas (puede derivar $\varepsilon$). \\ 
+
+            \textbf{Verificación:} \\
+            $S \Rightarrow aA \Rightarrow a$ \quad (acepta $a$, $m = 0$) \\
+            $S \Rightarrow aA \Rightarrow aaS \Rightarrow aaaA \Rightarrow aaa$ \quad (acepta $aaa$, $m = 1$) \\
+            $S \Rightarrow aA \Rightarrow aaS$ \quad ($S$ no deriva $\varepsilon$, rechaza $aa$)
         }
 
 
     \item El conjunto de cadenas binarias con una cantidad impar de ceros y una cantidad impar de unos.
         % Respuesta:
         \vspace{\Aspace} \par
-        { \color{azul} 
+        { \color{azul}
+            \textbf{Gramática regular} \\
+            Rastreamos la paridad de ambos símbolos simultáneamente ($2 \times 2 = 4$ combinaciones).
 
+            Definimos $G = (V, T, P, S)$ con $V = \{ S, A, B, C \}$, $T = \{ 0, 1 \}$.
+            \vspace{-0.2cm}
+            \begin{itemize}
+                \item $S$: par de 0s, par de 1s (inicio).
+                \item $A$: impar de 0s, par de 1s.
+                \item $B$: par de 0s, impar de 1s.
+                \item $C$: impar de 0s, impar de 1s (\textbf{aceptor}, deriva $\varepsilon$).
+            \end{itemize}
+            Producciones $P$: \\
+            \begin{tabular}{ccc}
+                $S$ & $\rightarrow$ & $0A$ \\
+                & | & $1B$ \\
+                $A$ & $\rightarrow$ & $0S$ \\
+                & | & $1C$ \\
+                $B$ & $\rightarrow$ & $0C$ \\
+                & | & $1S$ \\
+                $C$ & $\rightarrow$ & $0B$ \\
+                & | & $1A$ \\
+                & | & $\varepsilon$ \\
+            \end{tabular} \\
+
+            Cada $0$ cambia la paridad de los ceros; cada $1$ cambia la paridad de los unos. \\
+            Solo $C$ puede derivar $\varepsilon$ (ambas paridades impares). \\
+
+            \textbf{Verificación:} \\
+            $S \Rightarrow 0A \Rightarrow 01C \Rightarrow 01$ \quad (acepta ``01'': 1 cero, 1 uno) \\
+            $S \Rightarrow 1B \Rightarrow 10C \Rightarrow 10$ \quad (acepta ``10'': 1 cero, 1 uno) \\
+            $S \Rightarrow 0A \Rightarrow 00S \Rightarrow 001B \Rightarrow 0011S$ \quad ($S$ no deriva $\varepsilon$, rechaza ``0011'')
         }
 
     
+    \newpage
     \item $L_{\text{son}}$ el lenguaje del ejemplo 15.
     \renewcommand{\thefigure}{2.\arabic{figure}}
     \setcounter{figure}{4}
@@ -244,8 +309,42 @@ Encuentre una gramática regular para los siguientes conjuntos:
     \renewcommand{\thefigure}{\arabic{figure}}
         % Respuesta:
         \vspace{\Aspace} \par
-        { \color{azul} 
+        { \color{azul}
+            \textbf{Gramática regular} \\
+            Cada estado del AFD se convierte en una variable. \\
+            Definimos $G = (V, \Sigma, P, S)$ con $V = \{ S, A, B, C, D, E, F \}$, $\Sigma = \{ s, o, n, r, a \}$.
+            \vspace{-0.2cm}
+            \begin{itemize}
+                \item $S$ ($q_0$): sin progreso (inicio).
+                \item $A$ ($q_1$): le\'ido \textbf{s}.
+                \item $B$ ($q_2$): le\'ido \textbf{so}.
+                \item $C$ ($q_3$): le\'ido \textbf{son}.
+                \item $D$ ($q_4$): le\'ido \textbf{sono}.
+                \item $E$ ($q_5$): le\'ido \textbf{sonor}.
+                \item $F$ ($q_6$): le\'ido \textbf{sonora} (\textbf{aceptor}, deriva $\varepsilon$).
+            \end{itemize}
+            Producciones $P$: \\
+            \begin{tabular}{ccccccccccccc}
+                $S$ & $\rightarrow$ & $sA$ & | & $oS$ & | & $nS$ & | & $rS$ & | & $aS$ && \\
+                $A$ & $\rightarrow$ & $oB$ & | & $sA$ & | & $nS$ & | & $rS$ & | & $aS$ && \\
+                $B$ & $\rightarrow$ & $nC$ & | & $sA$ & | & $oS$ & | & $rS$ & | & $aS$ && \\
+                $C$ & $\rightarrow$ & $oD$ & | & $sA$ & | & $nS$ & | & $rS$ & | & $aS$ && \\
+                $D$ & $\rightarrow$ & $rE$ & | & $sA$ & | & $oS$ & | & $nS$ & | & $aS$ && \\
+                $E$ & $\rightarrow$ & $aF$ & | & $sA$ & | & $oS$ & | & $nS$ & | & $rS$ && \\
+                $F$ & $\rightarrow$ & $sF$ & | & $oF$ & | & $nF$ & | & $rF$ & | & $aF$ & | & $\varepsilon$ \\
+            \end{tabular} \\
 
+            La primera producción de cada variable avanza en la lectura de ``sonora''. \\
+            Leer $s$ siempre lleva a $A$ (posible inicio de nuevo ``sonora''). \\
+            Cualquier otra letra no esperada regresa a $S$. \\
+            $F$ se queda en $F$ con todo s\'imbolo y puede derivar $\varepsilon$. \\
+
+            \textbf{Verificación:} \\
+            $S \Rightarrow sA \Rightarrow soB \Rightarrow sonC \Rightarrow sonoD \Rightarrow sonorE \Rightarrow sonoraF \Rightarrow sonora$ \\
+            (acepta ``sonora'') \\
+            $S \Rightarrow sA \Rightarrow ssA \Rightarrow ssoB \Rightarrow ssonC \Rightarrow ssonoD \Rightarrow ssonorE \Rightarrow ssonoraF \Rightarrow ssonora$ \\
+            (acepta ``ssonora'') \\
+            $S \Rightarrow sA \Rightarrow soB \Rightarrow sonC$ \quad ($C$ no deriva $\varepsilon$, rechaza ``son'')
         }
 \end{enumerate}
 
@@ -265,8 +364,31 @@ Encuentre una gramática regular para los siguientes conjuntos:
 \end{tabular} \\
     % Respuesta:
     \vspace{\Aspace} \par
-    { \color{azul} 
+    { \color{azul}
+    \raggedright
+        \textbf{Gramática desambiguada} \\
+        Para eliminar la ambigüedad, separamos la gramática en dos niveles: uno que genera un único bloque balanceado ($T$) y otro que genera una secuencia de dichos bloques ($S$). \\
 
+        \vspace{0.5cm}
+        Definimos $G = (V, \Sigma, P, S)$ con $V = \{ S, T \}$ y $\Sigma = \{ (, ), [, ], \{, \} \}$. \\
+        Producciones $P$: \\
+        \begin{tabular}{ccl}
+            $S$ & $\rightarrow$ & $T S$ \\
+            & | & $\varepsilon$ \\
+            $T$ & $\rightarrow$ & $(S)$ \\
+            & | & $[S]$ \\
+            & | & $\{S\}$ \\
+        \end{tabular} \\
+        
+        \vspace{0.5cm}
+        Ya no es posible elegir arbitrariamente dónde "romper" la cadena $SS$. \\
+        La cadena vacía $\varepsilon$ solo es generada por $S$, evitando que $T$ pueda ser invisible y crear derivaciones redundantes. \\ 
+
+        \vspace{0.5cm}
+        \textbf{Verificación:} \\
+        Para la cadena $()()$, la única derivación por la izquierda posible es: \\
+        $S \Rightarrow TS \Rightarrow (S)S \Rightarrow (\varepsilon)S \Rightarrow ()TS \Rightarrow ()(S)S \Rightarrow ()(\varepsilon)S \Rightarrow ()()\varepsilon \Rightarrow ()()$ \\
+        No existe otra secuencia de reglas que produzca la misma cadena, por lo tanto, la gramática no es ambigua.
     }
 
 
@@ -276,7 +398,41 @@ Encuentre una gramática regular para los siguientes conjuntos:
 
 
 \newpage { \large \textbf{Ejercicio 117.} } La GLC del ejemplo 54 es ambigua.
-De dos ejemplos de árboles de derivación para una misma cadena. 
+De dos ejemplos de árboles de derivación para una misma cadena. \\
+\textbf{Ejemplo 54}: \\
+\begin{tabular}{ccl}
+    $S$ & $\rightarrow$ & \texttt{IF} $C$ \texttt{THEN} $S$ \\
+    & | & \texttt{IF} $C$ \texttt{THEN} $S$ \texttt{ELSE} $S$ \\
+    & | & $E$ \\
+
+    $E$ & $\rightarrow$ & \texttt{print .°k"} \\
+    & | & \texttt{break} \\
+    & | & \texttt{return true} \\
+    & | & \texttt{return false} \\
+    & | & $E$, $E$ \\
+
+    $C$ & $\rightarrow$ & \texttt{false} \\
+    & | & \texttt{true} \\
+\end{tabular}
+    % Respuesta:
+    \vspace{\Aspace} \par
+    { \color{azul} 
+        \raggedright
+        Cadena: \texttt{IF true THEN IF true THEN break ELSE return true} \\
+        \textbf{Ejemplo 1} \\
+        \begin{figure}[!ht]
+            \centering
+            \includegraphics[width=0.9\textwidth]{./figuras/117_a_1/117_a_1.pdf}
+        \end{figure} \par
+
+        \textbf{Ejemplo 2} \\
+        \begin{figure}[!ht]
+            \centering
+            \includegraphics[width=0.9\textwidth]{./figuras/117_a_2/117_a_2.pdf}
+        \end{figure}
+    }
+
+\newpage
 Decide si la siguiente gramática alternativa es ambigua o no: \par
 \begin{tabular}{ccl}
     $S$ & $\rightarrow$ & \texttt{IF} $C$ \texttt{THEN} $S$ \texttt{ENDIF} \\
@@ -297,7 +453,39 @@ Decide si la siguiente gramática alternativa es ambigua o no: \par
 \end{tabular} \\
     % Respuesta:
     \vspace{\Aspace} \par
-    { \color{azul} 
-
+    { \color{azul}
+        \raggedright
+        La gramática alternativa \textbf{no es ambigua}. \\[6pt]
+        La ambigüedad original del Ejemplo 54 se debía al problema de la cadena
+        \texttt{IF true THEN IF true THEN break ELSE return true}
+        admitía dos árboles de derivación distintos porque no había forma
+        de determinar a cuál \texttt{IF} pertenecía el \texttt{ELSE}. \\[6pt]
+        En la gramática alternativa, la introducción del token \texttt{ENDIF}
+        como marcador de cierre obligatorio resuelve el problema. Ahora las
+        dos lecturas antes ambiguas producen cadenas \textbf{distintas}:
+        
+        \begin{itemize}
+            \item \texttt{IF true THEN IF true THEN break ELSE return true
+                ENDIF ENDIF} \\
+                (el \texttt{ELSE} pertenece al \texttt{IF} interior,
+                que cierra con su propio \texttt{ENDIF})
+            \item \texttt{IF true THEN IF true THEN break ENDIF ELSE
+                return true ENDIF} \\
+                (el \texttt{ELSE} pertenece al \texttt{IF} exterior,
+                pues el \texttt{IF} interior ya cerró con \texttt{ENDIF})
+        \end{itemize}
+        Al ser cadenas distintas, ninguna admite dos árboles de derivación.
+        En general, dado cualquier \texttt{IF}, el \texttt{ENDIF}
+        correspondiente lo cierra de forma unívoca: si aparece \texttt{ELSE}
+        antes del \texttt{ENDIF}, se aplica la producción
+        $S \rightarrow \texttt{IF}\ C\ \texttt{THEN}\ S\ \texttt{ELSE}\ S\
+        \texttt{ENDIF}$; si no, se aplica
+        $S \rightarrow \texttt{IF}\ C\ \texttt{THEN}\ S\ \texttt{ENDIF}$.
+        En ambos casos la elección es determinista. \\[6pt]
+        Las producciones de $E$ tampoco introducen ambigüedad: son
+        estrictamente recursivas por la izquierda
+        ($E \rightarrow E\ \texttt{break}$, $E \rightarrow E\ \texttt{return true}$,
+        etc.), por lo que cada secuencia de terminales derivable desde $E$
+        tiene una única derivación por izquierda. \\[6pt]
     }
 \end{document}
