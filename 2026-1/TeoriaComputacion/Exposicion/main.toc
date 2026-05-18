@@ -1,0 +1,5 @@
+\beamer@sectionintoc {1}{Máquinas de Turing como Algoritmos}{2}{0}{1}
+\beamer@sectionintoc {2}{Problemas de Decisión y Lenguajes Recursivos}{6}{0}{2}
+\beamer@sectionintoc {3}{El límite matemático: Indecidibilidad}{9}{0}{3}
+\beamer@sectionintoc {4}{La Tesis de Church-Turing}{12}{0}{4}
+\beamer@sectionintoc {5}{Verificar que un lenguaje sea recursivo}{15}{0}{5}
