@@ -1,0 +1,250 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage[margin=2cm]{geometry}
+\begin{document}
+
+\begin{table}[ht]
+  \centering
+  \caption{Tiempos de ejecución — Polinomio 1 ($O(n^2)$)}
+  \label{tab:polinomio1}
+  \begin{tabular}{rr}
+    \toprule
+    $n$ & Tiempo de ejecución \\
+    \midrule
+    500 & 201.0740\,µs \\
+    1,000 & 844.7280\,µs \\
+    2,000 & 3.4778\,ms \\
+    3,000 & 7.7801\,ms \\
+    5,000 & 21.5232\,ms \\
+    7,000 & 42.4610\,ms \\
+    10,000 & 86.4387\,ms \\
+    15,000 & 197.4038\,ms \\
+    20,000 & 343.5000\,ms \\
+    30,000 & 777.6184\,ms \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{table}[ht]
+  \centering
+  \caption{Tiempos de ejecución — Polinomio 2 ($O(n \log n)$)}
+  \label{tab:polinomio2}
+  \begin{tabular}{rr}
+    \toprule
+    $n$ & Tiempo de ejecución \\
+    \midrule
+    10,000 & 857.8920\,µs \\
+    50,000 & 5.4186\,ms \\
+    100,000 & 12.2009\,ms \\
+    500,000 & 71.8926\,ms \\
+    1,000,000 & 155.4319\,ms \\
+    2,000,000 & 333.4747\,ms \\
+    3,000,000 & 518.5661\,ms \\
+    5,000,000 & 909.9825\,ms \\
+    7,000,000 & 1.2990\,s \\
+    10,000,000 & 1.9221\,s \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{table}[ht]
+  \centering
+  \caption{Tiempos de ejecución — Polinomio 3 ($O(n)$)}
+  \label{tab:polinomio3}
+  \begin{tabular}{rr}
+    \toprule
+    $n$ & Tiempo de ejecución \\
+    \midrule
+    10,000 & 20.4010\,µs \\
+    50,000 & 101.5430\,µs \\
+    100,000 & 202.8740\,µs \\
+    500,000 & 1.0646\,ms \\
+    1,000,000 & 2.1265\,ms \\
+    2,000,000 & 4.1067\,ms \\
+    3,000,000 & 6.6811\,ms \\
+    5,000,000 & 10.3838\,ms \\
+    7,000,000 & 15.6404\,ms \\
+    10,000,000 & 22.8040\,ms \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{table}[ht]
+  \centering
+  \caption{Tiempos de ejecución — Polinomio 4 ($O(n)$)}
+  \label{tab:polinomio4}
+  \begin{tabular}{rr}
+    \toprule
+    $n$ & Tiempo de ejecución \\
+    \midrule
+    10,000 & 32.3010\,µs \\
+    50,000 & 161.2660\,µs \\
+    100,000 & 362.0410\,µs \\
+    500,000 & 1.6219\,ms \\
+    1,000,000 & 3.2598\,ms \\
+    2,000,000 & 6.7007\,ms \\
+    3,000,000 & 9.8165\,ms \\
+    5,000,000 & 16.9991\,ms \\
+    7,000,000 & 23.1858\,ms \\
+    10,000,000 & 32.9864\,ms \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{table}[ht]
+  \centering
+  \caption{Tiempos de ejecución — Sum ($O(n)$)}
+  \label{tab:sum}
+  \begin{tabular}{rr}
+    \toprule
+    $n$ & Tiempo de ejecución \\
+    \midrule
+    100,000 & 218.7250\,µs \\
+    500,000 & 1.0313\,ms \\
+    1,000,000 & 2.1191\,ms \\
+    2,000,000 & 4.5373\,ms \\
+    3,000,000 & 6.4210\,ms \\
+    5,000,000 & 13.4520\,ms \\
+    7,000,000 & 20.7139\,ms \\
+    10,000,000 & 32.6061\,ms \\
+    15,000,000 & 50.9609\,ms \\
+    20,000,000 & 66.9751\,ms \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{table}[ht]
+  \centering
+  \caption{Tiempos de ejecución — RSum ($O(n)$)}
+  \label{tab:rsum}
+  \begin{tabular}{rr}
+    \toprule
+    $n$ & Tiempo de ejecución \\
+    \midrule
+    1,000 & 335.7120\,µs \\
+    2,000 & 1.0722\,ms \\
+    3,000 & 2.1842\,ms \\
+    5,000 & 19.0461\,ms \\
+    7,000 & 44.3347\,ms \\
+    10,000 & 137.0227\,ms \\
+    12,000 & 182.7842\,ms \\
+    15,000 & 289.1696\,ms \\
+    18,000 & 408.5071\,ms \\
+    20,000 & 577.4380\,ms \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{table}[ht]
+  \centering
+  \caption{Tiempos de ejecución — Add ($O(n^2)$)}
+  \label{tab:add}
+  \begin{tabular}{rr}
+    \toprule
+    $n$ & Tiempo de ejecución \\
+    \midrule
+    100 & 165.8420\,µs \\
+    200 & 557.6420\,µs \\
+    400 & 2.2490\,ms \\
+    600 & 5.2358\,ms \\
+    800 & 8.8062\,ms \\
+    1,000 & 13.6477\,ms \\
+    1,200 & 20.1402\,ms \\
+    1,500 & 33.1476\,ms \\
+    1,800 & 48.9597\,ms \\
+    2,000 & 67.0839\,ms \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{table}[ht]
+  \centering
+  \caption{Tiempos de ejecución — Trasp ($O(n^2)$)}
+  \label{tab:trasp}
+  \begin{tabular}{rr}
+    \toprule
+    $n$ & Tiempo de ejecución \\
+    \midrule
+    100 & 41.5410\,µs \\
+    300 & 372.5950\,µs \\
+    600 & 1.4871\,ms \\
+    900 & 3.3472\,ms \\
+    1,200 & 6.3003\,ms \\
+    1,500 & 9.9603\,ms \\
+    2,000 & 17.7941\,ms \\
+    2,500 & 29.3245\,ms \\
+    3,500 & 59.3193\,ms \\
+    5,000 & 155.1489\,ms \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{table}[ht]
+  \centering
+  \caption{Tiempos de ejecución — Mult ($O(n^3)$)}
+  \label{tab:mult}
+  \begin{tabular}{rr}
+    \toprule
+    $n$ & Tiempo de ejecución \\
+    \midrule
+    100 & 12.7125\,ms \\
+    200 & 100.1668\,ms \\
+    300 & 325.6764\,ms \\
+    400 & 768.2177\,ms \\
+    500 & 1.5144\,s \\
+    600 & 2.6010\,s \\
+    700 & 4.1743\,s \\
+    800 & 6.2492\,s \\
+    900 & 8.9168\,s \\
+    1,000 & 12.2373\,s \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{table}[ht]
+  \centering
+  \caption{Tiempos de ejecución — Perm ($O(n!)$)}
+  \label{tab:perm}
+  \begin{tabular}{rr}
+    \toprule
+    $n$ & Tiempo de ejecución \\
+    \midrule
+    3 & 422\,ns \\
+    4 & 1.1730\,µs \\
+    5 & 5.3820\,µs \\
+    6 & 25.0260\,µs \\
+    7 & 174.0150\,µs \\
+    8 & 1.4394\,ms \\
+    9 & 13.4568\,ms \\
+    10 & 127.1139\,ms \\
+    11 & 1.3867\,s \\
+    12 & 16.6943\,s \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{table}[ht]
+  \centering
+  \caption{Tiempos de ejecución — SeqSearch ($O(n)$)}
+  \label{tab:seqsearch}
+  \begin{tabular}{rr}
+    \toprule
+    $n$ & Tiempo de ejecución \\
+    \midrule
+    100,000 & 179.0700\,µs \\
+    500,000 & 895.7680\,µs \\
+    1,000,000 & 1.7590\,ms \\
+    5,000,000 & 9.3681\,ms \\
+    10,000,000 & 17.6167\,ms \\
+    20,000,000 & 36.9621\,ms \\
+    30,000,000 & 53.1168\,ms \\
+    50,000,000 & 90.5206\,ms \\
+    75,000,000 & 137.4871\,ms \\
+    100,000,000 & 177.4072\,ms \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\end{document}
