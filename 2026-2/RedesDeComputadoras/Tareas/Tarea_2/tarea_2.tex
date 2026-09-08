@@ -1,0 +1,184 @@
+\documentclass[12pt,letterpaper]{article}
+
+% ---------- Paquetes ----------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage[margin=3cm]{geometry}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage{longtable}
+\usepackage{array}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=blue,
+    citecolor=black
+}
+
+\titleformat{\section}{\large\bfseries}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{0.5em}{}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+\begin{document}
+
+% ==================================================
+% PORTADA
+% ==================================================
+\begin{titlepage}
+    \centering
+    \vspace*{1cm}
+
+    \includegraphics[width=4cm]{escudo.png}
+
+    \vspace{0.5cm}
+
+    {\Large \textbf{Universidad de Sonora}}\\[0.3cm]
+    {\large Licenciatura en Ciencias de la Computación}
+
+    \vspace{1.8cm}
+
+    {\Large \textbf{Estándares IEEE para Redes Inalámbricas}}\\[0.3cm]
+    {\large Investigación documental y reporte}
+
+    \vspace{1.8cm}
+
+    \begin{tabular}{rl}
+        \textbf{Materia:} & Redes de Computadoras I \\[4pt]
+        \textbf{Periodo:} & 2026-2 \\[4pt]
+        \textbf{Profesor:} & Dr. Donald José Rodríguez Úbeda \\
+    \end{tabular}
+
+    \vspace{1.3cm}
+
+    {\large \textbf{Integrantes del equipo}}
+
+    \vspace{0.4cm}
+
+    \begin{tabular}{ll}
+        Angel Alberto Amaya Soria & Expediente 223210350 \\[4pt]
+        Angel Fernando Bórquez Guerrero & Expediente 219208106 \\[4pt]
+        Emily Margarita Beltrán Zazueta & Expediente 223203546 \\[4pt]
+        Gabriela Aydee Miranda & Expediente 222220740 \\[4pt]
+        Javier Leonardo Miranda Sánchez & Expediente 223215039 \\
+    \end{tabular}
+
+    \vfill
+
+    {\large Hermosillo, Sonora \hspace{1cm} Agosto de 2026}
+
+\end{titlepage}
+
+% ==================================================
+% ÍNDICE
+% ==================================================
+\tableofcontents
+\newpage
+
+% ==================================================
+% CONTENIDO
+% ==================================================
+\section{Introducción}
+
+Las redes inalámbricas ocupan un lugar central dentro del estudio de las redes de computadoras, ya que permiten la comunicación de datos sin necesidad de un medio guiado, adaptándose a escenarios que van desde la conexión de un mouse o un audífono hasta la interconexión de zonas rurales completas. Para lograr que equipos de distintos fabricantes puedan interoperar entre sí, el Instituto de Ingenieros Eléctricos y Electrónicos (IEEE) ha desarrollado, a través de su comité IEEE 802 de redes de área local y metropolitana, una familia de estándares que especifican la capa física y la subcapa de control de acceso al medio de las principales tecnologías inalámbricas. El presente reporte investiga los estándares IEEE más relevantes para redes inalámbricas, describiendo para cada uno su nombre, el tipo de red en el que se emplea, su funcionamiento, su fecha de publicación y su estado actual.
+
+\section{Estándares IEEE para redes inalámbricas}
+
+\subsection{IEEE 802.11 (Wi-Fi)}
+
+\textbf{Nombre del estándar.} IEEE 802.11, conocido comercialmente como Wi-Fi.
+
+\textbf{Tipo de red.} LAN — Red de área local inalámbrica (WLAN).
+
+\textbf{Descripción del estándar.} Define las especificaciones de la capa física (PHY) y de la subcapa de control de acceso al medio (MAC) para la comunicación inalámbrica entre dispositivos dentro de una red de área local, ya sea en modo infraestructura, a través de un punto de acceso, o en modo ad-hoc, de manera directa entre equipos. A lo largo de los años se han desarrollado numerosas enmiendas sobre el estándar base —como 802.11a, 802.11b, 802.11g, 802.11n, 802.11ac, 802.11ax y 802.11be— que han incrementado progresivamente la velocidad de transmisión, ampliado las bandas de frecuencia utilizadas y mejorado las técnicas de modulación, dando origen a las generaciones comerciales conocidas como Wi-Fi 4, Wi-Fi 5, Wi-Fi 6 y, más recientemente, Wi-Fi 7.
+
+\textbf{Fecha de publicación.} La primera versión del estándar se publicó en 1997. La versión base vigente, IEEE 802.11-2024, se publicó el 28 de abril de 2025, y su enmienda más reciente y de mayor perfil comercial, IEEE 802.11be (Wi-Fi 7), se publicó el 22 de julio de 2025.
+
+\textbf{Estado.} Activo; el grupo de trabajo IEEE 802.11 continúa desarrollando nuevas enmiendas y sesiones de trabajo.
+
+\subsection{IEEE 802.15 (Bluetooth / Zigbee)}
+
+\textbf{Nombre del estándar.} IEEE 802.15, que agrupa distintos subestándares para redes inalámbricas de corto alcance, entre ellos 802.15.1 (base de Bluetooth) y 802.15.4 (base de Zigbee y tecnologías similares).
+
+\textbf{Tipo de red.} PAN — Red de área personal inalámbrica (WPAN).
+
+\textbf{Descripción del estándar.} Especifica las capas física y de acceso al medio para la comunicación inalámbrica de corto alcance entre dispositivos personales. El subestándar 802.15.1 sentó las bases técnicas que dieron origen a Bluetooth, mientras que 802.15.4 define una red de área personal inalámbrica de baja velocidad de datos (LR-WPAN), orientada a dispositivos de bajo consumo energético como sensores, controles remotos y equipos de domótica; sobre esta base se han construido tecnologías como Zigbee, 6LoWPAN, Thread y WirelessHART.
+
+\textbf{Fecha de publicación.} El subestándar 802.15.1 se publicó en 2002, mientras que 802.15.4 se aprobó originalmente en 2003 y ha tenido revisiones posteriores, siendo la más reciente la del año 2020.
+
+\textbf{Estado.} Activo; el subestándar 802.15.4 en particular continúa vigente y en desarrollo, mientras que algunos otros subestándares del grupo 802.15 se encuentran en estado inactivo o hibernando al haber sido sustituidos por especificaciones mantenidas por otras organizaciones, como el caso de Bluetooth, que actualmente es gestionado por el Bluetooth Special Interest Group (SIG).
+
+\subsection{IEEE 802.16 (WiMAX)}
+
+\textbf{Nombre del estándar.} IEEE 802.16, conocido comercialmente como WiMAX (Worldwide Interoperability for Microwave Access).
+
+\textbf{Tipo de red.} MAN — Red de área metropolitana inalámbrica (WMAN).
+
+\textbf{Descripción del estándar.} Define las especificaciones para sistemas de acceso inalámbrico de banda ancha de largo alcance, orientados a proporcionar conectividad de alta velocidad en áreas metropolitanas. Las primeras versiones del estándar contemplaban únicamente enlaces fijos punto a multipunto entre una estación base y los equipos de los usuarios; posteriormente, la enmienda 802.16e incorporó soporte de movilidad limitada, permitiendo el uso de terminales en movimiento.
+
+\textbf{Fecha de publicación.} La primera versión del estándar se publicó en 2001; entre sus revisiones más relevantes se encuentran 802.16-2004 y 802.16-2009.
+
+\textbf{Estado.} Hibernando/inactivo; el grupo de trabajo se encuentra actualmente sin actividad de desarrollo, ya que la tecnología WiMAX fue desplazada comercialmente por las redes móviles LTE y 5G.
+
+\subsection{IEEE 802.20 (Mobile Broadband Wireless Access)}
+
+\textbf{Nombre del estándar.} IEEE 802.20, también conocido como MBWA (Mobile Broadband Wireless Access).
+
+\textbf{Tipo de red.} WAN — Red de área amplia inalámbrica de banda ancha móvil.
+
+\textbf{Descripción del estándar.} Define una interfaz aérea (física y de acceso al medio) para sistemas de acceso inalámbrico de banda ancha orientados específicamente a movilidad total, incluyendo soporte para terminales que se desplazan a velocidades vehiculares. Su objetivo fue ofrecer conectividad IP de alta velocidad y baja latencia optimizada para escenarios completamente móviles, a diferencia de otros estándares de la época pensados originalmente para enlaces fijos o de movilidad limitada.
+
+\textbf{Fecha de publicación.} 2008 (IEEE 802.20-2008).
+
+\textbf{Estado.} Hibernando/inactivo; el grupo de trabajo dejó de tener actividad de desarrollo poco después de la publicación del estándar.
+
+\subsection{IEEE 802.22 (Wireless Regional Area Network)}
+
+\textbf{Nombre del estándar.} IEEE 802.22, conocido como WRAN (Wireless Regional Area Network).
+
+\textbf{Tipo de red.} WAN/RAN — Red de área regional inalámbrica, orientada a cubrir zonas de gran extensión geográfica con baja densidad de usuarios.
+
+\textbf{Descripción del estándar.} Define un estándar de acceso inalámbrico que emplea técnicas de radio cognitiva para aprovechar de forma oportunista los llamados ``espacios en blanco'' (\textit{white spaces}) del espectro de televisión, es decir, canales de televisión que se encuentran libres en una región geográfica determinada, sin causar interferencia perjudicial a los servicios de radiodifusión de televisión digital y analógica ni a otros dispositivos con licencia. Su propósito es llevar acceso de banda ancha a zonas rurales o de difícil cobertura y baja densidad poblacional.
+
+\textbf{Fecha de publicación.} Julio de 2011.
+
+\textbf{Estado.} Activo, aunque con una adopción comercial limitada en comparación con otros estándares de la familia 802.
+
+\section{Conclusión}
+
+La revisión de los estándares IEEE para redes inalámbricas muestra cómo el comité IEEE 802 ha desarrollado especificaciones diferenciadas según el alcance y el propósito de cada tipo de red: IEEE 802.11 para redes de área local (WLAN), IEEE 802.15 para redes de área personal (WPAN), IEEE 802.16 para redes de área metropolitana (WMAN) y los estándares IEEE 802.20 y 802.22 orientados a escenarios de área amplia y regional. Mientras que estándares como 802.11 y 802.15.4 se mantienen activos y en constante evolución debido a su amplia adopción comercial, otros como 802.16 y 802.20 han quedado inactivos al ser desplazados por tecnologías móviles más recientes, lo que evidencia que la vigencia de un estándar depende tanto de sus capacidades técnicas como de su éxito en el mercado.
+
+% ==================================================
+% REFERENCIAS BIBLIOGRÁFICAS (formato APA)
+% ==================================================
+\newpage
+\section*{Referencias bibliográficas}
+\addcontentsline{toc}{section}{Referencias bibliográficas}
+
+\begin{itemize}[leftmargin=1.5em,itemsep=8pt]
+
+\item[] IEEE 802.11 Working Group. (2026). \textit{IEEE 802.11, the working group setting the standards for wireless LANs}. \url{https://www.ieee802.org/11/}
+
+\item[] IEEE 802.16 Working Group. (s.f.). \textit{IEEE 802.16 published standards and drafts}. \url{https://www.ieee802.org/16/published.html}
+
+\item[] IEEE Standards Association. (2008). \textit{IEEE 802.20-2008 — IEEE standard for local and metropolitan area networks. Part 20: Air interface for mobile broadband wireless access systems supporting vehicular mobility}. \url{https://standards.ieee.org/standard/802_20-2008.html}
+
+\item[] IEEE Standards Association. (2025). \textit{IEEE 802.11be-2024}. \url{https://standards.ieee.org/ieee/802.11be/7516/}
+
+\item[] IEEE Technology Navigator. (2026). \textit{802 Standards}. \url{https://technav.ieee.org/topic/802-standards/}
+
+\item[] TechTarget. (s.f.). \textit{What are the IEEE 802 wireless standards?} \url{https://www.techtarget.com/searchnetworking/reference/IEEE-802-Wireless-Standards-Fast-Reference}
+
+\item[] Wikipedia. (2025). \textit{IEEE 802.15.4}. En \textit{Wikipedia, the free encyclopedia}. \url{https://en.wikipedia.org/wiki/IEEE_802.15.4}
+
+\item[] Wikipedia. (2025). \textit{IEEE 802.22}. En \textit{Wikipedia, the free encyclopedia}. \url{https://en.wikipedia.org/wiki/IEEE_802.22}
+
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,176 @@
+\documentclass[12pt,letterpaper]{article}
+
+% ---------- Paquetes ----------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage[margin=3cm]{geometry}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage{longtable}
+\usepackage{array}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=blue,
+    citecolor=black
+}
+
+\titleformat{\section}{\large\bfseries}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{0.5em}{}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+\begin{document}
+
+% ==================================================
+% PORTADA
+% ==================================================
+\begin{titlepage}
+    \centering
+    \vspace*{1cm}
+
+    \includegraphics[width=4cm]{escudo.png}
+
+    \vspace{0.5cm}
+
+    {\Large \textbf{Universidad de Sonora}}\\[0.3cm]
+    {\large Licenciatura en Ciencias de la Computación}
+
+    \vspace{1.8cm}
+
+    {\Large \textbf{Arquitectura de Diferentes Sistemas Operativos}}\\[0.3cm]
+    {\large El caso de macOS}
+
+    \vspace{1.8cm}
+
+    \begin{tabular}{rl}
+        \textbf{Materia:} & Sistemas Operativos \\[4pt]
+        \textbf{Periodo:} & 2026-2 \\
+    \end{tabular}
+
+    \vspace{1.3cm}
+
+    {\large \textbf{Integrantes del equipo}}
+
+    \vspace{0.4cm}
+
+    \begin{tabular}{ll}
+        Angel Fernando Bórquez Guerrero & Expediente 219208106 \\[4pt]
+        Angel Alberto Amaya Soria & Expediente 223210350 \\[4pt]
+        Javier Leonardo Miranda Sánchez & Expediente 223215039 \\[4pt]
+        Oliver Ruiz Beltrán & Expediente 223204115 \\
+    \end{tabular}
+
+    \vfill
+
+    {\large Hermosillo, Sonora \hspace{1cm} Septiembre de 2026}
+
+\end{titlepage}
+
+% ==================================================
+% ÍNDICE
+% ==================================================
+\tableofcontents
+\newpage
+
+% ==================================================
+% CONTENIDO
+% ==================================================
+\section{Introducción}
+
+macOS es el sistema operativo desarrollado por Apple Inc. para su línea de computadoras Macintosh. Su estudio resulta relevante dentro del curso de Sistemas Operativos porque constituye un ejemplo representativo de sistema operativo comercial construido sobre una base UNIX, con un núcleo híbrido y una arquitectura organizada en capas claramente diferenciadas. El presente reporte investiga el objetivo de macOS, sus requerimientos mínimos de hardware en su versión vigente y describe cada uno de los componentes que conforman su arquitectura, explicando el propósito de cada uno y su relación con los demás.
+
+\section{Objetivo del sistema operativo}
+
+El objetivo central de macOS es proporcionar el entorno de software que permite operar las computadoras Macintosh, administrando de forma eficiente el hardware del equipo (procesador, memoria, almacenamiento y dispositivos periféricos) y ofreciendo, al mismo tiempo, una interfaz gráfica intuitiva, estable y segura para que los usuarios ejecuten aplicaciones y realicen sus tareas cotidianas. A diferencia de otros sistemas operativos de propósito general, macOS busca además integrar de manera fluida el hardware y el software diseñados por el mismo fabricante, así como ofrecer continuidad con el resto del ecosistema de dispositivos de Apple (iPhone, iPad, Apple Watch), aprovechando una base técnica de tipo UNIX que le brinda estabilidad, soporte multitarea real, gestión de memoria protegida y compatibilidad con estándares abiertos como POSIX.
+
+\section{Requerimientos mínimos de hardware}
+
+Los requerimientos de hardware de macOS varían con cada versión, ya que Apple retira gradualmente el soporte de los modelos de equipo más antiguos. Para la versión vigente al momento de este reporte, macOS Tahoe (macOS 26), publicada el 15 de septiembre de 2025, los requerimientos mínimos son los siguientes:
+
+\begin{itemize}[nosep]
+    \item \textbf{Modelos de equipo compatibles:} MacBook Air con chip Apple Silicon (2020 en adelante); MacBook Pro con chip Apple Silicon (2020 en adelante), además de los modelos Intel MacBook Pro de 13 pulgadas (2020, con cuatro puertos Thunderbolt 3) y MacBook Pro de 16 pulgadas (2019); Mac mini (2020 en adelante); iMac (2020 en adelante); Mac Studio (2022 en adelante); y Mac Pro (2019 en adelante). Esta es la última versión de macOS con soporte, aunque limitado, para equipos con procesador Intel.
+    \item \textbf{Memoria RAM:} un mínimo de 8~GB, que corresponde a la configuración base de memoria con la que se han comercializado los equipos Mac con chip Apple Silicon compatibles.
+    \item \textbf{Almacenamiento:} Apple recomienda contar con al menos 20~GB de espacio libre en disco para poder descargar e instalar la actualización; en la práctica, se recomienda disponer de un margen mayor (entre 50 y 60~GB libres) para evitar errores durante el proceso de instalación.
+    \item \textbf{Conexión a Internet:} se requiere para descargar el instalador y para activar diversas funciones del sistema, como Apple Intelligence, disponible únicamente en equipos con chip Apple Silicon (M1 o posterior).
+\end{itemize}
+
+\section{Arquitectura de macOS}
+
+La arquitectura de macOS se organiza en un conjunto de capas apiladas, en donde cada capa ofrece servicios a la capa inmediata superior y, a su vez, se apoya en los servicios que le proporciona la capa inferior. En la base de esta arquitectura se encuentra el núcleo del sistema, y en la parte superior las interfaces con las que interactúa directamente el usuario final. A continuación se describe cada uno de estos componentes.
+
+\subsection{Núcleo XNU (Darwin)}
+
+\textbf{Propósito.} XNU (acrónimo recursivo de \textit{X is Not Unix}) es el núcleo del sistema operativo y forma parte, junto con otras herramientas de bajo nivel, del proyecto de código abierto conocido como Darwin, sobre el cual está construido macOS. Se trata de un núcleo híbrido que combina tres componentes principales:
+
+\begin{itemize}[nosep]
+    \item \textbf{Mach:} aporta la gestión de memoria virtual y memoria protegida, la planificación de tareas y procesos, y el mecanismo de comunicación entre procesos (IPC) mediante paso de mensajes.
+    \item \textbf{BSD:} construido sobre Mach, provee el sistema de archivos, la pila de protocolos de red, los sockets estilo BSD, los hilos POSIX y las políticas básicas de seguridad y permisos de tipo UNIX.
+    \item \textbf{I/O Kit:} es el marco de trabajo orientado a objetos, basado en un subconjunto de C++, que se utiliza para desarrollar los controladores (\textit{drivers}) de dispositivos, permitiendo agregar soporte para nuevo hardware de forma modular.
+\end{itemize}
+
+\textbf{Relación con los demás componentes.} El núcleo es la base de toda la arquitectura: administra directamente el hardware (procesador, memoria y dispositivos) y expone sus servicios al resto del sistema por medio de llamadas al sistema. Todas las capas superiores, desde las utilidades de línea de comandos hasta las aplicaciones gráficas, dependen en última instancia de los servicios que el núcleo proporciona, ya sea de forma directa o a través de las bibliotecas de las capas intermedias.
+
+\subsection{Core OS}
+
+\textbf{Propósito.} Es la capa inmediatamente superior al núcleo dentro del espacio de usuario. Contiene la funcionalidad de bajo nivel de estilo UNIX que no forma parte del núcleo mismo: bibliotecas del sistema, los frameworks de seguridad (incluida la interfaz con el Secure Enclave en los equipos con Apple Silicon), servicios criptográficos, gestión de energía y las interfaces básicas de acceso al hardware.
+
+\textbf{Relación con los demás componentes.} Core OS actúa como intermediario entre el núcleo XNU y el resto de los servicios del sistema: traduce los servicios de bajo nivel del núcleo en bibliotecas y APIs más manejables, que son consumidas por la capa de Core Services y, de forma más limitada, directamente por algunas aplicaciones y utilidades de línea de comandos.
+
+\subsection{Core Services}
+
+\textbf{Propósito.} Ofrece los servicios fundamentales del sistema que requieren la mayoría de las aplicaciones, aunque no estén relacionados directamente con la interfaz gráfica. Incluye frameworks como Core Foundation (estructuras de datos y utilidades básicas), Core Data (persistencia y gestión de datos) y CFNetwork (comunicación en red a alto nivel), entre otros.
+
+\textbf{Relación con los demás componentes.} Se apoya en los servicios de Core OS y del núcleo para ofrecer, a su vez, servicios de más alto nivel a las capas superiores; sirve como puente entre la funcionalidad de bajo nivel del sistema y los frameworks orientados a multimedia y a la construcción de interfaces gráficas.
+
+\subsection{Media}
+
+\textbf{Propósito.} Agrupa los frameworks encargados del manejo de gráficos, audio y video del sistema, tales como Core Graphics (composición gráfica en dos dimensiones, también conocido como Quartz), Core Animation, Core Audio, AVFoundation y Metal, este último la interfaz principal de Apple para cómputo y gráficos acelerados por GPU desde macOS Mojave.
+
+\textbf{Relación con los demás componentes.} Esta capa utiliza los servicios provistos por Core Services y Core OS para ofrecer, a las aplicaciones y a la capa de Cocoa, la capacidad de dibujar interfaces, reproducir contenido multimedia y aprovechar la aceleración por hardware del procesador gráfico, sin que el programador de aplicaciones tenga que interactuar directamente con el hardware.
+
+\subsection{Cocoa (capa de aplicación)}
+
+\textbf{Propósito.} Es la capa superior de la arquitectura, la más cercana al usuario final. Proporciona los frameworks para construir aplicaciones con interfaz gráfica, como AppKit (el conjunto de herramientas de interfaz tradicional de macOS) y SwiftUI (el framework declarativo más reciente de Apple), junto con los entornos de ejecución de los lenguajes Objective-C y Swift. A esta capa pertenecen también la interfaz gráfica Aqua y el Finder, el administrador de archivos del sistema.
+
+\textbf{Relación con los demás componentes.} Todas las aplicaciones que el usuario ve y utiliza directamente —el Finder, Safari, las aplicaciones de productividad, entre otras— se construyen sobre los frameworks de esta capa, la cual a su vez depende de los servicios multimedia de la capa de Media, de los servicios generales de Core Services y, en última instancia, de la gestión de hardware que realiza el núcleo XNU. De esta manera, cada capa de la arquitectura de macOS constituye un eslabón que traduce los servicios de bajo nivel del núcleo en las funciones de alto nivel que finalmente percibe el usuario.
+
+\section{Conclusión}
+
+El estudio de macOS permite observar cómo un sistema operativo comercial moderno organiza su arquitectura en capas claramente delimitadas: un núcleo híbrido (XNU) que combina las ventajas de un micronúcleo (Mach) con las de un núcleo monolítico de estilo UNIX (BSD), sobre el cual se construyen progresivamente los servicios de bajo nivel (Core OS), los servicios generales del sistema (Core Services), el manejo de gráficos y multimedia (Media) y, finalmente, los frameworks de interfaz gráfica con los que interactúa el usuario (Cocoa). Esta organización en capas no solo facilita el mantenimiento y la evolución del sistema operativo, sino que también permite a Apple mantener una base técnica común entre macOS y sus demás sistemas operativos (iOS, iPadOS, watchOS y tvOS), todos ellos derivados del mismo núcleo Darwin/XNU.
+
+% ==================================================
+% REFERENCIAS BIBLIOGRÁFICAS (formato APA)
+% ==================================================
+\newpage
+\section*{Referencias bibliográficas}
+\addcontentsline{toc}{section}{Referencias bibliográficas}
+
+\begin{itemize}[leftmargin=1.5em,itemsep=8pt]
+
+\item[] Apple Inc. (2026, julio 27). \textit{How to upgrade to macOS Tahoe}. Apple Support. \url{https://support.apple.com/en-us/122727}
+
+\item[] Apple Inc. (s.f.). \textit{Kernel architecture overview}. Apple Developer Documentation Archive. \url{https://developer.apple.com/library/archive/documentation/Darwin/Conceptual/KernelProgramming/Architecture/Architecture.html}
+
+\item[] Operating Systems Authority. (2026). \textit{macOS: Architecture, features, and ecosystem}. \url{https://operatingsystemsauthority.com/macos-operating-system/}
+
+\item[] Rao, T. R. (2025, agosto 28). \textit{Apple's Darwin OS and XNU kernel}. \url{https://tansanrao.com/blog/2025/04/xnu-kernel-and-darwin-evolution-and-architecture/}
+
+\item[] Revista Cloud. (2026). \textit{macOS no ejecuta dos kernels: así combina XNU las arquitecturas Mach y BSD}. \url{https://revistacloud.com/macos-no-ejecuta-dos-kernels-asi-combina-xnu-las-arquitecturas-mach-y-bsd}
+
+\item[] Tech to School. (2025, junio 16). \textit{macOS 26 Tahoe system requirements}. \url{https://techtoschool.com/blogs/news/macos-26-tahoe-system-requirements}
+
+\item[] Wikipedia. (2026). \textit{MacOS}. En \textit{Wikipedia, the free encyclopedia}. \url{https://en.wikipedia.org/wiki/MacOS}
+
+\item[] Wikipedia. (2026). \textit{MacOS Tahoe}. En \textit{Wikipedia, the free encyclopedia}. \url{https://en.wikipedia.org/wiki/MacOS_Tahoe}
+
+\end{itemize}
+
+\end{document}
