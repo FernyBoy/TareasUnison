@@ -1,0 +1,213 @@
+\documentclass[12pt,letterpaper]{article}
+
+% ---------- Paquetes ----------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage[margin=3cm]{geometry}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{parskip}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=blue,
+    citecolor=black
+}
+
+\titleformat{\section}{\large\bfseries}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{0.5em}{}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+\begin{document}
+
+% ==================================================
+% PORTADA
+% ==================================================
+\begin{titlepage}
+    \centering
+    \vspace*{1cm}
+
+    \includegraphics[width=4cm]{escudo.png}
+
+    \vspace{0.5cm}
+
+    {\Large \textbf{Universidad de Sonora}}\\[0.3cm]
+    {\large Licenciatura en Ciencias de la Computación}
+
+    \vspace{2.5cm}
+
+    {\Large \textbf{Topologías de Red}}\\[0.3cm]
+    {\large Investigación documental y reporte}
+
+    \vspace{2.5cm}
+
+    \begin{tabular}{rl}
+        \textbf{Materia:} & Redes de Computadoras I \\[4pt]
+        \textbf{Periodo:} & 2026-2 \\[4pt]
+        \textbf{Profesor:} & Dr. Donald José Rodríguez Úbeda \\[4pt]
+        \textbf{Alumno:} & Angel Fernando Bórquez Guerrero \\[4pt]
+        \textbf{Expediente:} & 219208106 \\
+    \end{tabular}
+
+    \vfill
+
+    {\large Hermosillo, Sonora \hspace{1cm} Agosto de 2026}
+
+\end{titlepage}
+
+% ==================================================
+% ÍNDICE
+% ==================================================
+\tableofcontents
+\newpage
+
+% ==================================================
+% CONTENIDO
+% ==================================================
+\section{Introducción}
+
+El presente reporte tiene como objetivo conocer las distintas topologías de red que existen, entendiendo su diseño físico y/o lógico, el estándar del Instituto de Ingenieros Eléctricos y Electrónicos (IEEE) asociado a cada una cuando corresponde, su funcionamiento general, así como sus principales ventajas y desventajas. Esta información resulta fundamental para el diseño, implementación y mantenimiento de redes de computadoras, ya que la elección de una topología adecuada impacta directamente en el costo, la escalabilidad, el desempeño y la tolerancia a fallos de una red.
+
+\section{Definición de topología de red}
+
+Una topología de red es la representación, física o lógica, de la manera en que se disponen y se interconectan los nodos (computadoras, servidores, impresoras, switches, routers, etc.) y los enlaces de comunicación que forman una red. La topología física describe la disposición real del cableado y de los dispositivos, mientras que la topología lógica describe la forma en que realmente viaja la información a través de esos enlaces, la cual no siempre coincide con la disposición física (Barragán Piña, 2012; OpenWebinars, 2021). La topología elegida determina aspectos como el rendimiento, la facilidad de administración, la tolerancia a fallos, la escalabilidad y el costo de una red (Cibersafety, 2025).
+
+\section{Topologías de red}
+
+\subsection{Topología de Bus}
+
+\textbf{Diseño de la topología.} En una topología de bus, todos los nodos se conectan a un único cable central llamado troncal o \textit{backbone}, generalmente mediante conectores en forma de ``T''. En ambos extremos del cable se coloca un terminador que evita que la señal se refleje de vuelta hacia la red (Barragán Piña, 2012).
+
+\textbf{Estándar IEEE.} Corresponde al estándar \textbf{IEEE 802.3}, que en sus primeras variantes (10BASE5 y 10BASE2) empleaba físicamente un cable coaxial compartido en forma de bus.
+
+\textbf{Descripción de su funcionamiento.} Cuando un nodo transmite datos, la señal se propaga a lo largo de todo el cable y llega a todos los demás nodos conectados; sin embargo, solamente el dispositivo cuya dirección coincide con la del destinatario procesa la información, mientras que los demás la descartan. Debido a que el medio es compartido, se requiere un mecanismo de control de acceso al medio, como CSMA/CD, para evitar o resolver colisiones cuando dos nodos transmiten al mismo tiempo.
+
+\textbf{Ventajas y desventajas.}
+\begin{itemize}[nosep]
+    \item[+] Instalación sencilla y económica, ya que requiere poco cableado.
+    \item[+] Fácil de extender agregando nuevos nodos al cable troncal.
+    \item[$-$] Una falla o corte en el cable principal puede dejar fuera de servicio a toda la red.
+    \item[$-$] El rendimiento se degrada conforme aumenta el número de nodos, debido a las colisiones.
+    \item[$-$] La longitud del cable y el número de dispositivos conectados están limitados.
+\end{itemize}
+
+\subsection{Topología de Estrella}
+
+\textbf{Diseño de la topología.} En la topología de estrella cada nodo se conecta de manera individual a un dispositivo central, como un \textit{hub} o, más comúnmente en la actualidad, un \textit{switch}, mediante cable de par trenzado. Ningún nodo se conecta directamente con otro; toda la comunicación pasa por el dispositivo central (SubnetMaster, 2026).
+
+\textbf{Estándar IEEE.} Corresponde al estándar \textbf{IEEE 802.3} en sus variantes basadas en par trenzado (por ejemplo 10BASE-T y posteriores), que es la base de las redes Ethernet modernas.
+
+\textbf{Descripción de su funcionamiento.} El dispositivo central recibe las tramas enviadas por un nodo y las reenvía hacia su destino. Cuando el dispositivo central es un \textit{switch}, la conmutación se realiza por hardware y de forma dedicada a cada puerto, lo que evita colisiones entre los distintos enlaces y mejora el desempeño de la red.
+
+\textbf{Ventajas y desventajas.}
+\begin{itemize}[nosep]
+    \item[+] Si un nodo o su cable falla, el resto de la red sigue funcionando con normalidad.
+    \item[+] Es sencilla de administrar, ampliar y de diagnosticar fallas.
+    \item[$-$] Depende totalmente del dispositivo central: si este falla, toda la red queda inoperante.
+    \item[$-$] Requiere una mayor cantidad de cable que la topología de bus, ya que cada nodo necesita su propio enlace hasta el centro.
+\end{itemize}
+
+\subsection{Topología de Anillo}
+
+\textbf{Diseño de la topología.} En la topología de anillo cada nodo se conecta exactamente con otros dos nodos, formando un círculo cerrado por el que circula la información en uno o en ambos sentidos (Locura Informática Digital, 2019).
+
+\textbf{Estándar IEEE.} Corresponde al estándar \textbf{IEEE 802.5} (Token Ring), desarrollado originalmente por IBM, el cual define una técnica de acceso por paso de testigo (\textit{token}) sobre una topología de anillo (Museo de los 8 Bits, s.f.).
+
+\textbf{Descripción de su funcionamiento.} Un testigo o \textit{token} circula continuamente por el anillo; únicamente el nodo que posee el token en un momento dado tiene permiso para transmitir datos. Al terminar de transmitir, el nodo libera el token para que continúe circulando y otro dispositivo pueda usarlo, lo que evita que existan colisiones en la red.
+
+\textbf{Ventajas y desventajas.}
+\begin{itemize}[nosep]
+    \item[+] Al no existir colisiones, el rendimiento es predecible incluso bajo cargas de tráfico altas.
+    \item[+] Cada nodo actúa como repetidor de la señal, lo que permite cubrir distancias mayores.
+    \item[$-$] Si un solo nodo o segmento del cable falla, se puede interrumpir la comunicación de toda la red, salvo que se implemente un anillo doble de respaldo.
+    \item[$-$] Agregar o quitar nodos generalmente interrumpe temporalmente el funcionamiento del anillo.
+\end{itemize}
+
+\subsection{Topología de Malla}
+
+\textbf{Diseño de la topología.} En la topología de malla cada nodo se conecta con varios o con todos los demás nodos de la red mediante enlaces punto a punto dedicados. Puede clasificarse como malla completa, cuando todos los nodos están interconectados entre sí, o malla parcial, cuando solo algunos nodos cuentan con múltiples conexiones directas (Cibersafety, 2025).
+
+\textbf{Estándar IEEE.} No existe un estándar IEEE exclusivo para el cableado en malla cableada; en el caso de redes inalámbricas, el estándar \textbf{IEEE 802.11s} define el funcionamiento de las redes en malla Wi-Fi.
+
+\textbf{Descripción de su funcionamiento.} Debido a que existen múltiples rutas posibles entre dos nodos, la red utiliza protocolos de enrutamiento para determinar el mejor camino disponible para cada transmisión, pudiendo redirigir el tráfico automáticamente si alguno de los enlaces falla.
+
+\textbf{Ventajas y desventajas.}
+\begin{itemize}[nosep]
+    \item[+] Ofrece alta redundancia y tolerancia a fallos, ya que no depende de un único punto de falla.
+    \item[+] Permite distribuir el tráfico entre varias rutas, mejorando la fiabilidad de la red.
+    \item[$-$] Su instalación es costosa y compleja debido a la gran cantidad de enlaces necesarios, especialmente en la malla completa.
+    \item[$-$] Cada nodo debe gestionar múltiples conexiones, lo que incrementa el consumo de recursos.
+\end{itemize}
+
+\subsection{Topología de Árbol}
+
+\textbf{Diseño de la topología.} La topología de árbol es una estructura jerárquica que combina varias topologías en estrella interconectadas mediante un cable troncal o \textit{backbone}, de manera similar a una topología de bus. Existe un nodo raíz del cual se desprenden distintas ramificaciones hacia los demás nodos (Instituto Superior Tecnológico La Recoleta, s.f.).
+
+\textbf{Estándar IEEE.} Se apoya en el estándar \textbf{IEEE 802.3}, ya que en la práctica se implementa interconectando de forma jerárquica varios segmentos o \textit{switches} Ethernet; no cuenta con un número de estándar propio y distinto.
+
+\textbf{Descripción de su funcionamiento.} La información se propaga desde el nodo raíz hacia las ramas, o entre ramas pasando por los nodos superiores de la jerarquía, combinando el comportamiento de difusión característico del bus con la conmutación punto a punto de la estrella.
+
+\textbf{Ventajas y desventajas.}
+\begin{itemize}[nosep]
+    \item[+] Es altamente escalable, ya que se pueden agregar nuevas ramas sin afectar a las existentes.
+    \item[+] Permite segmentar y administrar la red por niveles o departamentos; una falla en una rama no necesariamente afecta a las demás.
+    \item[$-$] Depende en gran medida del cable troncal y de los nodos de nivel superior: si estos fallan, las ramas dependientes quedan aisladas.
+    \item[$-$] El cableado y el mantenimiento se vuelven más complejos conforme crece la red.
+\end{itemize}
+
+\subsection{Topología Híbrida}
+
+\textbf{Diseño de la topología.} La topología híbrida combina dos o más de las topologías básicas descritas anteriormente dentro de una misma red, con el fin de aprovechar los beneficios de cada una según las necesidades de cada segmento (ScanSearch, 2026).
+
+\textbf{Estándar IEEE.} No posee un estándar propio; utiliza en conjunto los estándares correspondientes a las topologías que la conforman, por ejemplo IEEE 802.3 para los segmentos en estrella o árbol, IEEE 802.5 para segmentos en anillo, o IEEE 802.11 para los segmentos inalámbricos.
+
+\textbf{Descripción de su funcionamiento.} Cada segmento de la red opera de acuerdo con las reglas de su propia topología, y todos ellos se interconectan mediante dispositivos como routers o switches de núcleo (\textit{core}), que permiten que el tráfico fluya entre los distintos segmentos.
+
+\textbf{Ventajas y desventajas.}
+\begin{itemize}[nosep]
+    \item[+] Ofrece gran flexibilidad, ya que cada departamento o sección puede usar la topología más adecuada a sus necesidades.
+    \item[+] Una falla en un segmento no necesariamente afecta el funcionamiento del resto de la red.
+    \item[$-$] Su diseño, configuración y documentación son más complejos que los de una topología simple.
+    \item[$-$] Suele implicar mayores costos de equipo y requiere personal capacitado para su mantenimiento.
+\end{itemize}
+
+\section{Conclusión}
+
+No existe una topología de red universalmente mejor que las demás; cada una presenta ventajas y desventajas particulares en cuanto a costo, facilidad de instalación, escalabilidad y tolerancia a fallos. Por ello, en la práctica actual las redes rara vez utilizan una única topología pura: es común encontrar diseños híbridos, como una topología de estrella en el acceso de los usuarios combinada con una topología de árbol en la distribución y enlaces redundantes tipo malla parcial en el núcleo de la red, buscando así equilibrar el rendimiento, el costo y la disponibilidad del servicio.
+
+% ==================================================
+% REFERENCIAS BIBLIOGRÁFICAS (formato APA)
+% ==================================================
+\newpage
+\section*{Referencias bibliográficas}
+\addcontentsline{toc}{section}{Referencias bibliográficas}
+
+\begin{itemize}[leftmargin=1.5em,itemsep=8pt]
+
+\item[] Barragán Piña, A. J. (2012). \textit{Topologías de red}. Universidad de Huelva. \url{https://uhu.es/antonio.barragan/content/5topologias}
+
+\item[] Cibersafety. (2025, abril 3). \textit{Topología de red: Tipos, ventajas y cuál elegir}. \url{https://cibersafety.com/topologia-red-tipos-ventajas-cual-elegir/}
+
+\item[] Instituto Superior Tecnológico La Recoleta. (s.f.). \textit{Unidad 3: Topologías de red}. \url{http://ual.dyndns.org/biblioteca/redes/pdf/unidad\%2003.pdf}
+
+\item[] InstaRedL. (2015, noviembre). \textit{Instalación de redes locales: Estándares IEEE 802}. \url{https://instaredl.blogspot.com/2015/11/estandares-ieee-802.html}
+
+\item[] Locura Informática Digital. (2019, julio 22). \textit{Tipos de topología de red: malla, estrella, árbol, bus y anillo. Explicación}. \url{https://www.locurainformaticadigital.com/topologia-de-red-malla-estrella-arbol-bus-anillo/}
+
+\item[] Museo de los 8 Bits. (s.f.). \textit{Token Ring}. \url{https://www.museo8bits.com/wiki/index.php/Token_Ring}
+
+\item[] OpenWebinars. (2021, abril 7). \textit{Topología de redes informáticas: Tipos, características y aplicaciones}. \url{https://openwebinars.net/blog/topologia-de-redes-informaticas/}
+
+\item[] ScanSearch. (2026, junio 5). \textit{Tipos de topología de red: estrella, malla, anillo, bus e híbrida}. \url{https://scansearch.net/es/articles/network-topology-types-explained/}
+
+\item[] SubnetMaster. (2026, febrero 10). \textit{Topologías de red: tipos, ventajas y desventajas (Estrella, Bus, Anillo, Malla)}. \url{https://subnetmaster.es/guia/topologias-de-red/}
+
+\end{itemize}
+
+\end{document}
