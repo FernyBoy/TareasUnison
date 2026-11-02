@@ -1,0 +1,286 @@
+\documentclass[12pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage[margin=3cm]{geometry}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{amsmath,amssymb}
+\usepackage{array}
+\usepackage[colorlinks=true,linkcolor=black,urlcolor=blue,citecolor=black]{hyperref}
+\usepackage{xurl}
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage{xcolor}
+\titleformat{\section}{\large\bfseries}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection.}{0.5em}{}
+\newcommand{\bits}[1]{\texttt{#1}}
+
+\begin{document}
+
+\begin{titlepage}
+\centering
+\includegraphics[width=4cm]{escudo.png}\\[0.6cm]
+{\Large\bfseries Universidad de Sonora}\\[0.3cm]
+{\large Licenciatura en Ciencias de la Computación}\\[1.5cm]
+{\LARGE\bfseries Investigación sobre detección de errores}\\[0.4cm]
+{\large Código polinomial y distancia (de Hamming)}\\[1.5cm]
+\begin{tabular}{rl}
+\textbf{Materia:} & Redes de Computadoras I\\
+\textbf{Periodo:} & 2026-2\\
+\textbf{Profesor:} & Dr. Donald José Rodríguez Úbeda\\
+\end{tabular}\\[1.5cm]
+{\large\bfseries Integrantes del equipo}\\[0.3cm]
+\begin{tabular}{ll}
+Angel Alberto Amaya Soria & Expediente 223210350\\
+Angel Fernando Bórquez Guerrero & Expediente 219208106\\
+Emily Margarita Beltrán Zazueta & Expediente 223203546\\
+Gabriela Aydee Miranda & Expediente 222220740\\
+Javier Leonardo Miranda Sánchez & Expediente 223215039\\
+\end{tabular}\\[1.5cm]
+Hermosillo, Sonora \hfill Noviembre de 2026
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+\section{Introducción}
+Cuando los datos viajan por un medio físico (cable de cobre, fibra óptica o el aire), el ruido, la interferencia y la atenuación pueden cambiar algunos bits: un \bits{0} llega como \bits{1} o al revés. La capa de enlace de datos no puede evitar que esto ocurra, pero sí puede \emph{detectarlo}, y en algunos casos corregirlo, agregando a cada mensaje bits redundantes calculados a partir de los datos (Tanenbaum \& Wetherall, 2011).
+
+Este reporte describe dos de los conceptos que se emplean para lograrlo: el \textbf{código polinomial}, conocido en la práctica como verificación de redundancia cíclica (CRC), y la \textbf{distancia} entre palabras de código (distancia de Hamming). Para cada uno se explica cómo funciona, se muestran ejemplos resueltos paso a paso y se describe cómo se utiliza en la comunicación de datos.
+
+\section{Conceptos básicos}
+Un \emph{error de bit} ocurre cuando un solo bit de la trama cambia de valor. Un \emph{error de ráfaga} de longitud $b$ ocurre cuando se altera una secuencia de bits cuyo primer y último bit son erróneos, aunque los de en medio pueden o no haber cambiado (Forouzan, 2013). En la práctica las ráfagas son más comunes que los errores aislados, porque el ruido suele durar más que el tiempo de un solo bit.
+
+Para detectar errores, el emisor transmite una \emph{palabra de código} de $n = m + r$ bits: $m$ bits de datos y $r$ bits de redundancia calculados con una regla conocida por ambos extremos. El receptor aplica la misma regla; si el resultado no es consistente, sabe que hubo un error (Stallings, 2014).
+
+\section{Código polinomial (CRC)}
+
+\subsection{Cómo funciona}
+Los códigos polinomiales, también llamados códigos de redundancia cíclica, tratan una cadena de bits como los coeficientes de un polinomio con coeficientes \bits{0} y \bits{1}. Una trama de $k$ bits se ve como un polinomio de grado $k-1$ en el que el bit más a la izquierda es el coeficiente de $x^{k-1}$. Por ejemplo, la cadena \bits{110001} representa $x^5 + x^4 + x^0$ (Tanenbaum \& Wetherall, 2011).
+
+La aritmética es módulo 2, sin acarreos: la suma y la resta son ambas la operación XOR, de modo que $0+0=0$, $0+1=1$, $1+0=1$ y $1+1=0$. La división larga funciona como la división binaria usual, pero cada resta se sustituye por un XOR.
+
+Emisor y receptor acuerdan de antemano un \textbf{polinomio generador} $G(x)$ de grado $r$, cuyo primer y último coeficiente son 1. Con él, el emisor sigue estos pasos (Peterson \& Brown, 1961; Tanenbaum \& Wetherall, 2011):
+\begin{enumerate}[itemsep=2pt]
+\item Agregar $r$ ceros al final de la trama de datos $M(x)$, lo que equivale a calcular $x^r M(x)$.
+\item Dividir (módulo 2) la cadena resultante entre $G(x)$ y obtener el residuo $R(x)$, que tiene a lo más $r$ bits.
+\item Restar (XOR) el residuo de $x^r M(x)$. El resultado, $T(x) = x^r M(x) + R(x)$, es la trama que se transmite. En la práctica esto significa colocar el residuo en los $r$ bits finales, y se le llama secuencia de verificación de trama (FCS).
+\end{enumerate}
+Por construcción, $T(x)$ es divisible entre $G(x)$. El receptor recibe $T'(x)$ y la divide entre $G(x)$: si el residuo es cero, acepta la trama; si es distinto de cero, hubo un error y la descarta (Stallings, 2014).
+
+Si $E(x)$ es el polinomio de error (tiene un 1 en cada posición de bit que se alteró), lo que llega es $T'(x) = T(x) + E(x)$. Como $T(x)$ es divisible entre $G(x)$, el residuo en el receptor es el de $E(x)$ entre $G(x)$. Por lo tanto, \textbf{un error pasa sin ser detectado únicamente si $E(x)$ es divisible entre $G(x)$} (Tanenbaum \& Wetherall, 2011).
+
+\subsection{Qué errores detecta}
+De esa condición se obtienen propiedades que dependen de la elección de $G(x)$ (Tanenbaum \& Wetherall, 2011; Forouzan, 2013):
+\begin{itemize}[itemsep=2pt]
+\item \textbf{Errores de un solo bit:} $E(x) = x^i$. Si $G(x)$ tiene al menos dos términos (incluido el término $x^0$), nunca divide a $x^i$, así que todos se detectan.
+\item \textbf{Errores en número impar de bits:} se detectan todos si $(x+1)$ es factor de $G(x)$, ya que ningún polinomio con un número impar de términos es divisible entre $x+1$.
+\item \textbf{Ráfagas de longitud $\le r$:} se detectan todas. Una ráfaga de longitud exactamente $r+1$ pasa inadvertida con probabilidad $1/2^{\,r-1}$, y las más largas con probabilidad $1/2^{\,r}$.
+\item \textbf{Dos errores aislados:} se detectan si $G(x)$ no divide a $x^k + 1$ para ningún $k$ menor que la longitud de la trama; eso lo cumplen los polinomios primitivos usados en la práctica.
+\end{itemize}
+Con un generador de grado 32 la probabilidad de que una ráfaga larga pase sin detectarse es aproximadamente $2^{-32}$, es decir, menos de una en cuatro mil millones.
+
+\subsection{Polinomios generadores de uso común}
+\begin{center}
+\small
+\begin{tabular}{|>{\raggedright\arraybackslash}p{2.8cm}|>{\raggedright\arraybackslash}p{6.6cm}|>{\raggedright\arraybackslash}p{3.4cm}|}
+\hline
+\textbf{Nombre} & \textbf{Polinomio $G(x)$} & \textbf{Uso típico}\\
+\hline
+CRC-12 & $x^{12}+x^{11}+x^3+x^2+x+1$ & Transmisión de caracteres de 6 bits\\
+\hline
+CRC-16 (CCITT) & $x^{16}+x^{12}+x^5+1$ & HDLC, X.25, PPP\\
+\hline
+CRC-32 (IEEE 802.3) & $x^{32}+x^{26}+x^{23}+x^{22}+x^{16}+x^{12}+x^{11}+x^{10}+x^8+x^7+x^5+x^4+x^2+x+1$ & Ethernet, Wi-Fi, ZIP, PNG\\
+\hline
+\end{tabular}\\[3pt]
+{\footnotesize Tabla 1. Polinomios generadores estándar (Tanenbaum \& Wetherall, 2011; IEEE, 2018).}
+\end{center}
+
+\subsection{Ejemplos}
+
+\subsubsection*{Ejemplo 1: cálculo del CRC}
+Datos: $M = \bits{1101011111}$ ($m=10$ bits). Generador: $G = \bits{10011}$, es decir $G(x) = x^4 + x + 1$, de grado $r=4$.
+
+\textbf{Paso 1.} Se agregan 4 ceros: \bits{11010111110000}.
+
+\textbf{Paso 2.} División módulo 2 (cada línea toma una ventana de 5 bits que empieza en un 1, le hace XOR con \bits{10011} y los bits siguientes bajan; las posiciones donde el bit de la izquierda es 0 simplemente se saltan):
+\begin{verbatim}
+11010111110000 : 10011
+11010  xor 10011 -> 01001
+ 10011 xor 10011 -> 00000
+      11110 xor 10011 -> 01101
+       11010 xor 10011 -> 01001
+        10010 xor 10011 -> 00001
+Residuo (ultimos 4 bits) = 0010
+\end{verbatim}
+\textbf{Paso 3.} La trama transmitida es los datos seguidos del residuo:
+\[ T = \bits{1101011111}\,\bits{0010} = \bits{11010111110010}. \]
+
+\textbf{Verificación en el receptor sin errores.} Al dividir \bits{11010111110010} entre \bits{10011} el residuo es \bits{0000}, de modo que la trama se acepta.
+
+\textbf{Con errores.} Los siguientes resultados se obtuvieron dividiendo la trama alterada entre el mismo generador:
+\begin{center}
+\small
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Caso} & \textbf{Trama recibida} & \textbf{Residuo} & \textbf{Resultado}\\
+\hline
+Sin error & \bits{11010111110010} & \bits{0000} & Se acepta\\
+\hline
+Error de 1 bit (3.er bit) & \bits{11110111110010} & \bits{1110} & Se detecta\\
+\hline
+Ráfaga de 3 bits (bits 4 al 6) & \bits{11001011110010} & \bits{1000} & Se detecta\\
+\hline
+Dos errores (primer y último bit) & \bits{01010111110011} & \bits{1100} & Se detecta\\
+\hline
+$E = \bits{00000010011000}$ & \bits{11010101101010} & \bits{0000} & \textbf{No se detecta}\\
+\hline
+\end{tabular}\\[3pt]
+{\footnotesize Tabla 2. Detección de errores sobre la trama del ejemplo 1.}
+\end{center}
+El último caso ilustra la limitación del método. El patrón de error \bits{00000010011000} es exactamente $G(x)$ desplazado tres posiciones, o sea $E(x) = x^3 G(x)$, que es divisible entre $G(x)$. Es una ráfaga de longitud 5 $= r+1$, el caso en que existe una pequeña probabilidad de que el error pase inadvertido.
+
+\subsubsection*{Ejemplo 2: ejemplo pequeño}
+Datos: $M = \bits{100100}$, generador $G = \bits{1101}$ ($x^3 + x^2 + 1$, $r=3$). Se divide \bits{100100000} entre \bits{1101}:
+\begin{verbatim}
+100100000 : 1101
+1001  xor 1101 -> 0100
+ 1000 xor 1101 -> 0101
+  1010 xor 1101 -> 0111
+   1110 xor 1101 -> 0011
+     1100 xor 1101 -> 0001
+Residuo (ultimos 3 bits) = 001
+\end{verbatim}
+La trama transmitida es $T = \bits{100100}\,\bits{001} = \bits{100100001}$. Al dividirla en el receptor se obtiene residuo \bits{000}, así que se acepta.
+
+\subsection{Cómo se usa en la comunicación}
+El CRC es el mecanismo de detección de errores dominante en la capa de enlace de datos, por varias razones: detecta muy bien las ráfagas, agrega pocos bits (típicamente 16 o 32) y es sencillo de implementar en hardware con un registro de desplazamiento realimentado con compuertas XOR (Stallings, 2014; Tanenbaum \& Wetherall, 2011).
+
+El uso típico es el siguiente (Kurose \& Ross, 2017):
+\begin{enumerate}[itemsep=2pt]
+\item El adaptador de red del emisor calcula el CRC sobre los bytes de la trama y lo coloca al final, en el campo FCS.
+\item El adaptador del receptor recalcula el CRC sobre lo recibido. Si el resultado no es cero, la trama se descarta sin entregarla al nivel superior.
+\item La recuperación depende del protocolo: en Ethernet la trama dañada simplemente se descarta y, si hace falta, protocolos de capas superiores como TCP la retransmiten; en otros enlaces (por ejemplo, Wi-Fi o HDLC) el propio enlace solicita la retransmisión con un esquema ARQ.
+\end{enumerate}
+Ethernet usa un CRC de 32 bits como FCS en cada trama (IEEE, 2018), y el mismo polinomio se emplea en IEEE 802.11, ZIP y PNG, mientras que PPP y HDLC usan CRC-16 o CRC-32 (Tanenbaum \& Wetherall, 2011). Cabe señalar que el CRC está diseñado para errores aleatorios del canal, no para detectar modificaciones malintencionadas, ya que es fácil construir datos distintos con el mismo CRC. Para eso se usan funciones hash criptográficas. La elección del polinomio también influye mucho en la capacidad real de detección según la longitud del mensaje (Koopman \& Chakravarty, 2004).
+
+\section{Distancia (distancia de Hamming)}
+
+\subsection{Cómo funciona}
+La \textbf{distancia de Hamming} entre dos cadenas de bits de la misma longitud es el número de posiciones en que difieren. Se calcula con un XOR bit a bit y contando los unos del resultado (Hamming, 1950; Tanenbaum \& Wetherall, 2011).
+
+Al usar $m$ bits de datos y $r$ de verificación, solo $2^m$ de las $2^n$ palabras posibles ($n = m+r$) son válidas. A ese conjunto de palabras válidas se le llama \emph{código}. La \textbf{distancia mínima} $d_{\min}$ del código es la menor distancia de Hamming entre dos palabras válidas distintas, y determina sus capacidades (Hamming, 1950; Stallings, 2014):
+\begin{itemize}[itemsep=2pt]
+\item Para \textbf{detectar} hasta $t$ errores se necesita $d_{\min} \ge t+1$, ya que $t$ errores no pueden convertir una palabra válida en otra palabra válida.
+\item Para \textbf{corregir} hasta $t$ errores se necesita $d_{\min} \ge 2t+1$: con ello, la palabra recibida sigue estando más cerca de la palabra original que de cualquier otra, y el receptor la decodifica a la palabra válida más cercana.
+\end{itemize}
+\begin{center}
+\small
+\begin{tabular}{|c|c|c|}
+\hline
+$d_{\min}$ & \textbf{Errores que detecta} ($d_{\min}-1$) & \textbf{Errores que corrige} ($\lfloor (d_{\min}-1)/2\rfloor$)\\
+\hline
+1 & 0 & 0\\ \hline
+2 & 1 & 0\\ \hline
+3 & 2 & 1\\ \hline
+4 & 3 & 1\\ \hline
+5 & 4 & 2\\ \hline
+\end{tabular}\\[3pt]
+{\footnotesize Tabla 3. Capacidad de un código según su distancia mínima.}
+\end{center}
+
+\subsection{Ejemplos}
+
+\subsubsection*{Ejemplo 3: distancia entre dos palabras}
+Sean $\bits{10110}$ y $\bits{10011}$. Su XOR es $\bits{00101}$, que tiene dos unos, por lo que $d(\bits{10110},\bits{10011}) = 2$.
+
+\subsubsection*{Ejemplo 4: bit de paridad}
+Si a cada palabra de datos se le agrega un bit de paridad par, dos palabras válidas distintas siempre difieren en al menos dos bits (si cambia un bit de datos también debe cambiar la paridad). Entonces $d_{\min}=2$: detecta todos los errores de un bit, pero no puede decir cuál bit cambió, por lo que no corrige. Tampoco detecta errores de un número par de bits.
+
+\subsubsection*{Ejemplo 5: código con distancia 5}
+Considere el código de cuatro palabras válidas
+\[ \{\bits{0000000000},\ \bits{0000011111},\ \bits{1111100000},\ \bits{1111111111}\}. \]
+Las distancias entre pares son 5 o 10, por lo que $d_{\min}=5$: detecta hasta 4 errores y corrige hasta 2 (Tanenbaum \& Wetherall, 2011). Si se recibe \bits{0000000111}, las distancias a las palabras válidas son 3 (a \bits{0000000000}), 2 (a \bits{0000011111}), 7 y 8, así que el receptor decodifica \bits{0000011111}. Si en cambio hubiera tres errores en \bits{0000000000} y se recibiera \bits{0000000111}, el receptor se equivocaría al ``corregir'', ya que se excedió su capacidad de corrección.
+
+\subsection{Código de Hamming}
+Hamming (1950) propuso un método para construir códigos de distancia 3 que corrigen un error de bit con pocos bits de redundancia. Los bits de verificación ocupan las posiciones que son potencias de 2 (1, 2, 4, 8, \ldots), numeradas desde la izquierda, y los bits de datos ocupan las demás. La posición $p$ de un bit se escribe en binario, y cada bit de verificación se calcula con la paridad par de todas las posiciones cuya representación binaria incluye esa potencia de 2 (Tanenbaum \& Wetherall, 2011). Por ejemplo, el bit 1 verifica las posiciones 1, 3, 5, 7, 9, 11, \ldots; el bit 2 verifica 2, 3, 6, 7, 10, 11, \ldots; el bit 4 verifica 4, 5, 6, 7, 12, \ldots
+
+Para corregir un error de un bit entre $m$ bits de datos se necesitan $r$ bits de verificación que cumplan
+\[ m + r + 1 \le 2^r. \]
+En el receptor se recalcula cada verificación y se suman las posiciones de las verificaciones que fallan: ese número, llamado \emph{síndrome}, es justamente la posición del bit erróneo (si es 0, no hay error), y se corrige invirtiéndolo.
+
+\subsubsection*{Ejemplo 6: Hamming (7,4)}
+Datos: \bits{1011}. Con $r=3$ ($4+3+1 = 8 \le 2^3$), los datos ocupan las posiciones 3, 5, 6 y 7 y las verificaciones las posiciones 1, 2 y 4:
+\begin{center}
+\small
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+\hline
+\textbf{Posición} & 1 & 2 & 3 & 4 & 5 & 6 & 7\\ \hline
+\textbf{Tipo} & $p_1$ & $p_2$ & $d$ & $p_4$ & $d$ & $d$ & $d$\\ \hline
+\textbf{Dato} & & & 1 & & 0 & 1 & 1\\ \hline
+\textbf{Palabra} & 0 & 1 & 1 & 0 & 0 & 1 & 1\\ \hline
+\end{tabular}
+\end{center}
+\begin{itemize}[itemsep=2pt]
+\item $p_1$ verifica 1, 3, 5, 7: $1 \oplus 0 \oplus 1 = 0$, por lo que $p_1 = 0$.
+\item $p_2$ verifica 2, 3, 6, 7: $1 \oplus 1 \oplus 1 = 1$, por lo que $p_2 = 1$.
+\item $p_4$ verifica 4, 5, 6, 7: $0 \oplus 1 \oplus 1 = 0$, por lo que $p_4 = 0$.
+\end{itemize}
+La palabra transmitida es \bits{0110011}.
+
+\textbf{Error en el bit 5.} Se recibe \bits{0110111}. Fallan las verificaciones de $p_1$ (posiciones 1, 3, 5, 7: $0\oplus1\oplus1\oplus1 = 1$) y de $p_4$ (4, 5, 6, 7: $0\oplus1\oplus1\oplus1 = 1$), mientras que $p_2$ pasa. El síndrome es $1 + 4 = 5$, así que el bit 5 es el erróneo, se invierte y se recupera \bits{0110011}.
+
+\textbf{Dos errores.} Si se alteran los bits 2 y 5 se recibe \bits{0010111}, con síndrome $2 \oplus 5 = 7$. El receptor ``corregiría'' el bit 7 y entregaría datos incorrectos. Por eso el código de Hamming simple, con $d_{\min} = 3$, corrige un error o detecta dos, pero no ambas cosas a la vez. Agregando un bit de paridad global se obtiene un código de distancia 4 que corrige un error y detecta dos (SECDED) (Stallings, 2014).
+
+\subsubsection*{Ejemplo 7: carácter ASCII}
+Para la letra ``H'' (\bits{1001000}, $m=7$) se requieren $r=4$ bits de verificación ($7+4+1 = 12 \le 16$), con lo que $n = 11$. Colocando los datos en las posiciones 3, 5, 6, 7, 9, 10 y 11 y calculando $p_1$, $p_2$, $p_4$ y $p_8$ con paridad par, se obtiene la palabra \bits{00110010000}. Si durante la transmisión se invierte la posición 6 y se recibe \bits{00110110000}, fallan las verificaciones de $p_2$ y $p_4$, de modo que el síndrome es $2+4 = 6$ y se corrige el bit 6 (Tanenbaum \& Wetherall, 2011).
+
+\subsection{Cómo se usa en la comunicación}
+Existen dos estrategias para tratar los errores (Tanenbaum \& Wetherall, 2011):
+\begin{itemize}[itemsep=2pt]
+\item \textbf{Detección con retransmisión (ARQ).} Se agregan pocos bits de redundancia (código de $d_{\min}$ pequeña, como CRC o paridad), el receptor detecta el error y pide el reenvío. Es la opción habitual en canales confiables como el cable de cobre o la fibra, donde los errores son raros.
+\item \textbf{Corrección hacia adelante (FEC).} Se agrega más redundancia (código con $d_{\min} \ge 3$, como Hamming) para que el receptor corrija por sí mismo. Se prefiere en canales ruidosos, o cuando retransmitir es caro o imposible, como los enlaces inalámbricos, los satelitales y los de larga distancia, o en el almacenamiento y la memoria (Stallings, 2014).
+\end{itemize}
+Los códigos tipo Hamming con SECDED se usan en la memoria con corrección de errores (ECC) de servidores, que corrige un bit y detecta dos por palabra. En comunicaciones modernas se emplean códigos con mayor distancia y capacidad (Reed-Solomon, convolucionales, LDPC), pero los conceptos de distancia mínima y de decodificación a la palabra más cercana que introdujo Hamming siguen siendo su fundamento (Hamming, 1950; Stallings, 2014).
+
+\section{Comparación}
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|>{\raggedright\arraybackslash}p{3cm}|>{\raggedright\arraybackslash}p{5.6cm}|>{\raggedright\arraybackslash}p{5.6cm}|}
+\hline
+ & \textbf{Código polinomial (CRC)} & \textbf{Distancia / código de Hamming}\\
+\hline
+Idea central & Residuo de la división polinomial módulo 2 entre un generador $G(x)$ & Separación mínima $d_{\min}$ entre palabras válidas; paridades sobre posiciones\\
+\hline
+Redundancia & $r$ bits fijos (16 o 32), sin importar el tamaño de la trama & $r$ crece con $m$ ($m + r + 1 \le 2^r$)\\
+\hline
+Fortaleza & Detecta ráfagas y la mayoría de los errores & Corrige errores de 1 bit sin retransmitir\\
+\hline
+Limitación & Solo detecta; no localiza el error & Un patrón de 2 errores puede corregirse mal\\
+\hline
+Uso típico & FCS en Ethernet, Wi-Fi, PPP, HDLC & Memoria ECC, FEC en canales ruidosos\\
+\hline
+\end{tabular}\\[3pt]
+{\footnotesize Tabla 4. Comparación entre ambos métodos.}
+\end{center}
+
+\section{Conclusiones}
+El código polinomial convierte una trama en un polinomio y transmite el residuo de dividirlo entre un generador común; el receptor solo debe verificar que el residuo de la trama completa sea cero. Con pocos bits detecta casi todos los errores, incluidas ráfagas largas, y por eso es el mecanismo estándar en la capa de enlace. La distancia de Hamming, por su parte, ofrece el criterio para diseñar códigos: $d_{\min}$ determina cuántos errores se detectan ($d_{\min}-1$) y cuántos se corrigen ($\lfloor (d_{\min}-1)/2 \rfloor$). Los dos enfoques son complementarios: el CRC es económico y sirve para detectar y pedir retransmisión, mientras que los códigos de Hamming gastan más redundancia pero permiten corregir sin retransmitir. Elegir entre ellos depende de la tasa de errores del canal y del costo de retransmitir.
+
+\newpage
+\section*{Referencias}
+\addcontentsline{toc}{section}{Referencias}
+\begin{itemize}[leftmargin=1.5em,itemsep=7pt]
+\item[] Forouzan, B. A. (2013). \emph{Data communications and networking} (5.ª ed.). McGraw-Hill.
+\item[] Hamming, R. W. (1950). Error detecting and error correcting codes. \emph{The Bell System Technical Journal, 29}(2), 147--160.
+\item[] Institute of Electrical and Electronics Engineers. (2018). \emph{IEEE Std 802.3-2018: IEEE standard for Ethernet}. IEEE.
+\item[] Koopman, P., \& Chakravarty, T. (2004). Cyclic redundancy code (CRC) polynomial selection for embedded networks. En \emph{Proceedings of the International Conference on Dependable Systems and Networks (DSN 2004)} (pp. 145--154). IEEE.
+\item[] Kurose, J. F., \& Ross, K. W. (2017). \emph{Computer networking: A top-down approach} (7.ª ed.). Pearson.
+\item[] Peterson, W. W., \& Brown, D. T. (1961). Cyclic codes for error detection. \emph{Proceedings of the IRE, 49}(1), 228--235.
+\item[] Stallings, W. (2014). \emph{Data and computer communications} (10.ª ed.). Pearson.
+\item[] Tanenbaum, A. S., \& Wetherall, D. J. (2011). \emph{Computer networks} (5.ª ed.). Prentice Hall.
+\end{itemize}
+\end{document}
