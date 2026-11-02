@@ -1,0 +1,34 @@
+\documentclass{standalone}   % genera solo el dibujo, sin márgenes
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usepackage{graphicx}        % para resizebox
+
+\begin{document}
+\resizebox{1\textwidth}{!}{%
+\begin{circuitikz}
+\tikzstyle{every node}=[font=\fontsize{18.2pt}{23.7pt}\selectfont]
+\node [font=\fontsize{18.2pt}{23.7pt}\selectfont, inner xsep=0.080cm, inner ysep=0.085cm, rounded corners=0.020cm] at (-6.25,20.125) {nuevo};
+\node [font=\fontsize{18.2pt}{23.7pt}\selectfont, inner xsep=0.080cm, inner ysep=0.085cm, rounded corners=0.020cm] at (-6.25,15.125) {listo};
+\node [font=\fontsize{18.2pt}{23.7pt}\selectfont, inner xsep=0.080cm, inner ysep=0.085cm, rounded corners=0.020cm] at (-1.25,12.625) {esperando};
+\node [font=\fontsize{18.2pt}{23.7pt}\selectfont, inner xsep=0.080cm, inner ysep=0.085cm, rounded corners=0.020cm] at (4.375,14.625) {ejecutándose};
+\node [font=\fontsize{18.2pt}{23.7pt}\selectfont, inner xsep=0.080cm, inner ysep=0.085cm, rounded corners=0.020cm] at (4.375,20) {terminado};
+\draw [ line width=2pt ] (-6.25,20.125) circle (1.75cm);
+\draw [ line width=2pt ] (-6.25,15.25) circle (1.75cm);
+\draw [ line width=2pt ] (-1.25,12.625) circle (1.75cm);
+\draw [ line width=2pt ] (4.375,20.125) circle (1.75cm);
+\draw [ line width=2pt ] (4.375,14.625) circle (2.25cm);
+\draw [line width=2pt, -{Stealth[scale=1.5]}, ] (-6.25,18.375) -- (-6.25,17.125);
+\draw [line width=2pt, -{Stealth[scale=1.5]}, ] (4.375,18.375) -- (4.375,17);
+\draw [line width=2pt, -{Stealth[scale=1.5]}, ] (-4.625,14.625) -- (2,14.625);
+\draw [line width=2pt, -{Stealth[scale=1.5]}, ] (3.125,16.5) -- (-4.875,16.5);
+\node [font=\fontsize{14.2pt}{18.5pt}\selectfont, inner xsep=0.080cm, inner ysep=0.085cm, rounded corners=0.020cm] at (-4.875,17.75) {aceptado};
+\node [font=\fontsize{14.2pt}{18.5pt}\selectfont, inner xsep=0.080cm, inner ysep=0.085cm, rounded corners=0.020cm] at (3.75,17.625) {fin};
+\node [font=\fontsize{14.2pt}{18.5pt}\selectfont, inner xsep=0.080cm, inner ysep=0.085cm, rounded corners=0.020cm] at (-1.25,16.875) {se interrumpió};
+\node [font=\fontsize{14.2pt}{18.5pt}\selectfont, inner xsep=0.080cm, inner ysep=0.085cm, rounded corners=0.020cm] at (-1.25,15) {despachado};
+\draw [ line width=2pt , -{Stealth[scale=1.5]}] (-1.25,10.875) -- (-1.25,9.5) -- (-6.25,9.5) -- (-6.25,13.375);
+\draw [ line width=2pt , -{Stealth[scale=1.5]}] (4.375,12.25) -- (4.375,9.5) -- (1.375,9.5) -- (-0.5,10.875);
+\node [font=\fontsize{11.9pt}{15.5pt}\selectfont, inner xsep=0.080cm, inner ysep=0.085cm, rounded corners=0.020cm, align=center] at (-3.75,10.25) {terminó la E/S o \\ evento esperado};
+\node [font=\fontsize{11.9pt}{15.5pt}\selectfont, inner xsep=0.080cm, inner ysep=0.085cm, rounded corners=0.020cm, align=center] at (2.75,10.25) {espera E/S \\ o evento};
+\end{circuitikz}
+}
+\end{document}
