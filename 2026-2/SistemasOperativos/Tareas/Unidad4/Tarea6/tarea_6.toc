@@ -1,0 +1,14 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {section}{\numberline {1}Introducción}{2}{section.1}%
+\contentsline {section}{\numberline {2}Condiciones de la solución al problema de la sección crítica}{2}{section.2}%
+\contentsline {section}{\numberline {3}El algoritmo y el modelo}{3}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Código}{3}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Supuestos}{3}{subsection.3.2}%
+\contentsline {section}{\numberline {4}Demostración}{4}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Lemas}{4}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Exclusión mutua}{5}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Progreso}{6}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Espera limitada}{7}{subsection.4.4}%
+\contentsline {section}{\numberline {5}Verificación con un verificador de modelos}{9}{section.5}%
+\contentsline {section}{\numberline {6}Conclusiones}{10}{section.6}%
+\contentsline {section}{Referencias}{11}{section.6}%
