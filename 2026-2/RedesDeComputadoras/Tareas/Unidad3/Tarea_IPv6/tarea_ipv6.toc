@@ -1,0 +1,9 @@
+\contentsline {section}{\numberline {1}¿Qué es IPv6?}{2}{section.1}%
+\contentsline {section}{\numberline {2}¿Sus direcciones son compatibles con IPv4?}{2}{section.2}%
+\contentsline {section}{\numberline {3}¿Cómo se resuelve el problema de redireccionamiento?}{3}{section.3}%
+\contentsline {section}{\numberline {4}¿Cómo está conformado un paquete en IPv6?}{3}{section.4}%
+\contentsline {section}{\numberline {5}Ventajas y desventajas}{4}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Ventajas}{4}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Desventajas}{5}{subsection.5.2}%
+\contentsline {section}{\numberline {6}Conclusión}{5}{section.6}%
+\contentsline {section}{Referencias}{6}{section.6}%
