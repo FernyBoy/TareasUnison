@@ -1,0 +1,158 @@
+\documentclass[a4paper, 10pt]{article}
+
+% -- Coments
+\usepackage{verbatim}
+
+% ----- Fonts -----
+% -- Fuente --
+% \usepackage{fontspec}
+% \setmonofont{JetBrainsMono Nerd Font}  
+
+% -- Color --
+\usepackage{xcolor}
+%\definecolor{azul}{RGB}{00,33,99}
+\definecolor{azul}{RGB}{35,72,180}
+
+% -- Page Margin --
+\usepackage[margin=1in]{geometry}
+
+% -- Espaciados --
+\newcommand{\Pspace}{0.5cm}
+\newcommand{\Aspace}{0.2cm}
+
+% -- Columnas --
+\usepackage{multicol}
+
+% -- Imagenes --
+\usepackage{graphicx}
+\usepackage{float}
+
+% -- Matemáticas --
+\usepackage{amsmath, amssymb}
+
+% -- Gráficas --
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% -- Código --
+\usepackage{listings}
+\lstset{
+    language=Lisp,                   % Lenguaje del código
+    basicstyle=\ttfamily\small,     % Fuente del código
+    keywordstyle=\color{blue},      % Color de palabras clave
+    commentstyle=\color{gray},      % Color de comentarios
+    stringstyle=\color{red},        % Color de cadenas
+    numbers=left,                   % Números de línea a la izquierda
+    numberstyle=\tiny\color{gray},
+    breaklines=true,                % Permitir saltos de línea
+    frame=single                    % Marco alrededor del código
+}
+
+\begin{comment}
+-- Formato de pregunta simple
+    % - Problema n
+    \vspace{\Pspace}
+    \item Problema \par
+        % Respuesta:
+        \vspace{\Aspace} \par
+        { \color{azul}  }
+
+
+ -- Formato de pregunta multimple
+        % - Problema 
+        \vspace{\Pspace}
+        \item  \par
+             % Respuestas:
+            \vspace{\Aspace} \par
+            a) 
+            \\ { \color{azul} }
+
+            \vspace{\Aspace} \par
+            b) 
+            \\ { \color{azul} }
+
+
+ -- Formato de imagen
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.5\textwidth]{}
+\end{figure}
+
+
+ -- Formato de tabla
+\begin{tabular}{c|c}
+    \textbf{A} & \textbf{B} \\
+    \hline
+    Texto & Texto \\
+    Texto & Texto
+\end{tabular} \\
+\end{comment}
+
+
+\title
+{
+    Lenguajes de Programación 2026-2 \\
+    Examen Intermedio
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{center}
+    \begin{tabular}{r|l}
+        \textbf{Expediente} & \textbf{Nombre} \\ \hline
+        219208106 & Bórquez Guerrero Angel Fernando \\
+    \end{tabular}
+\end{center}
+
+\rule{\linewidth}{0.3mm}
+
+\vspace{0.3cm}
+{\Large Grámatica $G$} \\
+\begin{tabular}{rcll}
+    Expression & ::= & Number & (const-exp $n$) \\
+    & | & Identifier & (var-exp $x$) \\
+    & | & zero?(Expression) & (zero?-exp $e_1$) \\
+    & | & -(Expression, Expression) & (diff-exp $e_1$ $e_2$) \\
+    & | & if Expression then Expression else Expression & (if-exp $e_1$ $e_2$ $e_3$) \\
+    & | & let Identifier = Expression in Expression & (let-exp $x$ $e_1$ $e_2$) \\
+    & | & proc(Identifier) Expression & (proc-exp $x$ $e_1$) \\
+    & | & (Expression Expression) & (call-exp $e_1$ $e_2$) \\
+\end{tabular} \\
+
+\begin{enumerate}
+    \item Escribe un programa del lenguaje PROC usando únicamente los constructos de $G$ tal que:
+    \begin{itemize}
+        \item Todos los constructos de $G$ aparecen en tu programa.
+        \item El valor del programa es distinto con alcance léxico y con alcance dinámico.
+    \end{itemize}
+\begin{lstlisting}
+let x = 60 in
+    let fun = proc (y) -(y, x) in
+        let x = 50 in
+            if zero?(fun 60) then 1 else 0
+\end{lstlisting}
+
+
+    \item Escribe y justifica el valor del programa del problema 1.
+    \begin{itemize}
+        \item Con alcance léxico. \\
+            {\color{azul} Se declara una variable $x$ con valor de 60, seguido de una función "fun(y) = y-x" que con alcance léxico se reemplaza esta $x$ por 60 quedando "fun(y) = y - 60", luego redeclaramos $x = 50$, creamos una expresión if que evalúa si fun(60) == 0 y dado que es cierto se devuelve 1.}
+        \item Con alcance dinámico. \\
+            {\color{azul} Al momento de llamar la función fun(60) se declaró $x = 50$, por lo tanto "fun(y) = y - 50", entonces nuestra expresión fun(60) == 0 será falsa retornando así un 0.}
+    \end{itemize}
+
+
+
+    \item Escribe el \textsl{AST} del programa del problema 1.
+\begin{lstlisting}
+(let-exp 'x (const-exp 60)
+    (let-exp 'fun (proc-exp 'y (diff-exp (var-exp 'y) (var-exp 'x)))
+        (let-exp 'x (const-exp 50)
+            (if-exp (zero?-exp (call-exp (var-exp 'fun) (const-exp 60))
+                    (const-exp 1)
+                    (const-exp 0))))))
+\end{lstlisting}
+\end{enumerate}
+\end{document}

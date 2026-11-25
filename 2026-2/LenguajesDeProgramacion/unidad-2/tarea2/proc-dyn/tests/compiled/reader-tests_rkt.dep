@@ -1,0 +1,1 @@
+("9.3" ta6le ("fe9266f8875e640825ff9b99f8e5af0b68dff2f2" . "67e7cfecf08a9a036fcdf921cc85eb063f3e830c") #"/home/fer/Documents/LDP-2026/unidad-2/tarea2/proc-dyn/tests/../lang/reader.rkt" (collects #"racket" #"main.rkt") (collects #"racket" #"runtime-config.rkt") (collects #"rackunit" #"main.rkt"))

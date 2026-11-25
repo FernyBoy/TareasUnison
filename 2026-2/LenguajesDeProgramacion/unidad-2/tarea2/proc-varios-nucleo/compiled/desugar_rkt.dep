@@ -1,0 +1,1 @@
+("9.3" ta6le ("e52ca379c10fc57c870e921f5d02e1c3432871fb" . "006c8b9479740b0350738ec28b9fac49520a6a1c") #"/home/fer/Documents/LDP-2026/unidad-2/tarea2/proc-varios-nucleo/ast.rkt" (collects #"racket" #"main.rkt") (collects #"racket" #"runtime-config.rkt") (indirect collects #"racket" #"match" #"gen-match.rkt") (indirect collects #"racket" #"match" #"parse.rkt"))

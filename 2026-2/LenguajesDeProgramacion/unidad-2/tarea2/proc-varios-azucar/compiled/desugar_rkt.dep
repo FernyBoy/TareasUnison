@@ -1,0 +1,1 @@
+("9.3" ta6le ("7d4e4c548bb709bcb4c3e70263c2b151b69d31d1" . "3c6ad45c7f2c93a1d72c9e1751515b8ce88adc7a") #"/home/fer/Documents/LDP-2026/unidad-2/tarea2/proc-varios-azucar/ast.rkt" (collects #"racket" #"main.rkt") (collects #"racket" #"runtime-config.rkt") (indirect collects #"racket" #"match" #"gen-match.rkt") (indirect collects #"racket" #"match" #"parse.rkt"))

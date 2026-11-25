@@ -1,0 +1,1 @@
+("9.3" ta6le ("3c35bbc60ce95c159bb7f1dd4a88e4b9a0896460" . "5e28faef8cdb477a5237415463da938f18cf3384") #"/home/fer/Documents/LDP-2026/unidad-2/tarea2/proc-varios-nucleo/env-impl-struct.rkt" #"/home/fer/Documents/LDP-2026/unidad-2/tarea2/proc-varios-nucleo/vals-impl.rkt" (collects #"racket" #"main.rkt") (collects #"racket" #"runtime-config.rkt"))

@@ -1,0 +1,1 @@
+("9.3" ta6le ("8425ae1dcffebcef44d7eee152a307d7c0e49930" . "b7510111ec6944123980d8e643eae8ed7fbb4eb1") #"/home/fer/Documents/LDP-2026/unidad-2/tarea2/proc-dyn/lang/../parser.rkt" (collects #"racket" #"base.rkt") (collects #"racket" #"port.rkt") (collects #"racket" #"runtime-config.rkt"))

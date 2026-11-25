@@ -1,0 +1,1 @@
+("9.3" ta6le ("bcbd915821e09eb9ffc1ec8cb5ad5afd2e9c03d8" . "7e2ec600f780af9167d4fb91a7caf334586905cd") #"/home/fer/Documents/LDP-2026/unidad-2/tarea2/proc-dyn/ast.rkt" #"/home/fer/Documents/LDP-2026/unidad-2/tarea2/proc-dyn/lexer.rkt" (collects #"parser-tools" #"yacc.rkt") (collects #"racket" #"main.rkt") (collects #"racket" #"runtime-config.rkt"))

@@ -1,0 +1,1 @@
+("9.3" ta6le ("6d085ccba8a549d51772894c5cde7afda086b47f" . "312bb2f286b982d53cf0a68854291ee70c35c334") #"/home/fer/Documents/LDP-2026/unidad-2/tarea2/proc-varios-azucar/tests/../lexer.rkt" (collects #"racket" #"main.rkt") (collects #"racket" #"runtime-config.rkt") (collects #"rackunit" #"main.rkt"))

@@ -1,0 +1,221 @@
+\documentclass[a4paper, 10pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{mathpartir}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{array}
+
+\newcommand{\vof}[2]{(\texttt{value-of}\ #1\ #2)}
+\newcommand{\ttt}[1]{\texttt{#1}}
+\newcommand{\clos}[3]{\mathrm{clausura}(#1, #2, #3)}
+\newcommand{\err}{\mathrm{error}}
+
+\title{Tarea 2 \\ Unidad 2: Procedimientos y clausuras}
+\author{Angel Fernando Bórquez Guerrero \\ Lenguajes de Programación 2026-2}
+\date{}
+
+\begin{document}
+\maketitle
+
+%% ------------------------------------------------------------------
+\section*{1.1 Varios parámetros en el núcleo}
+
+\begin{mathpar}
+\inferrule*[right={[proc]}]
+  { }
+  {\vof{(\ttt{proc-exp}\ xs\ c)}{\rho} = \clos{xs}{c}{\rho}}
+\end{mathpar}
+
+\begin{mathpar}
+\inferrule*[right={[call]}]
+  {\vof{e_1}{\rho} = \clos{xs}{c}{\rho'} \\
+   \vof{a_i}{\rho} = v_i \ \ (1 \leq i \leq n) \\
+   |xs| = n}
+  {\vof{(\ttt{call-exp}\ e_1\ es)}{\rho} =
+   \vof{c}{[xs=\langle v_1, \dots, v_n\rangle]\rho'}}
+\end{mathpar}
+
+\begin{mathpar}
+\inferrule*[right={[call-err]}]
+  {\vof{e_1}{\rho} = \clos{xs}{c}{\rho'} \\
+   \vof{a_i}{\rho} = v_i \ \ (1 \leq i \leq n) \\
+   |xs| \neq n}
+  {\vof{(\ttt{call-exp}\ e_1\ es)}{\rho} = \err}
+\end{mathpar}
+
+El error de [call-err] es
+\ttt{apply-procedure: número de argumentos equivocado: esperaba $|xs|$ y me diste $n$}.
+
+%% ------------------------------------------------------------------
+\section*{1.2 Varios parámetros como azúcar}
+
+\[
+\begin{array}{lcll}
+\ttt{proc ($x$, $y$, $ys$ ...) $c$} & \leadsto & \ttt{proc ($x$) proc ($y$, $ys$ ...) $c$} & \text{[proc*]} \\[4pt]
+\ttt{($e_1$ $e_2$ $e_3$ $es$ ...)} & \leadsto & \ttt{(($e_1$ $e_2$) $e_3$ $es$ ...)} & \text{[call*]}
+\end{array}
+\]
+
+Los argumentos se pasan de izquierda a derecha: el primer operando va al primer
+\ttt{proc}.
+
+%% ------------------------------------------------------------------
+\section*{1.3 Comparación}
+
+\begin{center}
+\begin{tabular}{l>{\raggedright}p{6.2cm}>{\raggedright\arraybackslash}p{6.2cm}}
+\toprule
+ & \textbf{Núcleo} (\ttt{proc-varios-nucleo}) & \textbf{Azúcar} (\ttt{proc-varios-azucar}) \\
+\midrule
+P1 & \ttt{7} & \ttt{7} \\
+P2 & \ttt{número de argumentos equivocado: esperaba 2 y me diste 1} & \ttt{7} \\
+P3 & \ttt{número de argumentos equivocado: esperaba 2 y me diste 3} & \ttt{val->proc: Esperaba un procedimiento pero me diste 7} \\
+P4 & \ttt{5} & \ttt{parse: no esperaba \textasciigrave)\textasciigrave{} después de \textasciigrave(\textasciigrave} \\
+P5 & \ttt{número de argumentos equivocado: esperaba 1 y me diste 2} & \ttt{7} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{1. ¿Qué es \ttt{(resta 10)}?}
+En el núcleo es un error: \ttt{resta} pide exactamente dos argumentos (P2). En el azúcar
+es un procedimiento, \ttt{<proc (y)>}, la clausura del \ttt{proc} interior con $x=10$,
+que espera el segundo argumento (P2 da \ttt{7}).
+
+\paragraph{2. ¿Cuándo se detecta un operando de más?}
+En el núcleo, en la llamada misma, antes de evaluar el cuerpo, y el mensaje dice cuántos
+esperaba y cuántos recibió (P3). En el azúcar, \ttt{(resta 10 3 1)} se traduce a
+\ttt{(((resta 10) 3) 1)}: se calcula $10-3=7$ y el error llega una llamada después,
+al intentar llamar a \ttt{7}. El mensaje no habla de argumentos (P3).
+
+\paragraph{3. ¿Qué escribe el REPL para \ttt{proc (x, y) x}?}
+El núcleo escribe \ttt{<proc (x, y)>}, porque la clausura guarda la lista de
+parámetros. El azúcar escribe \ttt{<proc (x)>}, porque \ttt{value-of} nunca ve un
+\ttt{proc} de dos: recibe \ttt{proc (x) proc (y) x}, y su valor es la clausura del
+exterior, que solo tiene a \ttt{x}.
+
+\paragraph{Qué habilita y qué sacrifica cada uno.}
+\begin{itemize}
+  \item \textbf{El núcleo habilita} procedimientos sin parámetros (P4 vale \ttt{5}) y
+    errores de aridad en el lugar exacto y con un mensaje claro (P3) Además, el valor
+    dice la verdad sobre sus parámetros (pregunta 3).
+  \item \textbf{El núcleo sacrifica} la aplicación parcial (P2) y la mezcla con
+    procedimientos currificados: un \ttt{proc (x) proc (y)} ya no se puede llamar con dos
+    operandos (P5).
+  \item \textbf{El azúcar habilita} la aplicación parcial gratis (P2), y los
+    procedimientos currificados y los de varios parámetros son intercambiables (P5 vale
+    \ttt{7}). No hay que tocar el intérprete: las reglas de inferencia y las pruebas de
+    \ttt{value-of} siguen igual.
+  \item \textbf{El azúcar sacrifica} los procedimientos de cero parámetros, que no tienen
+    traducción a la currificación (P4 ni siquiera se parsea). También sacrifica los
+    errores de aridad, que llegan tarde y disfrazados (P3), y la información de los
+    parámetros en el valor (pregunta 3).
+\end{itemize}
+Es un intercambio genuino: lo que en un enfoque es un error (P2, P5), en el otro es una
+capacidad, y viceversa (P3, P4).
+
+\paragraph{Lo que se modificó.}
+\emph{Núcleo:} seis archivos. En \ttt{ast.rkt}, los campos \ttt{xs} y \ttt{es} con sus
+contratos. En \ttt{parser.rkt}, las dos producciones y los no terminales
+\ttt{parameters}, \ttt{nonempty-parameters} y \ttt{operands}. En \ttt{desugar.rkt}, la
+reconstrucción con \ttt{(map desugar es)}. En \ttt{procs.rkt}, la clausura con
+\ttt{xs}. En \ttt{interp.rkt}, las cláusulas de \ttt{proc-exp} y \ttt{call-exp}, y
+\ttt{apply-procedure}, que comprueba la aridad y extiende con \ttt{extend-env*}. En
+\ttt{vals.rkt}, \ttt{expval->string}. Es decir, todas las capas del intérprete.
+
+\emph{Azúcar:} tres archivos. En \ttt{ast.rkt}, los \ttt{struct} \ttt{proc*-exp} y
+\ttt{call*-exp}. En \ttt{parser.rkt}, las dos producciones, con
+\ttt{nonempty-parameters} y \ttt{nonempty-operands}. En \ttt{desugar.rkt}, las
+cláusulas de [proc*] y [call*]. Solo cambia el frente del intérprete: \ttt{value-of},
+\ttt{procs.rkt} y \ttt{vals.rkt} quedan intactos.
+
+%% ------------------------------------------------------------------
+\section*{2.1 Vinculación dinámica: especificación}
+
+\begin{mathpar}
+\inferrule*[right={[proc]}]
+  { }
+  {\vof{(\ttt{proc-exp}\ x\ c)}{\rho} = \mathrm{proc}(x, c)}
+
+\inferrule*[right={[call]}]
+  {\vof{e_1}{\rho} = \mathrm{proc}(x, c) \\
+   \vof{e_2}{\rho} = v_2}
+  {\vof{(\ttt{call-exp}\ e_1\ e_2)}{\rho} = \vof{c}{[x=v_2]\rho}}
+\end{mathpar}
+
+Cambia la conclusión de [call]: el cuerpo se evalúa en $[x=v_2]\rho$, el entorno de la
+llamada, y no en $[x=v_2]\rho'$. Como $\rho'$ ya no aparece en ninguna conclusión, el
+valor de un \ttt{proc} no necesita guardar un entorno: es $\mathrm{proc}(x, c)$, y por
+eso cambian también la conclusión de [proc] y la primera premisa de [call]. En el código,
+la clausura perdió su campo $\rho$ (\ttt{procs.rkt}, \ttt{vals.rkt}), y
+\ttt{apply-procedure} recibe el $\rho$ de la llamada (\ttt{interp.rkt}).
+
+%% ------------------------------------------------------------------
+\section*{2.3 Análisis}
+
+\begin{center}
+\begin{tabular}{l>{\raggedright}p{6.2cm}>{\raggedright\arraybackslash}p{6.2cm}}
+\toprule
+ & \textbf{PROC} (\ttt{proc-02-procedimientos}) & \textbf{Dinámica} (\ttt{proc-dyn}) \\
+\midrule
+D1 & \ttt{3} & \ttt{5} \\
+D2 & \ttt{3} & \ttt{2} \\
+D3 & \ttt{-100} & \ttt{0} \\
+D4 & \ttt{7} & \ttt{apply-env: la variable n no está vinculada} \\
+D5 & \ttt{apply-env: la variable y no está vinculada} & \ttt{5} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{1. Renombrar un parámetro (D1 y D2).}
+La \ttt{a} del cuerpo de \ttt{p} es libre. En PROC se busca en el entorno de creación de
+\ttt{p}, donde $a=3$, y nada de lo que pase después lo cambia: D1 y D2 valen \ttt{3}. Con
+vinculación dinámica se busca en el entorno de la llamada \ttt{(p 0)}, que está dentro del
+cuerpo de \ttt{f}. En D1 ese entorno tiene $x=2$ sobre $a=5$, y da \ttt{5}. En D2 el
+parámetro de \ttt{f} se llama \ttt{a}, así que la \ttt{a} más cercana es $a=2$, y da
+\ttt{2}. El nombre del parámetro de \ttt{f}, que debería ser asunto privado de \ttt{f},
+se filtra al cuerpo de \ttt{p}. Quien escribe \ttt{f} tiene que conocer las variables
+libres de todo procedimiento que llame, y quien escribe \ttt{p} tiene que conocer los
+nombres vinculados en todos los lugares desde donde se le llame. Con alcance léxico basta
+leer el texto donde está escrito \ttt{p}.
+
+\paragraph{2. Un procedimiento que devuelve otro (D4).}
+En PROC, \ttt{(menos 5)} es una clausura que guarda $n=5$, así que sigue funcionando
+cuando \ttt{menos} ya terminó, y da \ttt{7}. Con vinculación dinámica,
+\ttt{(menos 5)} devuelve $\mathrm{proc}(x, \ttt{-(x, n)})$ sin entorno. El vínculo
+$n=5$ solo existió mientras corría el cuerpo de \ttt{menos}, y cuando se llama con
+\ttt{12} el entorno de esa llamada no tiene \ttt{n}: es un error. La currificación
+deja de funcionar, y con ella el azúcar de la parte 1.2.
+
+\paragraph{Qué habilita y qué sacrifica cada diseño.}
+\begin{itemize}
+  \item \textbf{La vinculación dinámica habilita} que quien llama configure al
+    procedimiento sin pasarle argumentos: en D5, \ttt{f} usa una \ttt{y} que se define
+    después y vale \ttt{5}, como un parámetro implícito o una variable de ambiente. La
+    representación también es más sencilla, porque un procedimiento no guarda entorno.
+  \item \textbf{La vinculación dinámica sacrifica} la seguridad al renombrar (D1 y D2),
+    los procedimientos que devuelven procedimientos (D4) y la posibilidad de saber qué
+    hace un procedimiento leyendo su texto: en D3, \ttt{f} y \ttt{g} se escribieron en
+    lugares distintos y se comportan igual, porque las dos ven $x=100$, y dan \ttt{0}.
+  \item \textbf{El alcance léxico habilita} las clausuras (D4), que el significado no
+    dependa de quién llama (D1, D2 y D3), y detectar errores sin correr el programa: en
+    D5, \ttt{y} es libre en \ttt{f} y no hay ningún vínculo a la vista en el texto.
+  \item \textbf{El alcance léxico sacrifica} la posibilidad de pasar valores desde la
+    llamada de forma implícita (D5 es error) y obliga a guardar un entorno en cada
+    procedimiento.
+\end{itemize}
+
+\paragraph{3. ¿Por qué el alcance léxico es la norma?}
+Por la modularidad. Con vinculación dinámica, una función de biblioteca que use una
+variable libre cambia de resultado según cómo nombre sus variables locales quien la llama,
+como en D2, y nadie puede razonar sobre ella por separado. Además, las funciones de orden
+superior (callbacks, \ttt{map} con una \ttt{lambda}, la currificación) necesitan
+clausuras, y con vinculación dinámica se rompen como en D4. El alcance léxico también
+permite que un compilador resuelva cada variable antes de correr y avise de errores, como
+el \ttt{g++ -Wall} de la sesión 1. No es que lo dinámico no sirva: los lenguajes que lo
+necesitan lo ofrecen de forma controlada y explícita (las variables especiales de Common
+Lisp, \ttt{parameterize} en Racket, las variables de ambiente), y dejan el alcance léxico
+como regla general.
+
+\end{document}
