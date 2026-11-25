@@ -1,0 +1,441 @@
+% the_next_700_programming_languages.tex
+% Ensayo sobre "The Next 700 Programming Languages" (P. J. Landin, 1966)
+% Sistema de diseño: Investigación UNISON (unison-investigacion.sty)
+% Compilar con:  latexmk -lualatex the_next_700_programming_languages.tex
+\documentclass[11pt,twoside,openany]{report}
+\usepackage{unison-investigacion}
+\usepackage{enumitem}
+\usepackage{xurl}
+\usepackage{needspace}
+\usepackage{etoolbox}
+
+% ---------------------------------------------------------------- Ajustes del documento
+% Los capítulos de este ensayo son las dos partes de la tarea.
+\addto\captionsspanish{\renewcommand{\chaptername}{Parte}}
+\setlength{\headheight}{14pt}   % evita el aviso de fancyhdr
+\clubpenalty=10000 \widowpenalty=10000 \displaywidowpenalty=10000 \interlinepenalty=10000
+
+% Un título nunca queda al pie de la página: se reserva espacio para el bloque que sigue
+\preto\section{\needspace{20\baselineskip}}
+\preto\subsection{\needspace{11\baselineskip}}
+
+% Etiqueta del sistema (8 pt, mayúsculas, espaciado 8 %)
+\newcommand{\etiqueta}[1]{{\fontsize{8}{10}\selectfont\addfontfeature{LetterSpace=8}\MakeUppercase{#1}}}
+
+% Apartado de una idea principal: etiqueta azul y texto debajo, sin partirse
+\newcommand{\apartado}[1]{\par\needspace{7\baselineskip}\smallskip{\color{acento}\etiqueta{#1}}\par\nobreak}
+
+% Afirmación: #1 ubicación, #2 cita textual, #3 marcador del porqué del equipo
+\newcommand{\afirmacion}[3]{%
+  \par\needspace{10\baselineskip}\medskip
+  {\color{textosecundario}\etiqueta{#1}}\par\nobreak
+  \begin{quote}\itshape\sloppy ``#2''\end{quote}
+  #3\par}
+
+% Marcador de texto que el equipo debe completar
+\newcommand{\porque}[1]{\par\textbf{Por qué:} {\color{textosecundario}[Por completar por el equipo: #1]}\par}
+% Porqué escrito por el equipo
+\newcommand{\razon}[1]{\par\textbf{Por qué:} #1\par}
+
+% Marcador de la sección que el equipo debe completar
+\newcommand{\pendiente}[1]{\par\medskip{\color{textosecundario}[Por completar por el equipo: #1]}\par}
+
+% Referencia a una fuente de la lista final
+\newcommand{\fuente}[1]{{\color{acento}[\ref{#1}]}}
+
+% Listas con el ritmo del sistema
+\setlist{itemsep=2pt, topsep=4pt}
+\setlist[enumerate,1]{label=(\arabic*), leftmargin=2.2em}
+
+% ---------------------------------------------------------------- Portada: banda de muestra
+% Sustituye la banda azul sólida de unison-investigacion.sty por cuatro bloques de
+% 2.2 cm de alto: azul sólido, gris oscuro, puntos azules sobre azul tinte y
+% puntos grises sobre blanco.
+\makeatletter
+\renewcommand{\unisonportada}{%
+  \begin{titlepage}
+    \newgeometry{left=2.5cm, right=2.5cm, top=0.6cm, bottom=2cm}
+    \thispagestyle{empty}
+    \noindent\begin{tikzpicture}[remember picture, overlay]
+      \begin{scope}[shift={(current page.north west)}, x=1cm, y=-1cm]
+        \pgfmathsetmacro{\pw}{21.59}
+        \pgfmathsetmacro{\xa}{0.40*\pw}
+        \pgfmathsetmacro{\xb}{0.53*\pw}
+        \pgfmathsetmacro{\xc}{0.79*\pw}
+        \pgfmathsetmacro{\hb}{2.2}
+        \fill[acento] (0,0) rectangle (\xa,\hb);
+        \fill[tinta] (\xa,0) rectangle (\xb,\hb);
+        \fill[azultinte] (\xb,0) rectangle (\xc,\hb);
+        \foreach \r in {0,1,2,3}{
+          \pgfmathsetmacro{\yy}{0.45+0.5*\r}
+          \pgfmathsetmacro{\off}{mod(\r,2)==1 ? 0.35 : 0}
+          \foreach \c in {0,...,6}{
+            \pgfmathsetmacro{\xx}{\xb+0.45+\off+0.7*\c}
+            \fill[acento] (\xx,\yy) circle (0.16);
+          }
+        }
+        \foreach \r in {0,1,2,3}{
+          \pgfmathsetmacro{\yy}{0.45+0.5*\r}
+          \pgfmathsetmacro{\off}{mod(\r,2)==1 ? 0.35 : 0}
+          \foreach \c in {0,...,5}{
+            \pgfmathsetmacro{\xx}{\xc+0.45+\off+0.7*\c}
+            \fill[linea] (\xx,\yy) circle (0.16);
+          }
+        }
+      \end{scope}
+      % escudos: arriba a la derecha, debajo de la banda, 2.4 cm de alto
+      \node[anchor=north east, inner sep=0] at ([xshift=-2.5cm,yshift=-3.0cm]current page.north east)
+        {\includegraphics[height=2.4cm]{escudo-unison-tinta.png}\hspace{0.4cm}%
+         \includegraphics[height=2.4cm]{escudo-matematicas-tinta.png}};
+      % fachada: abajo a la derecha, 6.5 cm de ancho
+      \node[anchor=south east, inner sep=0] at ([xshift=-2.5cm,yshift=1.2cm]current page.south east)
+        {\includegraphics[width=6.5cm]{fachada-neoclasica.png}};
+    \end{tikzpicture}\par\nointerlineskip
+    \vspace*{5.9cm}
+    {\color{acento}\fontsize{8}{10}\selectfont\addfontfeature{LetterSpace=8}\MakeUppercase{\unison@programa}\par}
+    \vspace{10pt}
+    {\color{tinta}\fontsize{28}{31}\selectfont\bfseries\unison@titulo\par}
+    \vspace{8pt}
+    {\color{acento}\rule{2.5cm}{2pt}\par}
+    \vspace{10pt}
+    {\color{textosecundario}\fontsize{13}{17}\selectfont\unison@subtitulo\par}
+    \vspace{1.2cm}
+    {\color{textosecundario}\fontsize{8}{10}\selectfont\addfontfeature{LetterSpace=8}\MakeUppercase{\unison@curso}\par}
+    \vspace{6pt}
+    {\color{tinta}\fontsize{11}{15}\selectfont Profesor: \unison@profesor\par}
+    \vspace{14pt}
+    {\color{tinta}\fontsize{11}{15}\selectfont
+     \begin{tabular*}{10cm}{@{}l@{\extracolsep{\fill}}r@{}}
+       \unison@integrantes
+     \end{tabular*}\par}
+    \vspace{14pt}
+    {\color{textosecundario}\fontsize{9}{12}\selectfont\unison@fecha\par}
+    \restoregeometry
+  \end{titlepage}}
+\makeatother
+
+\begin{document}
+
+% ================================================================ Portada
+\portadaprograma{Licenciatura en Ciencias de la Computación · Departamento de Matemáticas}
+\portadatitulo{The Next 700\\ Programming Languages}
+\portadasubtitulo{Peter J. Landin · publicado por primera vez en 1966}
+\portadacurso{Lenguajes de Programación · Grupo de las 8 am · 2026-2}
+\portadaprofesor{Mtro. Eduardo Acuña Yeomans}
+\portadaintegrante{Amaya Soria Angel Alberto}{}
+\portadaintegrante{Borquez Guerrero Angel Fernando}{}
+\portadaintegrante{Mendoza Moreno Mariana}{}
+\portadaintegrante{Miranda Sanchez Javier Leonardo}{}
+\portadafecha{Hermosillo, Sonora · Noviembre de 2026}
+\unisonportada
+
+\tableofcontents
+
+% ================================================================ Encabezado de la tarea
+\capitulosinnumero{Encabezado}
+
+\begin{nota}[Ficha del material]
+\textbf{Título:} \emph{The Next 700 Programming Languages}\\
+\textbf{Autor:} Peter J. Landin\\
+\textbf{Año de primera publicación:} 1966 (\emph{Communications of the ACM}, vol.~9, núm.~3, marzo de 1966, pp.~157--166) \fuente{ref:landin66}
+\end{nota}
+
+\textbf{Integrantes del equipo} (apellidos y nombres):
+\begin{itemize}
+  \item Amaya Soria Angel Alberto
+  \item Borquez Guerrero Angel Fernando
+  \item Mendoza Moreno Mariana
+  \item Miranda Sanchez Javier Leonardo
+\end{itemize}
+
+\textbf{Hora del grupo:} 8 am.
+
+Todas las páginas que citamos del artículo son las de la revista original (157--166). Las fuentes de la Parte~2 están numeradas entre corchetes y se listan completas en \emph{Referencias}, al final.
+
+% ================================================================ PARTE 1
+\chapter{El ¿qué?}
+
+\section{Ideas principales}
+
+% ---------------------------------------------------------------- Idea 1
+\subsection{Una familia de lenguajes en vez de 700 lenguajes distintos}
+
+\apartado{La idea}
+Landin propone que, en vez de crear un lenguaje nuevo para cada área de aplicación, se use un solo marco común (ISWIM). Cada lenguaje de la familia saldría de elegir un conjunto distinto de primitivas.
+
+\apartado{Las razones del autor}
+Cita un prospecto de 1965 según el cual había 1,700 lenguajes para más de 700 áreas de aplicación. Observa que buena parte de los manuales explica estructura lógica común a todos los lenguajes (cómo se nombran las cosas, cómo se definen funciones), no lo específico de su área. Señala que esas reglas cambian de un lenguaje a otro sin buena razón. Compara con ALGOL~60: si se hubiera presentado como familia, se habría librado de críticas poco relevantes. Dice que sus experimentos (cálculo numérico, procesamiento de lenguajes, algo de programación comercial) no mostraron preferencia por ningún área.
+
+\apartado{Ubicación}
+Resumen inicial, Sección~1 (\emph{Introduction}, p.~157), Sección~4 (p.~159) y Sección~6, punto~1 (p.~160).
+
+\apartado{Qué tan bien se sostiene}
+\begin{enumerate}
+  \item \textbf{¿Las razones lo prueban?} Solo en parte. Muestra que hay mucha estructura común, pero no demuestra que lo único que distingue a un lenguaje sean sus primitivas. Su evidencia son sus propios experimentos, sin datos.
+  \item \textbf{¿Dónde no se sostiene?} Donde importan el rendimiento o el control del hardware, como sistemas operativos o tiempo real. Ahí el modelo de ejecución distingue al lenguaje tanto como sus primitivas. En la propia discusión, Strachey admite que los lenguajes así eran ``intolerablemente ineficientes'' con las implementaciones de entonces.
+  \item \textbf{¿Sigue siendo cierta hoy?} A medias. Su visión se cumplió en los lenguajes de dominio específico construidos dentro de Haskell, Scala o Lisp, y en el uso de bibliotecas en vez de lenguajes nuevos. Pero los lenguajes siguieron multiplicándose: el número 700 se quedó corto.
+\end{enumerate}
+
+% ---------------------------------------------------------------- Idea 2
+\subsection{Programar con expresiones y \emph{where}, no con sentencias}
+
+\apartado{La idea}
+Landin propone escribir programas como expresiones con definiciones locales (\texttt{where} o \texttt{let}), igual que en matemáticas, en lugar de cadenas de asignaciones y saltos.
+
+\apartado{Las razones del autor}
+En la comunicación matemática ordinaria, \emph{where} se entiende sin explicación, y lo muestra con varios ejemplos algebraicos. Señala una tendencia histórica hacia ``lados derechos más grandes'' en lugar de muchas asignaciones pequeñas. Dice que quitar la secuenciación explícita da programas más ``transparentes'': más fáciles de entender, depurar y modificar. Ofrece una receta de pasos para convertir programas de ALGOL~60 o PL/I a este estilo.
+
+\apartado{Ubicación}
+Resumen, Sección~2 (\emph{The where-Notation}, pp.~157--158), Sección~8 (p.~162) y Sección~10 (\emph{Eliminating Explicit Sequencing}, pp.~163--164).
+
+\apartado{Qué tan bien se sostiene}
+\begin{enumerate}
+  \item \textbf{¿Las razones lo prueban?} No del todo. Los ejemplos muestran que la notación es natural, pero que sea ``más fácil de entender'' lo afirma sin medirlo. Incluso dice explícitamente que no va a argumentar contra la secuenciación explícita.
+  \item \textbf{¿Dónde no se sostiene?} El propio Landin admite que los casos más difíciles son los de éxito o fracaso y lo que hay que hacer al fallar. En la discusión, Abrahams da otro: procesos que cambian un poco el ``estado del mundo'' en cada paso. Hacerlos en estilo funcional obliga a pasar muchísimos argumentos.
+  \item \textbf{¿Sigue siendo cierta hoy?} Sí, en buena medida. \texttt{let} y \texttt{where} existen en Haskell, ML, OCaml, F\# y Rust, y muchos lenguajes modernos tratan casi todo como expresión, como Rust, Kotlin y Scala.
+\end{enumerate}
+
+% ---------------------------------------------------------------- Idea 3
+\subsection{Separar la apariencia del programa de su estructura (y la regla del \emph{offside})}
+
+\apartado{La idea}
+Landin propone distinguir cuatro niveles en un lenguaje: el físico (caracteres), el lógico (orden y agrupación), el abstracto (un árbol) y un núcleo mínimo de expresiones aplicativas. Así, la sintaxis se decide por separado de la semántica. También propone que la indentación marque la estructura del programa (regla del \emph{offside}).
+
+\apartado{Las razones del autor}
+Compara con ALGOL~60, que ya distinguía lenguaje de referencia, de publicación y de hardware. Landin quiere hacer esa relación más formal para poder mecanizarla. También compara con los diseñadores de hardware, que trabajan por niveles. Sobre la indentación, dice que no depende del ancho de los caracteres, así que funciona igual a mano, a máquina o impresa. Además es opcional y se puede combinar con puntuación.
+
+\apartado{Ubicación}
+Sección~2 (p.~158), Sección~3 (\emph{Physical ISWIM and Logical ISWIM}, p.~158), Sección~4 (\emph{Four Levels of Abstraction}, pp.~158--159), Sección~5 (p.~159), Sección~6, punto~4 (p.~160) y la Discusión final (Naur y Floyd).
+
+\apartado{Qué tan bien se sostiene}
+\begin{enumerate}
+  \item \textbf{¿Las razones lo prueban?} La separación por niveles queda bien argumentada con la analogía de ALGOL. Para la indentación sus razones son más débiles, y en la discusión él mismo reconoce que tuvo que corregir tres veces las pruebas de imprenta.
+  \item \textbf{¿Dónde no se sostiene?} Naur objeta que los impresores reacomodan las líneas y arruinan la indentación. Floyd señala que en programas de varias páginas no se ve hasta dónde llega una sangría, y que la regla no cabe en una gramática de estructura de frase. Landin le da la razón en ambos puntos.
+  \item \textbf{¿Sigue siendo cierta hoy?} Sí. Los árboles de sintaxis abstracta son la base de todo compilador moderno, y la regla del \emph{offside} se usa en Haskell, Python, F\# y YAML. Las objeciones también siguen vigentes: errores por mezclar tabuladores y espacios, o código que se rompe al copiarlo y pegarlo.
+\end{enumerate}
+
+% ---------------------------------------------------------------- Idea 4
+\subsection{Sin asignaciones ni saltos, se puede razonar sobre los programas como en álgebra}
+
+\apartado{La idea}
+Landin afirma que, en la parte puramente funcional de un lenguaje, el valor de una expresión depende solo del valor de sus partes. Por eso valen reglas de equivalencia (sobre todo la sustitución beta) que permiten transformar programas y demostrar cosas sobre ellos.
+
+\apartado{Las razones del autor}
+Se apoya en un teorema de la lógica matemática, el de Church-Rosser: si se eliminan los \emph{where} en distinto orden, se llega al mismo resultado. Compara con las expresiones de la aritmética: son fáciles de entender porque cada subexpresión denota algo y el valor depende solo de los valores de las partes. Muestra un ejemplo resuelto en el que demuestra que dos expresiones del factorial son equivalentes aplicando reglas paso a paso. Dice que la verdadera aportación de LISP fue esta propiedad, no las listas.
+
+\apartado{Ubicación}
+Sección~6, punto~5 (p.~160), Sección~7 (\emph{The Characteristic Equivalences of ISWIM}, pp.~160--162), Sección~8 (\emph{Application and Denotation}, p.~162) y la intervención de Strachey en la Discusión.
+
+\apartado{Qué tan bien se sostiene}
+\begin{enumerate}
+  \item \textbf{¿Las razones lo prueban?} Sí, dentro de sus límites. Es la idea mejor fundamentada del artículo porque descansa en un resultado matemático. Aun así, no demuestra el teorema: lo cita.
+  \item \textbf{¿Dónde no se sostiene?} El propio Landin aclara que la regla beta solo vale si no hay asignaciones ni \emph{program points} (su equivalente a los saltos). En cuanto entran efectos secundarios, como entrada y salida o estado mutable, la sustitución deja de ser segura.
+  \item \textbf{¿Sigue siendo cierta hoy?} Sí. La transparencia referencial es la base de Haskell, de muchas optimizaciones de compiladores y de la verificación formal. El problema de los efectos se resolvió después con otras herramientas, como las mónadas.
+\end{enumerate}
+
+% ---------------------------------------------------------------- Idea 5
+\subsection{Lo funcional depende de lo que denota el programa, no de cómo se escribe; conviene partir de una base pura}
+
+\apartado{La idea}
+Landin sostiene que la programación funcional tiene poco que ver con la notación funcional. Propone llamar ``denotativo'' a lo que no usa asignaciones ni saltos (su opuesto es ``imperativo''). También propone construir los lenguajes como LISP: una base no imperativa a la que se le añaden rasgos imperativos, y no al revés.
+
+\apartado{Las razones del autor}
+Critica la confusión entre términos como ``declarativo'', ``no procedural'', ``funcional'' y ``descriptivo''. Usa el operador iota (``el único $x$ tal que\ldots'') para mostrar que lo algorítmico frente a lo heurístico es otra distinción, independiente de esta. Argumenta que reordenar símbolos en forma prefija es trivial; lo difícil y valioso es modelar un sistema como entidades y relaciones funcionales. Dice que ``la teoría y el experimento'' apoyan el camino de LISP, y que la gran ventaja es conservar un subconjunto no imperativo.
+
+\apartado{Ubicación}
+Sección~9 (\emph{Note on Terminology}, pp.~162--163), final de la Sección~10 (p.~164) y la Discusión (Strachey, Smith y Abrahams).
+
+\apartado{Qué tan bien se sostiene}
+\begin{enumerate}
+  \item \textbf{¿Las razones lo prueban?} La distinción conceptual está bien argumentada. Pero que ``la teoría y el experimento'' lo apoyen se afirma sin mostrar datos ni experimentos concretos.
+  \item \textbf{¿Dónde no se sostiene?} En la discusión, Strachey reconoce que no sabe si todos los problemas se pueden programar así, y que las implementaciones eran muy lentas. Abrahams da el caso de los procesos con mucho estado cambiante. Smith señala que siempre hace falta al menos una orden imperativa para que ocurra un cálculo.
+  \item \textbf{¿Sigue siendo cierta hoy?} En parte. La distinción se acepta ampliamente, pero ganó la palabra ``declarativo'', no ``denotativo''. En la práctica, la industria fue sobre todo en la dirección contraria: lenguajes imperativos a los que se añadieron funciones lambda y estilo funcional, como Java, C++, Python y JavaScript. Su propuesta sí se cumplió en Haskell, OCaml y Clojure.
+\end{enumerate}
+
+% ================================================================ Afirmaciones
+\section{Afirmaciones}
+
+Las citas son textuales del artículo. Las de la Discusión final son de quien interviene, no de Landin. La ubicación indica sección, página y columna de la revista.
+
+% ---------------------------------------------------------------- Llaman la atención
+\subsection{Afirmaciones que nos llamaron la atención}
+
+\afirmacion{Sección 1 (Introduction), p. 157, columna izquierda, 3.\textsuperscript{er} párrafo}
+{This attempt has led the author to think that many linguistic idiosyncrasies are concerned with the former rather than the latter, whereas aptitude for a particular class of tasks is essentially determined by the latter rather than the former. The conclusion follows that many language characteristics are irrelevant to the alleged problem orientation.}
+{\razon{Nos llama la atención porque le quita casi todo el mérito a las características que solemos asociar con un lenguaje. Normalmente pensamos que un lenguaje es bueno para cierta área por su sintaxis, sus estructuras o sus reglas particulares. Landin dice que casi todo eso es irrelevante, y que lo que de verdad lo hace apto para un problema son sus primitivas, es decir, las operaciones básicas que trae. Lo inesperado es que, según él, lo que distingue a un lenguaje de otro tiene muy poco que ver con el problema que dice resolver.}}
+
+\afirmacion{Sección 1 (Introduction), p. 157, inicio de la columna derecha}
+{Perhaps had ALGOL 60 been launched as a family instead of proclaimed as a language, it would have fielded some of the less relevant criticisms of its deficiencies.}
+{\razon{Nos pareció curiosa por el tono. Básicamente le dice a ALGOL~60 que, si no se hubiera presentado con tanta seguridad como el lenguaje y se hubiera planteado como una familia, se habría ahorrado muchas críticas. Es una forma elegante de decir que parte de los problemas de ALGOL fueron de actitud y no solo técnicos.}}
+
+\afirmacion{Sección 6 (Relationship to LISP), punto (5), p. 160, columna derecha}
+{The most important contribution of LISP was not in listprocessing or storage allocation or in notation, but in the logical properties lying behind the notation. Here ISWIM makes little improvement because, except for a few minor details, LISP left none to make.}
+{\razon{Nos interesa porque Landin, que en la misma sección le hace varias críticas a LISP, reconoce que en lo más importante, sus propiedades lógicas, no dejó casi nada que mejorar. Eso muestra lo sólidas que eran esas ideas: se mantuvieron sin cambios y siguen presentes en los lenguajes funcionales actuales, como Haskell o el mismo Racket. Llama la atención que un lenguaje de los años cincuenta haya acertado tanto en lo fundamental.}}
+
+% ---------------------------------------------------------------- De acuerdo
+\subsection{Afirmaciones con las que estamos de acuerdo}
+
+\afirmacion{Sección 1 (Introduction), p. 157, columna derecha, 2.\textsuperscript{o} párrafo}
+{These rules vary considerably from one language to another, and frequently even within a single language there may be different conventions for different classes of names, with near-analogies that come irritatingly close to being exact.}
+{\razon{Estamos de acuerdo porque lo hemos vivido. En JavaScript, \texttt{var}, \texttt{let} y \texttt{function} parecen hacer lo mismo, pero cada una tiene reglas ligeramente distintas sobre cuándo se puede usar el nombre. En Racket pasa algo similar con \texttt{let}, \texttt{let*} y \texttt{letrec}. Lo molesto no es que haya diferencias, sino que sean tan pequeñas que es fácil asumir que funcionan igual y equivocarse.}}
+
+\afirmacion{Discusión final, intervención de Young, p. 166, columna derecha}
+{I think it is fairly obvious that you've got to have the ability for sequencing imperatives in any sort of practical language. There are many, many cases in which only a certain sequence of operations will produce the logically correct results. So that we cannot have a purely declarative language, we must have a general purpose one.}
+{\razon{Estamos de acuerdo con Young. Los lenguajes declarativos se leen muy bien, casi como prosa o como una definición matemática, pero cuando hay que entender o depurar qué pasa durante la ejecución no son tan prácticos. Al no ver el orden de las operaciones, es más difícil seguir el proceso paso a paso, sobre todo en tareas donde el orden importa, como leer datos, mostrar resultados o manejar estado.}}
+
+% ---------------------------------------------------------------- En desacuerdo
+\subsection{Afirmaciones con las que estamos en desacuerdo}
+
+\afirmacion{Sección 6 (Relationship to LISP), punto (4c), pp. 159--160}
+{The southeast quadrant that just contains the phrase's first symbol must contain the entire phrase, except possibly for bracketed subsegments. This rule has three important features. It is based on vertical alignment, not character width, and hence is equally appropriate in handwritten, typeset or typed texts. Its use is not obligatory, and use of it can be mixed freely with more conventional alternatives like punctuation.}
+{\razon{No estamos en total desacuerdo. Lo que no compartimos es que la regla sea opcional y se pueda mezclar con otras formas de marcar estructura. Para nosotros la alineación debería ser un principio de legibilidad del código, no algo que se usa a veces y a veces no. Mezclar indentación con puntuación en un mismo programa puede hacerlo menos claro, porque el lector ya no sabe qué es lo que realmente define la estructura.}}
+
+\afirmacion{Sección 10 (Eliminating Explicit Sequencing), p. 163, columna derecha, 1.\textsuperscript{er} párrafo}
+{The game's significance lies in that it frequently produces a more `transparent' program---\allowbreak easier to understand, debug, modify and incorporate into a larger program.}
+{\razon{No compartimos que quitar la secuenciación explícita haga los programas más transparentes. Si entendemos la transparencia como que el código comunique su intención, su lógica y su comportamiento de forma directa y sin ambigüedad, entonces ver el orden de los pasos es parte de esa transparencia. Al eliminarlo, el programa puede ser más corto o más elegante, pero el lector tiene que reconstruir mentalmente el orden en que pasan las cosas, y eso lo hace menos claro.}}
+
+% ---------------------------------------------------------------- Triggerean
+\subsection{Afirmaciones que nos triggerean o confunden}
+
+\afirmacion{Final de la Sección 1 (Introduction), p. 157, columna derecha, justo antes de la Sección 2}
+{A possible first step in the research program is 1700 doctoral theses called `A Correspondence between x and Church's $\lambda$-notation.'}
+{\razon{Nos dio risa. Proponer 1700 tesis doctorales sobre la correspondencia entre cualquier cosa y la notación $\lambda$ de Church es una exageración, y a la vez una burla de su propio trabajo, porque él ya había escrito un artículo con casi ese mismo título. También juega con la cifra de ``1,700 lenguajes'' de la cita con la que abre el texto.}}
+
+\afirmacion{Nota al pie 1, p. 157, al final de la columna izquierda}
+{There is no more use or mention of $\lambda$ in this paper---cognoscenti will nevertheless sense an undercurrent. A not inappropriate title would have been `Church without lambda.'}
+{\razon{También nos pareció graciosa. Landin aclara que en todo el artículo no menciona $\lambda$, pero que los conocedores van a sentir su presencia de fondo, y que un buen título habría sido ``Church without lambda''. Es casi un guiño para los que conocen el cálculo lambda: el artículo entero está construido sobre esa idea, aunque nunca la nombre.}}
+
+% ================================================================ PARTE 2
+\chapter{El ¿quién?}
+
+\section{Sobre el autor}
+
+Los siete datos del trabajo anterior, cada uno con su fuente. Revisamos cada dato contra la fuente citada.
+
+\begin{table}[h]
+  \caption{Datos de Peter J. Landin.}
+  \centering
+  \begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{3.1cm}Y>{\raggedright\arraybackslash\leavevmode}p{1.9cm}@{}}
+    \toprule
+    Dato & Valor & Fuente \\
+    \midrule
+    Nombre completo & Peter John Landin & \fuente{ref:wikien} \\
+    Nacimiento & 5 de junio de 1930, Sheffield, Inglaterra (murió el 3 de junio de 2009) & \fuente{ref:wikien} \fuente{ref:wikies} \\
+    Nacionalidad & Británica & \fuente{ref:wikien} \\
+    Infancia y escuela & Creció en Sheffield, donde estudió en la King Edward VII School & \fuente{ref:wikien} \fuente{ref:wikies} \\
+    Formación & Matemáticas en Clare College, Universidad de Cambridge & \fuente{ref:wikien} \fuente{ref:wikies} \\
+    Experiencia profesional & De 1960 a 1964, asistente de Christopher Strachey cuando este era consultor independiente en Londres; después trabajó brevemente para Univac y en el MIT, en Estados Unidos; luego fue profesor en Queen Mary University of London, donde al jubilarse fue nombrado profesor emérito de computación teórica & \fuente{ref:wikien} \fuente{ref:wikies} \\
+    \filasombra
+    Publicación del material & Marzo de 1966, en \emph{Communications of the ACM} & \fuente{ref:landin66} \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+% ---------------------------------------------------------------- Contexto
+\section{Contexto del texto}
+
+\subsection{El medio original de publicación}
+
+El artículo apareció por primera vez en la revista \emph{Communications of the ACM}, volumen~9, número~3, marzo de 1966, páginas 157--166 \fuente{ref:landin66}. \emph{Communications of the ACM} es la revista mensual de la Association for Computing Machinery, publicada desde 1958 \fuente{ref:cacm}.
+
+Antes de imprimirse, el trabajo se presentó en una conferencia. La nota de la p.~157 dice: ``Presented at an ACM Programming Languages and Pragmatics Conference, San Dimas, California, August 1965'' \fuente{ref:landin66}. Por eso el texto termina con la transcripción de la \emph{Discusión}: son las preguntas que le hicieron los asistentes al terminar su exposición.
+
+\subsection{La audiencia}
+
+El artículo tiene dos públicos, y los dos se ven en el propio texto:
+
+\begin{itemize}
+  \item \textbf{Los asistentes a la conferencia de 1965}, que eran diseñadores e implementadores de lenguajes. En la Discusión intervienen, entre otros, Peter Naur (editor del reporte de ALGOL~60) \fuente{ref:naur}, Robert W. Floyd \fuente{ref:floyd}, Christopher Strachey (diseñador de CPL) \fuente{ref:strachey}\fuente{ref:cpl} y Paul W. Abrahams (coautor del manual de LISP~1.5) \fuente{ref:abrahams}.
+  \item \textbf{Los lectores de \emph{Communications of the ACM}}, es decir, los profesionales e investigadores de la computación que leían la revista de la ACM \fuente{ref:cacm}.
+\end{itemize}
+
+El texto da por hecho que el lector ya conoce ALGOL~60, LISP y PL/I: los usa como ejemplos sin explicarlos. La nota al pie~1 incluso se dirige a los \emph{cognoscenti} (los conocedores) del cálculo lambda \fuente{ref:landin66}. No es un texto para principiantes.
+
+\subsection{El autor en el material}
+
+\begin{itemize}
+  \item \textbf{Dónde trabajaba.} El encabezado del artículo lo ubica en la ``Univac Division of Sperry Rand Corp., New York, New York'' \fuente{ref:landin66}. Llegó ahí después de trabajar de 1960 a 1964 como asistente de Christopher Strachey en Londres \fuente{ref:wikien}, en los años en que Strachey diseñaba el lenguaje CPL \fuente{ref:cpl}.
+  \item \textbf{Qué estaba construyendo.} Un programa de investigación sobre la relación entre los lenguajes de programación y la notación lambda de Church. En 1964 publicó la máquina SECD, una máquina abstracta para evaluar expresiones \fuente{ref:secd1964}\fuente{ref:secd}, y en 1965 la correspondencia entre ALGOL~60 y la notación lambda \fuente{ref:algol1965}. ISWIM es la síntesis de ese trabajo.
+  \item \textbf{Qué estaba haciendo.} Escribía teoría, no un producto: ISWIM nunca tuvo una implementación directa, aunque influyó en muchos lenguajes posteriores \fuente{ref:iswim}. La regla del \emph{offside}, que propone aquí, sí pasó a lenguajes reales \fuente{ref:offside}.
+\end{itemize}
+
+\begin{destacado}
+Landin escribió el artículo desde un laboratorio de investigación, como parte de una teoría de lenguajes, sin un compilador de ISWIM que lo respaldara.
+\end{destacado}
+
+% ---------------------------------------------------------------- Afirmaciones en contexto
+\section{Afirmaciones a la luz del contexto}
+
+\subsection{Sobre la irrelevancia de muchas características del lenguaje frente a la orientación al problema}
+
+\etiqueta{Sección 1 (Introduction), p. 157, columna izquierda, 3.\textsuperscript{er} párrafo}
+\begin{quote}\itshape\sloppy ``This attempt has led the author to think that many linguistic idiosyncrasies are concerned with the former rather than the latter, whereas aptitude for a particular class of tasks is essentially determined by the latter rather than the former. The conclusion follows that many language characteristics are irrelevant to the alleged problem orientation.''\end{quote}
+
+\begin{samepage}
+\textbf{Cómo se contextualiza y matiza:} Esta afirmación queda explicada y matizada por el perfil teórico y el entorno de publicación de Landin. Formado en matemáticas y computación en Cambridge, y después profesor emérito de computación teórica, su enfoque prioriza la estructura lógica y formal sobre las particularidades operativas \fuente{ref:wikien}. Además, el ensayo fue publicado en \emph{Communications of the ACM} y dirigido a investigadores, diseñadores de lenguajes e implementadores de compiladores \fuente{ref:landin66}. Una audiencia académica y teórica ayuda a entender por qué minimiza rasgos sintácticos o mecánicos que, en contextos industriales o de hardware, resultan mucho más determinantes.
+\end{samepage}
+
+\subsection{La regla del \emph{offside} (sangrado basado en alineación vertical)}
+
+\etiqueta{Sección 6 (Relationship to LISP), punto (4c), pp. 159--160}
+\begin{quote}\itshape\sloppy ``The southeast quadrant that just contains the phrase's first symbol must contain the entire phrase, except possibly for bracketed subsegments. This rule has three important features. It is based on vertical alignment, not character width, and hence is equally appropriate in handwritten, typeset or typed texts\ldots''\end{quote}
+
+\begin{samepage}
+\textbf{Cómo se contextualiza y matiza:} La trayectoria de Landin debilita y limita el alcance práctico de esta regla. Aunque trabajó en Univac y en el MIT, su fuerte estuvo en la semántica formal y la computación teórica, potenciada por haber sido asistente de Christopher Strachey entre 1960 y 1964 \fuente{ref:wikien}. Ese énfasis en lo conceptual y en el papel y la escritura explica que asuma que la alineación vertical funciona igual en texto manuscrito, mecanografiado o impreso, pasando por alto las fricciones reales de edición, tipografía y composición que suelen surgir en la práctica de publicación y codificación. El propio Landin lo experimentó en la imprenta de la \emph{Communications of the ACM} \fuente{ref:landin66}.
+\end{samepage}
+
+% ---------------------------------------------------------------- Personas
+\section{Personas que menciona}
+
+Para cada persona indicamos dónde aparece en el artículo y la fuente de los datos biográficos. Cuando no encontramos una fuente verificable para una fecha de nacimiento, lo decimos en lugar de dar una fecha.
+
+{\small
+\begin{itemize}[itemsep=1pt, topsep=2pt]
+  \item \textbf{Alonzo Church} (14 de junio de 1903 -- 11 de agosto de 1995). Matemático y lógico estadounidense. Citado por su notación $\lambda$ y por el teorema de Church-Rosser, base para mostrar que las expresiones funcionales de ISWIM se pueden simplificar en cualquier orden. Fuente: \fuente{ref:church}; en el artículo, nota 1 y Sección~7.
+  \item \textbf{Haskell Curry} (12 de septiembre de 1900 -- 1 de septiembre de 1982). Matemático estadounidense, conocido por la lógica combinatoria. Reconocido en los agradecimientos y citado por su lógica combinatoria, usada para clasificar las reglas de equivalencia. Fuente: \fuente{ref:curry}; en el artículo, Sección~7 y Agradecimientos.
+  \item \textbf{John McCarthy} (4 de septiembre de 1927 -- 24 de octubre de 2011). Científico de la computación estadounidense, creador de LISP. Mencionado en los agradecimientos como influencia principal y como creador de LISP, lenguaje que el texto analiza en la Sección~6. Fuente: \fuente{ref:mccarthy}.
+  \item \textbf{W. H. Burge} (William H. Burge). Agradecido por sus discusiones durante el desarrollo de las ideas del artículo. Más tarde trabajó en IBM Research, Yorktown Heights \fuente{ref:burgeibm}, y publicó \emph{Recursive Programming Techniques} (1975) \fuente{ref:burgelibro}. No encontramos fuente verificable de su fecha de nacimiento.
+  \item \textbf{J. Barkley Rosser} (6 de diciembre de 1907 -- 5 de septiembre de 1989). Lógico estadounidense, alumno de Church. Aparece a través del teorema de Church-Rosser, que respalda las propiedades del subsistema funcional puro. Fuente: \fuente{ref:rosser}.
+  \item \textbf{T. B. Steel, Jr.} Editor del libro \emph{Formal Language Description Languages for Computer Programming} (North Holland, 1965), donde Landin publicó su descripción formal de ALGOL~60. Fuente: referencia~3 del artículo \fuente{ref:landin66}. No encontramos fuente verificable de su fecha de nacimiento.
+  \item \textbf{Peter Naur} (25 de octubre de 1928 -- 3 de enero de 2016). Pionero danés, coautor de la notación BNF, editor del reporte de ALGOL~60 y Premio Turing 2005. Advierte en la Discusión que la regla del \emph{offside} se arruina cuando el impresor reacomoda el texto. Fuente: \fuente{ref:naur}.
+  \item \textbf{Robert W. Floyd} (8 de junio de 1936 -- 25 de septiembre de 2001). Científico de la computación estadounidense, Premio Turing 1978. Objeta la indentación en programas de varias páginas y su dificultad para expresarse con gramáticas de estructura de frase. Fuente: \fuente{ref:floyd}.
+  \item \textbf{B. M. Leavenworth}. Pregunta en la Discusión cómo reemplazar los ciclos y saltos imperativos por recursión. Fuente: Discusión del artículo \fuente{ref:landin66}. No encontramos fuente verificable de su fecha de nacimiento.
+  \item \textbf{Christopher Strachey} (16 de noviembre de 1916 -- 18 de mayo de 1975). Científico de la computación inglés, principal diseñador de CPL y uno de los fundadores de la semántica denotacional. En la Discusión relaciona ISWIM con CPL y conduce el debate sobre los lenguajes declarativos. Fuente: \fuente{ref:strachey}\fuente{ref:cpl}.
+  \item \textbf{E. T. Irons} (Edgar T. Irons). Inventor del compilador dirigido por sintaxis (\emph{A Syntax Directed Compiler for ALGOL 60}, 1961) y cofundador del departamento de computación de Yale. Comenta en la Discusión un programa suyo que imprime código con sangría automática. Fuente: \fuente{ref:irons}. No encontramos fuente verificable de su fecha de nacimiento.
+  \item \textbf{W. B. Smith}. Argumenta en la Discusión que siempre hace falta al menos una orden imperativa para que ocurra un cálculo. Fuente: Discusión del artículo \fuente{ref:landin66}. No encontramos más datos verificables.
+  \item \textbf{Paul W. Abrahams}. Matemático y científico de la computación estadounidense, coautor del manual de LISP~1.5 y expresidente de la ACM. En la Discusión señala que en LISP puro las funciones acumulan demasiados argumentos cuando hay estado que cambia. Fuente: \fuente{ref:abrahams}. No encontramos fuente verificable de su fecha de nacimiento.
+  \item \textbf{Peter Z. Ingerman} (9 de diciembre de 1934 -- 21 de junio de 2020). Autor de libros y artículos sobre lenguajes y compiladores. Propone en la Discusión que declarativo e imperativo son extremos de un espectro según la libertad en el orden de ejecución. Fuente: \fuente{ref:ingerman}.
+  \item \textbf{J. W. Young}. Sostiene en la Discusión que todo lenguaje práctico necesita poder secuenciar órdenes imperativas. Fuente: Discusión del artículo \fuente{ref:landin66}. No encontramos más datos verificables.
+\end{itemize}
+}
+
+% ================================================================ Referencias
+\capitulosinnumero{Referencias}
+
+\begin{enumerate}[label={[\arabic*]}, ref={\arabic*}, leftmargin=2.2em, itemsep=0pt, topsep=0pt, parsep=0pt]
+  \footnotesize\sloppy
+  \item\label{ref:landin66} Landin, P. J. (1966). The next 700 programming languages. \emph{Communications of the ACM}, 9(3), 157--166. \url{https://doi.org/10.1145/365230.365257}
+  \item\label{ref:wikien} Colaboradores de Wikipedia. \emph{Peter Landin}. Wikipedia, The Free Encyclopedia. \url{https://en.wikipedia.org/wiki/Peter_Landin}
+  \item\label{ref:wikies} Colaboradores de Wikipedia. \emph{Peter Landin}. Wikipedia, la enciclopedia libre. \url{https://es.wikipedia.org/wiki/Peter_Landin}
+  \item\label{ref:cacm} Colaboradores de Wikipedia. \emph{Communications of the ACM}. \url{https://en.wikipedia.org/wiki/Communications_of_the_ACM}
+  \item\label{ref:iswim} Colaboradores de Wikipedia. \emph{ISWIM}. \url{https://en.wikipedia.org/wiki/ISWIM}
+  \item\label{ref:offside} Colaboradores de Wikipedia. \emph{Off-side rule}. \url{https://en.wikipedia.org/wiki/Off-side_rule}
+  \item\label{ref:secd} Colaboradores de Wikipedia. \emph{SECD machine}. \url{https://en.wikipedia.org/wiki/SECD_machine}
+  \item\label{ref:cpl} Colaboradores de Wikipedia. \emph{CPL (programming language)}. \url{https://en.wikipedia.org/wiki/CPL_(programming_language)}
+  \item\label{ref:secd1964} Landin, P. J. (1964). The mechanical evaluation of expressions. \emph{The Computer Journal}, 6(4), 308--320 (citada como referencia~1 en el propio artículo).
+  \item\label{ref:algol1965} Landin, P. J. (1965). A correspondence between ALGOL 60 and Church's Lambda-notation. \emph{Communications of the ACM}, 8, 89--101; 158--165 (citada como referencia~2 en el propio artículo).
+  \item\label{ref:church} Colaboradores de Wikipedia. \emph{Alonzo Church}. \url{https://en.wikipedia.org/wiki/Alonzo_Church}
+  \item\label{ref:curry} Colaboradores de Wikipedia. \emph{Haskell Curry}. \url{https://en.wikipedia.org/wiki/Haskell_Curry}
+  \item\label{ref:mccarthy} Colaboradores de Wikipedia. \emph{John McCarthy (computer scientist)}. \url{https://en.wikipedia.org/wiki/John_McCarthy_(computer_scientist)}
+  \item\label{ref:rosser} Colaboradores de Wikipedia. \emph{J. Barkley Rosser}. \url{https://en.wikipedia.org/wiki/J._Barkley_Rosser}
+  \item\label{ref:naur} Colaboradores de Wikipedia. \emph{Peter Naur}. \url{https://en.wikipedia.org/wiki/Peter_Naur}
+  \item\label{ref:floyd} Colaboradores de Wikipedia. \emph{Robert W. Floyd}. \url{https://en.wikipedia.org/wiki/Robert_W._Floyd}
+  \item\label{ref:strachey} Colaboradores de Wikipedia. \emph{Christopher Strachey}. \url{https://en.wikipedia.org/wiki/Christopher_Strachey}
+  \item\label{ref:abrahams} Chess Programming Wiki (espejo). \emph{Paul W. Abrahams}. \url{https://chessprogrammingwiki.netlify.app/paul_w._abrahams}
+  \item\label{ref:irons} Irons, E. T. \emph{Ned Irons} (página profesional). \url{https://www.zzcad.com/ned.htm}
+  \item\label{ref:ingerman} Legacy.com, Burlington County Times. \emph{Peter Ingerman Obituary}. \url{https://www.legacy.com/us/obituaries/burlingtoncountytimes/name/peter-ingerman-obituary?id=7759035}
+  \item\label{ref:burgeibm} Burge, W. H. (1968). \emph{RC 2189: A Func Prog System}. Informe de investigación, IBM Research Division. Computer History Museum, Software Preservation Group. \url{https://softwarepreservation.computerhistory.org/FP/doc/RC2189-Burge-McG-A_Func_Prog_System.pdf}
+  \item\label{ref:burgelibro} Computer History Museum. \emph{Recursive programming techniques} (Burge, W. H., Addison-Wesley, 1975), ficha de catálogo. \url{https://www.computerhistory.org/collections/catalog/102724827}
+\end{enumerate}
+
+\end{document}
