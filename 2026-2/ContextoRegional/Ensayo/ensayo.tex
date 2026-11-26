@@ -1,0 +1,94 @@
+% ensayo.tex — Ensayo final de Contexto Regional (2026-2)
+% Tema del programa: Apertura industrial y comercial (las maquiladoras)
+% Caso: José Luis Guerrero Bobadilla, presidente municipal de Naco, Sonora (1976-1979)
+% Sistema de diseño: Investigación UNISON, adaptado (ensayo-contexto.sty)
+% Formato: Times (TeX Gyre Termes) 12 pt, doble espacio; citas Chicago 17 (notas y bibliografía)
+% Compilar:  latexmk -lualatex ensayo.tex
+%
+% Los textos entre corchetes azules (\pendiente{...}) son lo que falta: las respuestas
+% del abuelo y los datos bibliográficos sin confirmar (ver fuentes.md).
+\documentclass[12pt]{article}
+\usepackage{ensayo-contexto}
+
+% --- Notas Chicago reutilizables (primera cita completa en el texto; luego forma corta)
+\newcommand{\quinterolargo}{Cirila Quintero Ramírez, \enquote{Importancia de los inicios de la maquila en la conformación industrial y laboral de Nogales, Sonora (1960-1975)}, en \pendiente{\emph{Título del libro}, coord. Nombre} (Tijuana: El Colegio de la Frontera Norte, 2009)}
+\newcommand{\quintero}{Quintero Ramírez, \enquote{Importancia de los inicios de la maquila}}
+\newcommand{\vazquez}{Vázquez Ruiz y Hernández Moreno, \enquote{Industrialización sonorense}}
+\newcommand{\abuelo}{Guerrero Bobadilla, cuestionario}
+
+\begin{document}
+
+\portadaprograma{Licenciatura en Ciencias de la Computación · Universidad de Sonora}
+\portadatitulo{Entre la promesa y la crisis: las maquiladoras en la frontera sonorense vistas desde Naco, 1965-1979}
+\portadasubtitulo{La apertura industrial a través del testimonio de un presidente municipal}
+\portadacurso{Contexto Regional · 2026-2 · Ensayo final}
+\portadaprofesor{José Moreno Vega}
+\portadaintegrante{Bórquez Guerrero Angel Fernando}{219208106}
+\portadafecha{Noviembre de 2026}
+\unisonportada
+\thispagestyle{fancy}
+
+% ======================================================================
+\section{Introducción}
+
+A mediados de los años sesenta, el gobierno mexicano abrió la frontera norte a un nuevo tipo de industria: plantas de capital extranjero que importaban sin impuestos piezas y materiales, los ensamblaban con mano de obra mexicana y regresaban el producto terminado a Estados Unidos. Las llamaron maquiladoras. Se presentaron como la solución al desempleo fronterizo y como el arranque de la industrialización de la región. En Sonora, el ejemplo más claro fue Nogales, donde el número de empleos en la maquila pasó de 18 en 1967 a casi diez mil en 1974.\footnote{\quinterolargo, 257.}
+
+Sin embargo, esa apertura tuvo desde el principio una doble cara. Cirila Quintero sostiene que la maquila nogalense nació en \enquote{la contradicción y la ambigüedad}:\footnote{\quintero, 237.} creó miles de empleos, pero dependía de exenciones fiscales, de terrenos regalados y, sobre todo, de la economía de Estados Unidos. La crisis de 1974-1975 lo demostró, porque en pocos meses cerraron decenas de plantas en la frontera sonorense, \enquote{repartidas entre Nogales, Agua Prieta y Naco}.\footnote{\quintero, 267.}
+
+Este ensayo sostiene que la apertura maquiladora no industrializó la frontera de Sonora como prometía, sino que la volvió dependiente de incentivos gubernamentales y de los ciclos económicos estadounidenses, y que esa dependencia se vivió con más fuerza en los municipios pequeños, que tenían menos con qué negociar. Para mostrarlo, uso como caso de estudio la experiencia de mi abuelo, José Luis Guerrero Bobadilla, presidente municipal de Naco, Sonora, de 1976 a 1979. Su administración comenzó justo después de esa crisis. Primero repaso cómo se abrió la frontera a la maquila y qué pasó en Nogales; después presento el caso de Naco a partir de su testimonio, y al final reflexiono sobre lo que su experiencia revela de este modelo de desarrollo.
+
+% ======================================================================
+\section{Desarrollo}
+
+\subsection{La apertura de la frontera: del Pronaf al Programa de Industrialización Fronteriza}
+
+El primer paso fue el Programa Nacional Fronterizo (Pronaf), iniciado por el presidente Adolfo López Mateos a principios de los sesenta. Su meta era \enquote{elevar el nivel de vida de los fronterizos} e incrementar el consumo de productos nacionales en la frontera.\footnote{\quintero, 242.} En la práctica, el Pronaf se dedicó sobre todo a obras de infraestructura y comercio, y la industria que proponía estaba pensada para abastecer el mercado nacional.\footnote{\quintero, 245-246.}
+
+El giro llegó en 1965 con el Programa de Industrialización Fronteriza (PIF). El fin del Programa Bracero había dejado en las ciudades fronterizas a miles de trabajadores que regresaban de Estados Unidos, y el desempleo crecía. El gobierno declaró \enquote{de interés federal para disminuir el desempleo en la frontera} la creación del programa, que permitía a las empresas importar maquinaria y materias primas sin pagar impuestos, siempre que exportaran todo lo que produjeran, y les permitía tener hasta el cien por ciento de capital extranjero.\footnote{\quintero, 247-249.} Era, en los hechos, una apertura comercial e industrial limitada a la frontera, diseñada más a la medida de las empresas estadounidenses que de la industria local.
+
+Sonora tenía su propio proyecto. Durante el gobierno de Luis Encinas (1961-1967) se intentó una industrialización \enquote{endógena}, basada en los recursos y empresarios del estado. Pero la administración siguiente, la de Faustino Félix Serna (1967-1973), optó por aplicar el modelo federal y atraer maquiladoras: al final de su sexenio, más de la mitad de las 111 industrias nuevas del estado eran maquiladoras instaladas en San Luis Río Colorado, Nogales y Agua Prieta.\footnote{Miguel Ángel Vázquez Ruiz y María del Carmen Hernández Moreno, \enquote{Industrialización sonorense. Itinerario de un proyecto inconcluso}, \emph{Estudios Sociales} 16, núm. 31 (2008): 223.}
+
+\subsection{Nogales: el auge y sus condiciones}
+
+Nogales fue el laboratorio de este modelo en Sonora. La Ley 16 de 1962 eximió de impuestos por diez años a las nuevas industrias de Nogales y San Luis Río Colorado, y entre 1962 y 1966 se instalaron 102 empresas, casi todas pequeñas.\footnote{\quintero, 252.} En 1967 llegó Motorola, la primera gran maquiladora, con la exención de impuestos garantizada por el gobernador, y en 1968 se inauguró el Parque Industrial Nogales.\footnote{\quintero, 253-254.} Quintero advierte que estas \enquote{medidas paternalistas} convirtieron a la maquila \enquote{en una industria altamente dependiente de estos apoyos en lugar de propiciar una industria innovadora}.\footnote{\quintero, 253.}
+
+Los números del auge son impresionantes. De un establecimiento y 18 empleos en 1967 se pasó a 40 plantas y 9,640 empleos en 1974, la mayoría en la rama electrónica.\footnote{\quintero, 257.} Pero la ganancia no se quedaba en la ciudad: buena parte de los salarios regresaba a Nogales, Arizona, en compras, y los mayores beneficios fueron para los inversionistas extranjeros.\footnote{\quintero, 274.}
+
+\subsection{La crisis de 1974-1975}
+
+La dependencia se hizo evidente con la recesión estadounidense. En 1975 el empleo maquilador de Nogales cayó a 6,794 puestos, y la crisis cerró 34 empresas entre Nogales, Agua Prieta y Naco.\footnote{\quintero, 267.} Muchos de los trabajadores despedidos no recibieron la indemnización que marcaba la ley, y los sindicatos, subordinados a las empresas, no los defendieron.\footnote{\quintero, 268-270.} La respuesta del gobierno no fue cambiar el modelo, sino profundizarlo: en 1976 los gobiernos federal y estatal ofrecieron todavía más estímulos para que las maquiladoras regresaran.\footnote{\quintero, 272.}
+
+\subsection{El caso de Naco: el testimonio de José Luis Guerrero Bobadilla}
+
+Naco es un municipio pequeño en la frontera con Naco, Arizona, entre Agua Prieta y Cananea. \pendiente{Breve contexto del municipio: origen como cruce fronterizo ligado a la minería, autonomía municipal en 1937, actividades económicas. Confirmar con la Enciclopedia de los Municipios del INAFED antes de citar.} En los estudios sobre la maquila sonorense casi no aparece; Quintero lo menciona una sola vez, al contar los cierres de 1975. Por eso el testimonio de alguien que lo gobernó en esos años es valioso.
+
+\paragraph{Naco antes de la maquila.} \pendiente{Con las respuestas 4 a 6: de qué vivía el pueblo, el empleo y el regreso de los braceros. Conectar con el desempleo que justificó el PIF (Quintero, 247).}
+
+\testimonio{\pendiente{Cita textual del abuelo, respuesta 4 o 5.}}{José Luis Guerrero Bobadilla (presidente municipal de Naco, 1976-1979), cuestionario respondido por escrito a Angel Fernando Bórquez Guerrero, Naco, Sonora, \pendiente{fecha}, respuesta a la pregunta \pendiente{N}.}
+
+\paragraph{La llegada de las maquiladoras.} \pendiente{Con las respuestas 7 a 11: si hubo plantas en Naco, cuáles, quiénes trabajaban y si la gente iba a Agua Prieta o a Nogales. Comparar con lo que pasó en Nogales: predominio masculino, rama electrónica.}
+
+\paragraph{La crisis vista desde Naco.} \pendiente{Con las respuestas 12 y 13: qué recuerda de los cierres de 1974-1975 y qué pasó con los trabajadores. Contrastar con Quintero, 267-270.}
+
+\testimonio{\pendiente{Cita textual del abuelo sobre la crisis.}}{\abuelo, pregunta \pendiente{N}.}
+
+\paragraph{Gobernar después de la crisis (1976-1979).} \pendiente{Con las respuestas 14 a 21: problemas del municipio, si buscó atraer maquilas y con qué incentivos, la relación con el gobierno del estado, los empresarios, la devaluación de 1976 y las desventajas frente a Agua Prieta o Nogales. Aquí está el centro del caso: ¿el municipio repitió la estrategia de incentivos que describe Quintero o buscó otra cosa?}
+
+\testimonio{\pendiente{Cita textual del abuelo sobre su administración.}}{\abuelo, pregunta \pendiente{N}.}
+
+% ======================================================================
+\section{Conclusión}
+
+En este ensayo analicé la apertura industrial de la frontera sonorense a partir de dos escalas: la de Nogales, que la historiografía ha estudiado a fondo, y la de Naco, contada por quien fue su presidente municipal después de la crisis de 1974-1975. \pendiente{Resumir lo que mostró el testimonio y cómo confirma, matiza o contradice el argumento.}
+
+\pendiente{Reflexión: por qué importa este caso. Ideas a desarrollar: (1) la voz de un municipio pequeño que casi no aparece en los estudios; (2) la dependencia que describe Quintero sigue viva: entre 2001 y 2003 Sonora perdió cerca del 36 \% del empleo maquilador (Díaz González); (3) lo que la experiencia de mi abuelo enseña sobre los límites que tiene un gobierno local frente a decisiones que se toman en la Ciudad de México y en Estados Unidos.}
+
+% ======================================================================
+\begin{bibliografia}
+\referencia Díaz González, Eliseo. \enquote{Mercado de trabajo e industria maquiladora en Sonora y la frontera norte}. \emph{Región y Sociedad} 21, núm. 44 (2009): \pendiente{páginas}.
+\referencia Guerrero Bobadilla, José Luis. Cuestionario respondido por escrito a Angel Fernando Bórquez Guerrero. Naco, Sonora, \pendiente{fecha} de 2026.
+\referencia Quintero Ramírez, Cirila. \enquote{Importancia de los inicios de la maquila en la conformación industrial y laboral de Nogales, Sonora (1960-1975)}. En \pendiente{\emph{Título del libro}, coordinado por Nombre}, 237-276. Tijuana: El Colegio de la Frontera Norte, 2009.
+\referencia Vázquez Ruiz, Miguel Ángel, y María del Carmen Hernández Moreno. \enquote{Industrialización sonorense. Itinerario de un proyecto inconcluso}. \emph{Estudios Sociales} 16, núm. 31 (enero-junio de 2008): 207-235.
+\end{bibliografia}
+
+\end{document}

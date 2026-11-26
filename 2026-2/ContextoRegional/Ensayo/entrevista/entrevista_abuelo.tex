@@ -1,0 +1,117 @@
+% entrevista_abuelo.tex
+% Cuestionario impreso para que José Luis Guerrero Bobadilla lo conteste a mano.
+% Blanco y negro, Times (TeX Gyre Termes) 12 pt.  Compilar:  latexmk -lualatex entrevista_abuelo.tex
+\documentclass[12pt]{article}
+\usepackage[spanish,es-noquoting]{babel}
+\usepackage{fontspec}
+\setmainfont{texgyretermes}[Extension=.otf, UprightFont=*-regular, BoldFont=*-bold,
+  ItalicFont=*-italic, BoldItalicFont=*-bolditalic]
+\usepackage[letterpaper, margin=2.2cm, bottom=2.4cm]{geometry}
+\usepackage{enumitem}
+\usepackage{needspace}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+\pagestyle{fancy}\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[C]{\small Página \thepage\ de \pageref{LastPage}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+% Renglones para escribir a mano (separación 0.95 cm)
+\newcount\cuentarenglon
+\newcommand{\renglones}[1]{\par\cuentarenglon=0
+  \loop\ifnum\cuentarenglon<#1 \advance\cuentarenglon by 1
+    \vspace{0.85cm}\hrule height 0.4pt
+  \repeat\par}
+
+% Pregunta numerada con su espacio de respuesta; va completa en una página
+\newcounter{pregunta}
+\newcommand{\pregunta}[2][6]{\stepcounter{pregunta}%
+  \par\medskip\noindent\begin{minipage}{\linewidth}\setlength{\parskip}{0pt}%
+  \textbf{\thepregunta.}~#2\par\renglones{#1}\end{minipage}\par}
+\newcommand{\bloque}[1]{\par\needspace{7cm}\bigskip{\large\bfseries #1}\par\smallskip\hrule\par\nobreak}
+
+\begin{document}
+
+\begin{center}
+  {\Large\bfseries Cuestionario: las maquiladoras en la frontera de Sonora}\\[4pt]
+  {\large Testimonio de José Luis Guerrero Bobadilla}\\[2pt]
+  Presidente municipal de Naco, Sonora (1976--1979)
+\end{center}
+\medskip
+
+Querido abuelo:
+
+Estoy escribiendo mi ensayo final para la materia de Contexto Regional de la Universidad de Sonora. El tema es la llegada de las \textbf{maquiladoras} a la frontera de Sonora (Nogales, Agua Prieta y Naco) entre los años sesenta y setenta. Como usted vivió esa época y además fue presidente municipal de Naco, sus recuerdos son una fuente muy valiosa.
+
+\textbf{Cómo contestar:}
+\begin{itemize}[nosep, leftmargin=1.5em]
+  \item Escriba con sus propias palabras; no hay respuestas buenas ni malas.
+  \item Si no recuerda algo, puede escribir «no recuerdo» o dejarlo en blanco.
+  \item Si le falta espacio, siga escribiendo en las hojas en blanco del final e indique el número de la pregunta.
+  \item Nombres de personas, empresas, lugares, fechas y cantidades (aunque sean aproximadas) ayudan mucho.
+\end{itemize}
+
+\textbf{Cómo se usarán sus respuestas:} algunas frases suyas aparecerán como citas textuales en el ensayo, con su nombre, como testimonio de alguien que vivió los hechos.
+
+\medskip
+Acepto que mis respuestas se citen con mi nombre en el ensayo.\par\medskip
+Firma: \rule{6.5cm}{0.4pt}\hfill Fecha: \rule{4.5cm}{0.4pt}
+
+% ------------------------------------------------------------------
+\bloque{A. Datos generales}
+\pregunta[2]{¿En qué año y en qué lugar nació?}
+\pregunta[2]{¿Desde qué año vive en Naco? Si llegó de otro lugar, ¿por qué se vino a Naco?}
+\pregunta[4]{Antes de ser presidente municipal, ¿a qué se dedicaba? ¿Dónde trabajó?}
+
+% ------------------------------------------------------------------
+\bloque{B. Naco antes de las maquiladoras (años sesenta)}
+\pregunta{¿De qué vivía la gente de Naco en los años sesenta? (Por ejemplo: la mina de Cananea, la ganadería, el comercio con Naco, Arizona, la aduana, el campo.)}
+\pregunta{¿Había trabajo suficiente en Naco? ¿Mucha gente cruzaba a trabajar a Estados Unidos o se iba a otras ciudades?}
+\pregunta[5]{En 1964 terminó el Programa Bracero y muchos trabajadores regresaron de Estados Unidos. ¿Recuerda si eso se sintió en Naco? ¿Qué pasó con ellos?}
+
+% ------------------------------------------------------------------
+\bloque{C. La llegada de las maquiladoras (1965--1975)}
+\pregunta[5]{¿Cuándo escuchó hablar por primera vez de las maquiladoras? ¿Qué se decía de ellas en el pueblo?}
+\pregunta[8]{¿Hubo maquiladoras en Naco? Si las hubo: ¿recuerda sus nombres, qué fabricaban, dónde estaban y cuánta gente trabajaba en ellas?}
+\pregunta[5]{¿La gente de Naco iba a trabajar a las maquiladoras de Agua Prieta, Cananea o Nogales? ¿Cómo se transportaban?}
+\pregunta{¿Quiénes trabajaban en las maquiladoras: más hombres o más mujeres, jóvenes o adultos? ¿Cómo eran los sueldos y las condiciones de trabajo?}
+\pregunta{¿Cambió el pueblo con la llegada de las maquiladoras? (Comercio, población, vivienda, servicios como agua, luz y calles.)}
+
+% ------------------------------------------------------------------
+\bloque{D. La crisis de 1974--1975}
+\textit{Según la investigadora Cirila Quintero, durante la crisis de 1974--1975 cerraron 34 empresas entre Nogales, Agua Prieta y Naco por la recesión en Estados Unidos.}
+\pregunta{¿Recuerda esos cierres? ¿Qué pasó con los trabajadores que se quedaron sin empleo?}
+\pregunta{¿A los trabajadores les pagaron lo que marcaba la ley (indemnización)? ¿Hubo sindicatos, protestas o huelgas?}
+
+% ------------------------------------------------------------------
+\bloque{E. Su periodo como presidente municipal (1976--1979)}
+\pregunta{¿Cómo llegó a ser presidente municipal? ¿Cuáles eran los problemas más importantes de Naco cuando empezó su administración?}
+\pregunta[8]{¿Atraer empresas o maquiladoras a Naco era una prioridad para usted? ¿Qué se hizo para lograrlo? (Por ejemplo: ofrecer terrenos, quitar o reducir impuestos, poner servicios, construir naves industriales.)}
+\pregunta{¿Cómo era la relación con el gobierno del estado (gobernador Alejandro Carrillo Marcor) y con el gobierno federal? ¿Le dieron apoyo para traer industria o empleo?}
+\pregunta{¿Tuvo trato directo con empresarios de Estados Unidos o de México que quisieran instalarse en Naco? ¿Qué pedían a cambio?}
+\pregunta{En 1976 el peso se devaluó (el dólar pasó de 12.50 a cerca de 20 pesos). ¿Cómo afectó eso a Naco, a sus comerciantes y a sus trabajadores?}
+\pregunta{¿Qué ventajas o desventajas tenía Naco frente a Agua Prieta o Nogales para atraer industria?}
+\pregunta{¿Qué logro de su administración relacionado con el empleo o la economía del pueblo recuerda con más orgullo?}
+\pregunta{¿Qué le hubiera gustado lograr y no se pudo? ¿Por qué?}
+
+% ------------------------------------------------------------------
+\bloque{F. Mirando hacia atrás}
+\pregunta[8]{Viéndolo hoy, ¿las maquiladoras fueron buenas o malas para Naco y para la frontera? ¿Por qué?}
+\pregunta{¿Quién cree que ganó más con las maquiladoras: los trabajadores, los empresarios o el gobierno?}
+\pregunta{Si pudiera volver a esos años como presidente municipal, ¿qué haría diferente?}
+\pregunta[8]{¿Tiene alguna anécdota o recuerdo de esa época (de las maquiladoras, de la crisis o de su administración) que quiera contarme?}
+\pregunta[6]{¿Hay algo más que quiera agregar?}
+
+% ------------------------------------------------------------------
+\newpage
+\bloque{Hojas adicionales}
+Si le faltó espacio, continúe aquí. Escriba el número de la pregunta antes de su respuesta.
+\renglones{22}
+\newpage
+\renglones{24}
+
+\vfill
+\begin{center}\itshape ¡Muchas gracias, abuelo!\end{center}
+\end{document}
