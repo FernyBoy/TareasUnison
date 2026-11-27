@@ -1,0 +1,51 @@
+% Tarea de Contexto Regional con el sistema de diseño "Investigación UNISON"
+% Compilar con: xelatex tarea_6.tex   (dos veces, por la marca de agua)
+% Necesita en la misma carpeta: unison-investigacion.sty y escudo-matematicas-marca-agua.png
+\documentclass[11pt,twoside,openany]{report}
+\usepackage{unison-investigacion}
+
+% Estilos del sistema usados en esta hoja
+\newcommand{\etiqueta}[1]{{\fontsize{8}{10}\selectfont\addfontfeature{LetterSpace=8}\MakeUppercase{#1}}}
+% Pregunta: número en azul y texto en negrita (estilo subsección, 12/15 pt)
+\newcommand{\pregunta}[2]{\par\vspace{8pt}{\noindent\fontsize{12}{15}\selectfont\bfseries{\color{acento}#1}\hspace{0.75em}{\color{tinta}#2}\par}\vspace{-2pt}}
+% Que todo quepa en una sola hoja: interlineado un poco más cerrado que 1.15 (1.06)
+\setstretch{1.06}
+\setlength{\headheight}{14pt}
+
+\begin{document}
+\pagestyle{fancy}
+\thispagestyle{fancy}
+
+% Nombre y expediente, en la parte superior de la hoja
+\noindent{\fontsize{12}{15}\selectfont\bfseries Bórquez Guerrero Angel Fernando}\hfill%
+{\color{textosecundario}\fontsize{12}{15}\selectfont 219208106}\par
+\vspace{-6pt}{\color{linea}\rule{\linewidth}{0.4pt}}\par
+\vspace{6pt}
+
+% Materia, ciclo y profesor
+{\color{acento}\etiqueta{Contexto Regional · 2026-2 · Profesor José Moreno Vega}\par}
+\vspace{2pt}
+
+% Lectura y autor
+{\color{tinta}\fontsize{14}{17}\selectfont\bfseries Entre rieles y silbatos. Los yaquis, el crimen y el ferrocarril durante el Porfiriato\par}
+\vspace{2pt}
+{\color{textosecundario}\fontsize{11}{14}\selectfont Padilla Ramos, Raquel y Torúa Padilla, Raquel\par}
+\vspace{4pt}
+{\color{acento}\rule{2.5cm}{2pt}\par}
+
+\pregunta{1}{¿Cuál es el argumento central del autor?}
+{\color{azul}
+Los autores dicen que los yaquis aparecen en muchos de los expedientes judiciales del Porfiriato, pero que esto no se explica solo por la delincuencia, sino sobre todo por la guerra que vivían contra el Estado. Mientras la guerra se intensificaba, los yaquis salían de sus pueblos del río y se dispersaban por Sonora para trabajar en ranchos, minas y puertos o para refugiarse, y eso los acercó a las vías del ferrocarril que se construían desde 1880. Así se entiende que la mitad de los casos con yaquis involucrados fueran muertes o lesiones por el tren, y que delitos como el robo estuvieran ligados a las condiciones de guerra. También plantean que los accidentes se relacionan con la campaña de exterminio y con las deportaciones a Yucatán, en las que muchos prisioneros eran trasladados en tren, aunque aclaran que son hipótesis.
+}
+
+\pregunta{2}{¿Qué evidencias utiliza para respaldarlo?}
+{\color{azul}
+Se basan principalmente en 2,339 expedientes del Archivo de la Casa de la Cultura Jurídica de Hermosillo, de 1833 a 1926, de los cuales 54 son sobre indígenas. Con esos datos hacen cuadros y gráficas, como el que muestra que los yaquis cometieron el 72.7\% de los delitos de indígenas, la lista de accidentes de ferrocarril entre 1885 y 1909 y un mapa de las estaciones donde ocurrieron. Cuentan casos concretos, como la muerte de Juan Ascencio Curimea en el puente de Batamotal en 1893. También usan el censo de 1895, documentos del Archivo General de la Nación, testimonios orales de gente de los pueblos yaquis, periódicos de Estados Unidos y obras de otros autores como Del Paso y Troncoso, Turner y Padilla Ramos.
+}
+
+\pregunta{3}{¿Cómo se relaciona esta lectura con la lectura anterior?}
+{\color{azul}
+Las dos lecturas hablan de Sonora en el siglo XIX y del interés de gente de fuera por su territorio. En la lectura 5 los estadounidenses querían quedarse con Sonora por sus recursos y por rutas como el ferrocarril y el puerto de Guaymas, y en esta lectura el ferrocarril ya existe, con la compañía Southern Pacific, y Guaymas aparece como un puerto importante para el trabajo y para la guerra. En ambas se ve que el desarrollo económico y los intereses de fuera tienen consecuencias para la población local, que en este caso son los yaquis, quienes fueron obligados a salir de su territorio y deportados.
+}
+
+\end{document}

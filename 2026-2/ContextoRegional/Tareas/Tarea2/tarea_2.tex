@@ -1,0 +1,51 @@
+% Tarea de Contexto Regional con el sistema de diseño "Investigación UNISON"
+% Compilar con: xelatex tarea_2.tex   (dos veces, por la marca de agua)
+% Necesita en la misma carpeta: unison-investigacion.sty y escudo-matematicas-marca-agua.png
+\documentclass[11pt,twoside,openany]{report}
+\usepackage{unison-investigacion}
+
+% Estilos del sistema usados en esta hoja
+\newcommand{\etiqueta}[1]{{\fontsize{8}{10}\selectfont\addfontfeature{LetterSpace=8}\MakeUppercase{#1}}}
+% Pregunta: número en azul y texto en negrita (estilo subsección, 12/15 pt)
+\newcommand{\pregunta}[2]{\par\vspace{8pt}{\noindent\fontsize{12}{15}\selectfont\bfseries{\color{acento}#1}\hspace{0.75em}{\color{tinta}#2}\par}\vspace{-2pt}}
+% Que todo quepa en una sola hoja: interlineado un poco más cerrado que 1.15 (1.06)
+\setstretch{1.06}
+\setlength{\headheight}{14pt}
+
+\begin{document}
+\pagestyle{fancy}
+\thispagestyle{fancy}
+
+% Nombre y expediente, en la parte superior de la hoja
+\noindent{\fontsize{12}{15}\selectfont\bfseries Bórquez Guerrero Angel Fernando}\hfill%
+{\color{textosecundario}\fontsize{12}{15}\selectfont 219208106}\par
+\vspace{-6pt}{\color{linea}\rule{\linewidth}{0.4pt}}\par
+\vspace{6pt}
+
+% Materia, ciclo y profesor
+{\color{acento}\etiqueta{Contexto Regional · 2026-2 · Profesor José Moreno Vega}\par}
+\vspace{2pt}
+
+% Lectura y autor
+{\color{tinta}\fontsize{14}{17}\selectfont\bfseries Hacia una nueva interpretación del régimen colonial en Sonora. Descubriendo a los indios y redimensionando a los misioneros, 1681-1821\par}
+\vspace{2pt}
+{\color{textosecundario}\fontsize{11}{14}\selectfont Almada Bay, Ignacio; Medina Bustos, José Marcos y Borrero Silva, María del Valle\par}
+\vspace{4pt}
+{\color{acento}\rule{2.5cm}{2pt}\par}
+
+\pregunta{1}{¿Cuál es el argumento central del autor?}
+{\color{azul}
+Los autores proponen ver de otra forma el régimen colonial en Sonora y el norte de Sinaloa entre 1681 y 1821. Dicen que el sistema de misiones jesuitas no era tan sólido como se ha contado, porque desde 1681 las misiones se fueron deteriorando con rebeliones de varios pueblos indígenas, mucha movilidad de la población y castigos corporales que los misioneros usaban con regularidad para disciplinar a los indios. Por eso, para ellos la expulsión de los jesuitas en 1767 no fue la catástrofe que muchas veces se presenta, sino que solo aceleró cambios que ya venían ocurriendo. Además, sostienen que los indígenas no eran pasivos, ya que tenían gobernantes propios, se aliaban entre pueblos distintos y respondían políticamente, como hicieron los gobernadores yaquis Muni y Bernabé, y que la población civil y los presidios tenían su propia dinámica, sin depender de los misioneros.
+}
+
+\pregunta{2}{¿Qué evidencias utiliza para respaldarlo?}
+{\color{azul}
+Se basan sobre todo en documentos y testimonios de la época, como los informes de los jesuitas (por ejemplo, la visita del padre Juan Antonio Baltasar y las cartas de otros misioneros), las declaraciones de los indios después de las rebeliones y las noticias de militares y autoridades. Con ellos presentan casos concretos, como la golpiza que el jesuita Diego González le dio al gobernador yaqui Muni en 1735, la rebelión de 1740, la ejecución de Muni y de Bernabé en 1741 y la llegada de los dragones a Guaymas en 1768 para expulsar a los jesuitas. También hacen una lista de las rebeliones desde 1681 (como las de 1690, 1740 y 1751) para mostrar que fueron constantes, y se apoyan en historiadores como Bolton, Spicer, Hausberger y Navarro García, cuyas ideas a veces cuestionan.
+}
+
+\pregunta{3}{¿Cómo se relaciona esta lectura con la lectura anterior?}
+{\color{azul}
+Las dos lecturas hablan de cómo los pueblos indígenas de Sonora se resistieron a que los controlaran. En la lectura 1 se veía que los seris, aunque eran nómadas, aguantaron los intentos de absorción de otros grupos y de las misiones, y aquí los seris aparecen otra vez, aliados con los pimas bajos en el Cerro Prieto, junto con rebeliones de yaquis, mayos y pimas altos. Lo nuevo de esta lectura es que muestra que esa resistencia no fue solo de los seris, sino de muchos pueblos, y que fue lo que debilitó el sistema de misiones.
+}
+
+\end{document}

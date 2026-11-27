@@ -1,0 +1,51 @@
+% Tarea de Contexto Regional con el sistema de diseño "Investigación UNISON"
+% Compilar con: xelatex tarea_3.tex   (dos veces, por la marca de agua)
+% Necesita en la misma carpeta: unison-investigacion.sty y escudo-matematicas-marca-agua.png
+\documentclass[11pt,twoside,openany]{report}
+\usepackage{unison-investigacion}
+
+% Estilos del sistema usados en esta hoja
+\newcommand{\etiqueta}[1]{{\fontsize{8}{10}\selectfont\addfontfeature{LetterSpace=8}\MakeUppercase{#1}}}
+% Pregunta: número en azul y texto en negrita (estilo subsección, 12/15 pt)
+\newcommand{\pregunta}[2]{\par\vspace{8pt}{\noindent\fontsize{12}{15}\selectfont\bfseries{\color{acento}#1}\hspace{0.75em}{\color{tinta}#2}\par}\vspace{-2pt}}
+% Que todo quepa en una sola hoja: interlineado un poco más cerrado que 1.15 (1.06)
+\setstretch{1.06}
+\setlength{\headheight}{14pt}
+
+\begin{document}
+\pagestyle{fancy}
+\thispagestyle{fancy}
+
+% Nombre y expediente, en la parte superior de la hoja
+\noindent{\fontsize{12}{15}\selectfont\bfseries Bórquez Guerrero Angel Fernando}\hfill%
+{\color{textosecundario}\fontsize{12}{15}\selectfont 219208106}\par
+\vspace{-6pt}{\color{linea}\rule{\linewidth}{0.4pt}}\par
+\vspace{6pt}
+
+% Materia, ciclo y profesor
+{\color{acento}\etiqueta{Contexto Regional · 2026-2 · Profesor José Moreno Vega}\par}
+\vspace{2pt}
+
+% Lectura y autor
+{\color{tinta}\fontsize{14}{17}\selectfont\bfseries La aplicación regional de las reformas borbónicas en Nueva España. Sonora y Sinaloa, 1768-1787\par}
+\vspace{2pt}
+{\color{textosecundario}\fontsize{11}{14}\selectfont del Río, Ignacio\par}
+\vspace{4pt}
+{\color{acento}\rule{2.5cm}{2pt}\par}
+
+\pregunta{1}{¿Cuál es el argumento central del autor?}
+{\color{azul}
+El autor explica que las reformas borbónicas en Sonora y Sinaloa buscaban poblar y controlar mejor el noroeste, que era una frontera con poca población, rebeliones indígenas y amenazas de otras potencias. Al principio se pensó que la solución era traer más colonos españoles, como proponía el visitador Rodríguez Gallardo, pero la idea no funcionó bien: los colonos llevados a California desertaron, los colonos del norte no querían más competidores y las tierras de los pueblos indígenas ya estaban ocupadas. Por eso las autoridades cambiaron de plan y empezaron a buscar la integración social de indios y españoles, con pueblos mixtos y un nuevo reparto de tierras. Aun así, el autor dice que en la práctica esa política se encontró con una realidad regional más compleja: los indígenas no querían admitir forasteros en sus pueblos, la población no indígena era muy mezclada y los funcionarios aplicaban las reformas con más fuerza en los informes que en los hechos.
+}
+
+\pregunta{2}{¿Qué evidencias utiliza para respaldarlo?}
+{\color{azul}
+Usa sobre todo documentos de archivo, como cartas e informes de gobernadores, visitadores, misioneros y militares dirigidos al virrey, que están en el Archivo General de la Nación, el Archivo General de Indias y la Biblioteca Nacional. Entre ellos están el informe del visitador Rodríguez Gallardo de 1750, las cartas del capitán Lorenzo Cancio a Gálvez, los informes de Pedro Corbalán y del gobernador Mateo Sastre, y la carta del gobernador Crespo de 1776 sobre los pueblos mixtos de la Pimería Alta. También usa datos de población, como la \textit{Demostración} del obispo Tamarón y Romero de 1765, que contaba 106,128 habitantes en Sonora y Sinaloa, poco más de la mitad indígenas, y testimonios de misioneros, como el de 1772 sobre el pueblo de Opodepe.
+}
+
+\pregunta{3}{¿Cómo se relaciona esta lectura con la lectura anterior?}
+{\color{azul}
+Esta lectura empieza justo donde termina la anterior. La lectura 2 acababa con la expulsión de los jesuitas en 1767, la llegada de los dragones y el regalismo de la Corona, y aquí se explica qué hizo el gobierno con esas provincias después, con las reformas de Gálvez para poblar y reorganizar el noroeste. También se repite el tema de los indígenas: antes se veía cómo se rebelaban contra las misiones, y ahora cómo se resisten a admitir forasteros en sus pueblos y a los cambios que querían imponer las autoridades.
+}
+
+\end{document}
